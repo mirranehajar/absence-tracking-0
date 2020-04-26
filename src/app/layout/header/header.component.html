@@ -1,0 +1,11 @@
+<header [ngClass]="setClasses()" id="topnav">
+  <a routerLink="home" routerLinkActive="active"><i class="fa fa-fw fa-home"></i>Home</a>
+  <a routerLink="profil" routerLinkActive="active"><i class="fa fa-fw fa-user"></i>Profil</a>
+  <a routerLink="enseignant" routerLinkActive="active">Prof</a>
+  <a routerLink="filiere" routerLinkActive="active">Filiere</a>
+  <a routerLink="student" routerLinkActive="active">Student</a>
+  <a routerLink="excuse" routerLinkActive="active">Excuse&Justification</a>
+  <a class="icon" (click)="onNavClick()">
+    <i class="fa fa-list"></i>
+  </a>
+</header>
