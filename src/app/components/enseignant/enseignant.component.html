@@ -3,58 +3,55 @@
     <div class="card-header">
   <div class="row">
     <div class="col-md-3">
-      <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-external-link" label="Add a professor"></button>
+      <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Add a professor"></button>
       <p-dialog header="Add a new professor" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
-        <form method="POST" ngNativeValidate >
+        <form method="POST" ngNativeValidate>
             <div class="form-group">
               <div class="row">
-                <div class="col">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input type="number" pInputText placeholder="Matricule">
-                  </div>
+                    <input type="number" pInputText placeholder="Matricule" required>
                 </div>
-                <div class="col">
+              </div>
+              <br>
+                <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
                     <input type="text" pInputText placeholder="Cin">
                   </div>
                 </div>
-              </div>
               <br>
               <div class="row">
-                <div class="col">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
                     <input type="text" pInputText placeholder="First name">
                   </div>
                 </div>
-                <div class="col">
+              <br>
+                <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
                     <input type="text" pInputText placeholder="Last name">
                   </div>
                 </div>
-              </div>
               <br>
               <div class="row">
-                <div class="col">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
                     <input type="date" pInputText placeholder="Birth day">
                   </div>
                 </div>
-                <div class="col">
+              <br>
+                <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
                     <input type="tel" pInputText placeholder="Phone number">
                   </div>
                 </div>
-              </div>
             </div>
           <p-footer>
-            <button type="button" pButton icon="pi pi-check" (click)="displayBasic=false" label="Yes"></button>
-            <button type="button" pButton icon="pi pi-times" (click)="displayBasic=false" label="No" class="ui-button-secondary"></button>
+            <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="displayBasic=false" label="Confirm"></button>
+            <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Cancel" class="ui-button-secondary"></button>
           </p-footer>
         </form>
       </p-dialog>
@@ -62,10 +59,10 @@
     </div>
 
     <div class="col-md-3">
-      <p-button label="Import file" styleClass="ui-button-success" icon="pi pi-upload" iconPos="right"></p-button>
+      <p-button label="Import file" styleClass="ui-button-success" icon="pi pi-upload" ></p-button>
     </div>
     <div class="col-md-3">
-      <p-button label="Donwload example" styleClass="ui-button-warning" icon="pi pi-download" iconPos="right"></p-button>
+      <p-button label="Donwload example" styleClass="ui-button-warning" icon="pi pi-download" ></p-button>
     </div>
     <div class="col-md-3">
 <span class="ui-float-label">
