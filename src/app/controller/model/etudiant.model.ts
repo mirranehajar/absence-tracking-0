@@ -1,5 +1,4 @@
 export class Etudiant {
-
   public cin: string ;
   public cne: string ;
   public  codeApogee: number;

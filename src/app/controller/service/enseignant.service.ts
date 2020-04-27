@@ -6,8 +6,11 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class EnseignantService {
+  // tslint:disable-next-line:variable-name
   private _enseignant: Enseignant;
+  // tslint:disable-next-line:variable-name
   private _enseignants: Array<Enseignant>;
+  // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/enseignant/';
 
   constructor(private http: HttpClient) { }
