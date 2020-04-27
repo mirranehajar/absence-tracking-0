@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants-routing.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/controller/service/etudiant.service.ts" afterDir="false" />
+    <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46_[Default_Changelist]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46_[Default_Changelist]1/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46__Default_Changelist_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46__Default_Changelist_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/absence.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/etudiant.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/model/etudiant.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/etudiant.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/controller/service/enseignant.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/enseignant.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/service/etudiant.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/etudiant.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/main/main.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/main/main.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,12 +142,16 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Page Enseignant sans footer" />
     <MESSAGE value="dialog style" />
     <MESSAGE value="inputs in the center of dialog" />
-    <option name="LAST_COMMIT_MESSAGE" value="inputs in the center of dialog" />
+    <MESSAGE value="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka" />
+    <option name="LAST_COMMIT_MESSAGE" value="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -137,10 +162,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="447" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1587949360269" />
-    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1587997976913">
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1588026346525">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1587997976913" />
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1588026346525" />
     <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1587997149012">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -150,25 +175,25 @@
     </state>
     <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1587997390808" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
-    <state width="813" height="610" key="GridCell.Tab.0.bottom" timestamp="1588004996208">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1588027177615">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1587993654585" />
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588027177615" />
     <state width="813" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="813" height="610" key="GridCell.Tab.0.center" timestamp="1588004996208">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1588027177614">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1587993654584" />
+    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588027177614" />
     <state width="813" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="813" height="610" key="GridCell.Tab.0.left" timestamp="1588004996208">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1588027177613">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1587993654584" />
+    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588027177613" />
     <state width="813" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="813" height="610" key="GridCell.Tab.0.right" timestamp="1588004996208">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1588027177614">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1587993654584" />
+    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588027177614" />
     <state width="813" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
     <state x="184" y="13" key="SettingsEditor" timestamp="1587939886192">
       <screen x="0" y="0" width="1366" height="738" />
@@ -178,6 +203,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587997160021" />
+    <state x="492" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588023994374">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="492" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1588023994374" />
+    <state x="371" y="152" key="git4idea.merge.GitPullDialog" timestamp="1588024034668">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="371" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1588024034668" />
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1587939804420">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

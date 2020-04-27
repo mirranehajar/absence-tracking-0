@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Etudiant} from '../model/etudiant.model';
-import {Enseignant} from '../model/enseignant.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +11,9 @@ export class EtudiantService {
   // tslint:disable-next-line:variable-name
   private _etudiants: Array<Etudiant>;
   // tslint:disable-next-line:variable-name
-  private _url: 'http://localhost:8090/absence-tracking/etudiant';
-  constructor(private http: HttpClient) { }
+  private _url = 'http://localhost:8090/absence-tracking/etudiant/';
 
+  constructor(private http: HttpClient) { }
   public deleteFromList(etudiant: Etudiant) {
     const index = this.etudiants.findIndex(e => e.cne === etudiant.cne);
     if (index !== -1) {
@@ -41,7 +40,7 @@ export class EtudiantService {
       data => {
         if (data > 0) {
           this.etudiants.push(this.clone(this.etudiant));
-          this._etudiant = null;
+          this.etudiant = null;
         }
       }, error => {
         console.log('error');
@@ -52,32 +51,31 @@ export class EtudiantService {
     const myclone = new Etudiant();
     myclone.cne = etudiant.cne;
     myclone.cin = etudiant.cin;
+    myclone.codeApogee = etudiant.codeApogee;
     myclone.firstName = etudiant.firstName;
     myclone.lastName = etudiant.lastName;
     myclone.tel = etudiant.tel;
     myclone.birthDay = etudiant.birthDay;
+    myclone.mail = etudiant.mail;
     return myclone;
   }
+
   get etudiant(): Etudiant {
     if (this._etudiant == null) {
       this._etudiant = new Etudiant();
     }
     return this._etudiant;
   }
-
-  set etutiant(value: Etudiant) {
+  set etudiant(value: Etudiant) {
     this._etudiant = value;
   }
-
   get etudiants(): Array<Etudiant> {
     if (this._etudiants == null) {
       this._etudiants = new Array<Etudiant>();
     }
     return this._etudiants;
   }
-
   set etudiants(value: Array<Etudiant>) {
     this._etudiants = value;
   }
-
 }

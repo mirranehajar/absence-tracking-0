@@ -1,0 +1,351 @@
+Index: src/app/components/enseignant/enseignant.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><div class=\"container\">\r\n  <div class=\"card text-center\">\r\n    <div class=\"card-header\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-3\">\r\n      <button type=\"button\" (click)=\"showBasicDialog()\" pButton icon=\"pi pi-plus\" label=\"Add a professor\"></button>\r\n      <p-dialog  header=\"Add a new professor\" [(visible)]=\"displayBasic\" [style]=\"{width: '50vw'}\" [baseZIndex]=\"10000\">\r\n        <form style=\"text-align: center\" method=\"POST\" ngNativeValidate>\r\n            <div style=\"display:inline-block\" class=\"form-group\">\r\n              <div class=\"row\">\r\n                  <div class=\"ui-inputgroup\">\r\n                    <span class=\"ui-inputgroup-addon\"><i class=\"pi pi-user\" style=\"line-height: 1.25;\"></i></span>\r\n                    <input [(ngModel)]=\"enseignant.matricule\" name=\"matricule\" type=\"number\" pInputText placeholder=\"Matricule\" required>\r\n                </div>\r\n              </div>\r\n              <br>\r\n                <div class=\"row\">\r\n                  <div class=\"ui-inputgroup\">\r\n                    <span class=\"ui-inputgroup-addon\"><i class=\"pi pi-user\" style=\"line-height: 1.25;\"></i></span>\r\n                    <input [(ngModel)]=\"enseignant.cin\" name=\"cin\" type=\"text\" pInputText placeholder=\"Cin\">\r\n                  </div>\r\n                </div>\r\n              <br>\r\n              <div class=\"row\">\r\n                  <div class=\"ui-inputgroup\">\r\n                    <span class=\"ui-inputgroup-addon\"><i class=\"pi pi-user\" style=\"line-height: 1.25;\"></i></span>\r\n                    <input [(ngModel)]=\"enseignant.firstName\" name=\"firstName\" type=\"text\" pInputText placeholder=\"First name\">\r\n                  </div>\r\n                </div>\r\n              <br>\r\n                <div class=\"row\">\r\n                  <div class=\"ui-inputgroup\">\r\n                    <span class=\"ui-inputgroup-addon\"><i class=\"pi pi-user\" style=\"line-height: 1.25;\"></i></span>\r\n                    <input [(ngModel)]=\"enseignant.lastName\" name=\"lastName\" type=\"text\" pInputText placeholder=\"Last name\">\r\n                  </div>\r\n                </div>\r\n              <br>\r\n              <div class=\"row\">\r\n                  <div class=\"ui-inputgroup\">\r\n                    <span class=\"ui-inputgroup-addon\"><i class=\"pi pi-user\" style=\"line-height: 1.25;\"></i></span>\r\n                    <input [(ngModel)]=\"enseignant.birthDay\" name=\"birthDay\" type=\"date\" pInputText placeholder=\"Birth day\">\r\n                  </div>\r\n                </div>\r\n              <br>\r\n                <div class=\"row\">\r\n                  <div class=\"ui-inputgroup\">\r\n                    <span class=\"ui-inputgroup-addon\"><i class=\"pi pi-user\" style=\"line-height: 1.25;\"></i></span>\r\n                    <input [(ngModel)]=\"enseignant.tel\" name=\"tel\" type=\"tel\" pInputText placeholder=\"Phone number\">\r\n                  </div>\r\n                </div>\r\n            </div>\r\n              <br>\r\n          <p-footer>\r\n            <button type=\"submit\" pButton icon=\"pi pi-check\" style=\"float: left\" (click)=\"save()\" label=\"Confirm\"></button>\r\n            <button type=\"reset\" pButton icon=\"pi pi-times\" style=\"float: right\" (click)=\"displayBasic=false\" label=\"Cancel\" class=\"ui-button-secondary\"></button>\r\n          </p-footer>\r\n\r\n        </form>\r\n      </p-dialog>\r\n      <p-messages [value]=\"msgs\">msg</p-messages>\r\n    </div>\r\n\r\n    <div class=\"col-md-3\">\r\n      <p-button label=\"Import file\" styleClass=\"ui-button-success\" icon=\"pi pi-upload\" ></p-button>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n      <p-button label=\"Donwload example\" styleClass=\"ui-button-warning\" icon=\"pi pi-download\" ></p-button>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n<span class=\"ui-float-label\">\r\n    <input id=\"disabled-input\" type=\"text\" size=\"15\" pInputText>\r\n    <label for=\"disabled-input\">Search</label>\r\n    <p-button icon=\"pi pi-search\" styleClass=\"ui-button-secondary\"></p-button>\r\n</span>\r\n    </div>\r\n    </div>\r\n  </div>\r\n    <div class=\"card-body\">\r\n  <div class=\"row\">\r\n    <div class=\"table-responsive\">\r\n      <table  class=\"grid table table-bordered table-sortable\">\r\n        <thead>\r\n        <tr>\r\n          <th>Matricule</th>\r\n          <th>Cin</th>\r\n          <th>First Name</th>\r\n          <th>Last Name</th>\r\n          <th>Mail</th>\r\n          <th>Birth day</th>\r\n          <th>Phone Number</th>\r\n          <th>Département</th>\r\n        </tr>\r\n        </thead>\r\n        <tbody>\r\n        <tr *ngFor=\"let e of enseignants\">\r\n          <td>{{e.matricule}}</td>\r\n          <td>{{e.cin}}</td>\r\n          <td>{{e.firstName}}</td>\r\n          <td>{{e.lastName}}</td>\r\n          <td>{{e.mail}}</td>\r\n          <td>{{e.birthDay}}</td>\r\n          <td>{{e.tel}}</td>\r\n          <td></td>\r\n          <p-button icon=\"pi pi-user-edit\" styleClass=\"ui-button-info\"></p-button>\r\n          <p-button icon=\"pi pi-trash\" styleClass=\"ui-button-danger\" (onClick)=\"deleteByMatricule(e)\"></p-button>\r\n        </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n  </div>\r\n  </div>\r\n</div>\r\n</div>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/components/enseignant/enseignant.component.html	(revision 5702867436e6013e9374d64a33aae94116ffdad3)
++++ src/app/components/enseignant/enseignant.component.html	(date 1588021667534)
+@@ -54,7 +54,6 @@
+             <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Confirm"></button>
+             <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Cancel" class="ui-button-secondary"></button>
+           </p-footer>
+-
+         </form>
+       </p-dialog>
+       <p-messages [value]="msgs">msg</p-messages>
+@@ -62,6 +61,13 @@
+ 
+     <div class="col-md-3">
+       <p-button label="Import file" styleClass="ui-button-success" icon="pi pi-upload" ></p-button>
++      <button>
++        <label>
++          <span class="mdi mdi-file-export"> </span>
++          <small>Import</small>
++          <input hidden type="file" (change)="onFileChange($event)" multiple="false">
++        </label>
++      </button>
+     </div>
+     <div class="col-md-3">
+       <p-button label="Donwload example" styleClass="ui-button-warning" icon="pi pi-download" ></p-button>
+@@ -105,6 +111,28 @@
+           <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByMatricule(e)"></p-button>
+         </tr>
+         </tbody>
++      </table>
++      <table id="contactJs"  class="grid table table-bordered table-sortable">
++        <tr class="thead">
++          <th>Matricule</th>
++          <th>Cin</th>
++          <th>First Name</th>
++          <th>Last Name</th>
++          <th>Mail</th>
++          <th>Birth day</th>
++          <th>Phone Number</th>
++          <th>Département</th>
++        </tr>
++        <tr class="tbody" *ngFor="let contact of importContacts; let odd = odd" [ngClass]="{'odd': odd}">
++          <td>{{contact.matricule}}</td>
++          <td>{{contact.cin}}</td>
++          <td>{{contact.firstName}}</td>
++          <td>{{contact.lastName}}</td>
++          <td>{{contact.mail}}</td>
++          <td>{{contact.birthDay}}</td>
++          <td>{{contact.tel}}</td>
++          <td></td>
++        </tr>
+       </table>
+     </div>
+   </div>
+Index: src/app/components/enseignant/enseignant.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Component, OnInit } from '@angular/core';\r\nimport {ConfirmationService} from 'primeng/api';\r\nimport {Message} from 'primeng/api';\r\nimport {EnseignantService} from '../../controller/service/enseignant.service';\r\nimport {Enseignant} from '../../controller/model/enseignant.model';\r\n\r\n@Component({\r\n  selector: 'app-enseignant',\r\n  templateUrl: './enseignant.component.html',\r\n  styleUrls: ['./enseignant.component.scss'],\r\n  providers: [ConfirmationService]\r\n})\r\nexport class EnseignantComponent implements OnInit {\r\n  msgs: Message[] = [];\r\n  displayBasic: boolean;\r\n  position: string;\r\n\r\n  constructor(private enseignantService: EnseignantService) { }\r\n\r\n  ngOnInit(): void {this.enseignantService.findAll();\r\n  }\r\n  public deleteByMatricule(enseignant: Enseignant) {\r\n    this.enseignantService.deleteByMatricule(enseignant);\r\n  }\r\n  showBasicDialog() {\r\n    this.displayBasic = true;\r\n  }\r\n  public save() {\r\n    this.enseignantService.save();\r\n    this.displayBasic = false;\r\n  }\r\n  get enseignant(): Enseignant {\r\n    return this.enseignantService.enseignant;\r\n  }\r\n  get enseignants(): Array<Enseignant> {\r\n    return this.enseignantService.enseignants;\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/components/enseignant/enseignant.component.ts	(revision 5702867436e6013e9374d64a33aae94116ffdad3)
++++ src/app/components/enseignant/enseignant.component.ts	(date 1588022253851)
+@@ -11,6 +11,7 @@
+   providers: [ConfirmationService]
+ })
+ export class EnseignantComponent implements OnInit {
++  importContacts: Array<Enseignant> = new Array<Enseignant>();
+   msgs: Message[] = [];
+   displayBasic: boolean;
+   position: string;
+@@ -35,4 +36,39 @@
+   get enseignants(): Array<Enseignant> {
+     return this.enseignantService.enseignants;
+   }
++  onFileChange(evt: any) {
++    const target: DataTransfer = (evt.target) as DataTransfer;
++    if (target.files.length !== 1) { throw new Error('Cannot use multiple files'); }
++
++    const reader: FileReader = new FileReader();
++    reader.onload = (e: any) => {
++
++      const bstr: string = e.target.result;
++      const data = this.enseignantService.importFromFile(bstr) as any[];
++
++      const header: string[] = Object.getOwnPropertyNames(new Enseignant());
++      const importedData = data.slice(1, -1);
++
++      this.importContacts = importedData.map(arr => {
++        const obj = {};
++        for (let i = 0; i < header.length; i++) {
++          const k = header[i];
++          obj[k] = arr[i];
++        }
++        return obj as Enseignant;
++      });
++      for (const imported of this.importContacts) {
++        console.log(imported.matricule);
++        console.log(imported.cin);
++        console.log(imported.lastName);
++        console.log(imported.firstName);
++        console.log(imported.tel);
++        console.log(imported.birthDay);
++      }
++    };
++    reader.readAsBinaryString(target.files[0]);
++    for (const imported of this.importContacts) {
++      this.enseignants.push(imported);
++    }
++  }
+ }
+Index: src/app/controller/service/enseignant.service.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Injectable } from '@angular/core';\r\nimport {Enseignant} from '../model/enseignant.model';\r\nimport {HttpClient} from '@angular/common/http';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class EnseignantService {\r\n  private _enseignant: Enseignant;\r\n  private _enseignants: Array<Enseignant>;\r\n  private _url = 'http://localhost:8090/absence-tracking/enseignant/';\r\n\r\n  constructor(private http: HttpClient) { }\r\n  public deleteFromList(enseignant: Enseignant) {\r\n    const index = this.enseignants.findIndex(e => e.matricule === enseignant.matricule);\r\n    if (index !== -1) {\r\n      this.enseignants.splice(index, 1);\r\n    }\r\n  }\r\n  public deleteByMatricule(enseignant: Enseignant) {\r\n    this.http.delete<number>(this._url + 'matricule/' + enseignant.matricule).subscribe(\r\n      data => {\r\n        console.log(data);\r\n        this.deleteFromList(enseignant);\r\n      }\r\n    );\r\n  }\r\n  public findAll() {\r\n    this.http.get<Array<Enseignant>>(this._url).subscribe(\r\n      data => {\r\n        this.enseignants = data;\r\n      }\r\n    );\r\n  }\r\n  public save() {\r\n      this.http.post<number>(this._url, this.enseignant).subscribe(\r\n        data => {\r\n          if (data > 0) {\r\n            this.enseignants.push(this.clone(this.enseignant));\r\n            this.enseignant = null;\r\n          }\r\n        }, error => {\r\n          console.log('error');\r\n        }\r\n      );\r\n    }\r\n  private clone(enseignant: Enseignant) {\r\n    const myclone = new Enseignant();\r\n    myclone.matricule = enseignant.matricule;\r\n    myclone.cin = enseignant.cin;\r\n    myclone.firstName = enseignant.firstName;\r\n    myclone.lastName = enseignant.lastName;\r\n    myclone.tel = enseignant.tel;\r\n    myclone.birthDay = enseignant.birthDay;\r\n    return myclone;\r\n  }\r\n  get enseignant(): Enseignant {\r\n    if (this._enseignant == null) {\r\n      this._enseignant = new Enseignant();\r\n    }\r\n    return this._enseignant;\r\n  }\r\n\r\n  set enseignant(value: Enseignant) {\r\n    this._enseignant = value;\r\n  }\r\n\r\n  get enseignants(): Array<Enseignant> {\r\n    if (this._enseignants == null) {\r\n      this._enseignants = new Array<Enseignant>();\r\n    }\r\n    return this._enseignants;\r\n  }\r\n\r\n  set enseignants(value: Array<Enseignant>) {\r\n    this._enseignants = value;\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/controller/service/enseignant.service.ts	(revision 5702867436e6013e9374d64a33aae94116ffdad3)
++++ src/app/controller/service/enseignant.service.ts	(date 1588007962591)
+@@ -1,6 +1,7 @@
+ import { Injectable } from '@angular/core';
+ import {Enseignant} from '../model/enseignant.model';
+ import {HttpClient} from '@angular/common/http';
++import * as XLSX from 'xlsx';
+ 
+ @Injectable({
+   providedIn: 'root'
+@@ -75,4 +76,17 @@
+   set enseignants(value: Array<Enseignant>) {
+     this._enseignants = value;
+   }
++  public importFromFile(bstr: string): XLSX.AOA2SheetOpts {
++    /* read workbook */
++    const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
++
++    /* grab first sheet */
++    const wsname: string = wb.SheetNames[0];
++    const ws: XLSX.WorkSheet = wb.Sheets[wsname];
++
++    /* save data */
++    const data = (XLSX.utils.sheet_to_json(ws, { header: 1 })) as XLSX.AOA2SheetOpts;
++
++    return data;
++  }
+ }
+Index: package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"name\": \"absence-tracking\",\r\n  \"version\": \"0.0.0\",\r\n  \"scripts\": {\r\n    \"ng\": \"ng\",\r\n    \"start\": \"ng serve\",\r\n    \"build\": \"ng build\",\r\n    \"test\": \"ng test\",\r\n    \"lint\": \"ng lint\",\r\n    \"e2e\": \"ng e2e\"\r\n  },\r\n  \"private\": true,\r\n  \"dependencies\": {\r\n    \"@angular/animations\": \"^9.0.7\",\r\n    \"@angular/cdk\": \"^9.2.1\",\r\n    \"@angular/common\": \"~9.0.7\",\r\n    \"@angular/compiler\": \"~9.0.7\",\r\n    \"@angular/core\": \"~9.0.7\",\r\n    \"@angular/forms\": \"~9.0.7\",\r\n    \"@angular/platform-browser\": \"~9.0.7\",\r\n    \"@angular/platform-browser-dynamic\": \"~9.0.7\",\r\n    \"@angular/router\": \"~9.0.7\",\r\n    \"@fullcalendar/core\": \"^4.4.0\",\r\n    \"bootstrap\": \"^4.4.1\",\r\n    \"chart.js\": \"^2.9.3\",\r\n    \"primeicons\": \"^2.0.0\",\r\n    \"primeng\": \"^9.0.6\",\r\n    \"quill\": \"^1.3.7\",\r\n    \"rxjs\": \"~6.5.4\",\r\n    \"tslib\": \"^1.10.0\",\r\n    \"zone.js\": \"~0.10.2\"\r\n  },\r\n  \"devDependencies\": {\r\n    \"@angular-devkit/build-angular\": \"~0.900.7\",\r\n    \"@angular/cli\": \"~9.0.7\",\r\n    \"@angular/compiler-cli\": \"~9.0.7\",\r\n    \"@angular/language-service\": \"~9.0.7\",\r\n    \"@types/node\": \"^12.11.1\",\r\n    \"@types/jasmine\": \"~3.5.0\",\r\n    \"@types/jasminewd2\": \"~2.0.3\",\r\n    \"codelyzer\": \"^5.1.2\",\r\n    \"jasmine-core\": \"~3.5.0\",\r\n    \"jasmine-spec-reporter\": \"~4.2.1\",\r\n    \"karma\": \"~4.3.0\",\r\n    \"karma-chrome-launcher\": \"~3.1.0\",\r\n    \"karma-coverage-istanbul-reporter\": \"~2.1.0\",\r\n    \"karma-jasmine\": \"~2.0.1\",\r\n    \"karma-jasmine-html-reporter\": \"^1.4.2\",\r\n    \"protractor\": \"~5.4.3\",\r\n    \"ts-node\": \"~8.3.0\",\r\n    \"tslint\": \"~5.18.0\",\r\n    \"typescript\": \"~3.7.5\"\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- package.json	(revision 5702867436e6013e9374d64a33aae94116ffdad3)
++++ package.json	(date 1588007910337)
+@@ -28,6 +28,7 @@
+     "quill": "^1.3.7",
+     "rxjs": "~6.5.4",
+     "tslib": "^1.10.0",
++    "xlsx": "^0.15.6",
+     "zone.js": "~0.10.2"
+   },
+   "devDependencies": {
+Index: package-lock.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- package-lock.json	(revision 5702867436e6013e9374d64a33aae94116ffdad3)
++++ package-lock.json	(date 1588007910836)
+@@ -1707,6 +1707,15 @@
+       "integrity": "sha512-add7dgA5ppRPxCFJoAGfMDi7PIBXq1RtGo7BhbLaxwrXPOmw8gq48Y9ozT01hUKy9byMjlR20EJhu5zlkErEkg==",
+       "dev": true
+     },
++    "adler-32": {
++      "version": "1.2.0",
++      "resolved": "https://registry.npmjs.org/adler-32/-/adler-32-1.2.0.tgz",
++      "integrity": "sha1-aj5r8KY5ALoVZSgIyxXGgT0aXyU=",
++      "requires": {
++        "exit-on-epipe": "~1.0.1",
++        "printj": "~1.1.0"
++      }
++    },
+     "adm-zip": {
+       "version": "0.4.14",
+       "resolved": "https://registry.npmjs.org/adm-zip/-/adm-zip-0.4.14.tgz",
+@@ -2632,6 +2641,17 @@
+       "integrity": "sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=",
+       "dev": true
+     },
++    "cfb": {
++      "version": "1.1.4",
++      "resolved": "https://registry.npmjs.org/cfb/-/cfb-1.1.4.tgz",
++      "integrity": "sha512-rwFkl3aFO3f+ljR27YINwC0x8vPjyiEVbYbrTCKzspEf7Q++3THdfHVgJYNUbxNcupJECrLX+L40Mjm9hm/Bgw==",
++      "requires": {
++        "adler-32": "~1.2.0",
++        "commander": "^2.16.0",
++        "crc-32": "~1.2.0",
++        "printj": "~1.1.2"
++      }
++    },
+     "chalk": {
+       "version": "2.4.2",
+       "resolved": "https://registry.npmjs.org/chalk/-/chalk-2.4.2.tgz",
+@@ -2875,6 +2895,22 @@
+         }
+       }
+     },
++    "codepage": {
++      "version": "1.14.0",
++      "resolved": "https://registry.npmjs.org/codepage/-/codepage-1.14.0.tgz",
++      "integrity": "sha1-jL4lSBMjVZ19MHVxsP/5HnodL5k=",
++      "requires": {
++        "commander": "~2.14.1",
++        "exit-on-epipe": "~1.0.1"
++      },
++      "dependencies": {
++        "commander": {
++          "version": "2.14.1",
++          "resolved": "https://registry.npmjs.org/commander/-/commander-2.14.1.tgz",
++          "integrity": "sha512-+YR16o3rK53SmWHU3rEM3tPAh2rwb1yPcQX5irVn7mb0gXbwuCCrnkbV5+PBfETdfg1vui07nM6PCG1zndcjQw=="
++        }
++      }
++    },
+     "collection-visit": {
+       "version": "1.0.0",
+       "resolved": "https://registry.npmjs.org/collection-visit/-/collection-visit-1.0.0.tgz",
+@@ -2936,8 +2972,7 @@
+     "commander": {
+       "version": "2.20.3",
+       "resolved": "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz",
+-      "integrity": "sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==",
+-      "dev": true
++      "integrity": "sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ=="
+     },
+     "commondir": {
+       "version": "1.0.1",
+@@ -3316,6 +3351,15 @@
+         }
+       }
+     },
++    "crc-32": {
++      "version": "1.2.0",
++      "resolved": "https://registry.npmjs.org/crc-32/-/crc-32-1.2.0.tgz",
++      "integrity": "sha512-1uBwHxF+Y/4yF5G48fwnKq6QsIXheor3ZLPT80yGBV1oEUwpPojlEhQbWKVw1VwcTQyMGHK1/XMmTjmlsmTTGA==",
++      "requires": {
++        "exit-on-epipe": "~1.0.1",
++        "printj": "~1.1.0"
++      }
++    },
+     "create-ecdh": {
+       "version": "4.0.3",
+       "resolved": "https://registry.npmjs.org/create-ecdh/-/create-ecdh-4.0.3.tgz",
+@@ -4385,6 +4429,11 @@
+       "integrity": "sha1-BjJjj42HfMghB9MKD/8aF8uhzQw=",
+       "dev": true
+     },
++    "exit-on-epipe": {
++      "version": "1.0.1",
++      "resolved": "https://registry.npmjs.org/exit-on-epipe/-/exit-on-epipe-1.0.1.tgz",
++      "integrity": "sha512-h2z5mrROTxce56S+pnvAV890uu7ls7f1kEvVGJbw1OlFH3/mlJ5bkXu0KRyW94v37zzHPiUd55iLn3DA7TjWpw=="
++    },
+     "expand-brackets": {
+       "version": "2.1.4",
+       "resolved": "https://registry.npmjs.org/expand-brackets/-/expand-brackets-2.1.4.tgz",
+@@ -4902,6 +4951,11 @@
+       "integrity": "sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=",
+       "dev": true
+     },
++    "frac": {
++      "version": "1.1.2",
++      "resolved": "https://registry.npmjs.org/frac/-/frac-1.1.2.tgz",
++      "integrity": "sha512-w/XBfkibaTl3YDqASwfDUqkna4Z2p9cFSr1aHDt0WoMTECnRfBOv2WArlZILlqgWlmdIlALXGpM2AOhEk5W3IA=="
++    },
+     "fragment-cache": {
+       "version": "0.2.1",
+       "resolved": "https://registry.npmjs.org/fragment-cache/-/fragment-cache-0.2.1.tgz",
+@@ -8746,6 +8800,11 @@
+       "resolved": "https://registry.npmjs.org/primeng/-/primeng-9.0.6.tgz",
+       "integrity": "sha512-RGVTkXwHTb7609zTU/uJFYdbJV124kOwrMiwnHjFn6UkwmS3yTX0Kkr21v8KOTJqsKLq3OWVYhkOwvUklipAAg=="
+     },
++    "printj": {
++      "version": "1.1.2",
++      "resolved": "https://registry.npmjs.org/printj/-/printj-1.1.2.tgz",
++      "integrity": "sha512-zA2SmoLaxZyArQTOPj5LXecR+RagfPSU5Kw1qP+jkWeNlrq+eJZyY2oS68SU1Z/7/myXM4lo9716laOFAVStCQ=="
++    },
+     "private": {
+       "version": "0.1.8",
+       "resolved": "https://registry.npmjs.org/private/-/private-0.1.8.tgz",
+@@ -10496,6 +10555,14 @@
+       "integrity": "sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=",
+       "dev": true
+     },
++    "ssf": {
++      "version": "0.10.3",
++      "resolved": "https://registry.npmjs.org/ssf/-/ssf-0.10.3.tgz",
++      "integrity": "sha512-pRuUdW0WwyB2doSqqjWyzwCD6PkfxpHAHdZp39K3dp/Hq7f+xfMwNAWIi16DyrRg4gg9c/RvLYkJTSawTPTm1w==",
++      "requires": {
++        "frac": "~1.1.2"
++      }
++    },
+     "sshpk": {
+       "version": "1.16.1",
+       "resolved": "https://registry.npmjs.org/sshpk/-/sshpk-1.16.1.tgz",
+@@ -13395,6 +13462,11 @@
+       "integrity": "sha1-2e8H3Od7mQK4o6j6SzHD4/fm6Ho=",
+       "dev": true
+     },
++    "wmf": {
++      "version": "1.0.2",
++      "resolved": "https://registry.npmjs.org/wmf/-/wmf-1.0.2.tgz",
++      "integrity": "sha512-/p9K7bEh0Dj6WbXg4JG0xvLQmIadrner1bi45VMJTfnbVHsc7yIajZyoSoK60/dtVBs12Fm6WkUI5/3WAVsNMw=="
++    },
+     "wordwrap": {
+       "version": "0.0.3",
+       "resolved": "https://registry.npmjs.org/wordwrap/-/wordwrap-0.0.3.tgz",
+@@ -13466,6 +13538,28 @@
+         "async-limiter": "~1.0.0"
+       }
+     },
++    "xlsx": {
++      "version": "0.15.6",
++      "resolved": "https://registry.npmjs.org/xlsx/-/xlsx-0.15.6.tgz",
++      "integrity": "sha512-7vD9eutyLs65iDjNFimVN+gk/oDkfkCgpQUjdE82QgzJCrBHC4bGPH7fzKVyy0UPp3gyFVQTQEFJaWaAvZCShQ==",
++      "requires": {
++        "adler-32": "~1.2.0",
++        "cfb": "^1.1.4",
++        "codepage": "~1.14.0",
++        "commander": "~2.17.1",
++        "crc-32": "~1.2.0",
++        "exit-on-epipe": "~1.0.1",
++        "ssf": "~0.10.3",
++        "wmf": "~1.0.1"
++      },
++      "dependencies": {
++        "commander": {
++          "version": "2.17.1",
++          "resolved": "https://registry.npmjs.org/commander/-/commander-2.17.1.tgz",
++          "integrity": "sha512-wPMUt6FnH2yzG95SA6mzjQOEKUU3aLaDEmzs1ti+1E9h+CsrZghRlqEM/EJ4KscsQVG8uNN4uVreUeT8+drlgg=="
++        }
++      }
++    },
+     "xml2js": {
+       "version": "0.4.23",
+       "resolved": "https://registry.npmjs.org/xml2js/-/xml2js-0.4.23.tgz",

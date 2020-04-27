@@ -4,7 +4,8 @@ export class Etudiant {
   public  codeApogee: number;
   public  firstName: string ;
   public lastName: string ;
-  public birthDay: string;
+  public birthDay: Date;
   public tel: number;
   public nbrAbsence: number;
+  public mail: string;
 }

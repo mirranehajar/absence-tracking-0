@@ -3,14 +3,14 @@
     <div class="card-header">
       <div class="row">
         <div class="col-md-3">
-          <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Add a professor"></button>
-          <p-dialog  header="Add a new professor" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+          <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Add a student"></button>
+          <p-dialog  header="Add a new student" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
             <form style="text-align: center" method="POST" ngNativeValidate>
               <div style="display:inline-block" class="form-group">
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="etudiant.cne" name="matricule" type="number" pInputText placeholder="Matricule" required>
+                    <input [(ngModel)]="etudiant.cne" name="cne" type="number" pInputText placeholder="Cne" required>
                   </div>
                 </div>
                 <br>
@@ -18,6 +18,13 @@
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
                     <input [(ngModel)]="etudiant.cin" name="cin" type="text" pInputText placeholder="Cin">
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input [(ngModel)]="etudiant.codeApogee" name="codeApogee" type="text" pInputText placeholder="Code Apogee">
                   </div>
                 </div>
                 <br>
@@ -94,7 +101,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let e of etudiant">
+            <tr *ngFor="let e of etudiants">
               <td>{{e.cne}}</td>
               <td>{{e.cin}}</td>
               <td>{{e.firstName}}</td>
@@ -104,8 +111,9 @@
               <td>{{e.tel}}</td>
               <td>{{e.codeApogee}}</td>
               <td></td>
+              <td></td>
               <p-button icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>
-              <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByMatricule(e)"></p-button>
+              <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByCne(e)"></p-button>
             </tr>
             </tbody>
           </table>

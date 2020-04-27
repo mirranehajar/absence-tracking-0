@@ -11,6 +11,7 @@ import {Enseignant} from '../../controller/model/enseignant.model';
   providers: [ConfirmationService]
 })
 export class EnseignantComponent implements OnInit {
+  importContacts: Array<Enseignant> = new Array<Enseignant>();
   msgs: Message[] = [];
   displayBasic: boolean;
   position: string;
@@ -34,5 +35,40 @@ export class EnseignantComponent implements OnInit {
   }
   get enseignants(): Array<Enseignant> {
     return this.enseignantService.enseignants;
+  }
+  onFileChange(evt: any) {
+    const target: DataTransfer = (evt.target) as DataTransfer;
+    if (target.files.length !== 1) { throw new Error('Cannot use multiple files'); }
+
+    const reader: FileReader = new FileReader();
+    reader.onload = (e: any) => {
+
+      const bstr: string = e.target.result;
+      const data = this.enseignantService.importFromFile(bstr) as any[];
+
+      const header: string[] = Object.getOwnPropertyNames(new Enseignant());
+      const importedData = data.slice(1, -1);
+
+      this.importContacts = importedData.map(arr => {
+        const obj = {};
+        for (let i = 0; i < header.length; i++) {
+          const k = header[i];
+          obj[k] = arr[i];
+        }
+        return obj as Enseignant;
+      });
+      for (const imported of this.importContacts) {
+        console.log(imported.matricule);
+        console.log(imported.cin);
+        console.log(imported.lastName);
+        console.log(imported.firstName);
+        console.log(imported.tel);
+        console.log(imported.birthDay);
+      }
+    };
+    reader.readAsBinaryString(target.files[0]);
+    for (const imported of this.importContacts) {
+      this.enseignants.push(imported);
+    }
   }
 }
