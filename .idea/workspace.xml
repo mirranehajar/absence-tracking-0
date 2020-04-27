@@ -82,7 +82,7 @@
       <option name="presentableId" value="Default" />
       <updated>1587850928260</updated>
       <workItem from="1587850933750" duration="26240000" />
-      <workItem from="1587942182301" duration="25541000" />
+      <workItem from="1587942182301" duration="26083000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -91,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587994007627</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="dialog style">
+      <created>1587996547471</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1587996547471</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,17 +107,18 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Page Enseignant sans footer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Page Enseignant sans footer" />
+    <MESSAGE value="dialog style" />
+    <option name="LAST_COMMIT_MESSAGE" value="dialog style" />
   </component>
   <component name="WindowStateProjectService">
     <state x="447" y="165" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587949360269">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="447" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1587949360269" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1587994005493">
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1587996546201">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587994005493" />
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587996546201" />
     <state x="463" y="121" key="FileChooserDialogImpl" timestamp="1587994908864">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -140,10 +148,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="184" y="13" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1587939886192" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1587994019775">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1587996549520">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587994019775" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587996549520" />
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1587939804420">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
