@@ -1,1 +1,114 @@
-<p>enseignant works!</p>
+<div class="container">
+  <div class="card text-center">
+    <div class="card-header">
+  <div class="row">
+    <div class="col-md-3">
+      <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-external-link" label="Add a professor"></button>
+      <p-dialog header="Add a new professor" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <form method="POST" ngNativeValidate >
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input type="number" pInputText placeholder="Matricule">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input type="text" pInputText placeholder="Cin">
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input type="text" pInputText placeholder="First name">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input type="text" pInputText placeholder="Last name">
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input type="date" pInputText placeholder="Birth day">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input type="tel" pInputText placeholder="Phone number">
+                  </div>
+                </div>
+              </div>
+            </div>
+          <p-footer>
+            <button type="button" pButton icon="pi pi-check" (click)="displayBasic=false" label="Yes"></button>
+            <button type="button" pButton icon="pi pi-times" (click)="displayBasic=false" label="No" class="ui-button-secondary"></button>
+          </p-footer>
+        </form>
+      </p-dialog>
+      <p-messages [value]="msgs">msg</p-messages>
+    </div>
+
+    <div class="col-md-3">
+      <p-button label="Import file" styleClass="ui-button-success" icon="pi pi-upload" iconPos="right"></p-button>
+    </div>
+    <div class="col-md-3">
+      <p-button label="Donwload example" styleClass="ui-button-warning" icon="pi pi-download" iconPos="right"></p-button>
+    </div>
+    <div class="col-md-3">
+<span class="ui-float-label">
+    <input id="disabled-input" type="text" size="10" pInputText>
+    <label for="disabled-input">Search</label>
+    <p-button icon="pi pi-search" styleClass="ui-button-secondary"></p-button>
+</span>
+    </div>
+    </div>
+  </div>
+    <div class="card-body">
+  <div class="row">
+    <div class="table-responsive">
+      <table  class="grid table table-bordered table-sortable">
+        <thead>
+        <tr>
+          <th>Matricule</th>
+          <th>Cin</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Mail</th>
+          <th>Birth day</th>
+          <th>Phone Number</th>
+          <th>Département</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr >
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <p-button icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>
+          <p-button icon="pi pi-trash" styleClass="ui-button-danger"></p-button>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+</div>
+</div>

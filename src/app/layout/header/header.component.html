@@ -1,11 +1,16 @@
-<header [ngClass]="setClasses()" id="topnav">
-  <a routerLink="home" routerLinkActive="active"><i class="fa fa-fw fa-home"></i>Home</a>
-  <a routerLink="profil" routerLinkActive="active"><i class="fa fa-fw fa-user"></i>Profil</a>
-  <a routerLink="enseignant" routerLinkActive="active">Prof</a>
-  <a routerLink="filiere" routerLinkActive="active">Filiere</a>
-  <a routerLink="student" routerLinkActive="active">Student</a>
-  <a routerLink="excuse" routerLinkActive="active">Excuse&Justification</a>
-  <a class="icon" (click)="onNavClick()">
-    <i class="fa fa-list"></i>
-  </a>
-</header>
+<div class="container">
+  <div class="row">
+  <div class="col-md-1">
+    <img  src="assets/images/fstg.jpg" alt="image" style="width:100%">
+  </div>
+  <div class="col-md-10">
+<p-menubar [model]="items">
+  <a href="#" class="pi pi-fw pi-bell"></a>
+  <a href="#" class="pi pi-fw pi-sign-out"></a>
+</p-menubar>
+  </div>
+    <div class="col-md-1">
+      <img  src="assets/images/fstg.jpg" alt="image" style="width:100%">
+    </div>
+  </div>
+</div>

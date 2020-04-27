@@ -9,7 +9,10 @@ import { MainComponent } from './layout/main/main.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import {HttpClientModule} from '@angular/common/http';
 import { EnseignantComponent } from './components/enseignant/enseignant.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import {ConfirmDialogModule, DialogModule, MenubarModule, MessagesModule, SplitButtonModule, TabViewModule, ToastModule} from 'primeng';
+import { EtudiantsComponent } from './components/etudiants/etudiants.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -19,12 +22,20 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     MainComponent,
     FooterComponent,
     EnseignantComponent,
-    NotFoundComponent
+    EtudiantsComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MenubarModule,
+    TabViewModule,
+    SplitButtonModule,
+    DialogModule,
+    MessagesModule,
+    ConfirmDialogModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
