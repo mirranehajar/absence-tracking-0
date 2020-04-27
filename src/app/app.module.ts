@@ -12,6 +12,7 @@ import { EnseignantComponent } from './components/enseignant/enseignant.componen
 import {ConfirmDialogModule, DialogModule, MenubarModule, MessagesModule, SplitButtonModule, TabViewModule, ToastModule} from 'primeng';
 import { EtudiantsComponent } from './components/etudiants/etudiants.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DialogModule,
     MessagesModule,
     ConfirmDialogModule,
-    ToastModule
+    ToastModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

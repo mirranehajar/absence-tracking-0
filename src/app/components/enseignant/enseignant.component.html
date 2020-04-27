@@ -10,48 +10,48 @@
               <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input type="number" pInputText placeholder="Matricule" required>
+                    <input [(ngModel)]="enseignant.matricule" name="matricule" type="number" pInputText placeholder="Matricule" required>
                 </div>
               </div>
               <br>
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input type="text" pInputText placeholder="Cin">
+                    <input [(ngModel)]="enseignant.cin" name="cin" type="text" pInputText placeholder="Cin">
                   </div>
                 </div>
               <br>
               <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input type="text" pInputText placeholder="First name">
+                    <input [(ngModel)]="enseignant.firstName" name="firstName" type="text" pInputText placeholder="First name">
                   </div>
                 </div>
               <br>
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input type="text" pInputText placeholder="Last name">
+                    <input [(ngModel)]="enseignant.lastName" name="lastName" type="text" pInputText placeholder="Last name">
                   </div>
                 </div>
               <br>
               <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input type="date" pInputText placeholder="Birth day">
+                    <input [(ngModel)]="enseignant.birthDay" name="birthDay" type="date" pInputText placeholder="Birth day">
                   </div>
                 </div>
               <br>
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input type="tel" pInputText placeholder="Phone number">
+                    <input [(ngModel)]="enseignant.tel" name="tel" type="tel" pInputText placeholder="Phone number">
                   </div>
                 </div>
             </div>
               <br>
           <p-footer>
-            <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="displayBasic=false" label="Confirm"></button>
+            <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Confirm"></button>
             <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Cancel" class="ui-button-secondary"></button>
           </p-footer>
 
@@ -68,7 +68,7 @@
     </div>
     <div class="col-md-3">
 <span class="ui-float-label">
-    <input id="disabled-input" type="text" size="10" pInputText>
+    <input id="disabled-input" type="text" size="15" pInputText>
     <label for="disabled-input">Search</label>
     <p-button icon="pi pi-search" styleClass="ui-button-secondary"></p-button>
 </span>
@@ -92,17 +92,17 @@
         </tr>
         </thead>
         <tbody>
-        <tr >
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr *ngFor="let e of enseignants">
+          <td>{{e.matricule}}</td>
+          <td>{{e.cin}}</td>
+          <td>{{e.firstName}}</td>
+          <td>{{e.lastName}}</td>
+          <td>{{e.mail}}</td>
+          <td>{{e.birthDay}}</td>
+          <td>{{e.tel}}</td>
           <td></td>
           <p-button icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>
-          <p-button icon="pi pi-trash" styleClass="ui-button-danger"></p-button>
+          <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByMatricule(e)"></p-button>
         </tr>
         </tbody>
       </table>

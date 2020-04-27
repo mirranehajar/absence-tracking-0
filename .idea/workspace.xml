@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/enseignant.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/service/enseignant.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +86,7 @@
       <option name="presentableId" value="Default" />
       <updated>1587850928260</updated>
       <workItem from="1587850933750" duration="26240000" />
-      <workItem from="1587942182301" duration="26083000" />
+      <workItem from="1587942182301" duration="31144000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -98,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587996547471</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="inputs in the center of dialog">
+      <created>1587997150237</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1587997150237</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -108,21 +119,26 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Page Enseignant sans footer" />
     <MESSAGE value="dialog style" />
-    <option name="LAST_COMMIT_MESSAGE" value="dialog style" />
+    <MESSAGE value="inputs in the center of dialog" />
+    <option name="LAST_COMMIT_MESSAGE" value="inputs in the center of dialog" />
   </component>
   <component name="WindowStateProjectService">
     <state x="447" y="165" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587949360269">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="447" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1587949360269" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1587996546201">
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1587997976913">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587996546201" />
-    <state x="463" y="121" key="FileChooserDialogImpl" timestamp="1587994908864">
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1587997976913" />
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1587997149012">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1587994908864" />
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587997149012" />
+    <state x="463" y="121" key="FileChooserDialogImpl" timestamp="1587997390808">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1587997390808" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
     <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1587993654585">
       <screen x="0" y="0" width="1366" height="728" />
@@ -148,10 +164,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="184" y="13" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1587939886192" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1587996549520">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1587997160021">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587996549520" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1587997160021" />
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1587939804420">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
