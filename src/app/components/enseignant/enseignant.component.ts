@@ -3,6 +3,8 @@ import {ConfirmationService} from 'primeng/api';
 import {Message} from 'primeng/api';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {Enseignant} from '../../controller/model/enseignant.model';
+import * as XLSX from 'xlsx';
+
 
 @Component({
   selector: 'app-enseignant',
@@ -11,10 +13,10 @@ import {Enseignant} from '../../controller/model/enseignant.model';
   providers: [ConfirmationService]
 })
 export class EnseignantComponent implements OnInit {
-  importContacts: Array<Enseignant> = new Array<Enseignant>();
+  importProfessors: Array<Enseignant> = new Array<Enseignant>();
   msgs: Message[] = [];
   displayBasic: boolean;
-  position: string;
+  wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
 
   constructor(private enseignantService: EnseignantService) { }
 
@@ -36,39 +38,35 @@ export class EnseignantComponent implements OnInit {
   get enseignants(): Array<Enseignant> {
     return this.enseignantService.enseignants;
   }
+
   onFileChange(evt: any) {
+    /* wire up file reader */
     const target: DataTransfer = (evt.target) as DataTransfer;
     if (target.files.length !== 1) { throw new Error('Cannot use multiple files'); }
-
     const reader: FileReader = new FileReader();
     reader.onload = (e: any) => {
-
+      /* read workbook */
       const bstr: string = e.target.result;
-      const data = this.enseignantService.importFromFile(bstr) as any[];
+      const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
 
-      const header: string[] = Object.getOwnPropertyNames(new Enseignant());
-      const importedData = data.slice(1, -1);
+      /* grab first sheet */
+      const wsname: string = wb.SheetNames[0];
+      const ws: XLSX.WorkSheet = wb.Sheets[wsname];
 
-      this.importContacts = importedData.map(arr => {
-        const obj = {};
-        for (let i = 0; i < header.length; i++) {
-          const k = header[i];
-          obj[k] = arr[i];
-        }
-        return obj as Enseignant;
-      });
-      for (const imported of this.importContacts) {
-        console.log(imported.matricule);
-        console.log(imported.cin);
-        console.log(imported.lastName);
-        console.log(imported.firstName);
-        console.log(imported.tel);
-        console.log(imported.birthDay);
+      /* save data */
+      this.importProfessors = (XLSX.utils.sheet_to_json(ws, { header: 1 })) as Array<Enseignant>;
+      console.log(this.importProfessors);
+      for (const prof of this.importProfessors) {
+        this.enseignant.matricule = prof[0];
+        this.enseignant.birthDay = prof[4];
+        this.enseignant.firstName = prof[2];
+        this.enseignant.lastName = prof[3];
+        this.enseignant.cin = prof[1];
+        this.enseignant.tel = prof[5];
+        this.enseignantService.save();
+
       }
     };
     reader.readAsBinaryString(target.files[0]);
-    for (const imported of this.importContacts) {
-      this.enseignants.push(imported);
-    }
   }
 }

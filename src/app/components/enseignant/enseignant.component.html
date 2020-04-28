@@ -60,14 +60,9 @@
     </div>
 
     <div class="col-md-3">
-      <p-button label="Import file" styleClass="ui-button-success" icon="pi pi-upload" ></p-button>
-      <button>
-        <label>
-          <span class="mdi mdi-file-export"> </span>
-          <small>Import</small>
-          <input hidden type="file" (change)="onFileChange($event)" multiple="false">
-        </label>
-      </button>
+      <p-button label="Import file" styleClass="ui-button-success" icon="pi pi-upload" >
+        <input type="file" (change)="onFileChange($event)" multiple="false" />
+      </p-button>
     </div>
     <div class="col-md-3">
       <p-button label="Donwload example" styleClass="ui-button-warning" icon="pi pi-download" ></p-button>
@@ -111,28 +106,6 @@
           <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByMatricule(e)"></p-button>
         </tr>
         </tbody>
-      </table>
-      <table id="contactJs"  class="grid table table-bordered table-sortable">
-        <tr class="thead">
-          <th>Matricule</th>
-          <th>Cin</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Mail</th>
-          <th>Birth day</th>
-          <th>Phone Number</th>
-          <th>Département</th>
-        </tr>
-        <tr class="tbody" *ngFor="let contact of importContacts; let odd = odd" [ngClass]="{'odd': odd}">
-          <td>{{contact.matricule}}</td>
-          <td>{{contact.cin}}</td>
-          <td>{{contact.firstName}}</td>
-          <td>{{contact.lastName}}</td>
-          <td>{{contact.mail}}</td>
-          <td>{{contact.birthDay}}</td>
-          <td>{{contact.tel}}</td>
-          <td></td>
-        </tr>
       </table>
     </div>
   </div>
