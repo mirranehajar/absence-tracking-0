@@ -9,7 +9,16 @@ import { MainComponent } from './layout/main/main.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import {HttpClientModule} from '@angular/common/http';
 import { EnseignantComponent } from './components/enseignant/enseignant.component';
-import {ConfirmDialogModule, DialogModule, MenubarModule, MessagesModule, SplitButtonModule, TabViewModule, ToastModule} from 'primeng';
+import {
+    ConfirmDialogModule,
+    DialogModule,
+    FileUploadModule,
+    MenubarModule,
+    MessagesModule,
+    SplitButtonModule,
+    TabViewModule,
+    ToastModule
+} from 'primeng';
 import { EtudiantsComponent } from './components/etudiants/etudiants.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
@@ -25,20 +34,21 @@ import {FormsModule} from '@angular/forms';
     EnseignantComponent,
     EtudiantsComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MenubarModule,
-    TabViewModule,
-    SplitButtonModule,
-    DialogModule,
-    MessagesModule,
-    ConfirmDialogModule,
-    ToastModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MenubarModule,
+        TabViewModule,
+        SplitButtonModule,
+        DialogModule,
+        MessagesModule,
+        ConfirmDialogModule,
+        ToastModule,
+        FormsModule,
+        FileUploadModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

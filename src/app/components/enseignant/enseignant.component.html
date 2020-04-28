@@ -62,10 +62,11 @@
     <div class="col-md-3">
       <p-button label="Import file" styleClass="ui-button-success" icon="pi pi-upload" >
         <input type="file" (change)="onFileChange($event)" multiple="false" />
+        <p-fileUpload  (change)="onFileChange($event)" multiple="false" mode="basic" name="demo[]" url="./upload.php" accept=".xlsx,.csv" maxFileSize="1000000" ></p-fileUpload>
       </p-button>
     </div>
     <div class="col-md-3">
-      <p-button label="Donwload example" styleClass="ui-button-warning" icon="pi pi-download" ></p-button>
+      <p-button label="Donwload example" styleClass="ui-button-warning" (click)="export()" icon="pi pi-download" ></p-button>
     </div>
     <div class="col-md-3">
 <span class="ui-float-label">
