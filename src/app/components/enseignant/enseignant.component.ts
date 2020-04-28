@@ -19,7 +19,7 @@ export class EnseignantComponent implements OnInit {
   msgs: Message[] = [];
   displayBasic: boolean;
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
-  data: AOA = [['Matricule', 2], [3, 4]];
+  data: AOA = [['Matricule', 'Cin', 'First Name', 'Last Name', 'Birthday', 'Phone Number', 'Departement']];
   fileName = 'Example-professor.xlsx';
 
   constructor(private enseignantService: EnseignantService, private messageService: MessageService) { }

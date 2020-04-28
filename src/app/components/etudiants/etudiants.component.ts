@@ -18,7 +18,7 @@ export class EtudiantsComponent implements OnInit {
   msgs: Message[] = [];
   displayBasic: boolean;
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
-  data: AOA = [['Matricule', 2], [3, 4]];
+  data: AOA = [['Cne', 'Cin', 'Code Apogee', 'First Name', 'Last Name', 'Birthday', 'Phone Number', 'Sector', 'Group']];
   fileName = 'Example-student.xlsx';
 
   constructor(private etudiantService: EtudiantService, private messageService: MessageService) { }
