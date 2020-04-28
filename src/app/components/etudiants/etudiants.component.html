@@ -69,9 +69,10 @@
 
         <div class="col-md-3">
           <p-button label="Import file" styleClass="ui-button-success" icon="pi pi-upload" ></p-button>
+          <input type="file" (change)="onFileChange($event)" multiple="false" />
         </div>
         <div class="col-md-3">
-          <p-button label="Donwload example" styleClass="ui-button-warning" icon="pi pi-download" ></p-button>
+          <p-button label="Donwload example" styleClass="ui-button-warning" (click)="export()" icon="pi pi-download" ></p-button>
         </div>
         <div class="col-md-3">
 <span class="ui-float-label">
@@ -90,12 +91,13 @@
             <tr>
               <th>Cne</th>
               <th>Cin</th>
+              <th>code apogee</th>
               <th>First Name</th>
               <th>Last Name</th>
               <th>Mail</th>
               <th>Birth day</th>
               <th>Phone Number</th>
-              <th>code apogee</th>
+              <th>Absence</th>
               <th>Filiere</th>
               <th>groupe</th>
             </tr>
@@ -104,12 +106,13 @@
             <tr *ngFor="let e of etudiants">
               <td>{{e.cne}}</td>
               <td>{{e.cin}}</td>
+              <td>{{e.codeApogee}}</td>
               <td>{{e.firstName}}</td>
               <td>{{e.lastName}}</td>
               <td>{{e.mail}}</td>
               <td>{{e.birthDay}}</td>
               <td>{{e.tel}}</td>
-              <td>{{e.codeApogee}}</td>
+              <td>{{e.nbrAbsence}}</td>
               <td></td>
               <td></td>
               <p-button icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>

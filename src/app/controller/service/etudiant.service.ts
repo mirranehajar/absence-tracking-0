@@ -57,6 +57,7 @@ export class EtudiantService {
     myclone.tel = etudiant.tel;
     myclone.birthDay = etudiant.birthDay;
     myclone.mail = etudiant.mail;
+    myclone.nbrAbsence = etudiant.nbrAbsence;
     return myclone;
   }
 
