@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Etudiant} from '../model/etudiant.model';
+import {Enseignant} from '../model/enseignant.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,8 @@ export class EtudiantService {
   private _etudiant: Etudiant;
   // tslint:disable-next-line:variable-name
   private _etudiants: Array<Etudiant>;
+  // tslint:disable-next-line:variable-name
+  private _etudiantFounded: Etudiant;
   // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/etudiant/';
 
@@ -28,10 +31,29 @@ export class EtudiantService {
       }
     );
   }
+  public findByCne(etudiant: Etudiant) {
+    this.http.get<Etudiant>(this._url + 'cne/' + etudiant.cne).subscribe(
+      data => {
+        this.etudiantFounded = data;
+      }
+    );
+  }
   public findAll() {
     this.http.get<Array<Etudiant>>(this._url).subscribe(
       data => {
         this.etudiants = data;
+      }
+    );
+  }
+  public update() {
+    this.http.put<number>(this._url, this.etudiantFounded).subscribe(
+      data => {
+        if (data > 0) {
+          this.deleteFromList(this.etudiantFounded);
+          this.etudiants.push(this.clone(this.etudiantFounded));
+        }
+      }, error => {
+        console.log('error');
       }
     );
   }
@@ -59,6 +81,14 @@ export class EtudiantService {
     myclone.mail = etudiant.mail;
     myclone.nbrAbsence = etudiant.nbrAbsence;
     return myclone;
+  }
+
+  get etudiantFounded(): Etudiant {
+    return this._etudiantFounded;
+  }
+
+  set etudiantFounded(value: Etudiant) {
+    this._etudiantFounded = value;
   }
 
   get etudiant(): Etudiant {

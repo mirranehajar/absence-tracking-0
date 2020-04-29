@@ -12,6 +12,8 @@ export class EnseignantService {
   // tslint:disable-next-line:variable-name
   private _enseignants: Array<Enseignant>;
   // tslint:disable-next-line:variable-name
+  private _enseignantFounded: Enseignant;
+  // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/enseignant/';
 
   constructor(private http: HttpClient) { }
@@ -29,10 +31,29 @@ export class EnseignantService {
       }
     );
   }
+  public findByMatricule(enseignant: Enseignant) {
+    this.http.get<Enseignant>(this._url + 'matricule/' + enseignant.matricule).subscribe(
+      data => {
+        this.enseignantFounded = data;
+      }
+    );
+  }
   public findAll() {
     this.http.get<Array<Enseignant>>(this._url).subscribe(
       data => {
         this.enseignants = data;
+      }
+    );
+  }
+  public update() {
+    this.http.put<number>(this._url, this.enseignantFounded).subscribe(
+      data => {
+        if (data > 0) {
+          this.deleteFromList(this.enseignantFounded);
+          this.enseignants.push(this.clone(this.enseignantFounded));
+        }
+      }, error => {
+        console.log('error');
       }
     );
   }
@@ -59,6 +80,17 @@ export class EnseignantService {
     myclone.mail = enseignant.mail;
     return myclone;
   }
+  get enseignantFounded(): Enseignant {
+    if (this._enseignantFounded == null) {
+      this. _enseignantFounded = new Enseignant();
+    }
+    return this._enseignantFounded;
+  }
+
+  set enseignantFounded(value: Enseignant) {
+    this._enseignantFounded = value;
+  }
+
   get enseignant(): Enseignant {
     if (this._enseignant == null) {
       this._enseignant = new Enseignant();

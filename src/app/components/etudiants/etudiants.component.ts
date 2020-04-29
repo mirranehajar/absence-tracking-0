@@ -4,6 +4,7 @@ import {EtudiantService} from '../../controller/service/etudiant.service';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import * as XLSX from 'xlsx';
 import {MessageService} from 'primeng/api';
+import {Enseignant} from '../../controller/model/enseignant.model';
 
 type AOA = any[][];
 
@@ -17,6 +18,7 @@ export class EtudiantsComponent implements OnInit {
   importStudents: Array<Etudiant> = new Array<Etudiant>();
   msgs: Message[] = [];
   displayBasic: boolean;
+  displayBasic2: boolean;
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
   data: AOA = [['Cne', 'Cin', 'Code Apogee', 'First Name', 'Last Name', 'Birthday', 'Phone Number', 'Sector', 'Group']];
   fileName = 'Example-student.xlsx';
@@ -33,9 +35,25 @@ export class EtudiantsComponent implements OnInit {
   showBasicDialog() {
     this.displayBasic = true;
   }
+  showBasicDialog2(etudiant: Etudiant) {
+    this.displayBasic = true;
+    this.findByCne(etudiant);
+  }
+  public findByCne(etudiantFounded: Etudiant) {
+    this.etudiantService.findByCne(etudiantFounded);
+  }
   public save() {
     this.etudiantService.save();
     this.displayBasic = false;
+    window.location.reload();
+  }
+  public update() {
+    this.etudiantService.update();
+    this.displayBasic = false;
+    window.location.reload();
+  }
+  get etudiantFounded(): Etudiant {
+    return this.etudiantService.etudiantFounded;
   }
   get etudiant(): Etudiant {
     return this.etudiantService.etudiant;

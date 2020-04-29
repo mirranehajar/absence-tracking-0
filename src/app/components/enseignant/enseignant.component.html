@@ -56,14 +56,10 @@
           </p-footer>
         </form>
       </p-dialog>
-      <p-messages [value]="msgs">msg</p-messages>
     </div>
-
     <div class="col-md-3">
-      <p-button label="Import file" styleClass="ui-button-success" icon="pi pi-upload" >
-        <input type="file" (change)="onFileChange($event)" multiple="false" />
-        <p-fileUpload  (change)="onFileChange($event)" multiple="false" mode="basic" name="demo[]" url="./upload.php" accept=".xlsx,.csv" maxFileSize="1000000" ></p-fileUpload>
-      </p-button>
+      <input type="file" (change)="onFileChange($event)" multiple="false" />
+        <p-fileUpload icon="pi pi-upload" customUpload="true" [auto]="true" chooseLabel="Import Professors" (onUpload)="onFileChange($event)" multiple="false" #fubauto mode="basic"  url="./upload.php" accept=".xlsx,.csv" maxFileSize="1000000" ></p-fileUpload>
     </div>
     <div class="col-md-3">
       <p-button label="Donwload example" styleClass="ui-button-warning" (click)="export()" icon="pi pi-download" ></p-button>
@@ -103,7 +99,59 @@
           <td>{{e.birthDay}}</td>
           <td>{{e.tel}}</td>
           <td></td>
-          <p-button icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>
+          <p-button (click)="showBasicDialog2(e)" icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>
+          <p-dialog  header="Edit professor" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+            <form style="text-align: center" method="POST" ngNativeValidate>
+              <div style="display:inline-block" class="form-group">
+                <div class="row">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input [(ngModel)]="enseignantFounded.matricule" disabled  name="matricule" type="number" pInputText  required>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input [(ngModel)]="enseignantFounded.cin" disabled name="cin" type="text" pInputText >
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input [(ngModel)]="enseignantFounded.firstName" name="firstName" type="text" pInputText >
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input [(ngModel)]="enseignantFounded.lastName" name="lastName" type="text" pInputText >
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input [(ngModel)]="enseignantFounded.birthDay" name="birthDay" type="date" pInputText>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input [(ngModel)]="enseignantFounded.tel" name="tel" type="tel" pInputText >
+                  </div>
+                </div>
+              </div>
+              <br>
+              <p-footer>
+                <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="update()" label="Confirm"></button>
+                <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Cancel" class="ui-button-secondary"></button>
+              </p-footer>
+            </form>
+          </p-dialog>
           <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByMatricule(e)"></p-button>
         </tr>
         </tbody>

@@ -18,6 +18,7 @@ export class EnseignantComponent implements OnInit {
   importProfessors: Array<Enseignant> = new Array<Enseignant>();
   msgs: Message[] = [];
   displayBasic: boolean;
+  displayBasic2: boolean;
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
   data: AOA = [['Matricule', 'Cin', 'First Name', 'Last Name', 'Birthday', 'Phone Number', 'Departement']];
   fileName = 'Example-professor.xlsx';
@@ -32,9 +33,22 @@ export class EnseignantComponent implements OnInit {
   showBasicDialog() {
     this.displayBasic = true;
   }
+  showBasicDialog2(enseignantFounded: Enseignant) {
+    this.displayBasic2 = true;
+    this.findByMatricule(enseignantFounded);
+  }
+  public findByMatricule(enseignantFounded: Enseignant) {
+    this.enseignantService.findByMatricule(enseignantFounded);
+  }
   public save() {
     this.enseignantService.save();
     this.displayBasic = false;
+    window.location.reload();
+  }
+  public update() {
+    this.enseignantService.update();
+    this.displayBasic = false;
+    window.location.reload();
   }
   get enseignant(): Enseignant {
     return this.enseignantService.enseignant;
@@ -42,7 +56,9 @@ export class EnseignantComponent implements OnInit {
   get enseignants(): Array<Enseignant> {
     return this.enseignantService.enseignants;
   }
-
+  get enseignantFounded(): Enseignant {
+    return this.enseignantService.enseignantFounded;
+  }
   onFileChange(evt: any) {
     /* wire up file reader */
     const target: DataTransfer = (evt.target) as DataTransfer;
