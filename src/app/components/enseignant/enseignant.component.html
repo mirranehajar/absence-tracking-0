@@ -5,7 +5,7 @@
     <div class="col-md-3">
       <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Add a professor"></button>
       <p-dialog  header="Add a new professor" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
-        <form style="text-align: center" method="POST" ngNativeValidate>
+        <form style="text-align: center" method="POST" >
             <div style="display:inline-block" class="form-group">
               <div class="row">
                   <div class="ui-inputgroup">
@@ -66,7 +66,7 @@
     </div>
     <div class="col-md-3">
 <span class="ui-float-label">
-    <input id="disabled-input" type="text" size="15" pInputText>
+    <input id="disabled-input" type="text" size="15">
     <label for="disabled-input">Search</label>
     <p-button icon="pi pi-search" styleClass="ui-button-secondary"></p-button>
 </span>
@@ -74,24 +74,24 @@
     </div>
   </div>
     <div class="card-body">
-  <div class="row">
-    <div class="table-responsive">
-      <table  class="grid table table-bordered table-sortable">
+  <div >
+    <div>
+      <table class="table table-bordered " matSort (matSortChange)="sortData($event)">
         <thead>
         <tr>
-          <th>Matricule</th>
-          <th>Cin</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Mail</th>
-          <th>Birth day</th>
-          <th>Phone Number</th>
+          <th mat-sort-header="matricule">Matricule</th>
+          <th mat-sort-header="cin">Cin</th>
+          <th mat-sort-header="firstName">First Name</th>
+          <th mat-sort-header="lastName">Last Name</th>
+          <th mat-sort-header="mail">Mail</th>
+          <th mat-sort-header="birthDay">Birth Day</th>
+          <th mat-sort-header="tel">Phone Number</th>
           <th>Département</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let e of enseignants">
-          <td>{{e.matricule}}</td>
+        <tr *ngFor="let e of sortedData">
+          <td >{{e.matricule}}</td>
           <td>{{e.cin}}</td>
           <td>{{e.firstName}}</td>
           <td>{{e.lastName}}</td>
@@ -101,7 +101,7 @@
           <td></td>
           <p-button (click)="showBasicDialog2(e)" icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>
           <p-dialog  header="Edit professor" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
-            <form style="text-align: center" method="POST" ngNativeValidate>
+            <form style="text-align: center" method="POST" >
               <div style="display:inline-block" class="form-group">
                 <div class="row">
                   <div class="ui-inputgroup">

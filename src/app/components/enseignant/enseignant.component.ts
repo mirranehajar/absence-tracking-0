@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConfirmationService} from 'primeng/api';
 import {Message} from 'primeng/api';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import * as XLSX from 'xlsx';
 import {MessageService} from 'primeng/api';
+import {Sort} from '@angular/material/sort';
 
 type AOA = any[][];
 
@@ -14,6 +15,7 @@ type AOA = any[][];
   styleUrls: ['./enseignant.component.scss'],
   providers: [ConfirmationService, MessageService]
 })
+
 export class EnseignantComponent implements OnInit {
   importProfessors: Array<Enseignant> = new Array<Enseignant>();
   msgs: Message[] = [];
@@ -22,10 +24,11 @@ export class EnseignantComponent implements OnInit {
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
   data: AOA = [['Matricule', 'Cin', 'First Name', 'Last Name', 'Birthday', 'Phone Number', 'Departement']];
   fileName = 'Example-professor.xlsx';
-
+  sortedData: Enseignant[];
   constructor(private enseignantService: EnseignantService, private messageService: MessageService) { }
 
   ngOnInit(): void {this.enseignantService.findAll();
+                    this.sortedData = this.enseignants.slice();
   }
   public deleteByMatricule(enseignant: Enseignant) {
     this.enseignantService.deleteByMatricule(enseignant);
@@ -100,7 +103,28 @@ export class EnseignantComponent implements OnInit {
     /* save to file */
     XLSX.writeFile(wb, this.fileName);
   }
-  onBasicUpload(event) {
-    this.messageService.add({severity: 'info', summary: 'Success', detail: 'File Uploaded with Basic Mode'});
+  sortData(sort: Sort) {
+    const data = this.enseignants.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'matricule': return compare(a.matricule, b.matricule, isAsc);
+        case 'cin': return compare(a.cin, b.cin, isAsc);
+        case 'firstName': return compare(a.firstName, b.firstName, isAsc);
+        case 'lastName': return compare(a.lastName, b.lastName, isAsc);
+        case 'birthday': return compare(a.birthDay, b.birthDay, isAsc);
+        case 'tel': return compare(a.tel, b.tel, isAsc);
+        case 'mail': return compare(a.mail, b.mail, isAsc);
+        default: return 0;
+      }
+    });
   }
+}
+function compare(a: number | string | Date, b: number | string | Date, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

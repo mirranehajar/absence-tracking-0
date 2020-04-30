@@ -20,9 +20,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
+      <change afterPath="$PROJECT_DIR$/src/app/components/sessions/sessions.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/components/sessions/sessions.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/components/sessions/sessions.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/components/sessions/sessions.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/absence.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/absence.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/cycle.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/cycle.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/departement.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/departement.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/groupe.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/groupe.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/module.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/sector-manager.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/sector-manager.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/sector.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/sector.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/semestre.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/semestre.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/session.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/session.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/subject.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/subject.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/type-session.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/type-session.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/service/session.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/service/session.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/main/main.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/main/main.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/main/main.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/main/main.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/main/main.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/main/main.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/main/main.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/main/main.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +88,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../annonce" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -106,6 +142,10 @@
       <workItem from="1588027528855" duration="671000" />
       <workItem from="1588029189805" duration="9452000" />
       <workItem from="1588081469749" duration="1889000" />
+      <workItem from="1588197842897" duration="4951000" />
+      <workItem from="1588203607548" duration="959000" />
+      <workItem from="1588204598112" duration="1098000" />
+      <workItem from="1588205729245" duration="17052000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -183,7 +223,8 @@
     <MESSAGE value="Import working" />
     <MESSAGE value="export workinh" />
     <MESSAGE value="import and export students" />
-    <option name="LAST_COMMIT_MESSAGE" value="import and export students" />
+    <MESSAGE value="sorted table and other classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="sorted table and other classes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -202,39 +243,39 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587997149012" />
-    <state x="463" y="121" key="FileChooserDialogImpl" timestamp="1588032073795">
+    <state x="463" y="121" key="FileChooserDialogImpl" timestamp="1588280816474">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1588032073795" />
+    <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1588280816474" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1588039265329">
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1588279434384">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588039265329" />
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588279434384" />
     <state width="813" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1588039265329">
+    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1588279434382">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588039265329" />
+    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588279434382" />
     <state width="813" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1588039265329">
+    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1588279434377">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588039265329" />
+    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588279434377" />
     <state width="813" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1588039265329">
+    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1588279434382">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588039265329" />
+    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588279434382" />
     <state width="813" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
     <state x="184" y="13" key="SettingsEditor" timestamp="1587939886192">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="184" y="13" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1587939886192" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1588039079709">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1588181772604">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588039079709" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588181772604" />
     <state x="492" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588023994374">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -243,6 +284,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="371" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1588024034668" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1588251907246">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1588251907246" />
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1587939804420">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

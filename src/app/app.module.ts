@@ -21,7 +21,13 @@ import {
 } from 'primeng';
 import { EtudiantsComponent } from './components/etudiants/etudiants.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MatTableModule} from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSortModule } from '@angular/material/sort';
+import { SessionsComponent } from './components/sessions/sessions.component';
 
 
 @NgModule({
@@ -32,23 +38,30 @@ import {FormsModule} from '@angular/forms';
     MainComponent,
     FooterComponent,
     EnseignantComponent,
-    EtudiantsComponent
+    EtudiantsComponent,
+    SessionsComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        MenubarModule,
-        TabViewModule,
-        SplitButtonModule,
-        DialogModule,
-        MessagesModule,
-        ConfirmDialogModule,
-        ToastModule,
-        FormsModule,
-        FileUploadModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MenubarModule,
+    TabViewModule,
+    SplitButtonModule,
+    DialogModule,
+    MessagesModule,
+    ConfirmDialogModule,
+    ToastModule,
+    FormsModule,
+    FileUploadModule,
+    ReactiveFormsModule,
+    MDBBootstrapModule,
+    FontAwesomeModule,
+    MatButtonModule,
+    MatTableModule,
+    MatSortModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
