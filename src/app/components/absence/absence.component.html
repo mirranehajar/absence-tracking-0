@@ -1,0 +1,23 @@
+<div class="table-responsive">
+  <table  class="grid table table-bordered table-sortable">
+    <thead>
+    <tr>
+      <th>Cne</th>
+      <th>code apogee</th>
+      <th>Last Name</th>
+      <th>First Name</th>
+      <th>Absence</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let e of etudiants">
+      <td>{{e.cne}}</td>
+      <td>{{e.codeApogee}}</td>
+      <td>{{e.lastName}}</td>
+      <td>{{e.firstName}}</td>
+      <td>{{e.nbrAbsence}}</td>
+       <p-selectButton [options]="types" ></p-selectButton>
+    </tr>
+    </tbody>
+  </table>
+</div>

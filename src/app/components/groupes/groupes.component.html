@@ -1,0 +1,128 @@
+<div style="margin-bottom: 1em">
+  <button type="button" pButton icon="pi pi-chevron-up" (click)="openPrev()" style="margin-right:.25em"></button>
+  <button type="button" pButton icon="pi pi-chevron-down" (click)="openNext()"></button>
+  <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Add a group"></button>
+  <p-dialog  header="Add a new student" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <form style="text-align: center" method="POST">
+      <div style="display:inline-block" class="form-group">
+        <div class="row">
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+            <input [(ngModel)]="groupe.libelle" name="libelle" type="text" pInputText placeholder="Libelle" required>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+            <p-dropdown  name="city" [options]="cities" [(ngModel)]="selectedCity" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+            <p-dropdown name="khikhi" [options]="cities" [(ngModel)]="selectedCity" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown>
+          </div>
+        </div>
+      <p-footer>
+        <button type="submit" pButton icon="pi pi-check" style="float: left"  label="Confirm"></button>
+        <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Cancel" class="ui-button-secondary"></button>
+      </p-footer>
+      </div>
+    </form>
+  </p-dialog>
+</div>
+
+<p-accordion [(activeIndex)]="index">
+  <div cdkDropListGroup>
+  <p-accordionTab header="Godfather I">
+    <div class="table-responsive">
+        <div class="example-container">
+      <div
+        cdkDropList
+        [cdkDropListData]="groupe.etudiants"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+      <table  class="grid table table-bordered table-sortable">
+        <thead>
+        <tr>
+          <th>Cne</th>
+          <th>Cin</th>
+          <th>code apogee</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Mail</th>
+          <th>Birth day</th>
+          <th>Phone Number</th>
+          <th>Absence</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let g of groupes">
+        <tr class="example-box" *ngFor="let e of g.etudiants" cdkDrag>
+          <td>{{e.cne}}</td>
+          <td>{{e.cin}}</td>
+          <td>{{e.codeApogee}}</td>
+          <td>{{e.firstName}}</td>
+          <td>{{e.lastName}}</td>
+          <td>{{e.mail}}</td>
+          <td>{{e.birthDay}}</td>
+          <td>{{e.tel}}</td>
+          <td>{{e.nbrAbsence}}</td>
+          <p-button icon="pi pi-trash" styleClass="ui-button-danger" ></p-button>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+      </div>
+  </p-accordionTab>
+  <p-accordionTab header="Godfather II">
+    <div class="table-responsive">
+      <div class="example-container">
+        <div
+          cdkDropList
+          [cdkDropListData]="etudiants"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)">
+          <table  class="grid table table-bordered table-sortable">
+            <thead>
+            <tr>
+              <th>Cne</th>
+              <th>Cin</th>
+              <th>code apogee</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Mail</th>
+              <th>Birth day</th>
+              <th>Phone Number</th>
+              <th>Absence</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="example-box" *ngFor="let e of etudiants" cdkDrag>
+              <td>{{e.cne}}</td>
+              <td>{{e.cin}}</td>
+              <td>{{e.codeApogee}}</td>
+              <td>{{e.firstName}}</td>
+              <td>{{e.lastName}}</td>
+              <td>{{e.mail}}</td>
+              <td>{{e.birthDay}}</td>
+              <td>{{e.tel}}</td>
+              <td>{{e.nbrAbsence}}</td>
+              <p-button icon="pi pi-trash" styleClass="ui-button-danger" ></p-button>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </p-accordionTab>
+  <p-accordionTab header="Godfather III">
+    After a break of more than  15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family. Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate.
+  </p-accordionTab>
+  <p-accordionTab header="Godfather IV">
+    After a break of more than  15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family. Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate.
+  </p-accordionTab>
+  </div>
+</p-accordion>

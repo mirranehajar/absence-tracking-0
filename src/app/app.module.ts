@@ -10,14 +10,15 @@ import { FooterComponent } from './layout/footer/footer.component';
 import {HttpClientModule} from '@angular/common/http';
 import { EnseignantComponent } from './components/enseignant/enseignant.component';
 import {
-    ConfirmDialogModule,
-    DialogModule,
-    FileUploadModule,
-    MenubarModule,
-    MessagesModule,
-    SplitButtonModule,
-    TabViewModule,
-    ToastModule
+  AccordionModule,
+  ConfirmDialogModule,
+  DialogModule, DropdownModule,
+  FileUploadModule, FullCalendarModule,
+  MenubarModule,
+  MessagesModule, SelectButtonModule,
+  SplitButtonModule,
+  TabViewModule,
+  ToastModule
 } from 'primeng';
 import { EtudiantsComponent } from './components/etudiants/etudiants.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,6 +29,10 @@ import {MatTableModule} from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
 import { SessionsComponent } from './components/sessions/sessions.component';
+import { GroupesComponent } from './components/groupes/groupes.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { AbsenceComponent } from './components/absence/absence.component';
+
 
 
 @NgModule({
@@ -39,7 +44,9 @@ import { SessionsComponent } from './components/sessions/sessions.component';
     FooterComponent,
     EnseignantComponent,
     EtudiantsComponent,
-    SessionsComponent
+    SessionsComponent,
+    GroupesComponent,
+    AbsenceComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +67,12 @@ import { SessionsComponent } from './components/sessions/sessions.component';
     FontAwesomeModule,
     MatButtonModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    FullCalendarModule,
+    AccordionModule,
+    DropdownModule,
+    DragDropModule,
+    SelectButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,7 +4,6 @@ import {EtudiantService} from '../../controller/service/etudiant.service';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import * as XLSX from 'xlsx';
 import {MessageService} from 'primeng/api';
-import {Enseignant} from '../../controller/model/enseignant.model';
 
 type AOA = any[][];
 
