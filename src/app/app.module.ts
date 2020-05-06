@@ -10,15 +10,15 @@ import { FooterComponent } from './layout/footer/footer.component';
 import {HttpClientModule} from '@angular/common/http';
 import { EnseignantComponent } from './components/enseignant/enseignant.component';
 import {
-  AccordionModule,
-  ConfirmDialogModule,
-  DialogModule, DropdownModule,
-  FileUploadModule, FullCalendarModule,
-  MenubarModule,
-  MessagesModule, SelectButtonModule,
-  SplitButtonModule,
-  TabViewModule,
-  ToastModule
+    AccordionModule,
+    ConfirmDialogModule,
+    DialogModule, DropdownModule,
+    FileUploadModule, FullCalendarModule,
+    MenubarModule,
+    MessagesModule, PanelModule, SelectButtonModule,
+    SplitButtonModule,
+    TabViewModule,
+    ToastModule
 } from 'primeng';
 import { EtudiantsComponent } from './components/etudiants/etudiants.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,6 +32,8 @@ import { SessionsComponent } from './components/sessions/sessions.component';
 import { GroupesComponent } from './components/groupes/groupes.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { AbsenceComponent } from './components/absence/absence.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProfilComponent } from './components/profil/profil.component';
 
 
 
@@ -46,34 +48,37 @@ import { AbsenceComponent } from './components/absence/absence.component';
     EtudiantsComponent,
     SessionsComponent,
     GroupesComponent,
-    AbsenceComponent
+    AbsenceComponent,
+    LoginComponent,
+    ProfilComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MenubarModule,
-    TabViewModule,
-    SplitButtonModule,
-    DialogModule,
-    MessagesModule,
-    ConfirmDialogModule,
-    ToastModule,
-    FormsModule,
-    FileUploadModule,
-    ReactiveFormsModule,
-    MDBBootstrapModule,
-    FontAwesomeModule,
-    MatButtonModule,
-    MatTableModule,
-    MatSortModule,
-    FullCalendarModule,
-    AccordionModule,
-    DropdownModule,
-    DragDropModule,
-    SelectButtonModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MenubarModule,
+        TabViewModule,
+        SplitButtonModule,
+        DialogModule,
+        MessagesModule,
+        ConfirmDialogModule,
+        ToastModule,
+        FormsModule,
+        FileUploadModule,
+        ReactiveFormsModule,
+        MDBBootstrapModule,
+        FontAwesomeModule,
+        MatButtonModule,
+        MatTableModule,
+        MatSortModule,
+        FullCalendarModule,
+        AccordionModule,
+        DropdownModule,
+        DragDropModule,
+        SelectButtonModule,
+        PanelModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

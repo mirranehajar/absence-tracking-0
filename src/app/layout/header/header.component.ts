@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
     topnav: true,
     responsive: false,
   };
+    displayBasic: boolean;
 
   constructor() { }
 
@@ -42,7 +43,12 @@ export class HeaderComponent implements OnInit {
           {
             label: 'SDAD',
             icon: 'pi pi-fw pi-desktop',
-          }
+          },
+          {
+            label: 'Ajouter une filière',
+            icon: 'pi pi-fw pi-plus',
+            command: event => {this.showBasicDialog(); },
+          },
         ]
       },
       {
@@ -62,5 +68,8 @@ export class HeaderComponent implements OnInit {
 
   onNavClick() {
     this.classes.responsive = !this.classes.responsive;
+  }
+  showBasicDialog() {
+    this.displayBasic = true;
   }
 }
