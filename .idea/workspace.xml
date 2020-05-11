@@ -20,17 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
-      <change afterPath="$PROJECT_DIR$/src/app/components/login/login.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/login/login.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/login/login.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46_[Default_Changelist]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46__Default_Changelist_1.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/components/session/session.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/components/session/session.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/components/session/session.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/sessions/events.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/sessions/sessions.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/sessions/sessions.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/sessions/sessions.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/session/session.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/sessions/sessions.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/model/session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/session.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/model/type-session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/type-session.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout/main/main.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/main/main.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +65,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../try" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -123,7 +126,11 @@
       <workItem from="1588205729245" duration="34391000" />
       <workItem from="1588426912406" duration="14577000" />
       <workItem from="1588564177698" duration="6908000" />
-      <workItem from="1588769700938" duration="5630000" />
+      <workItem from="1588769700938" duration="7017000" />
+      <workItem from="1589201977182" duration="4582000" />
+      <workItem from="1589206734792" duration="159000" />
+      <workItem from="1589206908397" duration="616000" />
+      <workItem from="1589207544581" duration="3481000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -188,7 +195,21 @@
       <option name="project" value="LOCAL" />
       <updated>1588639295770</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="profil login filière">
+      <created>1588789182416</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1588789182416</updated>
+    </task>
+    <task id="LOCAL-00011" summary="profil">
+      <created>1588789275849</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1588789275849</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,7 +238,9 @@
     <MESSAGE value="import and export students" />
     <MESSAGE value="sorted table and other classes" />
     <MESSAGE value="sessions plus absence plus groups" />
-    <option name="LAST_COMMIT_MESSAGE" value="sessions plus absence plus groups" />
+    <MESSAGE value="profil login filière" />
+    <MESSAGE value="profil" />
+    <option name="LAST_COMMIT_MESSAGE" value="profil" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -236,39 +259,39 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587997149012" />
-    <state x="463" y="121" key="FileChooserDialogImpl" timestamp="1588338498132">
+    <state x="463" y="121" key="FileChooserDialogImpl" timestamp="1589206205181">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1588338498132" />
+    <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1589206205181" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1588779558162">
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1589208458282">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588779558162" />
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1589208458282" />
     <state width="813" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1588779558162">
+    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1589208458280">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588779558162" />
+    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1589208458280" />
     <state width="813" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1588779558162">
+    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1589208458280">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588779558162" />
+    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1589208458280" />
     <state width="813" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1588779558162">
+    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1589208458280">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588779558162" />
+    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1589208458280" />
     <state width="813" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
     <state x="184" y="13" key="SettingsEditor" timestamp="1587939886192">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="184" y="13" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1587939886192" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1588639306829">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1588789277448">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588639306829" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588789277448" />
     <state x="492" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588023994374">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
