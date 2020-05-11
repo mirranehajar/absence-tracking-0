@@ -20,21 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
-      <change afterPath="$PROJECT_DIR$/src/app/components/session/session.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/session/session.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/session/session.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/service/type-session.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/service/type-session.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/sessions/events.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/sessions/sessions.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/sessions/sessions.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/sessions/sessions.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/session/session.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/sessions/sessions.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/session.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/type-session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/type-session.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/main/main.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/main/main.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/service/session.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/session.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +119,7 @@
       <workItem from="1589201977182" duration="4582000" />
       <workItem from="1589206734792" duration="159000" />
       <workItem from="1589206908397" duration="616000" />
-      <workItem from="1589207544581" duration="3481000" />
+      <workItem from="1589207544581" duration="4535000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -209,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588789275849</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="session and type session">
+      <created>1589218081120</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1589218081121</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,7 +236,8 @@
     <MESSAGE value="sessions plus absence plus groups" />
     <MESSAGE value="profil login filière" />
     <MESSAGE value="profil" />
-    <option name="LAST_COMMIT_MESSAGE" value="profil" />
+    <MESSAGE value="session and type session" />
+    <option name="LAST_COMMIT_MESSAGE" value="session and type session" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -251,10 +248,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="447" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1587949360269" />
-    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1588429860575">
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1589218282094">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1588429860575" />
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1589218282094" />
     <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1587997149012">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -288,10 +285,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="184" y="13" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1587939886192" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1588789277448">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1589218086613">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1588789277448" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1589218086613" />
     <state x="492" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588023994374">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
