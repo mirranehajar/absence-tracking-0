@@ -11,7 +11,7 @@ import {EventInput} from '@fullcalendar/core/structs/event';
   styleUrls: ['./session.component.scss']
 })
 export class SessionComponent implements OnInit {
-
+  displayBasic: boolean;
   constructor() { }
 
   @ViewChild('calendar') calendarComponent: FullCalendarComponent; // the #calendar in the template
@@ -25,7 +25,10 @@ export class SessionComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  showBasicDialog(arq) {
+    this.displayBasic = true;
+    this.handleDateClick(arq);
+  }
   handleDateClick(arg) {
       this.calendarEvents = this.calendarEvents.concat({ // add new event data. must create new array
         title: 'New Event',
@@ -33,5 +36,4 @@ export class SessionComponent implements OnInit {
         allDay: arg.allDay
       });
   }
-
 }

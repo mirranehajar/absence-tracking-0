@@ -35,6 +35,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { SessionComponent } from './components/session/session.component';
 import {FullCalendarModule} from '@fullcalendar/angular';
+import { TryComponent } from './components/try/try.component';
 
 
 
@@ -51,7 +52,8 @@ import {FullCalendarModule} from '@fullcalendar/angular';
     AbsenceComponent,
     LoginComponent,
     ProfilComponent,
-    SessionComponent
+    SessionComponent,
+    TryComponent
   ],
   imports: [
     BrowserModule,

@@ -14,21 +14,21 @@
     </div>
   </div>
 </div>
-<p-dialog  header="Edit professor" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+<p-dialog  header="Ajout d'une filière" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
   <form style="text-align: center" method="POST" >
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input  placeholder="Libelle"  name="matricule" type="text" pInputText  required>
+          <input  placeholder="Libelle" [(ngModel)]="sector.libelle" name="libelle" type="text" pInputText  required>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <select>
-            <option disabled value="name">Resposable de filière</option>
+          <select placeholder="Selectioner un cycle" name="Cycle"  [(ngModel)]="sector.cycle" required>
+            <option *ngFor="let c of cycles" [ngValue]="c">{{c.libelle}}</option>
           </select>
         </div>
       </div>
@@ -36,13 +36,18 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input placeholder="Cycle" name="cycle" type="text" pInputText >
-        </div>
+          <select placeholder="Selectioner un responsable" name="Responsable"  [(ngModel)]="sectorManager.enseignant" required>
+            <option *ngFor="let e of enseignants" [ngValue]="e">{{e.lastName +" " + e.firstName }}</option>
+          </select>
+         </div>
       </div>
     </div>
     <br>
     <p-footer>
-      <button type="submit" pButton icon="pi pi-check" style="float: left"  label="Confirm"></button>
+      <p-footer>
+        <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Confirm"></button>
+        <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Cancel" class="ui-button-secondary"></button>
+      </p-footer>
     </p-footer>
   </form>
 </p-dialog>

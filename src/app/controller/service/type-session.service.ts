@@ -13,7 +13,7 @@ export class TypeSessionService {
   // tslint:disable-next-line:variable-name
   private _typeSessionFounded: TypeSession;
   // tslint:disable-next-line:variable-name
-  private _url = 'http://localhost:8090/absence-tracking/seance/';
+  private _url = 'http://localhost:8090/absence-tracking/typeSeance/';
   constructor(private http: HttpClient) { }
 
   public findByLibelle(typeSession: TypeSession) {
