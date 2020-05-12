@@ -14,7 +14,7 @@ export class SectorManagerService {
   // tslint:disable-next-line:variable-name
   private _sectorManagerFounded: SectorManager;
   // tslint:disable-next-line:variable-name
-  private _url = 'http://localhost:8090/absence-tracking/responsableFiliere/';
+  private _url = 'http://localhost:8090/absence-tracking/responsable/';
   constructor(private http: HttpClient) { }
 
   public findByEnseignant(sectorManager: SectorManager) {
@@ -65,10 +65,10 @@ export class SectorManagerService {
     );
   }
   public save() {
-    this.http.post<number>(this._url, this._sectorManager).subscribe(
+    this.http.post<number>(this._url, this.sectorManager).subscribe(
       data => {
         if (data > 0) {
-          this._sectorManagers.push(this.clone(this.sectorManager));
+          this.sectorManagers.push(this.clone(this.sectorManager));
           this.sectorManager = null;
         }
       }, error => {

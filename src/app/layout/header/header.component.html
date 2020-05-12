@@ -37,7 +37,7 @@
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
           <select placeholder="Selectioner un responsable" name="Responsable"  [(ngModel)]="sectorManager.enseignant" required>
-            <option *ngFor="let e of enseignants" [ngValue]="e">{{e.lastName +" " + e.firstName }}</option>
+            <option *ngFor="let e of enseignants" [ngValue]="e" >{{e.lastName +" " + e.firstName }}</option>
           </select>
          </div>
       </div>

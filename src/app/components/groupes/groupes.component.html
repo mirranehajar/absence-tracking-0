@@ -1,8 +1,8 @@
 <div style="margin-bottom: 1em">
   <button type="button" pButton icon="pi pi-chevron-up" (click)="openPrev()" style="margin-right:.25em"></button>
   <button type="button" pButton icon="pi pi-chevron-down" (click)="openNext()"></button>
-  <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Add a group"></button>
-  <p-dialog  header="Add a new student" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un groupe"></button>
+  <p-dialog  header="Ajout un groupe" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
     <form style="text-align: center" method="POST">
       <div style="display:inline-block" class="form-group">
         <div class="row">
@@ -15,14 +15,24 @@
         <div class="row">
           <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-            <p-dropdown  name="city" [options]="cities" [(ngModel)]="selectedCity" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown>
+            <select placeholder="Selectioner une filière" name="Filière"   required>
+              <option *ngFor="let s of sectors" [ngValue]="s">{{s.libelle}}</option>
+            </select>
           </div>
         </div>
         <br>
         <div class="row">
           <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-            <p-dropdown name="khikhi" [options]="cities" [(ngModel)]="selectedCity" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown>
+            <select placeholder="Selectioner un semestre" name="Semestre"   required>
+              <option></option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
           </div>
         </div>
       <p-footer>
@@ -35,13 +45,13 @@
 </div>
 
 <p-accordion [(activeIndex)]="index">
-  <div cdkDropListGroup>
-  <p-accordionTab header="Godfather I">
+  <div *ngFor="let g of groupes" cdkDropListGroup>
+  <p-accordionTab header="Groupe1">
     <div class="table-responsive">
         <div class="example-container">
       <div
         cdkDropList
-        [cdkDropListData]="groupe.etudiants"
+        [cdkDropListData]="g.etudiants"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
       <table  class="grid table table-bordered table-sortable">
@@ -49,12 +59,12 @@
         <tr>
           <th>Cne</th>
           <th>Cin</th>
-          <th>code apogee</th>
-          <th>First Name</th>
-          <th>Last Name</th>
+          <th>code apogée</th>
+          <th>Prénom</th>
+          <th>Nom</th>
           <th>Mail</th>
-          <th>Birth day</th>
-          <th>Phone Number</th>
+          <th>Jour de naissance</th>
+          <th>Numéro de téléphone</th>
           <th>Absence</th>
         </tr>
         </thead>
@@ -117,12 +127,6 @@
         </div>
       </div>
     </div>
-  </p-accordionTab>
-  <p-accordionTab header="Godfather III">
-    After a break of more than  15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family. Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate.
-  </p-accordionTab>
-  <p-accordionTab header="Godfather IV">
-    After a break of more than  15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family. Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate.
   </p-accordionTab>
   </div>
 </p-accordion>

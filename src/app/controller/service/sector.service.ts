@@ -66,10 +66,10 @@ export class SectorService {
     );
   }
   public save() {
-    this.http.post<number>(this._url, this._sector).subscribe(
+    this.http.post<number>(this._url, this.sector).subscribe(
       data => {
         if (data > 0) {
-          this._sectors.push(this.clone(this.sector));
+          this.sectors.push(this.clone(this.sector));
           this.sector = null;
         }
       }, error => {

@@ -19,8 +19,8 @@
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <select>
-                <option></option>
+              <select placeholder="Selectioner un type de séance" name="Type séance"  [(ngModel)]="session.typeSession" required>
+                <option *ngFor="let t of typeSessions" [ngValue]="t">{{t.libelle}}</option>
               </select>
             </div>
           </div>

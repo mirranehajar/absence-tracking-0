@@ -4,6 +4,10 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGrigPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import {EventInput} from '@fullcalendar/core/structs/event';
+import {TypeSession} from '../../controller/model/type-session';
+import {TypeSessionService} from '../../controller/service/type-session.service';
+import {SessionService} from '../../controller/service/session.service';
+import {Session} from '../../controller/model/session';
 
 @Component({
   selector: 'app-session',
@@ -12,7 +16,7 @@ import {EventInput} from '@fullcalendar/core/structs/event';
 })
 export class SessionComponent implements OnInit {
   displayBasic: boolean;
-  constructor() { }
+  constructor(private typeSessionService: TypeSessionService, private sessionService: SessionService) { }
 
   @ViewChild('calendar') calendarComponent: FullCalendarComponent; // the #calendar in the template
 
@@ -35,5 +39,17 @@ export class SessionComponent implements OnInit {
         start: arg.date,
         allDay: arg.allDay
       });
+  }
+  get typeSessions(): Array<TypeSession> {
+    return this.typeSessionService.typeSessions;
+  }
+  get typeSession(): TypeSession {
+    return this.typeSessionService.typeSession;
+  }
+  get sessions(): Array<Session> {
+    return this.sessionService.sessions;
+  }
+  get session(): Session {
+    return this.sessionService.session;
   }
 }

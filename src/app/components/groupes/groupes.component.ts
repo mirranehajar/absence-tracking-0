@@ -5,6 +5,9 @@ import {Groupe} from '../../controller/model/groupe';
 import {GroupeService} from '../../controller/service/groupe.service';
 import {Sector} from '../../controller/model/sector';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {SectorService} from '../../controller/service/sector.service';
+import {FormControl} from '@angular/forms';
+
 
 @Component({
   selector: 'app-groupes',
@@ -12,12 +15,12 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
   styleUrls: ['./groupes.component.scss']
 })
 export class GroupesComponent implements OnInit {
-
+  students = new FormControl();
   index = -1;
   displayBasic: boolean;
   cities: Sector[];
   selectedCity: Sector;
-  constructor(private etudiantService: EtudiantService, private groupeService: GroupeService) {
+  constructor(private etudiantService: EtudiantService, private groupeService: GroupeService, private sectorService: SectorService) {
    }
 
   ngOnInit(): void {
@@ -54,5 +57,11 @@ export class GroupesComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
+  }
+  get sectors(): Array<Sector> {
+    return this.sectorService.sectors;
+  }
+  get sector(): Sector {
+    return this.sectorService.sector;
   }
 }

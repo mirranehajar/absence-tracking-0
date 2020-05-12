@@ -65,10 +65,10 @@ export class SessionService {
     );
   }
   public save() {
-    this.http.post<number>(this._url, this._session).subscribe(
+    this.http.post<number>(this._url, this.session).subscribe(
       data => {
         if (data > 0) {
-          this._sessions.push(this.clone(this.session));
+          this.sessions.push(this.clone(this.session));
           this.session = null;
         }
       }, error => {
