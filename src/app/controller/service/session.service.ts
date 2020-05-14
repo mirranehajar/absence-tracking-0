@@ -24,6 +24,13 @@ export class SessionService {
       }
     );
   }
+  public findByReference(session: Session) {
+    this.http.get<Session>(this._url + 'refrence/' + session.reference).subscribe(
+      data => {
+        this.sessionFounded = data;
+      }
+    );
+  }
   public findAll() {
     this.http.get<Array<Session>>(this._url).subscribe(
       data => {
@@ -31,8 +38,8 @@ export class SessionService {
       }
     );
   }
-  public deleteByLibelle(session: Session) {
-    this.http.delete<number>(this._url + 'liblle/' + session.libelle).subscribe(
+  public deleteByReference(session: Session) {
+    this.http.delete<number>(this._url + 'reference/' + session.reference).subscribe(
       data => {
         console.log(data);
         this.deleteFromList(session);
@@ -40,7 +47,7 @@ export class SessionService {
     );
   }
   public deleteFromList(session: Session) {
-    const index = this.sessions.findIndex(e => e.libelle === session.libelle);
+    const index = this.sessions.findIndex(e => e.reference === session.reference);
     if (index !== -1) {
       this.sessions.splice(index, 1);
     }
@@ -58,10 +65,10 @@ export class SessionService {
     );
   }
   public save() {
-    this.http.post<number>(this._url, this._session).subscribe(
+    this.http.post<number>(this._url, this.session).subscribe(
       data => {
         if (data > 0) {
-          this._sessions.push(this.clone(this.session));
+          this.sessions.push(this.clone(this.session));
           this.session = null;
         }
       }, error => {
@@ -74,9 +81,7 @@ export class SessionService {
     myclone.libelle = session.libelle ;
     myclone.dateStart = session.dateStart ;
     myclone.dateStop = session.dateStop ;
-    myclone.enseignant = session.enseignant ;
     myclone.groupes = session.groupes ;
-    myclone.module = session.module ;
     myclone.typeSession = session.typeSession ;
     return myclone;
   }

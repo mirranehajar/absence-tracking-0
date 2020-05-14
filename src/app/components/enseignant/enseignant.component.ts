@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {ConfirmationService} from 'primeng/api';
 import {Message} from 'primeng/api';
 import {EnseignantService} from '../../controller/service/enseignant.service';
@@ -6,6 +6,7 @@ import {Enseignant} from '../../controller/model/enseignant.model';
 import * as XLSX from 'xlsx';
 import {MessageService} from 'primeng/api';
 import {Sort} from '@angular/material/sort';
+import {MdbTableDirective} from 'angular-bootstrap-md';
 
 type AOA = any[][];
 
@@ -17,6 +18,10 @@ type AOA = any[][];
 })
 
 export class EnseignantComponent implements OnInit {
+  @ViewChild(MdbTableDirective, { static: true })
+  mdbTable: MdbTableDirective;
+  searchText = '';
+  previous: string;
   importProfessors: Array<Enseignant> = new Array<Enseignant>();
   msgs: Message[] = [];
   displayBasic: boolean;
@@ -26,9 +31,12 @@ export class EnseignantComponent implements OnInit {
   fileName = 'Example-professor.xlsx';
   sortedData: Enseignant[];
   constructor(private enseignantService: EnseignantService, private messageService: MessageService) { }
+  @HostListener('input') oninput() { this.searchItems();}
 
   ngOnInit(): void {this.enseignantService.findAll();
                     this.sortedData = this.enseignants.slice();
+                    this.mdbTable.setDataSource(this.sortedData);
+                    this.previous = this.mdbTable.getDataSource();
   }
   public deleteByMatricule(enseignant: Enseignant) {
     this.enseignantService.deleteByMatricule(enseignant);
@@ -124,6 +132,14 @@ export class EnseignantComponent implements OnInit {
       }
     });
   }
+  searchItems() {
+    const prev = this.mdbTable.getDataSource();
+    if (!this.searchText) {
+      this.mdbTable.setDataSource(this.previous);
+      this.sortedData = this.mdbTable.getDataSource(); }
+    if (this.searchText) {
+      this.sortedData = this.mdbTable.searchLocalDataBy(this.searchText);
+      this.mdbTable.setDataSource(prev); } }
 }
 function compare(a: number | string | Date, b: number | string | Date, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);

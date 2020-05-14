@@ -65,9 +65,9 @@
       <p-button label="Donwload example" styleClass="ui-button-warning" (click)="export()" icon="pi pi-download" ></p-button>
     </div>
     <div class="col-md-3">
-<span class="ui-float-label">
-    <input id="disabled-input" type="text" size="15">
-    <label for="disabled-input">Search</label>
+<span  class="md-form ui-float-label">
+    <input [(ngModel)]="searchText" class="form-control"  mdbInput id="search" type="text" size="15">
+    <label for="search">Search</label>
     <p-button icon="pi pi-search" styleClass="ui-button-secondary"></p-button>
 </span>
     </div>
@@ -76,7 +76,7 @@
     <div class="card-body">
   <div >
     <div>
-      <table class="table table-bordered " matSort (matSortChange)="sortData($event)">
+      <table mdbTable class="z-depth-1" class="table table-bordered " matSort (matSortChange)="sortData($event)">
         <thead>
         <tr>
           <th mat-sort-header="matricule">Matricule</th>

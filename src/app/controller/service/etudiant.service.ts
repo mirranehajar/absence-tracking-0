@@ -84,6 +84,9 @@ export class EtudiantService {
   }
 
   get etudiantFounded(): Etudiant {
+    if (this._etudiantFounded == null) {
+      this._etudiantFounded = new Etudiant();
+    }
     return this._etudiantFounded;
   }
 

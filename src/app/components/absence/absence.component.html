@@ -10,13 +10,13 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let e of etudiants">
+    <tr *ngFor="let e of etudiants" [(ngModel)]="absence.etudiant">
       <td>{{e.cne}}</td>
       <td>{{e.codeApogee}}</td>
       <td>{{e.lastName}}</td>
       <td>{{e.firstName}}</td>
       <td>{{e.nbrAbsence}}</td>
-       <p-selectButton [options]="types" ></p-selectButton>
+       <p-selectButton [options]="types" [(ngModel)]="absence.absent" ></p-selectButton>
     </tr>
     </tbody>
   </table>
