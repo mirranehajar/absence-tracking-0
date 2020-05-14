@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
@@ -13,7 +12,7 @@ import {
     AccordionModule,
     ConfirmDialogModule,
     DialogModule, DropdownModule,
-    FileUploadModule,
+    FileUploadModule, InputTextModule,
     MenubarModule,
     MessagesModule, PanelModule, SelectButtonModule,
     SplitButtonModule,
@@ -55,34 +54,35 @@ import { TryComponent } from './components/try/try.component';
     SessionComponent,
     TryComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MenubarModule,
-    TabViewModule,
-    SplitButtonModule,
-    DialogModule,
-    MessagesModule,
-    ConfirmDialogModule,
-    ToastModule,
-    FormsModule,
-    FileUploadModule,
-    ReactiveFormsModule,
-    MDBBootstrapModule,
-    FontAwesomeModule,
-    MatButtonModule,
-    MatTableModule,
-    MatSortModule,
-    FullCalendarModule,
-    AccordionModule,
-    DropdownModule,
-    DragDropModule,
-    SelectButtonModule,
-    PanelModule,
-    FullCalendarModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MenubarModule,
+        TabViewModule,
+        SplitButtonModule,
+        DialogModule,
+        MessagesModule,
+        ConfirmDialogModule,
+        ToastModule,
+        FormsModule,
+        FileUploadModule,
+        ReactiveFormsModule,
+        MDBBootstrapModule,
+        FontAwesomeModule,
+        MatButtonModule,
+        MatTableModule,
+        MatSortModule,
+        FullCalendarModule,
+        AccordionModule,
+        DropdownModule,
+        DragDropModule,
+        SelectButtonModule,
+        PanelModule,
+        FullCalendarModule,
+        InputTextModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

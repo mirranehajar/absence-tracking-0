@@ -1,5 +1,5 @@
 export class Enseignant {
-  public matricule: string;
+  public numeroSOM: number;
   public cin: string;
   public firstName: string;
   public lastName: string;

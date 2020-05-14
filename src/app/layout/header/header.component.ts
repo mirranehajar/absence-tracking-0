@@ -9,14 +9,16 @@ import {Enseignant} from '../../controller/model/enseignant.model';
 import {SectorManager} from '../../controller/model/sector-manager';
 import {SectorManagerService} from '../../controller/service/sector-manager.service';
 
+// @ts-ignore
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  items: MenuItem[];
+    categoriesList: Sector[];
+    items: MenuItem[];
+    item: MenuItem;
     classes = {
     topnav: true,
     responsive: false,

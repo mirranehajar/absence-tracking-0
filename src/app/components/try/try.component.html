@@ -1,36 +1,33 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 mx-auto">
-      <div class="md-form">
-        <input
-          type="text"
-          [(ngModel)]="searchText"
-          class="form-control"
-          id="search"
-          mdbInput
-        />
-        <label for="search">Search</label>
-      </div>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" >Acceuil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Profile</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+          Filière
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Link 1</a>
+          <a class="dropdown-item" href="#">Link 2</a>
+          <a class="dropdown-item" href="#">Link 3</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Étudiants</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Enseignants</a>
+      </li>
+    </ul>
+    <!--ul class="navbar-nav navbar-right">
+
+    </ul-->
   </div>
-  <table mdbTable class="z-depth-1">
-    <thead>
-    <tr>
-      <th
-        *ngFor="let head of headElements; let i = index"
-        scope="col"
-      >
-        {{head}}
-      </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let el of elements; let i = index">
-      <th scope="row">{{el.id}}</th>
-      <td class="red-text">{{el.first}}</td>
-      <td>{{el.last}}</td>
-      <td>{{el.handle}}</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+</nav>
+
+

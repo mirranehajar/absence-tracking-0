@@ -27,34 +27,33 @@ export class EnseignantComponent implements OnInit {
   displayBasic: boolean;
   displayBasic2: boolean;
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
-  data: AOA = [['Matricule', 'Cin', 'First Name', 'Last Name', 'Birthday', 'Phone Number', 'Departement']];
+  data: AOA = [['Numéro de SOM', 'Cin', 'Prénom', 'Nom', 'Jour de naissance', 'Numéro de téléphone', 'Departement']];
   fileName = 'Example-professor.xlsx';
   sortedData: Enseignant[];
   constructor(private enseignantService: EnseignantService, private messageService: MessageService) { }
-  @HostListener('input') oninput() { this.searchItems();}
+  @HostListener('input') oninput() { this.searchItems(); }
 
   ngOnInit(): void {this.enseignantService.findAll();
                     this.sortedData = this.enseignants.slice();
                     this.mdbTable.setDataSource(this.sortedData);
                     this.previous = this.mdbTable.getDataSource();
   }
-  public deleteByMatricule(enseignant: Enseignant) {
-    this.enseignantService.deleteByMatricule(enseignant);
+  public deleteByNumeroSOM(enseignant: Enseignant) {
+    this.enseignantService.deleteByNumeroSOM(enseignant);
   }
   showBasicDialog() {
     this.displayBasic = true;
   }
   showBasicDialog2(enseignantFounded: Enseignant) {
     this.displayBasic2 = true;
-    this.findByMatricule(enseignantFounded);
+    this.findByNumeroSOM(enseignantFounded);
   }
-  public findByMatricule(enseignantFounded: Enseignant) {
-    this.enseignantService.findByMatricule(enseignantFounded);
+  public findByNumeroSOM(enseignantFounded: Enseignant) {
+    this.enseignantService.findByNumeroSOM(enseignantFounded);
   }
   public save() {
     this.enseignantService.save();
     this.displayBasic = false;
-    window.location.reload();
   }
   public update() {
     this.enseignantService.update();
@@ -88,7 +87,7 @@ export class EnseignantComponent implements OnInit {
       this.importProfessors = (XLSX.utils.sheet_to_json(ws, { header: 1 })) as Array<Enseignant>;
       console.log(this.importProfessors);
       for (const prof of this.importProfessors) {
-        this.enseignant.matricule = prof[0];
+        this.enseignant.numeroSOM = prof[0];
         this.enseignant.birthDay = prof[4];
         this.enseignant.firstName = prof[2];
         this.enseignant.lastName = prof[3];
@@ -121,7 +120,7 @@ export class EnseignantComponent implements OnInit {
     this.sortedData = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'matricule': return compare(a.matricule, b.matricule, isAsc);
+        case 'numeroSOM': return compare(a.numeroSOM, b.numeroSOM, isAsc);
         case 'cin': return compare(a.cin, b.cin, isAsc);
         case 'firstName': return compare(a.firstName, b.firstName, isAsc);
         case 'lastName': return compare(a.lastName, b.lastName, isAsc);

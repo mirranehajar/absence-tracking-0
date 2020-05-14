@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Enseignant} from '../model/enseignant.model';
 import {HttpClient} from '@angular/common/http';
-import * as XLSX from 'xlsx';
 
 @Injectable({
   providedIn: 'root'
@@ -18,21 +17,21 @@ export class EnseignantService {
 
   constructor(private http: HttpClient) { }
   public deleteFromList(enseignant: Enseignant) {
-    const index = this.enseignants.findIndex(e => e.matricule === enseignant.matricule);
+    const index = this.enseignants.findIndex(e => e.numeroSOM === enseignant.numeroSOM);
     if (index !== -1) {
       this.enseignants.splice(index, 1);
     }
   }
-  public deleteByMatricule(enseignant: Enseignant) {
-    this.http.delete<number>(this._url + 'matricule/' + enseignant.matricule).subscribe(
+  public deleteByNumeroSOM(enseignant: Enseignant) {
+    this.http.delete<number>(this._url + 'numeroSOM/' + enseignant.numeroSOM).subscribe(
       data => {
         console.log(data);
         this.deleteFromList(enseignant);
       }
     );
   }
-  public findByMatricule(enseignant: Enseignant) {
-    this.http.get<Enseignant>(this._url + 'matricule/' + enseignant.matricule).subscribe(
+  public findByNumeroSOM(enseignant: Enseignant) {
+    this.http.get<Enseignant>(this._url + 'numeroSOM/' + enseignant.numeroSOM).subscribe(
       data => {
         this.enseignantFounded = data;
       }
@@ -71,7 +70,7 @@ export class EnseignantService {
     }
   private clone(enseignant: Enseignant) {
     const myclone = new Enseignant();
-    myclone.matricule = enseignant.matricule;
+    myclone.numeroSOM = enseignant.numeroSOM;
     myclone.cin = enseignant.cin;
     myclone.firstName = enseignant.firstName;
     myclone.lastName = enseignant.lastName;

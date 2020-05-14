@@ -10,7 +10,7 @@
               <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignant.matricule" name="matricule" type="number" pInputText placeholder="Matricule" required>
+                    <input [(ngModel)]="enseignant.numeroSOM" name="numeroSOM" type="number" pInputText placeholder="Numéro de SOM" >
                 </div>
               </div>
               <br>
@@ -24,35 +24,35 @@
               <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignant.firstName" name="firstName" type="text" pInputText placeholder="First name">
+                    <input [(ngModel)]="enseignant.firstName" name="prénom" type="text" pInputText placeholder="Prénom">
                   </div>
                 </div>
               <br>
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignant.lastName" name="lastName" type="text" pInputText placeholder="Last name">
+                    <input [(ngModel)]="enseignant.lastName" name="nom" type="text" pInputText placeholder="Nom">
                   </div>
                 </div>
               <br>
               <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignant.birthDay" name="birthDay" type="date" pInputText placeholder="Birth day">
+                    <input [(ngModel)]="enseignant.birthDay" name="jour de naissance" type="date" pInputText placeholder="Jour de naissance">
                   </div>
                 </div>
               <br>
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignant.tel" name="tel" type="tel" pInputText placeholder="Phone number">
+                    <input [(ngModel)]="enseignant.tel" name="tel" type="tel" pInputText placeholder="Numéro de téléphone">
                   </div>
                 </div>
             </div>
               <br>
           <p-footer>
-            <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Confirm"></button>
-            <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Cancel" class="ui-button-secondary"></button>
+            <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Sauvegarder"></button>
+            <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Annuler" class="ui-button-secondary"></button>
           </p-footer>
         </form>
       </p-dialog>
@@ -79,22 +79,22 @@
       <table mdbTable class="z-depth-1" class="table table-bordered " matSort (matSortChange)="sortData($event)">
         <thead>
         <tr>
-          <th mat-sort-header="matricule">Matricule</th>
+          <th mat-sort-header="numeroSOM">Numéro de SOM</th>
           <th mat-sort-header="cin">Cin</th>
-          <th mat-sort-header="firstName">First Name</th>
-          <th mat-sort-header="lastName">Last Name</th>
-          <th mat-sort-header="mail">Mail</th>
-          <th mat-sort-header="birthDay">Birth Day</th>
-          <th mat-sort-header="tel">Phone Number</th>
+          <th mat-sort-header="lastName">Nom</th>
+          <th mat-sort-header="firstName">Prénom</th>
+          <th mat-sort-header="mail">Email</th>
+          <th mat-sort-header="birthDay">Jour de naissance</th>
+          <th mat-sort-header="tel">Numéro de téléphone</th>
           <th>Département</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let e of sortedData">
-          <td >{{e.matricule}}</td>
+          <td >{{e.numeroSOM}}</td>
           <td>{{e.cin}}</td>
-          <td>{{e.firstName}}</td>
           <td>{{e.lastName}}</td>
+          <td>{{e.firstName}}</td>
           <td>{{e.mail}}</td>
           <td>{{e.birthDay}}</td>
           <td>{{e.tel}}</td>
@@ -106,7 +106,7 @@
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignantFounded.matricule" disabled  name="matricule" type="text" pInputText  required>
+                    <input [(ngModel)]="enseignantFounded.numeroSOM" disabled  name="numeroSOM" type="text" pInputText  required>
                   </div>
                 </div>
                 <br>
@@ -120,21 +120,28 @@
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignantFounded.firstName" name="firstName" type="text" pInputText >
+                    <input [(ngModel)]="enseignantFounded.lastName" name="nom" type="text" pInputText >
                   </div>
                 </div>
                 <br>
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignantFounded.lastName" name="lastName" type="text" pInputText >
+                    <input [(ngModel)]="enseignantFounded.firstName" name="prénom" type="text" pInputText >
                   </div>
                 </div>
                 <br>
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignantFounded.birthDay" name="birthDay" type="date" pInputText>
+                    <input [(ngModel)]="enseignantFounded.mail" name="email" type="email" pInputText>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <input [(ngModel)]="enseignantFounded.birthDay" name="jour de naissance" type="date" pInputText>
                   </div>
                 </div>
                 <br>
@@ -152,7 +159,7 @@
               </p-footer>
             </form>
           </p-dialog>
-          <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByMatricule(e)"></p-button>
+          <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByNumeroSOM(e)"></p-button>
         </tr>
         </tbody>
       </table>
