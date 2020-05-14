@@ -34,6 +34,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { AbsenceComponent } from './components/absence/absence.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import { ModuleComponent } from './components/module/module.component';
 
 
 
@@ -50,7 +51,8 @@ import { ProfilComponent } from './components/profil/profil.component';
     GroupesComponent,
     AbsenceComponent,
     LoginComponent,
-    ProfilComponent
+    ProfilComponent,
+    ModuleComponent
   ],
     imports: [
         BrowserModule,

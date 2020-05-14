@@ -20,17 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
-      <change afterPath="$PROJECT_DIR$/src/app/components/login/login.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/login/login.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/login/login.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/components/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46_[Default_Changelist]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46__Default_Changelist_1.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/components/module/module.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/components/module/module.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/components/module/module.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/components/module/module.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/service/module.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/profile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/profil/profil.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profil/profil.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/profil/profil.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profil/profil.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/profil/profil.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profil/profil.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/model/module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout/main/main.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/main/main.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,8 +43,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="package.json" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -69,7 +71,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
-    <property name="ts.external.directory.path" value="C:\Users\Haraj\WebstormProjects\absence-tracking-0\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Users\blackswan\WebstormProjects\absence-tracking-0\node_modules\typescript\lib" />
   </component>
   <component name="RunManager" selected="npm.Angular CLI Server">
     <configuration name="Tests (absence-tracking)" type="JavaScriptTestRunnerKarma">
@@ -124,6 +126,7 @@
       <workItem from="1588426912406" duration="14577000" />
       <workItem from="1588564177698" duration="6908000" />
       <workItem from="1588769700938" duration="5630000" />
+      <workItem from="1588866239714" duration="27491000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -228,10 +231,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="447" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1587949360269" />
-    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1588429860575">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1589421234751">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1588429860575" />
+    <state x="488" y="0" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1589421234751" />
     <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1587997149012">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -241,26 +245,26 @@
     </state>
     <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1588338498132" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1588779558162">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="917" height="610" key="GridCell.Tab.0.bottom" timestamp="1589396121552">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1588779558162" />
-    <state width="813" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1588779558162">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="917" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1589396121552" />
+    <state width="917" height="610" key="GridCell.Tab.0.center" timestamp="1589396121552">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1588779558162" />
-    <state width="813" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1588779558162">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="917" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1589396121552" />
+    <state width="917" height="610" key="GridCell.Tab.0.left" timestamp="1589396121552">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1588779558162" />
-    <state width="813" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1588779558162">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="917" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1589396121552" />
+    <state width="917" height="610" key="GridCell.Tab.0.right" timestamp="1589396121552">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1588779558162" />
-    <state width="813" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
+    <state width="917" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1589396121552" />
     <state x="184" y="13" key="SettingsEditor" timestamp="1587939886192">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
