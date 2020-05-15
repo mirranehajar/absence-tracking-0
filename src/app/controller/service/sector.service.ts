@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Cycle} from '../model/cycle';
 import {HttpClient} from '@angular/common/http';
 import {Sector} from '../model/sector';
-import {Etudiant} from '../model/etudiant.model';
+import {Cycle} from '../model/cycle';
 
 @Injectable({
   providedIn: 'root'
@@ -54,7 +53,7 @@ export class SectorService {
     );
   }
   public update() {
-    this.http.put<number>(this._url, this.sectors).subscribe(
+    this.http.put<number>(this._url, this.sectorFounded).subscribe(
       data => {
         if (data > 0) {
           this.deleteFromList(this.sectorFounded);
@@ -80,6 +79,7 @@ export class SectorService {
   private clone(sector: Sector) {
     const myclone = new Sector();
     myclone.libelle = sector.libelle ;
+    myclone.cycle = sector.cycle;
     return myclone;
   }
   get sector(): Sector {
@@ -105,6 +105,12 @@ export class SectorService {
   }
 
   get sectorFounded(): Sector {
+    if (this._sectorFounded == null) {
+      this._sectorFounded = new Sector();
+    }
+    if (this._sectorFounded.cycle == null) {
+      this._sectorFounded.cycle = new Cycle();
+    }
     return this._sectorFounded;
   }
 

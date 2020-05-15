@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
     responsive: false,
   };
     displayBasic: boolean;
+    displayBasic2: boolean;
 
    constructor(public sectorManagerService: SectorManagerService, public sectorService: SectorService,
                public cycleService: CycleService, public enseignantService: EnseignantService) { }
@@ -85,11 +86,18 @@ export class HeaderComponent implements OnInit {
   showBasicDialog() {
     this.displayBasic = true;
   }
+  showBasicDialog2(sector: Sector) {
+    this.displayBasic2 = true;
+    this.findByLibelle(sector);
+  }
   get sectors(): Array<Sector> {
     return this.sectorService.sectors;
   }
   get sector(): Sector {
     return this.sectorService.sector;
+  }
+  get sectorFounded(): Sector {
+    return this.sectorService.sectorFounded;
   }
   get cycles(): Array<Cycle> {
     return this.cycleService.cycles;
@@ -120,5 +128,18 @@ export class HeaderComponent implements OnInit {
     this.sectorManager.sector = this.sector;
     this.sectorManagerService.save();
     this.displayBasic = false;
+  }
+  public update() {
+    this.sectorService.update();
+    this.displayBasic2 = false;
+    window.location.reload();
+  }
+  public findByLibelle(sector: Sector) {
+  return this.sectorService.findByLibelle(sector);
+  }
+  public deleteByLibelle(sector: Sector) {
+    return this.sectorService.deleteByLibelle(sector);
+    this.displayBasic2 = false;
+    window.location.reload();
   }
 }

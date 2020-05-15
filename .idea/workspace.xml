@@ -21,18 +21,21 @@
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/try/try.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/try/try.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/try/try.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/try/try.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/enseignant.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/enseignant.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/enseignant.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/enseignant.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/model/etudiant.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/etudiant.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/service/etudiant.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/etudiant.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/service/sector.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/sector.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout/main/main.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/main/main.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +134,9 @@
       <workItem from="1589207544581" duration="58409000" />
       <workItem from="1589463089600" duration="21000" />
       <workItem from="1589463422192" duration="2525000" />
-      <workItem from="1589466644792" duration="2061000" />
+      <workItem from="1589466644792" duration="5960000" />
+      <workItem from="1589486893224" duration="1253000" />
+      <workItem from="1589488175508" duration="18257000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -238,7 +243,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589295269236</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="trying to fix the menu">
+      <created>1589468736012</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1589468736013</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,7 +286,8 @@
     <MESSAGE value="filière" />
     <MESSAGE value="id even know" />
     <MESSAGE value="trying to fix the menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="trying to fix the menu" />
+    <MESSAGE value="menu update" />
+    <option name="LAST_COMMIT_MESSAGE" value="menu update" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -285,10 +298,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="447" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1587949360269" />
-    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1589290491382">
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1589489081620">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1589290491382" />
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1589489081620" />
     <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1587997149012">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -298,26 +311,34 @@
     </state>
     <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1589402336156" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1589468694998">
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1589550241521">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1589468694998" />
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1589550241521" />
     <state width="813" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1589468694997">
+    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1589550241520">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1589468694997" />
+    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1589550241520" />
     <state width="813" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1589468694996">
+    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1589550241520">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1589468694996" />
+    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1589550241520" />
     <state width="813" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1589468694997">
+    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1589550241520">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1589468694997" />
+    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1589550241520" />
     <state width="813" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
+    <state x="258" y="54" key="MergeDialog" timestamp="1589468841036">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="258" y="54" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1589468841036" />
+    <state x="512" y="231" width="722" height="265" key="MultipleFileMergeDialog" timestamp="1589468892666">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="512" y="231" width="722" height="265" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1589468892666" />
     <state x="184" y="13" key="SettingsEditor" timestamp="1587939886192">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -330,10 +351,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="492" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1589468653460" />
-    <state x="371" y="152" key="git4idea.merge.GitPullDialog" timestamp="1588024034668">
+    <state x="371" y="152" key="git4idea.merge.GitPullDialog" timestamp="1589468809463">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="371" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1588024034668" />
+    <state x="371" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1589468809463" />
     <state x="339" y="162" key="run.anything.popup" timestamp="1588298620745">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

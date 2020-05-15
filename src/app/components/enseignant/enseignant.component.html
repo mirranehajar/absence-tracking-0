@@ -1,7 +1,4 @@
-<div class="container">
-  <div class="card text-center">
-    <div class="card-header">
-  <div class="row">
+ <div class="row">
     <div class="col-md-3">
       <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Add a professor"></button>
       <p-dialog  header="Add a new professor" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
@@ -59,7 +56,6 @@
     </div>
     <div class="col-md-3">
       <input type="file" (change)="onFileChange($event)" multiple="false" />
-        <p-fileUpload icon="pi pi-upload" customUpload="true" [auto]="true" chooseLabel="Import Professors" (onUpload)="onFileChange($event)" multiple="false" #fubauto mode="basic"  url="./upload.php" accept=".xlsx,.csv" maxFileSize="1000000" ></p-fileUpload>
     </div>
     <div class="col-md-3">
       <p-button label="Donwload example" styleClass="ui-button-warning" (click)="export()" icon="pi pi-download" ></p-button>
@@ -72,11 +68,10 @@
 </span>
     </div>
     </div>
-  </div>
     <div class="card-body">
   <div >
     <div>
-      <table mdbTable class="z-depth-1" class="table table-bordered " matSort (matSortChange)="sortData($event)">
+      <table mdbTable class="z-depth-1 table table-bordered " matSort (matSortChange)="sortData($event)">
         <thead>
         <tr>
           <th mat-sort-header="numeroSOM">Numéro de SOM</th>
@@ -100,7 +95,7 @@
           <td>{{e.tel}}</td>
           <td></td>
           <p-button (click)="showBasicDialog2(e)" icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>
-          <p-dialog  header="Edit professor" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+          <p-dialog  header="modification d'un professeur" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
             <form style="text-align: center" method="POST" >
               <div style="display:inline-block" class="form-group">
                 <div class="row">
@@ -166,5 +161,3 @@
     </div>
   </div>
   </div>
-</div>
-</div>

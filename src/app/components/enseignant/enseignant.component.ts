@@ -57,7 +57,7 @@ export class EnseignantComponent implements OnInit {
   }
   public update() {
     this.enseignantService.update();
-    this.displayBasic = false;
+    this.displayBasic2 = false;
     window.location.reload();
   }
   get enseignant(): Enseignant {

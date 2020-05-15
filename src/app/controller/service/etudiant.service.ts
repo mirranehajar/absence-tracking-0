@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Etudiant} from '../model/etudiant.model';
-import {Enseignant} from '../model/enseignant.model';
 
 @Injectable({
   providedIn: 'root'
@@ -80,6 +79,8 @@ export class EtudiantService {
     myclone.birthDay = etudiant.birthDay;
     myclone.mail = etudiant.mail;
     myclone.nbrAbsence = etudiant.nbrAbsence;
+    myclone.filiere = etudiant.filiere;
+    myclone.groupe = etudiant.groupe;
     return myclone;
   }
 

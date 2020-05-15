@@ -5,7 +5,7 @@
         <div class="col-md-3">
           <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Add a student"></button>
           <p-dialog  header="Add a new student" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
-            <form style="text-align: center" method="POST" ngNativeValidate>
+            <form style="text-align: center" method="POST" >
               <div style="display:inline-block" class="form-group">
                 <div class="row">
                   <div class="ui-inputgroup">
@@ -17,7 +17,7 @@
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="etudiant.codeApogee" name="codeApogee" type="number" pInputText placeholder="Code Apogee">
+                    <input [(ngModel)]="etudiant.codeApogee" name="codeApogee" type="number" pInputText placeholder="Code Apogée">
                   </div>
                 </div>
                 <br>
@@ -31,30 +31,48 @@
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="etudiant.firstName" name="firstName" type="text" pInputText placeholder="First name">
+                    <input [(ngModel)]="etudiant.firstName" name="firstName" type="text" pInputText placeholder="Prénom">
                   </div>
                 </div>
                 <br>
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="etudiant.lastName" name="lastName" type="text" pInputText placeholder="Last name">
+                    <input [(ngModel)]="etudiant.lastName" name="lastName" type="text" pInputText placeholder="Nom">
                   </div>
                 </div>
                 <br>
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="etudiant.birthDay" name="birthDay" type="date" pInputText placeholder="Birth day">
+                    <input [(ngModel)]="etudiant.birthDay" name="birthDay" type="date" pInputText placeholder="Jour de naissance">
                   </div>
                 </div>
                 <br>
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="etudiant.tel" name="tel" type="tel" pInputText placeholder="Phone number">
+                    <input [(ngModel)]="etudiant.tel" name="tel" type="tel" pInputText placeholder="Téléphone">
                   </div>
                 </div>
+              <br>
+              <div class="row">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                  <select  name="Filière"  [(ngModel)]="etudiant.filiere" required>
+                    <option *ngFor="let s of sectors" [ngValue]="s">{{s.libelle}}</option>
+                  </select>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                  <select  name="Cycle"  [(ngModel)]="sector.cycle" required>
+                    <option *ngFor="let g of groupes" [ngValue]="g">{{g.libelle}}</option>
+                  </select>
+                </div>
+              </div>
               </div>
               <br>
               <p-footer>
@@ -117,7 +135,7 @@
               <td></td>
               <p-button icon="pi pi-user-edit" (click)="showBasicDialog2(e)" styleClass="ui-button-info"></p-button>
               <p-dialog  header="Edit student" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
-                <form style="text-align: center" method="POST" ngNativeValidate>
+                <form style="text-align: center" method="POST" >
                   <div style="display:inline-block" class="form-group">
                     <div class="row">
                       <div class="ui-inputgroup">

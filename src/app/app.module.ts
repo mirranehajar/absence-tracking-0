@@ -12,7 +12,7 @@ import { EnseignantComponent } from './components/enseignant/enseignant.componen
 import {
     AccordionModule,
     ConfirmDialogModule,
-    DialogModule, DropdownModule,
+    DialogModule,
     FileUploadModule,
     MenubarModule,
     MessagesModule, PanelModule, SelectButtonModule,
@@ -36,6 +36,9 @@ import { ProfilComponent } from './components/profil/profil.component';
 import { SessionComponent } from './components/session/session.component';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import { TryComponent } from './components/try/try.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { IconsModule } from 'angular-bootstrap-md';
+import {ModuleComponent} from './components/module/module.component';
 
 
 
@@ -53,7 +56,8 @@ import { TryComponent } from './components/try/try.component';
     LoginComponent,
     ProfilComponent,
     SessionComponent,
-    TryComponent
+    TryComponent,
+    ModuleComponent
   ],
   imports: [
     BrowserModule,
@@ -70,18 +74,19 @@ import { TryComponent } from './components/try/try.component';
     FormsModule,
     FileUploadModule,
     ReactiveFormsModule,
-    MDBBootstrapModule,
+    MDBBootstrapModule.forRoot(),
     FontAwesomeModule,
     MatButtonModule,
     MatTableModule,
     MatSortModule,
     FullCalendarModule,
     AccordionModule,
-    DropdownModule,
     DragDropModule,
     SelectButtonModule,
     PanelModule,
-    FullCalendarModule
+    FullCalendarModule,
+    TooltipModule.forRoot(),
+    IconsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

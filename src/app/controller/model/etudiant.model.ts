@@ -1,3 +1,6 @@
+import {Groupe} from './groupe';
+import {Sector} from './sector';
+
 export class Etudiant {
   public cin: string ;
   public cne: string ;
@@ -8,4 +11,8 @@ export class Etudiant {
   public tel: number;
   public nbrAbsence: number;
   public mail: string;
+  public password: string;
+  public role: number;
+  public groupe: Groupe;
+  public filiere: Sector;
 }

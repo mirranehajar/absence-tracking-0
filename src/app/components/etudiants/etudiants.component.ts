@@ -4,6 +4,10 @@ import {EtudiantService} from '../../controller/service/etudiant.service';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import * as XLSX from 'xlsx';
 import {MessageService} from 'primeng/api';
+import {Sector} from '../../controller/model/sector';
+import {SectorService} from '../../controller/service/sector.service';
+import {GroupeService} from '../../controller/service/groupe.service';
+import {Groupe} from '../../controller/model/groupe';
 
 type AOA = any[][];
 
@@ -22,7 +26,8 @@ export class EtudiantsComponent implements OnInit {
   data: AOA = [['Cne', 'Cin', 'Code Apogee', 'First Name', 'Last Name', 'Birthday', 'Phone Number', 'Sector', 'Group']];
   fileName = 'Example-student.xlsx';
 
-  constructor(private etudiantService: EtudiantService, private messageService: MessageService) { }
+  // tslint:disable-next-line:max-line-length
+  constructor(private etudiantService: EtudiantService, private messageService: MessageService, private sectorService: SectorService, private groupeService: GroupeService) { }
 
   ngOnInit(): void {
     this.etudiantService.findAll();
@@ -59,6 +64,18 @@ export class EtudiantsComponent implements OnInit {
   }
   get etudiants(): Array<Etudiant> {
     return this.etudiantService.etudiants;
+  }
+  get sectors(): Array<Sector> {
+    return this.sectorService.sectors;
+  }
+  get sector(): Sector {
+    return this.sectorService.sector;
+  }
+  get groupe(): Groupe {
+    return this.groupeService.groupe;
+  }
+  get groupes(): Array<Groupe> {
+    return this.groupeService.groupes;
   }
   onFileChange(evt: any) {
     /* wire up file reader */
