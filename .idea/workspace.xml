@@ -20,22 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/try/try.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/try/try.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/etudiant.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/etudiant.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/etudiant.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/etudiant.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/sector.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/sector.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/model/module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/service/module.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/module.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout/main/main.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/main/main.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +64,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
-    <property name="ts.external.directory.path" value="C:\Users\Haraj\WebstormProjects\absence-tracking-0\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\Users\blackswan\WebstormProjects\absence-tracking-0\node_modules\typescript\lib" />
   </component>
   <component name="RunManager" selected="npm.Angular CLI Server">
     <configuration name="Tests (absence-tracking)" type="JavaScriptTestRunnerKarma">
@@ -137,6 +128,7 @@
       <workItem from="1589466644792" duration="5960000" />
       <workItem from="1589486893224" duration="1253000" />
       <workItem from="1589488175508" duration="18257000" />
+      <workItem from="1589595334515" duration="8416000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -298,10 +290,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="447" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1587949360269" />
-    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1589489081620">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1589603976421">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1589489081620" />
+    <state x="488" y="0" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1589603976421" />
     <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1587997149012">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -311,26 +304,26 @@
     </state>
     <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1589402336156" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1589550241521">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="917" height="610" key="GridCell.Tab.0.bottom" timestamp="1589605569197">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1589550241521" />
-    <state width="813" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1589550241520">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="917" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1589605569197" />
+    <state width="917" height="610" key="GridCell.Tab.0.center" timestamp="1589605569197">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1589550241520" />
-    <state width="813" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1589550241520">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="917" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1589605569197" />
+    <state width="917" height="610" key="GridCell.Tab.0.left" timestamp="1589605569197">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1589550241520" />
-    <state width="813" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1589550241520">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="917" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1589605569197" />
+    <state width="917" height="610" key="GridCell.Tab.0.right" timestamp="1589605569197">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1589550241520" />
-    <state width="813" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
+    <state width="917" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1589605569197" />
     <state x="258" y="54" key="MergeDialog" timestamp="1589468841036">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

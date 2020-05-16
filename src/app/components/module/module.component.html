@@ -8,6 +8,22 @@
         <tbody>
         <tr *ngFor="let m of modules">
           <td>{{m.libelle}}</td>
+          <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByLibelle(m)"></p-button>
+          <p-button icon="pi pi-info" styleClass="ui-button-danger" (click)="showBasicDialog()"></p-button>
+          <p-dialog  header="More Infos" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+            <table  class="grid table table-bordered table-sortable">
+              <thead>
+              <th>Type seance</th>
+              <th>Prof</th>
+              </thead>
+              <tbody>
+              <tr *ngFor="let t of typeSeances">
+                <td>{{t.libelle}}</td>
+                <td>{{t.enseignant.lastName}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </p-dialog>
         </tr>
         </tbody>
       </table>

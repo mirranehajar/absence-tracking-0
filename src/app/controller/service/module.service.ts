@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Module} from '../model/module';
+import {Module, TypeSeance} from '../model/module';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({
@@ -8,6 +8,10 @@ import {HttpClient} from '@angular/common/http';
 
 export class ModuleService {
   // tslint:disable-next-line:variable-name
+  private _typeSeances: Array<TypeSeance>;
+  // tslint:disable-next-line:variable-name
+  private  _typeSeance: TypeSeance;
+  // tslint:disable-next-line:variable-name
   private _module: Module;
   // tslint:disable-next-line:variable-name
   private _modules: Array<Module>;
@@ -15,6 +19,8 @@ export class ModuleService {
   private _moduleFounded: Module;
   // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/module/';
+  // tslint:disable-next-line:variable-name
+  private _urlT = 'http://localhost:8090/absence-tracking/typeSeance/';
   constructor(private http: HttpClient) { }
 
   public findByLibelle(module: Module) {
@@ -31,10 +37,23 @@ export class ModuleService {
       }
     );
   }
+  public findAllT() {
+    this.http.get<Array<TypeSeance>>(this._urlT).subscribe(
+      data => {
+        this.typeSeances = data;
+      }
+    );
+  }
   private clone(module: Module) {
     const myclone = new Module();
     myclone.libelle = module.libelle ;
     return myclone;
+  }
+  private cloneT(typeSeance: TypeSeance) {
+    const mycloneT = new TypeSeance();
+    mycloneT.libelle = typeSeance.libelle ;
+    mycloneT.enseignant.lastName = typeSeance.enseignant.lastName;
+    return mycloneT;
   }
   get module(): Module {
     if (this._module == null) {
@@ -68,10 +87,37 @@ export class ModuleService {
     this._moduleFounded = value;
   }
 
+
+  get typeSeance(): TypeSeance {
+    return this._typeSeance;
+  }
+
+  set typeSeance(value: TypeSeance) {
+    this._typeSeance = value;
+  }
+
+
+  get typeSeances(): Array<TypeSeance> {
+    return this._typeSeances;
+  }
+
+  set typeSeances(value: Array<TypeSeance>) {
+    this._typeSeances = value;
+  }
+
   public deleteFromList(module: Module) {
     const index = this.modules.findIndex(e => e.libelle === module.libelle);
     if (index !== -1) {
       this.modules.splice(index, 1);
     }
+  }
+
+  deleteByLibelle(m: Module) {
+    this.http.delete<number>(this._url + 'libelle/' + m.libelle).subscribe(
+      data => {
+        console.log(data);
+        this.deleteFromList(m);
+      }
+    );
   }
 }
