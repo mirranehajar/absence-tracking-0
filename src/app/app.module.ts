@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { WavesModule, TableModule, InputsModule } from 'angular-bootstrap-md';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
@@ -10,15 +10,15 @@ import { FooterComponent } from './layout/footer/footer.component';
 import {HttpClientModule} from '@angular/common/http';
 import { EnseignantComponent } from './components/enseignant/enseignant.component';
 import {
-    AccordionModule,
-    ConfirmDialogModule,
-    DialogModule,
-    FileUploadModule,
-    MenubarModule,
-    MessagesModule, PanelModule, SelectButtonModule,
-    SplitButtonModule,
-    TabViewModule,
-    ToastModule
+  AccordionModule,
+  ConfirmDialogModule,
+  DialogModule,
+  FileUploadModule,
+  MenubarModule,
+  MessagesModule, PanelModule, SelectButtonModule,
+  SplitButtonModule,
+  TabViewModule,
+  ToastModule
 } from 'primeng';
 import { EtudiantsComponent } from './components/etudiants/etudiants.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,6 +39,7 @@ import { TryComponent } from './components/try/try.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { IconsModule } from 'angular-bootstrap-md';
 import {ModuleComponent} from './components/module/module.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -86,7 +87,11 @@ import {ModuleComponent} from './components/module/module.component';
     PanelModule,
     FullCalendarModule,
     TooltipModule.forRoot(),
-    IconsModule
+    IconsModule,
+    TableModule,
+    MatPaginatorModule,
+    WavesModule.forRoot(),
+    InputsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
