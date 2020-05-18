@@ -5,6 +5,7 @@ export class Module {
   public libelle: string;
 }
 
+// tslint:disable-next-line:max-classes-per-file
 export class TypeSeance {
   public id: number;
   public reference: string;
