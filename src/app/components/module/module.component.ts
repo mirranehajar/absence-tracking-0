@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {Module, TypeSeance} from '../../controller/model/module';
 import {ModuleService} from '../../controller/service/module.service';
@@ -9,28 +9,34 @@ import {ModuleService} from '../../controller/service/module.service';
   styleUrls: ['./module.component.scss']
 })
 export class ModuleComponent implements OnInit {
-   displayBasic: boolean;
+  displayBasic: boolean;
+  moduleTypes: TypeSeance[];
 
-  constructor(private moduleService: ModuleService) { }
+  constructor(private moduleService: ModuleService) {
+  }
 
   ngOnInit(): void {
     this.moduleService.findAll();
     this.moduleService.findAllT();
   }
 
-  get modules(): Array<Module> {
+  get modules(): Module[] {
     return this.moduleService.modules;
   }
+
   get module(): Module {
     return this.moduleService.module;
   }
+
   get moduleFounded(): Module {
     return this.moduleService.moduleFounded;
   }
+
   get typeSeance(): TypeSeance {
     return this.moduleService.typeSeance;
   }
-  get typeSeances(): Array<TypeSeance> {
+
+  get typeSeances(): TypeSeance[] {
     return this.moduleService.typeSeances;
   }
 
@@ -38,7 +44,8 @@ export class ModuleComponent implements OnInit {
     this.moduleService.deleteByLibelle(m);
   }
 
-  showBasicDialog() {
+  showBasicDialog(m: Module) {
+    this.moduleTypes = this.typeSeances.filter((type) => type.module.libelle === m.libelle);
     this.displayBasic = true;
   }
 }

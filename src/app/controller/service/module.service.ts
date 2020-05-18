@@ -8,13 +8,13 @@ import {HttpClient} from '@angular/common/http';
 
 export class ModuleService {
   // tslint:disable-next-line:variable-name
-  private _typeSeances: Array<TypeSeance>;
+  private _typeSeances: TypeSeance[];
   // tslint:disable-next-line:variable-name
   private  _typeSeance: TypeSeance;
   // tslint:disable-next-line:variable-name
   private _module: Module;
   // tslint:disable-next-line:variable-name
-  private _modules: Array<Module>;
+  private _modules: Module[];
   // tslint:disable-next-line:variable-name
   private _moduleFounded: Module;
   // tslint:disable-next-line:variable-name
@@ -97,7 +97,7 @@ export class ModuleService {
   }
 
 
-  get typeSeances(): Array<TypeSeance> {
+  get typeSeances(): TypeSeance[] {
     return this._typeSeances;
   }
 
