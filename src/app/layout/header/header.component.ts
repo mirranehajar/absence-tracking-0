@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
-import {Sector} from '../../controller/model/sector';
-import {SectorService} from '../../controller/service/sector.service';
 import {Cycle} from '../../controller/model/cycle';
+import {Enseignant} from '../../controller/model/enseignant.model';
+import {Sector} from '../../controller/model/sector';
+import {SectorManager} from '../../controller/model/sector-manager';
 import {CycleService} from '../../controller/service/cycle.service';
 import {EnseignantService} from '../../controller/service/enseignant.service';
-import {Enseignant} from '../../controller/model/enseignant.model';
-import {SectorManager} from '../../controller/model/sector-manager';
 import {SectorManagerService} from '../../controller/service/sector-manager.service';
+import {SectorService} from '../../controller/service/sector.service';
 
 // @ts-ignore
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
     categoriesList: Sector[];
@@ -61,9 +61,9 @@ export class HeaderComponent implements OnInit {
           {
             label: 'Ajouter une filière',
             icon: 'pi pi-fw pi-plus',
-            command: event => {this.showBasicDialog(); },
+            command: (event) => {this.showBasicDialog(); },
           },
-        ]
+        ],
       },
       {
         label: 'Étudiants',
@@ -71,8 +71,8 @@ export class HeaderComponent implements OnInit {
       },
       {
         label: 'Enseignants',
-        icon: 'pi pi-fw pi-star'
-      }
+        icon: 'pi pi-fw pi-star',
+      },
     ];
   }
 
@@ -90,7 +90,7 @@ export class HeaderComponent implements OnInit {
     this.displayBasic2 = true;
     this.findByLibelle(sector);
   }
-  get sectors(): Array<Sector> {
+  get sectors(): Sector[] {
     return this.sectorService.sectors;
   }
   get sector(): Sector {
@@ -99,7 +99,7 @@ export class HeaderComponent implements OnInit {
   get sectorFounded(): Sector {
     return this.sectorService.sectorFounded;
   }
-  get cycles(): Array<Cycle> {
+  get cycles(): Cycle[] {
     return this.cycleService.cycles;
   }
   get cycle(): Cycle {
@@ -108,13 +108,13 @@ export class HeaderComponent implements OnInit {
   get enseignant(): Enseignant {
     return this.enseignantService.enseignant;
   }
-  get enseignants(): Array<Enseignant> {
+  get enseignants(): Enseignant[] {
     return this.enseignantService.enseignants;
   }
   get enseignantFounded(): Enseignant {
     return this.enseignantService.enseignantFounded;
   }
-  get sectorManagers(): Array<SectorManager> {
+  get sectorManagers(): SectorManager[] {
     return this.sectorManagerService.sectorManagers;
   }
   get sectorManager(): SectorManager {

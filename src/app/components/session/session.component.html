@@ -12,23 +12,41 @@
       [weekends]="calendarWeekends"
       [events]="calendarEvents"
       (dateClick)="showBasicDialog($event)"
-    ></full-calendar>
-    <p-dialog  header="Ajouter une séance" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    (eventClick)="showBasicDialog2($event)">
+    </full-calendar>
+    <p-dialog  header="Ajout d'une séance" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
       <form style="text-align: center" method="POST" >
         <div style="display:inline-block" class="form-group">
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <select placeholder="Selectioner un type de séance" name="Type séance"  [(ngModel)]="session.typeSession" required>
-                <option *ngFor="let t of typeSessions" [ngValue]="t">{{t.libelle}}</option>
-              </select>
+              <input type="text" placeholder="Reference" [(ngModel)]="session.reference">
             </div>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input placeholder="Cycle" name="cycle" type="text" pInputText >
+              <input type="date" placeholder= arg.date [(ngModel)]="session.dateStart">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+              <input type="date" [(ngModel)]="session.dateStop">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+              <mat-form-field>
+                <mat-label>Choisir les groupes</mat-label>
+                <mat-select [(ngModel)]="session.groupes" name="etudiants" multiple>
+                  <mat-option *ngFor="let g of session.groupes" [value]="g">{{g.libelle}}</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
           </div>
         </div>
