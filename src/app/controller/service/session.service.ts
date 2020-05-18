@@ -1,16 +1,16 @@
+import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Session} from '../model/session';
-import {HttpClient} from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SessionService {
 
   // tslint:disable-next-line:variable-name
   private _session: Session;
   // tslint:disable-next-line:variable-name
-  private _sessions: Array<Session>;
+  private _sessions: Session[];
   // tslint:disable-next-line:variable-name
   private _sessionFounded: Session;
   // tslint:disable-next-line:variable-name
@@ -19,61 +19,61 @@ export class SessionService {
 
   public findByLibelle(session: Session) {
     this.http.get<Session>(this._url + 'libelle/' + session.libelle).subscribe(
-      data => {
+      (data) => {
         this.sessionFounded = data;
-      }
+      },
     );
   }
   public findByReference(session: Session) {
     this.http.get<Session>(this._url + 'refrence/' + session.reference).subscribe(
-      data => {
+      (data) => {
         this.sessionFounded = data;
-      }
+      },
     );
   }
   public findAll() {
-    this.http.get<Array<Session>>(this._url).subscribe(
-      data => {
+    this.http.get<Session[]>(this._url).subscribe(
+      (data) => {
         this.sessions = data;
-      }
+      },
     );
   }
   public deleteByReference(session: Session) {
     this.http.delete<number>(this._url + 'reference/' + session.reference).subscribe(
-      data => {
+      (data) => {
         console.log(data);
         this.deleteFromList(session);
-      }
+      },
     );
   }
   public deleteFromList(session: Session) {
-    const index = this.sessions.findIndex(e => e.reference === session.reference);
+    const index = this.sessions.findIndex((e) => e.reference === session.reference);
     if (index !== -1) {
       this.sessions.splice(index, 1);
     }
   }
   public update() {
-    this.http.put<number>(this._url, this._sessionFounded).subscribe(
-      data => {
+    this.http.put<number>(this._url, this.sessionFounded).subscribe(
+      (data) => {
         if (data > 0) {
-          this.deleteFromList(this._sessionFounded);
+          this.deleteFromList(this.sessionFounded);
           this.sessions.push(this.clone(this.sessionFounded));
         }
-      }, error => {
+      }, (error) => {
         console.log('error');
-      }
+      },
     );
   }
   public save() {
     this.http.post<number>(this._url, this.session).subscribe(
-      data => {
+      (data) => {
         if (data > 0) {
           this.sessions.push(this.clone(this.session));
           this.session = null;
         }
-      }, error => {
+      }, (error) => {
         console.log('error');
-      }
+      },
     );
   }
   private clone(session: Session) {
@@ -96,14 +96,14 @@ export class SessionService {
     this._session = value;
   }
 
-  get sessions(): Array<Session> {
+  get sessions(): Session[] {
     if (this._sessions == null) {
       this._sessions = new Array<Session>();
     }
     return this._sessions;
   }
 
-  set sessions(value: Array<Session>) {
+  set sessions(value: Session[]) {
     this._sessions = value;
   }
 

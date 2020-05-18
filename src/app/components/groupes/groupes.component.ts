@@ -1,30 +1,30 @@
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import {Etudiant} from '../../controller/model/etudiant.model';
-import {EtudiantService} from '../../controller/service/etudiant.service';
 import {Groupe} from '../../controller/model/groupe';
-import {GroupeService} from '../../controller/service/groupe.service';
 import {Sector} from '../../controller/model/sector';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {Semestre} from '../../controller/model/semestre';
+import {EtudiantService} from '../../controller/service/etudiant.service';
+import {GroupeService} from '../../controller/service/groupe.service';
 import {SectorService} from '../../controller/service/sector.service';
-import {FormControl} from '@angular/forms';
-
+import {SemestreService} from '../../controller/service/semestre.service';
 
 @Component({
   selector: 'app-groupes',
   templateUrl: './groupes.component.html',
-  styleUrls: ['./groupes.component.scss']
+  styleUrls: ['./groupes.component.scss'],
 })
 export class GroupesComponent implements OnInit {
-  students = new FormControl();
   index = -1;
   displayBasic: boolean;
-  cities: Sector[];
-  selectedCity: Sector;
-  constructor(private etudiantService: EtudiantService, private groupeService: GroupeService, private sectorService: SectorService) {
-   }
+  displayBasic2: boolean;
+
+  constructor(private semestreService: SemestreService, private etudiantService: EtudiantService,
+              private groupeService: GroupeService, private sectorService: SectorService) {}
 
   ngOnInit(): void {
     this.etudiantService.findAll();
+    this.groupeService.findAll();
   }
   openNext() {
     this.index = (this.index === 3) ? 0 : this.index + 1;
@@ -33,22 +33,40 @@ export class GroupesComponent implements OnInit {
   openPrev() {
     this.index = (this.index <= 0) ? 3 : this.index - 1;
   }
-  get etudiants(): Array<Etudiant> {
+  public findByLibelle(groupe: Groupe) {
+    return this.groupeService.findByLibelle(groupe);
+  }
+  public deleteByReference(groupe: Groupe) {
+    this.groupeService.deleteByReference(groupe);
+    this.displayBasic2 = false;
+  }
+  public update() {
+    this.groupeService.update();
+    this.displayBasic2 = false;
+  }
+  public save() {
+    this.groupeService.save();
+    this.displayBasic = false;
+  }
+  get etudiants(): Etudiant[] {
     return this.etudiantService.etudiants;
   }
   showBasicDialog() {
     this.displayBasic = true;
   }
+  showBasicDialog2() {
+    this.displayBasic2 = true;
+  }
   get groupe(): Groupe {
     return this.groupeService.groupe;
   }
-  get groupes(): Array<Groupe> {
+  get groupes(): Groupe[] {
     return this.groupeService.groupes;
   }
   get groupeFounded(): Groupe {
     return this.groupeService.groupeFounded;
   }
-  drop(event: CdkDragDrop<Array<Etudiant>>) {
+  drop(event: CdkDragDrop<Etudiant[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -58,10 +76,16 @@ export class GroupesComponent implements OnInit {
         event.currentIndex);
     }
   }
-  get sectors(): Array<Sector> {
+  get sectors(): Sector[] {
     return this.sectorService.sectors;
   }
   get sector(): Sector {
     return this.sectorService.sector;
+  }
+  get semestres(): Semestre[] {
+    return this.semestreService.semestres;
+  }
+  get semestre(): Semestre {
+    return this.semestreService.semestre;
   }
 }

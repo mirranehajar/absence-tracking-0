@@ -1,46 +1,48 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import {MatOptionModule} from '@angular/material/core';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSelectModule} from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {FullCalendarModule} from '@fullcalendar/angular';
+import { InputsModule, TableModule, WavesModule } from 'angular-bootstrap-md';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
+import { IconsModule } from 'angular-bootstrap-md';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import {
+  AccordionModule,
+  ConfirmDialogModule,
+  DialogModule,
+  FileUploadModule,
+  MenubarModule,
+  MessagesModule, PanelModule, SelectButtonModule,
+  SplitButtonModule,
+  TabViewModule,
+  ToastModule,
+} from 'primeng';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './layout/header/header.component';
-import { AsideComponent } from './layout/aside/aside.component';
-import { MainComponent } from './layout/main/main.component';
-import { FooterComponent } from './layout/footer/footer.component';
-import {HttpClientModule} from '@angular/common/http';
-import { EnseignantComponent } from './components/enseignant/enseignant.component';
-import {
-    AccordionModule,
-    ConfirmDialogModule,
-    DialogModule,
-    FileUploadModule,
-    MenubarModule,
-    MessagesModule, PanelModule, SelectButtonModule,
-    SplitButtonModule,
-    TabViewModule,
-    ToastModule
-} from 'primeng';
-import { EtudiantsComponent } from './components/etudiants/etudiants.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MDBBootstrapModule} from 'angular-bootstrap-md';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {MatTableModule} from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSortModule } from '@angular/material/sort';
-import { GroupesComponent } from './components/groupes/groupes.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
 import { AbsenceComponent } from './components/absence/absence.component';
+import { EnseignantComponent } from './components/enseignant/enseignant.component';
+import { EtudiantsComponent } from './components/etudiants/etudiants.component';
+import { GroupesComponent } from './components/groupes/groupes.component';
 import { LoginComponent } from './components/login/login.component';
+import {ModuleComponent} from './components/module/module.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { SessionComponent } from './components/session/session.component';
-import {FullCalendarModule} from '@fullcalendar/angular';
 import { TryComponent } from './components/try/try.component';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { IconsModule } from 'angular-bootstrap-md';
-import {ModuleComponent} from './components/module/module.component';
-
-
+import { AsideComponent } from './layout/aside/aside.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { MainComponent } from './layout/main/main.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,7 @@ import {ModuleComponent} from './components/module/module.component';
     ProfilComponent,
     SessionComponent,
     TryComponent,
-    ModuleComponent
+    ModuleComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,9 +88,16 @@ import {ModuleComponent} from './components/module/module.component';
     PanelModule,
     FullCalendarModule,
     TooltipModule.forRoot(),
-    IconsModule
+    IconsModule,
+    TableModule,
+    MatPaginatorModule,
+    WavesModule.forRoot(),
+    InputsModule.forRoot(),
+    MatOptionModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

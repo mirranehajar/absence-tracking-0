@@ -1,10 +1,15 @@
 <div style="margin-bottom: 1em">
-  <button type="button" pButton icon="pi pi-chevron-up" (click)="openPrev()" style="margin-right:.25em"></button>
-  <button type="button" pButton icon="pi pi-chevron-down" (click)="openNext()"></button>
   <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un groupe"></button>
   <p-dialog  header="Ajout un groupe" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
     <form style="text-align: center" method="POST">
       <div style="display:inline-block" class="form-group">
+        <div class="row">
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+            <input [(ngModel)]="groupe.reference" name="reference" type="text" pInputText placeholder="Reference" required>
+          </div>
+        </div>
+        <br>
         <div class="row">
           <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
@@ -15,8 +20,8 @@
         <div class="row">
           <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-            <select placeholder="Selectioner une filière" name="Filière"   required>
-              <option *ngFor="let s of sectors" [ngValue]="s">{{s.libelle}}</option>
+            <select placeholder="Selectioner un semestre" name="Semestre" [(ngModel)]="groupe.semestre"  required>
+              <option *ngFor="let s of semestres" [ngValue]="s">{{s.libelle}}</option>
             </select>
           </div>
         </div>
@@ -24,19 +29,16 @@
         <div class="row">
           <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-            <select placeholder="Selectioner un semestre" name="Semestre"   required>
-              <option></option>
-            </select>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+            <mat-form-field>
+              <mat-label>Choisir les étudiants</mat-label>
+              <mat-select [(ngModel)]="groupe.etudiants" name="etudiants" multiple>
+                <mat-option *ngFor="let e of etudiants" [value]="e">{{e.lastName + " " + e.firstName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
       <p-footer>
-        <button type="submit" pButton icon="pi pi-check" style="float: left"  label="Confirm"></button>
+        <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Confirm"></button>
         <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Cancel" class="ui-button-secondary"></button>
       </p-footer>
       </div>
@@ -45,12 +47,97 @@
 </div>
 
 <p-accordion [(activeIndex)]="index">
-  <div *ngFor="let g of groupes" cdkDropListGroup>
-  <p-accordionTab header="Groupe1">
+  <div cdkDropListGroup>
+    <p-accordionTab header="Liste des étudiants restant">
+      <div class="table-responsive">
+        <div class="example-container">
+          <div
+            cdkDropList
+            [cdkDropListData]="etudiants"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <table  class="grid table table-bordered table-sortable">
+              <thead>
+              <tr>
+                <th>Cne</th>
+                <th>Cin</th>
+                <th>code apogee</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Mail</th>
+                <th>Birth day</th>
+                <th>Phone Number</th>
+                <th>Absence</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr class="example-box" *ngFor="let e of etudiants" cdkDrag>
+                <td>{{e.cne}}</td>
+                <td>{{e.cin}}</td>
+                <td>{{e.codeApogee}}</td>
+                <td>{{e.firstName}}</td>
+                <td>{{e.lastName}}</td>
+                <td>{{e.mail}}</td>
+                <td>{{e.birthDay}}</td>
+                <td>{{e.tel}}</td>
+                <td>{{e.nbrAbsence}}</td>
+                <p-button icon="pi pi-trash" styleClass="ui-button-danger" ></p-button>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+  <p-accordionTab *ngFor="let g of groupes" >
+    <p-header> <p-button icon="pi pi-user-edit"  (click)="showBasicDialog2()" ></p-button>{{g.libelle}}</p-header>
+    <p-dialog  header="Modification d'un groupe" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+      <form style="text-align: center" method="POST">
+        <div style="display:inline-block" class="form-group">
+          <div class="row">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+              <input disabled [(ngModel)]="g.reference" name="reference" type="text" pInputText  required>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+              <input [(ngModel)]="g.libelle" name="libelle" type="text" pInputText  required>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+              <select name="Semestre" [(ngModel)]="g.semestre"  required>
+                <option *ngFor="let s of semestres" [ngValue]="s">{{s.libelle}}</option>
+              </select>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+              <mat-form-field>
+                <mat-label>{{g.etudiants}}</mat-label>
+                <mat-select [(ngModel)]="groupe.etudiants" name="etudiants" multiple>
+                  <mat-option *ngFor="let e of etudiants" [value]="e">{{e.lastName + " " + e.firstName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <p-footer>
+            <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="update()" label="Confirm"></button>
+            <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="deleteByReference(g)" label="Cancel" class="ui-button-secondary"></button>
+          </p-footer>
+        </div>
+      </form>
+    </p-dialog>
     <div class="table-responsive">
         <div class="example-container">
-      <div
-        cdkDropList
+      <div cdkDropList
         [cdkDropListData]="g.etudiants"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
@@ -86,47 +173,6 @@
       </div>
     </div>
       </div>
-  </p-accordionTab>
-  <p-accordionTab header="Godfather II">
-    <div class="table-responsive">
-      <div class="example-container">
-        <div
-          cdkDropList
-          [cdkDropListData]="etudiants"
-          class="example-list"
-          (cdkDropListDropped)="drop($event)">
-          <table  class="grid table table-bordered table-sortable">
-            <thead>
-            <tr>
-              <th>Cne</th>
-              <th>Cin</th>
-              <th>code apogee</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Mail</th>
-              <th>Birth day</th>
-              <th>Phone Number</th>
-              <th>Absence</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="example-box" *ngFor="let e of etudiants" cdkDrag>
-              <td>{{e.cne}}</td>
-              <td>{{e.cin}}</td>
-              <td>{{e.codeApogee}}</td>
-              <td>{{e.firstName}}</td>
-              <td>{{e.lastName}}</td>
-              <td>{{e.mail}}</td>
-              <td>{{e.birthDay}}</td>
-              <td>{{e.tel}}</td>
-              <td>{{e.nbrAbsence}}</td>
-              <p-button icon="pi pi-trash" styleClass="ui-button-danger" ></p-button>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
   </p-accordionTab>
   </div>
 </p-accordion>

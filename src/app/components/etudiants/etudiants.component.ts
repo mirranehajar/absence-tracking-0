@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {ConfirmationService, Message} from 'primeng/api';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 import {Etudiant} from '../../controller/model/etudiant.model';
@@ -8,6 +8,9 @@ import {Sector} from '../../controller/model/sector';
 import {SectorService} from '../../controller/service/sector.service';
 import {GroupeService} from '../../controller/service/groupe.service';
 import {Groupe} from '../../controller/model/groupe';
+import {Sort} from '@angular/material/sort';
+import {Enseignant} from '../../controller/model/enseignant.model';
+import {MdbTableDirective} from 'angular-bootstrap-md';
 
 type AOA = any[][];
 
@@ -18,19 +21,27 @@ type AOA = any[][];
   providers: [ConfirmationService, MessageService]
 })
 export class EtudiantsComponent implements OnInit {
+  @ViewChild(MdbTableDirective, { static: true })
+  mdbTable: MdbTableDirective;
+  searchText = '';
+  previous: string;
   importStudents: Array<Etudiant> = new Array<Etudiant>();
   msgs: Message[] = [];
   displayBasic: boolean;
   displayBasic2: boolean;
+  sortedData: Etudiant[];
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
   data: AOA = [['Cne', 'Cin', 'Code Apogee', 'First Name', 'Last Name', 'Birthday', 'Phone Number', 'Sector', 'Group']];
   fileName = 'Example-student.xlsx';
 
   // tslint:disable-next-line:max-line-length
   constructor(private etudiantService: EtudiantService, private messageService: MessageService, private sectorService: SectorService, private groupeService: GroupeService) { }
-
+  @HostListener('input') oninput() { this.searchItems(); }
   ngOnInit(): void {
     this.etudiantService.findAll();
+    this.sortedData = this.etudiants.slice();
+    this.mdbTable.setDataSource(this.sortedData);
+    this.previous = this.mdbTable.getDataSource();
   }
 
   public deleteByCne(etudiant: Etudiant) {
@@ -40,7 +51,7 @@ export class EtudiantsComponent implements OnInit {
     this.displayBasic = true;
   }
   showBasicDialog2(etudiant: Etudiant) {
-    this.displayBasic = true;
+    this.displayBasic2 = true;
     this.findByCne(etudiant);
   }
   public findByCne(etudiantFounded: Etudiant) {
@@ -53,8 +64,7 @@ export class EtudiantsComponent implements OnInit {
   }
   public update() {
     this.etudiantService.update();
-    this.displayBasic = false;
-    window.location.reload();
+    this.displayBasic2 = false;
   }
   get etudiantFounded(): Etudiant {
     return this.etudiantService.etudiantFounded;
@@ -122,5 +132,38 @@ export class EtudiantsComponent implements OnInit {
   onBasicUpload(event) {
     this.messageService.add({severity: 'info', summary: 'Success', detail: 'File Uploaded with Basic Mode'});
   }
+  sortData(sort: Sort) {
+    const data = this.etudiants.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
 
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'Cne': return compare(a.cne, b.cne, isAsc);
+        case 'Code apogée': return compare(a.codeApogee, b.codeApogee, isAsc);
+        case 'Cin': return compare(a.cin, b.cin, isAsc);
+        case 'Prénom': return compare(a.firstName, b.firstName, isAsc);
+        case 'Nom': return compare(a.lastName, b.lastName, isAsc);
+        case 'Jour de naissance': return compare(a.birthDay, b.birthDay, isAsc);
+        case 'Téléphone': return compare(a.tel, b.tel, isAsc);
+        case 'Email': return compare(a.mail, b.mail, isAsc);
+        case 'Filière': return compare(a.filiere, b.filiere, isAsc);
+        case 'Groupe': return compare(a.groupe, b.groupe, isAsc);
+        default: return 0;
+      }
+    });
+  }
+  searchItems() {
+    const prev = this.mdbTable.getDataSource();
+    if (!this.searchText) {
+      this.mdbTable.setDataSource(this.previous);
+      this.sortedData = this.mdbTable.getDataSource(); }
+    if (this.searchText) { this.sortedData = this.mdbTable.searchLocalDataByMultipleFields(this.searchText, ['first', 'last']);
+                           this.mdbTable.setDataSource(prev); } }
+}
+function compare(a: number | string | Date | Sector | Groupe, b: number | string | Date | Sector | Groupe, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
