@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import {Etudiant} from '../model/etudiant.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EtudiantService {
   // tslint:disable-next-line:variable-name
   private _etudiant: Etudiant;
   // tslint:disable-next-line:variable-name
-  private _etudiants: Array<Etudiant>;
+  private _etudiants: Etudiant[];
   // tslint:disable-next-line:variable-name
   private _etudiantFounded: Etudiant;
   // tslint:disable-next-line:variable-name
@@ -17,55 +17,55 @@ export class EtudiantService {
 
   constructor(private http: HttpClient) { }
   public deleteFromList(etudiant: Etudiant) {
-    const index = this.etudiants.findIndex(e => e.cne === etudiant.cne);
+    const index = this.etudiants.findIndex((e) => e.cne === etudiant.cne);
     if (index !== -1) {
       this.etudiants.splice(index, 1);
     }
   }
   public deleteByCne(etudiant: Etudiant) {
     this.http.delete<number>(this._url + 'cne/' + etudiant.cne).subscribe(
-      data => {
+      (data) => {
         console.log(data);
         this.deleteFromList(etudiant);
-      }
+      },
     );
   }
   public findByCne(etudiant: Etudiant) {
     this.http.get<Etudiant>(this._url + 'cne/' + etudiant.cne).subscribe(
-      data => {
+      (data) => {
         this.etudiantFounded = data;
-      }
+      },
     );
   }
   public findAll() {
-    this.http.get<Array<Etudiant>>(this._url).subscribe(
-      data => {
+    this.http.get<Etudiant[]>(this._url).subscribe(
+      (data) => {
         this.etudiants = data;
-      }
+      },
     );
   }
   public update() {
     this.http.put<number>(this._url, this.etudiantFounded).subscribe(
-      data => {
+      (data) => {
         if (data > 0) {
           this.deleteFromList(this.etudiantFounded);
           this.etudiants.push(this.clone(this.etudiantFounded));
         }
-      }, error => {
+      }, (error) => {
         console.log('error');
-      }
+      },
     );
   }
   public save() {
     this.http.post<number>(this._url, this.etudiant).subscribe(
-      data => {
+      (data) => {
         if (data > 0) {
           this.etudiants.push(this.clone(this.etudiant));
           this.etudiant = null;
         }
-      }, error => {
+      }, (error) => {
         console.log('error');
-      }
+      },
     );
   }
   private clone(etudiant: Etudiant) {
@@ -104,13 +104,13 @@ export class EtudiantService {
   set etudiant(value: Etudiant) {
     this._etudiant = value;
   }
-  get etudiants(): Array<Etudiant> {
+  get etudiants(): Etudiant[] {
     if (this._etudiants == null) {
       this._etudiants = new Array<Etudiant>();
     }
     return this._etudiants;
   }
-  set etudiants(value: Array<Etudiant>) {
+  set etudiants(value: Etudiant[]) {
     this._etudiants = value;
   }
 }

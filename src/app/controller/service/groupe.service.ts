@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import {Groupe} from '../model/groupe';
 import {HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import {Etudiant} from '../model/etudiant.model';
+import {Groupe} from '../model/groupe';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GroupeService {
   // tslint:disable-next-line:variable-name
   private _groupe: Groupe;
   // tslint:disable-next-line:variable-name
-  private _groupes: Array<Groupe>;
+  private _groupes: Groupe[];
   // tslint:disable-next-line:variable-name
   private _groupeFounded: Groupe;
   // tslint:disable-next-line:variable-name
@@ -19,54 +19,54 @@ export class GroupeService {
 
   public findByLibelle(groupe: Groupe) {
     this.http.get<Groupe>(this._url + 'libelle/' + groupe.libelle).subscribe(
-      data => {
+      (data) => {
         this.groupeFounded = data;
-      }
+      },
     );
   }
   public findAll() {
-    this.http.get<Array<Groupe>>(this._url).subscribe(
-      data => {
+    this.http.get<Groupe[]>(this._url).subscribe(
+      (data) => {
         this.groupes = data;
-      }
+      },
     );
   }
-  public deleteByLibelle(groupe: Groupe) {
-    this.http.delete<number>(this._url + 'liblle/' + groupe.libelle).subscribe(
-      data => {
+  public deleteByReference(groupe: Groupe) {
+    this.http.delete<number>(this._url + 'reference/' + groupe.reference).subscribe(
+      (data) => {
         console.log(data);
         this.deleteFromList(groupe);
-      }
+      },
     );
   }
   public deleteFromList(groupe: Groupe) {
-    const index = this.groupes.findIndex(e => e.libelle === groupe.libelle);
+    const index = this.groupes.findIndex((e) => e.libelle === groupe.libelle);
     if (index !== -1) {
       this.groupes.splice(index, 1);
     }
   }
   public update() {
     this.http.put<number>(this._url, this._groupeFounded).subscribe(
-      data => {
+      (data) => {
         if (data > 0) {
           this.deleteFromList(this._groupeFounded);
           this.groupes.push(this.clone(this.groupeFounded));
         }
-      }, error => {
+      }, (error) => {
         console.log('error');
-      }
+      },
     );
   }
   public save() {
-    this.http.post<number>(this._url, this._groupe).subscribe(
-      data => {
+    this.http.post<number>(this._url, this.groupe).subscribe(
+      (data) => {
         if (data > 0) {
-          this._groupes.push(this.clone(this.groupe));
+          this.groupes.push(this.clone(this.groupe));
           this.groupe = null;
         }
-      }, error => {
+      }, (error) => {
         console.log('error');
-      }
+      },
     );
   }
   private clone(groupe: Groupe) {
@@ -90,14 +90,14 @@ export class GroupeService {
     this._groupe = value;
   }
 
-  get groupes(): Array<Groupe> {
+  get groupes(): Groupe[] {
     if (this._groupes == null) {
       this._groupes = new Array<Groupe>();
     }
     return this._groupes;
   }
 
-  set groupes(value: Array<Groupe>) {
+  set groupes(value: Groupe[]) {
     this._groupes = value;
   }
 

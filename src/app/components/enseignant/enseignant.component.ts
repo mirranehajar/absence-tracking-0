@@ -1,12 +1,12 @@
 import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
-import {ConfirmationService} from 'primeng/api';
-import {Message} from 'primeng/api';
-import {EnseignantService} from '../../controller/service/enseignant.service';
-import {Enseignant} from '../../controller/model/enseignant.model';
-import * as XLSX from 'xlsx';
-import {MessageService} from 'primeng/api';
 import {Sort} from '@angular/material/sort';
 import {MdbTableDirective} from 'angular-bootstrap-md';
+import {ConfirmationService} from 'primeng/api';
+import {Message} from 'primeng/api';
+import {MessageService} from 'primeng/api';
+import * as XLSX from 'xlsx';
+import {Enseignant} from '../../controller/model/enseignant.model';
+import {EnseignantService} from '../../controller/service/enseignant.service';
 
 type AOA = any[][];
 
@@ -14,7 +14,7 @@ type AOA = any[][];
   selector: 'app-enseignant',
   templateUrl: './enseignant.component.html',
   styleUrls: ['./enseignant.component.scss'],
-  providers: [ConfirmationService, MessageService]
+  providers: [ConfirmationService, MessageService],
 })
 
 export class EnseignantComponent implements OnInit {
@@ -22,7 +22,7 @@ export class EnseignantComponent implements OnInit {
   mdbTable: MdbTableDirective;
   searchText = '';
   previous: string;
-  importProfessors: Array<Enseignant> = new Array<Enseignant>();
+  importProfessors: Enseignant[] = new Array<Enseignant>();
   msgs: Message[] = [];
   displayBasic: boolean;
   displayBasic2: boolean;
@@ -63,7 +63,7 @@ export class EnseignantComponent implements OnInit {
   get enseignant(): Enseignant {
     return this.enseignantService.enseignant;
   }
-  get enseignants(): Array<Enseignant> {
+  get enseignants(): Enseignant[] {
     return this.enseignantService.enseignants;
   }
   get enseignantFounded(): Enseignant {
@@ -84,7 +84,7 @@ export class EnseignantComponent implements OnInit {
       const ws: XLSX.WorkSheet = wb.Sheets[wsname];
 
       /* save data */
-      this.importProfessors = (XLSX.utils.sheet_to_json(ws, { header: 1 })) as Array<Enseignant>;
+      this.importProfessors = (XLSX.utils.sheet_to_json(ws, { header: 1 })) as Enseignant[];
       console.log(this.importProfessors);
       for (const prof of this.importProfessors) {
         this.enseignant.numeroSOM = prof[0];
