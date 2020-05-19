@@ -1,6 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Session} from '../model/session';
+import {TypeSession} from '../model/type-session';
 
 @Injectable({
   providedIn: 'root',
@@ -89,6 +90,9 @@ export class SessionService {
     if (this._session == null) {
       this._session = new Session();
     }
+    if (this._session.typeSession == null) {
+      this._session.typeSession = new TypeSession();
+    }
     return this._session;
   }
 
@@ -108,6 +112,12 @@ export class SessionService {
   }
 
   get sessionFounded(): Session {
+    if (this._sessionFounded == null) {
+      this._sessionFounded = new Session();
+    }
+    if (this._sessionFounded.typeSession == null) {
+      this._sessionFounded.typeSession = new TypeSession();
+    }
     return this._sessionFounded;
   }
 
