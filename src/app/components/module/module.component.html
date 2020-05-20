@@ -30,6 +30,58 @@
     </div>
   </div>
 </div>
+    <p-button styleClass="ui-button-danger" label="ajouter module" (click)="showSaveModule()"></p-button>
+    <p-dialog  header="Add a new module" [(visible)]="displayBasicM" [style]="{width: '50vw'}" [baseZIndex]="10000">
+      <form style="text-align: center" method="POST" >
+        <div style="display:inline-block" class="form-group">
+          <div class="row">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+              <input [(ngModel)]="module.libelle" name="libelle" type="text" pInputText placeholder="Module Name" >
+            </div>
+          </div>
+        <p-footer>
+          <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="saveModule()" label="Sauvegarder"></button>
+          <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasicM=false" label="Annuler" class="ui-button-secondary"></button>
+        </p-footer>
+        </div>
+      </form>
+    </p-dialog>
+
+<p-button styleClass="ui-button-danger" label="ajouter type seance" (click)="showTypeSeance()"></p-button>
+<p-dialog  header="Add a new typeSeance" [(visible)]="displayBasicT" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <form style="text-align: center" method="POST" >
+    <div style="display:inline-block" class="form-group">
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input [(ngModel)]="typeSeance.reference" name="reference" type="text" pInputText placeholder="Reference" >
+        </div>
+      </div>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input [(ngModel)]="typeSeance.libelle" name="reference" type="text" pInputText placeholder="Reference" >
+        </div>
+        <div class="ui-inputgroup">
+          <select name="MODULE" [(ngModel)]="typeSeance.module"  required >
+            <option *ngFor="let m of modules" [ngValue]="m">{{m.libelle}}</option>
+          </select>
+        </div>
+        <div class="ui-inputgroup">
+          <select name="Enseignant" [(ngModel)]="typeSeance.enseignant"  required >
+            <option *ngFor="let e of enseignants" [ngValue]="e">{{e.lastName}}</option>
+          </select>
+        </div>
+      </div>
+      <p-footer>
+        <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="saveTypeSeance()" label="Sauvegarder"></button>
+        <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasicT=false" label="Annuler" class="ui-button-secondary"></button>
+      </p-footer>
+    </div>
+  </form>
+</p-dialog>
+
 
 
 
