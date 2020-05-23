@@ -62,14 +62,14 @@
     </div>
     <div class="col-md-3">
 <span  class="md-form ui-float-label">
-    <input [(ngModel)]="searchText" class="form-control"  mdbInput id="search" type="text" size="15">
+    <input class="form-control"  mdbInput id="search" type="text" size="10">
     <label for="search">Search</label>
     <p-button icon="pi pi-search" styleClass="ui-button-secondary"></p-button>
 </span>
     </div>
     </div>
-    <div class="card-body">
-  <div >
+    <div>
+  <div>
     <div>
       <table mdbTable class="z-depth-1 table table-bordered " matSort (matSortChange)="sortData($event)">
         <thead>
@@ -150,7 +150,7 @@
               <br>
               <p-footer>
                 <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="update()" label="Confirm"></button>
-                <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Cancel" class="ui-button-secondary"></button>
+                <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic2=false" label="Cancel" class="ui-button-secondary"></button>
               </p-footer>
             </form>
           </p-dialog>

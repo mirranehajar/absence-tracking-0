@@ -59,7 +59,7 @@
               <div class="row">
                 <div class="ui-inputgroup">
                   <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                  <select  name="Filière"  [(ngModel)]="etudiant.filiere" required>
+                  <select  name="Filiere"  [(ngModel)]="etudiant.filiere" required>
                     <option *ngFor="let s of sectors" [ngValue]="s">{{s.libelle}}</option>
                   </select>
                 </div>
@@ -93,7 +93,7 @@
         </div>
         <div class="col-md-3">
 <span class="ui-float-label">
-  <input type="text" [(ngModel)]="searchText" class="form-control" size="15"id="disabled-input" mdbInput/>
+  <input type="text" class="form-control" size="15"id="disabled-input"/>
     <label for="disabled-input">Search</label>
     <p-button icon="pi pi-search" styleClass="ui-button-secondary"></p-button>
 </span>

@@ -1,6 +1,11 @@
-<mat-form-field>
-  <mat-label>Toppings</mat-label>
-  <mat-select [formControl]="toppings" multiple>
-    <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-  </mat-select>
-</mat-form-field>
+<h3>Image Uploading Module</h3>
+<div>
+  <input type="file" (change)="onFileChanged($event)">
+  <img src="imgURL" height="200" *ngIf="imgURL">
+</div>
+<! — upload image — >
+<input type="button" (click)="onUpload()" value="upload">
+<hr />
+Received Image:
+{{ receivedImageData['pic'] | json}}
+<img src="convertedImage" >

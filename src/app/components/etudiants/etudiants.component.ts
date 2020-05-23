@@ -1,16 +1,15 @@
 import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
-import {ConfirmationService, Message} from 'primeng/api';
-import {EtudiantService} from '../../controller/service/etudiant.service';
-import {Etudiant} from '../../controller/model/etudiant.model';
-import * as XLSX from 'xlsx';
-import {MessageService} from 'primeng/api';
-import {Sector} from '../../controller/model/sector';
-import {SectorService} from '../../controller/service/sector.service';
-import {GroupeService} from '../../controller/service/groupe.service';
-import {Groupe} from '../../controller/model/groupe';
 import {Sort} from '@angular/material/sort';
-import {Enseignant} from '../../controller/model/enseignant.model';
 import {MdbTableDirective} from 'angular-bootstrap-md';
+import {ConfirmationService, Message} from 'primeng/api';
+import {MessageService} from 'primeng/api';
+import * as XLSX from 'xlsx';
+import {Etudiant} from '../../controller/model/etudiant.model';
+import {Groupe} from '../../controller/model/groupe';
+import {Sector} from '../../controller/model/sector';
+import {EtudiantService} from '../../controller/service/etudiant.service';
+import {GroupeService} from '../../controller/service/groupe.service';
+import {SectorService} from '../../controller/service/sector.service';
 
 type AOA = any[][];
 
@@ -18,14 +17,13 @@ type AOA = any[][];
   selector: 'app-etudiants',
   templateUrl: './etudiants.component.html',
   styleUrls: ['./etudiants.component.scss'],
-  providers: [ConfirmationService, MessageService]
+  providers: [ConfirmationService, MessageService],
 })
 export class EtudiantsComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true })
   mdbTable: MdbTableDirective;
-  searchText = '';
   previous: string;
-  importStudents: Array<Etudiant> = new Array<Etudiant>();
+  importStudents: Etudiant[] = new Array<Etudiant>();
   msgs: Message[] = [];
   displayBasic: boolean;
   displayBasic2: boolean;
@@ -34,11 +32,12 @@ export class EtudiantsComponent implements OnInit {
   data: AOA = [['Cne', 'Cin', 'Code Apogee', 'First Name', 'Last Name', 'Birthday', 'Phone Number', 'Sector', 'Group']];
   fileName = 'Example-student.xlsx';
 
-  // tslint:disable-next-line:max-line-length
-  constructor(private etudiantService: EtudiantService, private messageService: MessageService, private sectorService: SectorService, private groupeService: GroupeService) { }
-  @HostListener('input') oninput() { this.searchItems(); }
+  constructor(private etudiantService: EtudiantService, private messageService: MessageService,
+              private sectorService: SectorService, private groupeService: GroupeService) { }
   ngOnInit(): void {
     this.etudiantService.findAll();
+    this.groupeService.findAll();
+    this.sectorService.findAll();
     this.sortedData = this.etudiants.slice();
     this.mdbTable.setDataSource(this.sortedData);
     this.previous = this.mdbTable.getDataSource();
@@ -60,11 +59,11 @@ export class EtudiantsComponent implements OnInit {
   public save() {
     this.etudiantService.save();
     this.displayBasic = false;
-    window.location.reload();
   }
   public update() {
     this.etudiantService.update();
     this.displayBasic2 = false;
+    window.location.reload();
   }
   get etudiantFounded(): Etudiant {
     return this.etudiantService.etudiantFounded;
@@ -72,10 +71,10 @@ export class EtudiantsComponent implements OnInit {
   get etudiant(): Etudiant {
     return this.etudiantService.etudiant;
   }
-  get etudiants(): Array<Etudiant> {
+  get etudiants(): Etudiant[] {
     return this.etudiantService.etudiants;
   }
-  get sectors(): Array<Sector> {
+  get sectors(): Sector[] {
     return this.sectorService.sectors;
   }
   get sector(): Sector {
@@ -84,7 +83,7 @@ export class EtudiantsComponent implements OnInit {
   get groupe(): Groupe {
     return this.groupeService.groupe;
   }
-  get groupes(): Array<Groupe> {
+  get groupes(): Groupe[] {
     return this.groupeService.groupes;
   }
   onFileChange(evt: any) {
@@ -102,8 +101,7 @@ export class EtudiantsComponent implements OnInit {
       const ws: XLSX.WorkSheet = wb.Sheets[wsname];
 
       /* save data */
-      this.importStudents = (XLSX.utils.sheet_to_json(ws, { header: 1 })) as Array<Etudiant>;
-      console.log(this.importStudents);
+      this.importStudents = (XLSX.utils.sheet_to_json(ws, { header: 1 })) as Etudiant[];
       for (const stud of this.importStudents) {
         this.etudiant.cin = stud[0];
         this.etudiant.codeApogee = stud[2];
@@ -156,13 +154,6 @@ export class EtudiantsComponent implements OnInit {
       }
     });
   }
-  searchItems() {
-    const prev = this.mdbTable.getDataSource();
-    if (!this.searchText) {
-      this.mdbTable.setDataSource(this.previous);
-      this.sortedData = this.mdbTable.getDataSource(); }
-    if (this.searchText) { this.sortedData = this.mdbTable.searchLocalDataByMultipleFields(this.searchText, ['first', 'last']);
-                           this.mdbTable.setDataSource(prev); } }
 }
 function compare(a: number | string | Date | Sector | Groupe, b: number | string | Date | Sector | Groupe, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);

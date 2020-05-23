@@ -1,6 +1,8 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Etudiant} from '../model/etudiant.model';
+import {Sector} from '../model/sector';
+import {Groupe} from '../model/groupe';
 
 @Injectable({
   providedIn: 'root',
@@ -88,6 +90,12 @@ export class EtudiantService {
     if (this._etudiantFounded == null) {
       this._etudiantFounded = new Etudiant();
     }
+    if (this._etudiantFounded.filiere == null) {
+      this._etudiantFounded.filiere = new Sector();
+    }
+    if (this._etudiantFounded.groupe == null) {
+      this._etudiantFounded.groupe = new Groupe();
+    }
     return this._etudiantFounded;
   }
 
@@ -98,6 +106,12 @@ export class EtudiantService {
   get etudiant(): Etudiant {
     if (this._etudiant == null) {
       this._etudiant = new Etudiant();
+    }
+    if (this._etudiant.filiere == null) {
+      this._etudiant.filiere = new Sector();
+    }
+    if (this._etudiant.groupe == null) {
+      this._etudiant.groupe = new Groupe();
     }
     return this._etudiant;
   }

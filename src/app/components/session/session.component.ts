@@ -4,12 +4,12 @@ import {EventInput} from '@fullcalendar/core/structs/event';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGrigPlugin from '@fullcalendar/timegrid';
+import {Groupe} from '../../controller/model/groupe';
 import {Session} from '../../controller/model/session';
 import {TypeSession} from '../../controller/model/type-session';
+import {GroupeService} from '../../controller/service/groupe.service';
 import {SessionService} from '../../controller/service/session.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
-import {Groupe} from '../../controller/model/groupe';
-import {GroupeService} from '../../controller/service/groupe.service';
 
 @Component({
   selector: 'app-session',
@@ -34,33 +34,36 @@ export class SessionComponent implements OnInit {
     this.sessionService.findAll();
     this.groupeService.findAll();
     for (const s of this.sessions) {
-    this.calendarEvents = this.calendarEvents.concat({ title: s.libelle, start: s.dateStart, end: s.dateStop});
-    console.log(s);
+    this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
     }
-    console.log(this.calendarEvents);
   }
   showBasicDialog(arg) {
     this.displayBasic = true;
     this.session.dateStart = arg.date;
-    this.session.dateStop = arg.date.getTime() + (1000 * 60 * 60 * this.period);
+    this.session.dateStop = arg.date;
   }
-  showBasicDialog2(arg) {
+    public async showBasicDialog2(event) {
     this.displayBasic2 = true;
-    this.findByReference(arg.session);
+    await this.findByReference(event.event.id);
+    console.log(this.findByReference(event.event.id));
+    console.log(this.sessionFounded);
+    console.log(this.sessionFounded.reference);
+    console.log(this.sessionFounded.dateStart);
   }
   handleDateClick() {
     this.calendarEvents = this.calendarEvents.concat({ // add new event data. must create new array
-        title: this.session.reference,
+        id: this.session.reference,
+        title: this.session.libelle,
         start: this.session.dateStart,
         end: this.session.dateStop ,
+        editable: true,
       });
-    console.log(this.calendarEvents);
   }
   public findByLibelle(session: Session) {
     this.sessionService.findByLibelle(session);
   }
-  public findByReference(session: Session) {
-    this.sessionService.findByReference(session);
+   public async findByReference(reference: string) {
+    await this.sessionService.findByReference(reference);
   }
   public deleteByReference(session: Session) {
     this.sessionService.deleteByReference(session);

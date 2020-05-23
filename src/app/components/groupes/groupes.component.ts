@@ -54,8 +54,9 @@ export class GroupesComponent implements OnInit {
   showBasicDialog() {
     this.displayBasic = true;
   }
-  showBasicDialog2() {
+  showBasicDialog2(groupe: Groupe) {
     this.displayBasic2 = true;
+    this.findByLibelle(groupe);
   }
   get groupe(): Groupe {
     return this.groupeService.groupe;

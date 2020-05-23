@@ -1,5 +1,5 @@
-import {TypeSession} from './type-session';
 import {Groupe} from './groupe';
+import {TypeSession} from './type-session';
 
 export class Session {
   public libelle: string;
@@ -7,5 +7,5 @@ export class Session {
   public dateStart: Date;
   public dateStop: Date;
   public typeSession: TypeSession;
-  public groupes: Array<Groupe>;
+  public groupes: Groupe[];
 }

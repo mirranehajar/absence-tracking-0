@@ -101,7 +101,7 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <select name="Cycle"  [(ngModel)]="sectorFounded.cycle.libelle" required>
+          <select name="Cycle"  [(ngModel)]="sectorFounded.cycle" required>
             <option *ngFor="let c of cycles" [ngValue]="c">{{c.libelle}}</option>
           </select>
         </div>

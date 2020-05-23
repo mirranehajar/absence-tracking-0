@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Sector} from '../model/sector';
+import { Injectable } from '@angular/core';
 import {Cycle} from '../model/cycle';
+import {Sector} from '../model/sector';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SectorService {
   // tslint:disable-next-line:variable-name
   private _sector: Sector;
   // tslint:disable-next-line:variable-name
-  private _sectors: Array<Sector>;
+  private _sectors: Sector[];
   // tslint:disable-next-line:variable-name
   private _sectorFounded: Sector;
   // tslint:disable-next-line:variable-name
@@ -19,61 +19,62 @@ export class SectorService {
 
   public findByCycle(sector: Sector) {
     this.http.get<Sector>(this._url + 'cycle').subscribe(
-      data => {
+      (data) => {
         this.sectorFounded = data;
-      }
+      },
     );
   }
   public findByLibelle(sector: Sector) {
     this.http.get<Sector>(this._url + 'libelle/' + sector.libelle).subscribe(
-      data => {
+      (data) => {
         this.sectorFounded = data;
-      }
+      },
     );
   }
   public deleteByLibelle(sector: Sector) {
     this.http.delete<number>(this._url + 'libelle/' + sector.libelle).subscribe(
-      data => {
+      (data) => {
         console.log(data);
         this.deleteFromList(sector);
-      }
+      },
     );
   }
   public deleteFromList(sector: Sector) {
-    const index = this.sectors.findIndex(e => e.libelle === sector.libelle);
+    const index = this.sectors.findIndex((e) => e.libelle === sector.libelle);
     if (index !== -1) {
       this.sectors.splice(index, 1);
     }
   }
   public findAll() {
-    this.http.get<Array<Sector>>(this._url).subscribe(
-      data => {
+    this.http.get<Sector[]>(this._url).subscribe(
+      (data) => {
         this.sectors = data;
-      }
+      },
     );
   }
   public update() {
+    console.log(this.sectorFounded);
     this.http.put<number>(this._url, this.sectorFounded).subscribe(
-      data => {
+      (data) => {
         if (data > 0) {
           this.deleteFromList(this.sectorFounded);
           this.sectors.push(this.clone(this.sectorFounded));
         }
-      }, error => {
+      }, (error) => {
         console.log('error');
-      }
+      },
     );
   }
   public save() {
     this.http.post<number>(this._url, this.sector).subscribe(
-      data => {
+      (data) => {
         if (data > 0) {
           this.sectors.push(this.clone(this.sector));
           this.sector = null;
         }
-      }, error => {
+      }, (error) => {
         console.log('error');
-      }
+      },
     );
   }
   private clone(sector: Sector) {
@@ -93,14 +94,14 @@ export class SectorService {
     this._sector = value;
   }
 
-  get sectors(): Array<Sector> {
+  get sectors(): Sector[] {
     if (this._sectors == null) {
       this._sectors = new Array<Sector>();
     }
     return this._sectors;
   }
 
-  set sectors(value: Array<Sector>) {
+  set sectors(value: Sector[]) {
     this._sectors = value;
   }
 

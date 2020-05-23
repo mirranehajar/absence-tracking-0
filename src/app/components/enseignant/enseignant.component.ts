@@ -20,7 +20,6 @@ type AOA = any[][];
 export class EnseignantComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true })
   mdbTable: MdbTableDirective;
-  searchText = '';
   previous: string;
   importProfessors: Enseignant[] = new Array<Enseignant>();
   msgs: Message[] = [];
@@ -31,7 +30,6 @@ export class EnseignantComponent implements OnInit {
   fileName = 'Example-professor.xlsx';
   sortedData: Enseignant[];
   constructor(private enseignantService: EnseignantService, private messageService: MessageService) { }
-  @HostListener('input') oninput() { this.searchItems(); }
 
   ngOnInit(): void {this.enseignantService.findAll();
                     this.sortedData = this.enseignants.slice();
@@ -54,6 +52,7 @@ export class EnseignantComponent implements OnInit {
   public save() {
     this.enseignantService.save();
     this.displayBasic = false;
+    window.location.reload();
   }
   public update() {
     this.enseignantService.update();
@@ -131,14 +130,6 @@ export class EnseignantComponent implements OnInit {
       }
     });
   }
-  searchItems() {
-    const prev = this.mdbTable.getDataSource();
-    if (!this.searchText) {
-      this.mdbTable.setDataSource(this.previous);
-      this.sortedData = this.mdbTable.getDataSource(); }
-    if (this.searchText) {
-      this.sortedData = this.mdbTable.searchLocalDataBy(this.searchText);
-      this.mdbTable.setDataSource(prev); } }
 }
 function compare(a: number | string | Date, b: number | string | Date, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
