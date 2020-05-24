@@ -1,4 +1,42 @@
- <div class="row">
+<div class="container row">
+  <div class="col-md-12">
+    <h1>Upload Image</h1>
+  </div>
+</div>
+<div class="container row">
+  <div class="col-md-6">
+    <input type="file" (change)="onFileChanged($event)">
+  </div>
+  <div class="col-md-6">
+    <input type="button" (click)="upload()" value="upload">
+  </div>
+  <div class="col-md-6">
+    <input type="number" [(ngModel)]="numeroSOM">
+  </div>
+</div>
+<hr />
+<div class="container row">
+  <div class="col-md-12">
+    <div *ngIf=message>{{message}}</div>
+  </div>
+</div>
+<div class="container row">
+  <div class="col-md-6">
+    <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName"
+           name="name" />
+  </div>
+  <div class="col-md-6">
+    <input type="button" value="Get Image">
+  </div>
+</div>
+<div class="container row">
+  <div class="col-md-12">
+    <div >
+
+    </div>
+  </div>
+</div>
+<div class="row">
     <div class="col-md-3">
       <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Add a professor"></button>
       <p-dialog  header="Add a new professor" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
@@ -74,6 +112,7 @@
       <table mdbTable class="z-depth-1 table table-bordered " matSort (matSortChange)="sortData($event)">
         <thead>
         <tr>
+          <th>photo</th>
           <th mat-sort-header="numeroSOM">Numéro de SOM</th>
           <th mat-sort-header="cin">Cin</th>
           <th mat-sort-header="lastName">Nom</th>
@@ -86,6 +125,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let e of sortedData">
+          <td *ngIf="getImage(e.cin)"><img [src]="retrievedImage"></td>
           <td >{{e.numeroSOM}}</td>
           <td>{{e.cin}}</td>
           <td>{{e.lastName}}</td>
