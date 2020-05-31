@@ -6,4 +6,7 @@ export class Enseignant {
   public birthDay: Date;
   public tel: number;
   public mail: string;
+  public password: string;
+  public role: number;
+  public image: any;
 }

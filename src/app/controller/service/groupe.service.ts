@@ -102,6 +102,9 @@ export class GroupeService {
   }
 
   get groupeFounded(): Groupe {
+    if (this._groupeFounded == null) {
+      this._groupeFounded = new Groupe();
+    }
     return this._groupeFounded;
   }
 

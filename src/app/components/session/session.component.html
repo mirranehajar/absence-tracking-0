@@ -71,28 +71,35 @@
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="text" name="libelle" [(ngModel)]="sessionFounded.libelle">
+              <input type="text" [(ngModel)]="sessionFounded.reference" name="libelle" >
             </div>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="datetime-local"  name="dateStart" [(ngModel)]="sessionFounded.dateStart">
+              <input type="text" [(ngModel)]="sessionFounded.libelle" name="libelle" >
             </div>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="datetime-local" placeholder="Heure Fin" name="dateStop" [(ngModel)]="sessionFounded.dateStop">
+              <input type="datetime-local"  [(ngModel)]="sessionFounded.dateStart" name="dateStart">
             </div>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <select  name="TypeSession"  [(ngModel)]="sessionFounded.typeSession" required>
+              <input type="datetime-local" [(ngModel)]="sessionFounded.dateStop"  name="dateStop">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+              <select  name="TypeSession" [(ngModel)]="sessionFounded.typeSession" required>
                 <option *ngFor="let t of typeSessions" [ngValue]="t">{{t.libelle}}</option>
               </select>
             </div>
@@ -101,8 +108,8 @@
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
               <mat-form-field>
-                <mat-label>Choisir les groupes</mat-label>
-                <mat-select [(ngModel)]="sessionFounded.groupes" name="etudiants" multiple>
+                <mat-label>Choisir les groupes </mat-label>
+                <mat-select name="groupes" [(ngModel)]="sessionFounded.groupes" multiple>
                   <mat-option *ngFor="let g of groupes" [value]="g">{{g.libelle}}</mat-option>
                 </mat-select>
               </mat-form-field>

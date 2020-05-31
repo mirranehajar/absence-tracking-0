@@ -51,12 +51,8 @@
     <p-accordionTab header="Liste des étudiants restant">
       <div class="table-responsive">
         <div class="example-container">
-          <div
-            cdkDropList
-            [cdkDropListData]="etudiants"
-            class="example-list"
-            (cdkDropListDropped)="drop($event)">
-            <table  class="grid table table-bordered table-sortable">
+          <div cdkDropList [cdkDropListData]="etudiants" class="example-list" (cdkDropListDropped)="drop($event)">
+            <table class="grid table table-bordered ">
               <thead>
               <tr>
                 <th>Cne</th>
@@ -90,28 +86,28 @@
       </div>
     </p-accordionTab>
   <p-accordionTab *ngFor="let g of groupes" >
-    <p-header> <p-button icon="pi pi-user-edit"  (click)="showBasicDialog2()" ></p-button>{{g.libelle}}</p-header>
+    <p-header> <p-button icon="pi pi-user-edit"  (click)="showBasicDialog2(g)" ></p-button>{{g.libelle}}</p-header>
     <p-dialog  header="Modification d'un groupe" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
       <form style="text-align: center" method="POST">
         <div style="display:inline-block" class="form-group">
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input disabled [(ngModel)]="g.reference" name="reference" type="text" pInputText  required>
+              <input disabled [(ngModel)]="groupeFounded.reference" name="reference" type="text" pInputText  required>
             </div>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input [(ngModel)]="g.libelle" name="libelle" type="text" pInputText  required>
+              <input [(ngModel)]="groupeFounded.libelle" name="libelle" type="text" pInputText  required>
             </div>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <select name="Semestre" [(ngModel)]="g.semestre"  required>
+              <select name="Semestre" [(ngModel)]="groupeFounded.semestre"  required>
                 <option *ngFor="let s of semestres" [ngValue]="s">{{s.libelle}}</option>
               </select>
             </div>
@@ -122,7 +118,7 @@
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
               <mat-form-field>
                 <mat-label>{{g.etudiants}}</mat-label>
-                <mat-select [(ngModel)]="groupe.etudiants" name="etudiants" multiple>
+                <mat-select [(ngModel)]="groupeFounded.etudiants" name="etudiants" multiple>
                   <mat-option *ngFor="let e of etudiants" [value]="e">{{e.lastName + " " + e.firstName}}</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -137,11 +133,8 @@
     </p-dialog>
     <div class="table-responsive">
         <div class="example-container">
-      <div cdkDropList
-        [cdkDropListData]="g.etudiants"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-      <table  class="grid table table-bordered table-sortable">
+      <div cdkDropList [cdkDropListData]="g.etudiants" class="example-list" (cdkDropListDropped)="drop($event)">
+      <table  class="grid table table-bordered">
         <thead>
         <tr>
           <th>Cne</th>
@@ -155,7 +148,7 @@
           <th>Absence</th>
         </tr>
         </thead>
-        <tbody *ngFor="let g of groupes">
+        <tbody>
         <tr class="example-box" *ngFor="let e of g.etudiants" cdkDrag>
           <td>{{e.cne}}</td>
           <td>{{e.cin}}</td>

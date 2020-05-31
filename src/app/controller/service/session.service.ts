@@ -25,8 +25,8 @@ export class SessionService {
       },
     );
   }
-  public findByReference(session: Session) {
-    this.http.get<Session>(this._url + 'refrence/' + session.reference).subscribe(
+  public async findByReference(reference: string) {
+    await this.http.get<Session>(this._url + 'reference/' + reference).toPromise().then(
       (data) => {
         this.sessionFounded = data;
       },
@@ -79,6 +79,7 @@ export class SessionService {
   }
   private clone(session: Session) {
     const myclone = new Session();
+    myclone.reference = session.reference;
     myclone.libelle = session.libelle ;
     myclone.dateStart = session.dateStart ;
     myclone.dateStop = session.dateStop ;
@@ -114,9 +115,9 @@ export class SessionService {
   get sessionFounded(): Session {
     if (this._sessionFounded == null) {
       this._sessionFounded = new Session();
-    }
-    if (this._sessionFounded.typeSession == null) {
-      this._sessionFounded.typeSession = new TypeSession();
+      if (this._sessionFounded.typeSession == null) {
+        this._sessionFounded.typeSession = new TypeSession();
+      }
     }
     return this._sessionFounded;
   }

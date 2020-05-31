@@ -1,3 +1,4 @@
+import {HttpClient} from '@angular/common/http';
 import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {Sort} from '@angular/material/sort';
 import {MdbTableDirective} from 'angular-bootstrap-md';
@@ -20,7 +21,6 @@ type AOA = any[][];
 export class EnseignantComponent implements OnInit {
   @ViewChild(MdbTableDirective, { static: true })
   mdbTable: MdbTableDirective;
-  searchText = '';
   previous: string;
   importProfessors: Enseignant[] = new Array<Enseignant>();
   msgs: Message[] = [];
@@ -29,9 +29,14 @@ export class EnseignantComponent implements OnInit {
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
   data: AOA = [['Numéro de SOM', 'Cin', 'Prénom', 'Nom', 'Jour de naissance', 'Numéro de téléphone', 'Departement']];
   fileName = 'Example-professor.xlsx';
+  private _url = 'http://localhost:8090/absence-tracking/enseignant/';
+  selectedFile: File;
+  retrievedImage: any;
+  message: string;
+  imageName: any;
+  numeroSOM: number;
   sortedData: Enseignant[];
-  constructor(private enseignantService: EnseignantService, private messageService: MessageService) { }
-  @HostListener('input') oninput() { this.searchItems(); }
+  constructor(private http: HttpClient, private enseignantService: EnseignantService, private messageService: MessageService) { }
 
   ngOnInit(): void {this.enseignantService.findAll();
                     this.sortedData = this.enseignants.slice();
@@ -54,6 +59,7 @@ export class EnseignantComponent implements OnInit {
   public save() {
     this.enseignantService.save();
     this.displayBasic = false;
+    window.location.reload();
   }
   public update() {
     this.enseignantService.update();
@@ -131,14 +137,39 @@ export class EnseignantComponent implements OnInit {
       }
     });
   }
-  searchItems() {
-    const prev = this.mdbTable.getDataSource();
-    if (!this.searchText) {
-      this.mdbTable.setDataSource(this.previous);
-      this.sortedData = this.mdbTable.getDataSource(); }
-    if (this.searchText) {
-      this.sortedData = this.mdbTable.searchLocalDataBy(this.searchText);
-      this.mdbTable.setDataSource(prev); } }
+  // Gets called when the user selects an image
+  public onFileChanged(event) {
+    // Select File
+    this.selectedFile = event.target.files[0];
+  }
+  // Gets called when the user clicks on submit to upload the image
+  public upload() {
+    console.log(this.selectedFile);
+
+    // FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
+    const uploadImageData = new FormData();
+    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+    this.http.post(this._url + 'upload/' + this.numeroSOM , uploadImageData, { observe: 'response' })
+      .subscribe((response) => {
+          if (response.status === 200) {
+            this.message = 'Image uploaded successfully';
+          } else {
+            this.message = 'Image not uploaded successfully';
+          }
+        },
+      );
+  }
+  // Gets called when the user clicks on retieve image button to get the image from back end
+  getImage(cin: string): any {
+    // Make a call to Sprinf Boot to get the Image Bytes.
+    this.http.get<Enseignant>(this._url + 'get/' + cin)
+      .subscribe(
+        (res) => {
+          this.retrievedImage = 'data:image/jpeg;base64,' + res.image;
+          console.log(this.retrievedImage);
+        },
+      );
+  }
 }
 function compare(a: number | string | Date, b: number | string | Date, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);

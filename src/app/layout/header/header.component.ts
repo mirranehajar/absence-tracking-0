@@ -132,7 +132,6 @@ export class HeaderComponent implements OnInit {
   public update() {
     this.sectorService.update();
     this.displayBasic2 = false;
-    window.location.reload();
   }
   public findByLibelle(sector: Sector) {
   return this.sectorService.findByLibelle(sector);
