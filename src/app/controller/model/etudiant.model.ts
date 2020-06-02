@@ -13,6 +13,7 @@ export class Etudiant {
   public mail: string;
   public password: string;
   public role: number;
+  public image: any;
   public filiere: Sector;
   public groupe: Groupe;
 }
