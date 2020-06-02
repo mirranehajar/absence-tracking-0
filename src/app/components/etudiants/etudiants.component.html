@@ -3,8 +3,8 @@
     <div class="card-header">
       <div class="row">
         <div class="col-md-3">
-          <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Add a student"></button>
-          <p-dialog  header="Add a new student" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+          <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un étudiant"></button>
+          <p-dialog  header="Ajout d'un nouveau étudiant" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
             <form style="text-align: center" method="POST" >
               <div style="display:inline-block" class="form-group">
                 <div class="row">
@@ -103,36 +103,25 @@
     <div class="card-body">
       <div class="row">
         <div class="table-responsive-sm">
-          <table mdbTable class="z-depth-1 grid table table-bordered table-sortable table-sm" matSort (matSortChange)="sortData($event)">
-            <thead class="thead-dark">
-            <tr>
-              <th mat-sort-header="Cne">Cne</th>
-              <th mat-sort-header="Cin">Cin</th>
-              <th mat-sort-header="Code apogée">Code apogée</th>
-              <th mat-sort-header="Prénom">Prénom</th>
-              <th mat-sort-header="Nom">Nom</th>
-              <th mat-sort-header="Email">Email</th>
-              <th mat-sort-header="Jour de naissance">Jour de naissance</th>
-              <th mat-sort-header="Téléphone">Téléphone</th>
-              <th mat-sort-header="Absence">Absence</th>
-              <th mat-sort-header="Filère">Filière</th>
-              <th mat-sort-header="Groupe">Groupe</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let e of sortedData">
-              <td>{{e.cne}}</td>
-              <td>{{e.cin}}</td>
-              <td>{{e.codeApogee}}</td>
-              <td>{{e.firstName}}</td>
-              <td>{{e.lastName}}</td>
-              <td>{{e.mail}}</td>
-              <td>{{e.birthDay}}</td>
-              <td>{{e.tel}}</td>
-              <td>{{e.nbrAbsence}}</td>
-              <td>{{e.filiere}}</td>
-              <td>{{e.groupe}}</td>
-              <p-button icon="pi pi-user-edit" (click)="showBasicDialog2(e)" styleClass="ui-button-info"></p-button>
+          <p-table [columns]="cols" [value]="etudiants" [paginator]="true" [rows]="7">
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th>Image</th>
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                  {{col.header}}
+                  <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr>
+                <td>
+                  <img [src]="getImage(rowData.cin)">
+                </td>
+                <td *ngFor="let col of columns">
+                  {{rowData[col.field]}}
+                </td>
+              <p-button icon="pi pi-user-edit" (click)="showBasicDialog2(rowData)" styleClass="ui-button-info"></p-button>
               <p-dialog  header="Modification d'un étudiant" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
                 <form style="text-align: center" method="POST" >
                   <div style="display:inline-block" class="form-group">
@@ -192,10 +181,10 @@
                   </p-footer>
                 </form>
               </p-dialog>
-              <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByCne(e)"></p-button>
+              <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByCne(rowData)"></p-button>
             </tr>
-            </tbody>
-          </table>
+            </ng-template>
+            </p-table>
         </div>
       </div>
     </div>

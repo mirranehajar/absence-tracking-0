@@ -1,32 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import {Etudiant} from '../../controller/model/etudiant.model';
-import {EtudiantService} from '../../controller/service/etudiant.service';
 import {SelectItem} from 'primeng';
 import {Absence} from '../../controller/model/absence';
+import {Etudiant} from '../../controller/model/etudiant.model';
 import {AbsenceService} from '../../controller/service/absence.service';
+import {EtudiantService} from '../../controller/service/etudiant.service';
 
 @Component({
   selector: 'app-absence',
   templateUrl: './absence.component.html',
-  styleUrls: ['./absence.component.scss']
+  styleUrls: ['./absence.component.scss'],
 })
 export class AbsenceComponent implements OnInit {
   types: SelectItem[];
+  cols: any[];
   constructor(private etudiantService: EtudiantService, private absenceService: AbsenceService) {
     this.types = [
       {label: 'Prs', value: false},
-      {label: 'AbsJ', value: true},
-      {label: 'AbsNJ', value: true}
+      {label: 'Abs', value: true},
+      {label: 'AbsNJ', value: true},
     ];
   }
 
   ngOnInit(): void {
     this.etudiantService.findAll();
+    this.cols = [
+      { field: 'cne', header: 'Cne' },
+      { field: 'codeApogee', header: 'C.Apogée' },
+      { field: 'lastName', header: 'Nom' },
+      { field: 'firstName', header: 'Prénom' },
+    ];
   }
-  get etudiants(): Array<Etudiant> {
+  get etudiants(): Etudiant[] {
     return this.etudiantService.etudiants;
   }
-  get absences(): Array<Absence> {
+  get absences(): Absence[] {
     return this.absenceService.absences;
   }
   get absence(): Absence {

@@ -1,6 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
-import {Sort} from '@angular/material/sort';
+import {Component, OnInit} from '@angular/core';
 import {MdbTableDirective} from 'angular-bootstrap-md';
 import {ConfirmationService} from 'primeng/api';
 import {Message} from 'primeng/api';
@@ -19,9 +18,6 @@ type AOA = any[][];
 })
 
 export class EnseignantComponent implements OnInit {
-  @ViewChild(MdbTableDirective, { static: true })
-  mdbTable: MdbTableDirective;
-  previous: string;
   importProfessors: Enseignant[] = new Array<Enseignant>();
   msgs: Message[] = [];
   displayBasic: boolean;
@@ -35,13 +31,20 @@ export class EnseignantComponent implements OnInit {
   message: string;
   imageName: any;
   numeroSOM: number;
-  sortedData: Enseignant[];
+  cols: any[];
   constructor(private http: HttpClient, private enseignantService: EnseignantService, private messageService: MessageService) { }
 
   ngOnInit(): void {this.enseignantService.findAll();
-                    this.sortedData = this.enseignants.slice();
-                    this.mdbTable.setDataSource(this.sortedData);
-                    this.previous = this.mdbTable.getDataSource();
+
+                    this.cols = [
+      { field: 'numeroSOM', header: 'N°SOM' },
+      { field: 'cin', header: 'Cin' },
+      { field: 'lastName', header: 'Nom' },
+      { field: 'firstName', header: 'Prénom' },
+      { field: 'mail', header: 'Email' },
+      { field: 'tel', header: 'Tel' },
+      { field: 'birthDay', header: 'J.Naissance' },
+    ];
   }
   public deleteByNumeroSOM(enseignant: Enseignant) {
     this.enseignantService.deleteByNumeroSOM(enseignant);
@@ -116,27 +119,7 @@ export class EnseignantComponent implements OnInit {
     /* save to file */
     XLSX.writeFile(wb, this.fileName);
   }
-  sortData(sort: Sort) {
-    const data = this.enseignants.slice();
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
-      return;
-    }
 
-    this.sortedData = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'numeroSOM': return compare(a.numeroSOM, b.numeroSOM, isAsc);
-        case 'cin': return compare(a.cin, b.cin, isAsc);
-        case 'firstName': return compare(a.firstName, b.firstName, isAsc);
-        case 'lastName': return compare(a.lastName, b.lastName, isAsc);
-        case 'birthday': return compare(a.birthDay, b.birthDay, isAsc);
-        case 'tel': return compare(a.tel, b.tel, isAsc);
-        case 'mail': return compare(a.mail, b.mail, isAsc);
-        default: return 0;
-      }
-    });
-  }
   // Gets called when the user selects an image
   public onFileChanged(event) {
     // Select File
@@ -167,10 +150,8 @@ export class EnseignantComponent implements OnInit {
         (res) => {
           this.retrievedImage = 'data:image/jpeg;base64,' + res.image;
           console.log(this.retrievedImage);
+          return this.retrievedImage;
         },
       );
   }
-}
-function compare(a: number | string | Date, b: number | string | Date, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
