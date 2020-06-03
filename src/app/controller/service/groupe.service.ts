@@ -46,7 +46,7 @@ export class GroupeService {
     }
   }
   public update() {
-    this.http.put<number>(this._url, this._groupeFounded).subscribe(
+    this.http.post<number>(this._url + 'update', this._groupeFounded).subscribe(
       (data) => {
         if (data > 0) {
           this.deleteFromList(this._groupeFounded);

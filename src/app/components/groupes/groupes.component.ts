@@ -18,20 +18,28 @@ export class GroupesComponent implements OnInit {
   index = -1;
   displayBasic: boolean;
   displayBasic2: boolean;
-
+  cols: any[];
+  etudiantdrag: Etudiant;
   constructor(private semestreService: SemestreService, private etudiantService: EtudiantService,
               private groupeService: GroupeService, private sectorService: SectorService) {}
 
   ngOnInit(): void {
     this.etudiantService.findAll();
     this.groupeService.findAll();
+    this.cols = [
+      { field: 'cne', header: 'Cne' },
+      { field: 'codeApogee', header: 'C.Apogée' },
+      { field: 'cin', header: 'Cin' },
+      { field: 'lastName', header: 'Nom' },
+      { field: 'firstName', header: 'Prénom' },
+      { field: 'mail', header: 'Email' },
+      { field: 'tel', header: 'Tel' },
+      { field: 'birthDay', header: 'J.Naissance' },
+      { field: 'nbrAbsence', header: 'N.Absence' },
+    ];
   }
-  openNext() {
-    this.index = (this.index === 3) ? 0 : this.index + 1;
-  }
-
-  openPrev() {
-    this.index = (this.index <= 0) ? 3 : this.index - 1;
+  onDrag(etudiant: Etudiant) {
+    this.etudiantService.etudiantFounded = etudiant;
   }
   public findByLibelle(groupe: Groupe) {
     return this.groupeService.findByLibelle(groupe);
@@ -43,6 +51,7 @@ export class GroupesComponent implements OnInit {
   public update() {
     this.groupeService.update();
     this.displayBasic2 = false;
+    window.location.reload();
   }
   public save() {
     this.groupeService.save();
@@ -67,6 +76,19 @@ export class GroupesComponent implements OnInit {
   get groupeFounded(): Groupe {
     return this.groupeService.groupeFounded;
   }
+  dropGroupe(event: CdkDragDrop<Etudiant[]>, groupe: Groupe) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+      this.etudiantService.etudiantFounded.groupe = groupe;
+      console.log(this.etudiantService.etudiantFounded);
+      this.etudiantService.update();
+    }
+  }
   drop(event: CdkDragDrop<Etudiant[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -88,5 +110,11 @@ export class GroupesComponent implements OnInit {
   }
   get semestre(): Semestre {
     return this.semestreService.semestre;
+  }
+  get etudiantsFounded(): Etudiant[] {
+    return this.etudiantService.etudiantsFounded;
+  }
+  public findByGroupe(groupe: Groupe) {
+    return this.etudiantService.findByGroupe(groupe);
   }
 }

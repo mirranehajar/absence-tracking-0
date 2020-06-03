@@ -54,7 +54,7 @@ export class SessionService {
     }
   }
   public update() {
-    this.http.put<number>(this._url, this.sessionFounded).subscribe(
+    this.http.post<number>(this._url + 'update', this.sessionFounded).subscribe(
       (data) => {
         if (data > 0) {
           this.deleteFromList(this.sessionFounded);

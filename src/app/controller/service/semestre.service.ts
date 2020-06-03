@@ -52,7 +52,7 @@ export class SemestreService {
     }
   }
   public update() {
-    this.http.put<number>(this._url, this.semestreFounded).subscribe(
+    this.http.post<number>(this._url + 'update' , this.semestreFounded).subscribe(
       (data) => {
         if (data > 0) {
           this.deleteFromList(this.semestreFounded);
