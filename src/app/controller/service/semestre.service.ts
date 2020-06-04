@@ -63,8 +63,8 @@ export class SemestreService {
       },
     );
   }
-  public save() {
-    this.http.post<number>(this._url, this.semestre).subscribe(
+  public save(filiere: string) {
+    this.http.post<number>(this._url + filiere, this.semestre).subscribe(
       (data) => {
         if (data > 0) {
           this.semestres.push(this.clone(this.semestre));
@@ -79,7 +79,7 @@ export class SemestreService {
     const myclone = new Semestre();
     myclone.libelle = semestre.libelle ;
     myclone.reference = semestre.reference ;
-    myclone.annéeUniversitaire = semestre.annéeUniversitaire ;
+    myclone.anneeUniversitaire = semestre.anneeUniversitaire ;
     myclone.filiere = semestre.filiere;
     myclone.groupes = semestre.groupes;
     myclone.modules = semestre.modules;

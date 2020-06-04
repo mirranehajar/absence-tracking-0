@@ -4,10 +4,12 @@ import {Cycle} from '../../controller/model/cycle';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {Sector} from '../../controller/model/sector';
 import {SectorManager} from '../../controller/model/sector-manager';
+import {Semestre} from '../../controller/model/semestre';
 import {CycleService} from '../../controller/service/cycle.service';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SectorService} from '../../controller/service/sector.service';
+import {SemestreService} from '../../controller/service/semestre.service';
 
 // @ts-ignore
 @Component({
@@ -25,13 +27,17 @@ export class HeaderComponent implements OnInit {
   };
     displayBasic: boolean;
     displayBasic2: boolean;
+    displayBasic3: boolean;
+    displayBasic4: boolean;
+    filiere: string;
 
    constructor(public sectorManagerService: SectorManagerService, public sectorService: SectorService,
-               public cycleService: CycleService, public enseignantService: EnseignantService) { }
+               public cycleService: CycleService, public enseignantService: EnseignantService, public semestreService: SemestreService) { }
 
   ngOnInit(): void {
     this.cycleService.findAll();
     this.sectorService.findAll();
+    this.semestreService.findAll();
     this.items = [
       {
         label: 'Acceuil',
@@ -90,6 +96,10 @@ export class HeaderComponent implements OnInit {
     this.displayBasic2 = true;
     this.findByLibelle(sector);
   }
+  showBasicDialog3(libelle: string) {
+     this.filiere = libelle;
+     this.displayBasic3 = true;
+  }
   get sectors(): Sector[] {
     return this.sectorService.sectors;
   }
@@ -133,6 +143,14 @@ export class HeaderComponent implements OnInit {
     this.sectorService.update();
     this.displayBasic2 = false;
   }
+  public save2() {
+    this.semestreService.save(this.filiere);
+    this.displayBasic3 = false;
+  }
+  public update2() {
+    this.semestreService.update();
+    this.displayBasic4 = false;
+  }
   public findByLibelle(sector: Sector) {
   return this.sectorService.findByLibelle(sector);
   }
@@ -140,5 +158,18 @@ export class HeaderComponent implements OnInit {
     return this.sectorService.deleteByLibelle(sector);
     this.displayBasic2 = false;
     window.location.reload();
+  }
+  get semestres(): Semestre[] {
+    return this.semestreService.semestres;
+  }
+  get semestre(): Semestre {
+    return this.semestreService.semestre;
+  }
+  get semestreFounded(): Semestre {
+    return this.semestreService.semestreFounded;
+  }
+
+  public deleteByReference(semestre: Semestre) {
+    return this.semestreService.deleteByReference(semestre);
   }
 }

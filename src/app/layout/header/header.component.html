@@ -26,7 +26,14 @@
               <a href="#" ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + s.libelle}}</a>
                 <button pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 "  (click)="showBasicDialog2(s)"  icon="pi pi-pencil" ></button>
                 <div class="submenu">
-                  <div class="item"><i class="material-icons">face</i>ITEM 2a</div>
+                  <div *ngFor="let ss of semestres" class="item has_submenu">
+                    <a href="#" ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + ss.libelle}}</a>
+                    <button pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 " (click)="deleteByReference(ss)" icon="pi pi-trash" ></button>
+                  <div class="dropdown-divider"></div>
+                  </div>
+                  <div style="text-align: center">
+                    <button pButton type="button"  icon="pi pi-plus" (click)="showBasicDialog3(s.libelle)" style="opacity: 0.8" label="Nouveau Semestre" ></button>
+                  </div>
                   <div class="dropdown-divider"></div>
                   <div class="item"><i class="material-icons">face</i>ITEM 2b</div>
                 </div>
@@ -128,6 +135,31 @@
       <p-footer>
         <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="update()" label="enregister"></button>
         <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="deleteByLibelle(sectorFounded)" label="Supprimer" class="ui-button-danger"></button>
+      </p-footer>
+    </p-footer>
+  </form>
+</p-dialog>
+<p-dialog  header="Ajout d'un semestre" [(visible)]="displayBasic3" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <form style="text-align: center" method="POST" >
+    <div style="display:inline-block" class="form-group">
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input  placeholder="N°Semestre" [(ngModel)]="semestre.number" name="number" type="number" pInputText  required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input  placeholder="Année Universitaire" [(ngModel)]="semestre.anneeUniversitaire" name="anneeUnivesitaire" type="text" pInputText  required>
+        </div>
+      </div>
+    </div>
+    <br>
+    <p-footer>
+      <p-footer>
+        <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save2()" label="Confirm"></button>
+        <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic3=false" label="Cancel" class="ui-button-secondary"></button>
       </p-footer>
     </p-footer>
   </form>
