@@ -6,13 +6,6 @@
         <div class="row">
           <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-            <input [(ngModel)]="groupe.reference" name="reference" type="text" pInputText placeholder="Reference" required>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
             <input [(ngModel)]="groupe.libelle" name="libelle" type="text" pInputText placeholder="Libelle" required>
           </div>
         </div>
@@ -20,9 +13,7 @@
         <div class="row">
           <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-            <select placeholder="Selectioner un semestre" name="Semestre" [(ngModel)]="groupe.semestre"  required>
-              <option *ngFor="let s of semestres" [ngValue]="s">{{s.libelle}}</option>
-            </select>
+            <p-dropdown name="semestre" [options]="semestres" [(ngModel)]="groupe.semestre" placeholder="Choisir un semestre" optionLabel="name"></p-dropdown>
           </div>
         </div>
         <br>
@@ -65,18 +56,11 @@
             </p-table>
           </div>
     </p-accordionTab>
-  <p-accordionTab *ngFor="let g of groupes" (click)="findByGroupe(g)">
-    <p-header> <p-button icon="pi pi-user-edit"  (click)="showBasicDialog2(g)" ></p-button>{{g.libelle}}</p-header>
+  <p-accordionTab *ngFor="let g of groupes">
+    <p-header><p-button icon="pi pi-user-edit"  (click)="showBasicDialog2(g)" ></p-button>{{g.libelle}}</p-header>
     <p-dialog  header="Modification d'un groupe" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
       <form style="text-align: center" method="POST">
         <div style="display:inline-block" class="form-group">
-          <div class="row">
-            <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input disabled [(ngModel)]="groupeFounded.reference" name="reference" type="text" pInputText  required>
-            </div>
-          </div>
-          <br>
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
@@ -87,9 +71,7 @@
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <select name="Semestre" [(ngModel)]="groupeFounded.semestre"  required>
-                <option *ngFor="let s of semestres" [ngValue]="s">{{s.libelle}}</option>
-              </select>
+              <p-dropdown name="semestre" [options]="semestres" [(ngModel)]="groupeFounded.semestre" placeholder="Choisir un semestre" optionLabel="name"></p-dropdown>
             </div>
           </div>
           <br>
@@ -107,8 +89,8 @@
           </p-footer>
       </form>
     </p-dialog>
-      <div cdkDropList [cdkDropListData]="etudiantsFounded" class="example-list" (cdkDropListDropped)="dropGroupe($event,g)">
-        <p-table [columns]="cols" [value]="etudiantsFounded" [paginator]="true" [rows]="7">
+      <div cdkDropList [cdkDropListData]="findByGroupe(g)" class="example-list" (cdkDropListDropped)="dropGroupe($event,g)">
+        <p-table [columns]="cols" [value]="findByGroupe(g)" [paginator]="true" [rows]="7">
           <ng-template pTemplate="header" let-columns>
             <tr>
               <th *ngFor="let col of columns" [pSortableColumn]="col.field">

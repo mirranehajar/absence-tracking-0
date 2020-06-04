@@ -1,6 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {SectorManager} from '../model/sector-manager';
+import {SectorService} from './sector.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class SectorManagerService {
   private _sectorManagerFounded: SectorManager;
   // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/responsable/';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private sectorService: SectorService) { }
 
   public findByEnseignant(sectorManager: SectorManager) {
     this.http.get<SectorManager>(this._url + 'enseignant/' ).subscribe(
@@ -64,7 +65,7 @@ export class SectorManagerService {
     );
   }
   public save() {
-    this.http.post<number>(this._url, this.sectorManager).subscribe(
+    this.http.post<number>(this._url + this.sectorService.sector.libelle, this.sectorManager).subscribe(
       (data) => {
         if (data > 0) {
           this.sectorManagers.push(this.clone(this.sectorManager));

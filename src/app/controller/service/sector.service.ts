@@ -70,7 +70,6 @@ export class SectorService {
       (data) => {
         if (data > 0) {
           this.sectors.push(this.clone(this.sector));
-          this.sector = null;
         }
       }, (error) => {
         console.log('error');

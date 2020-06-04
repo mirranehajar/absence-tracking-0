@@ -35,7 +35,7 @@ export class EnseignantComponent implements OnInit {
   constructor(private http: HttpClient, private enseignantService: EnseignantService, private messageService: MessageService) { }
 
   ngOnInit(): void {this.enseignantService.findAll();
-
+                    console.log(this.enseignants);
                     this.cols = [
       { field: 'numeroSOM', header: 'N°SOM' },
       { field: 'cin', header: 'Cin' },
@@ -128,7 +128,6 @@ export class EnseignantComponent implements OnInit {
   // Gets called when the user clicks on submit to upload the image
   public upload() {
     console.log(this.selectedFile);
-
     // FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
@@ -142,15 +141,14 @@ export class EnseignantComponent implements OnInit {
         },
       );
   }
-  // Gets called when the user clicks on retieve image button to get the image from back end
+  // Gets called when the user clicks on retrieved image button to get the image from back end
   getImage(cin: string): any {
-    // Make a call to Sprinf Boot to get the Image Bytes.
+    // Make a call to Spring Boot to get the Image Bytes.
     this.http.get<Enseignant>(this._url + 'get/' + cin)
       .subscribe(
         (res) => {
           this.retrievedImage = 'data:image/jpeg;base64,' + res.image;
           console.log(this.retrievedImage);
-          return this.retrievedImage;
         },
       );
   }
