@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatOptionModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSortModule} from '@angular/material/sort';
@@ -14,7 +15,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FullCalendarModule} from '@fullcalendar/angular';
-import {InputsModule, TableModule, WavesModule} from 'angular-bootstrap-md';
+import {InputsModule, WavesModule} from 'angular-bootstrap-md';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {IconsModule} from 'angular-bootstrap-md';
 import {TooltipModule} from 'ngx-bootstrap/tooltip';
@@ -25,7 +26,7 @@ import {
   FileUploadModule,
   MenubarModule,
   MessagesModule, PanelModule, SelectButtonModule,
-  SplitButtonModule,
+  SplitButtonModule, TableModule,
   TabViewModule,
   ToastModule,
 } from 'primeng';
@@ -63,6 +64,7 @@ import {MainComponent} from './layout/main/main.component';
     ModuleComponent,
   ],
   imports: [
+    MatIconModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -98,10 +100,10 @@ import {MainComponent} from './layout/main/main.component';
     MatFormFieldModule,
     MatSelectModule,
     MatCardModule,
+    TableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {
 }
-
