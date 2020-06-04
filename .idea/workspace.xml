@@ -20,23 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/aside/aside.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/aside/aside.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/aside/aside.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/aside/aside.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/aside/aside.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/aside/aside.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/footer/footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/footer/footer.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/images/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +149,7 @@
       <workItem from="1591182314093" duration="14796000" />
       <workItem from="1591226839746" duration="2748000" />
       <workItem from="1591265617432" duration="20511000" />
-      <workItem from="1591295337262" duration="4418000" />
+      <workItem from="1591295337262" duration="5291000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -328,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591288506090</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="semestre start">
+      <created>1591299980175</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1591299980176</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,7 +339,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Page Enseignant sans footer" />
     <MESSAGE value="dialog style" />
     <MESSAGE value="inputs in the center of dialog" />
     <MESSAGE value="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka" />
@@ -373,7 +363,8 @@
     <MESSAGE value="photo enseignant" />
     <MESSAGE value="post update" />
     <MESSAGE value="sector done" />
-    <option name="LAST_COMMIT_MESSAGE" value="sector done" />
+    <MESSAGE value="semestre start" />
+    <option name="LAST_COMMIT_MESSAGE" value="semestre start" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -400,30 +391,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1591298593553" />
-    <state x="463" y="121" key="FileChooserDialogImpl" timestamp="1591274884660">
+    <state x="463" y="121" key="FileChooserDialogImpl" timestamp="1591299986266">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1591274884660" />
+    <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1591299986266" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
-    <state width="1345" height="184" key="GridCell.Tab.0.bottom" timestamp="1591288753521">
+    <state width="1345" height="184" key="GridCell.Tab.0.bottom" timestamp="1591299858397">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="184" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591288753521" />
+    <state width="1345" height="184" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591299858397" />
     <state width="813" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="184" key="GridCell.Tab.0.center" timestamp="1591288753520">
+    <state width="1345" height="184" key="GridCell.Tab.0.center" timestamp="1591299858397">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="184" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591288753520" />
+    <state width="1345" height="184" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591299858397" />
     <state width="813" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="184" key="GridCell.Tab.0.left" timestamp="1591288753520">
+    <state width="1345" height="184" key="GridCell.Tab.0.left" timestamp="1591299858396">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="184" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591288753520" />
+    <state width="1345" height="184" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591299858396" />
     <state width="813" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="184" key="GridCell.Tab.0.right" timestamp="1591288753521">
+    <state width="1345" height="184" key="GridCell.Tab.0.right" timestamp="1591299858397">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="184" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591288753521" />
+    <state width="1345" height="184" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591299858397" />
     <state width="813" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
     <state x="258" y="54" key="MergeDialog" timestamp="1591288607111">
       <screen x="0" y="0" width="1366" height="728" />
