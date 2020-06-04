@@ -56,3 +56,29 @@
     text-align: left;
   }
 }
+$radius: 3px;
+$border: #e2e2e2;
+
+
+.item {
+  position: relative;
+  &:hover {
+    background-color: #EDEDED;
+    > .submenu {
+      display: inline-block;
+    }
+  }
+}
+
+.submenu {
+  width:100%;
+  display: none;
+  position: absolute;
+  top: -2px;
+  left: 100%;
+  border-width: 1px 1px 1px 1px;
+  border-style:solid;
+  border-color: $border $border $border $border;
+  border-radius: $radius;
+  //box-shadow: 2px 2px 3px rgba(0,0,0,.25);
+}

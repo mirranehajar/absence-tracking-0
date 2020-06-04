@@ -8,12 +8,8 @@
         <tbody>
         <tr *ngFor="let m of modules">
           <td>{{m.libelle}}</td>
-          <button mat-fab color="warn" aria-label="Example icon button with a delete icon" (click)="deleteByLibelle(m)">
-            <mat-icon>delete</mat-icon>
-          </button>
-          <button mat-fab style="background-color: #3D3D3B"  (click)="showBasicDialog(m)">
-            <mat-icon>bookmark</mat-icon>
-          </button>
+          <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByLibelle(m)"></p-button>
+          <p-button icon="pi pi-info" styleClass="ui-button-danger" (click)="showBasicDialog(m)"></p-button>
           <p-dialog  header="More Infos" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
             <table  class="grid table table-bordered table-sortable">
               <thead>
@@ -34,9 +30,7 @@
     </div>
   </div>
 </div>
-<div class="example-button-row">
-   <button mat-raised-button style="background-color: #945217" (click)="showSaveModule()">Ajouter module</button>
-</div>
+    <p-button styleClass="ui-button-danger" label="ajouter module" (click)="showSaveModule()"></p-button>
     <p-dialog  header="Add a new module" [(visible)]="displayBasicM" [style]="{width: '50vw'}" [baseZIndex]="10000">
       <form style="text-align: center" method="POST" >
         <div style="display:inline-block" class="form-group">
@@ -54,9 +48,7 @@
       </form>
     </p-dialog>
 
-<div class="example-button-row">
-<button mat-raised-button style="background-color: #945217" (click)="showTypeSeance()">Ajouter type seance</button>
-</div>
+<p-button styleClass="ui-button-danger" label="ajouter type seance" (click)="showTypeSeance()"></p-button>
 <p-dialog  header="Add a new typeSeance" [(visible)]="displayBasicT" [style]="{width: '50vw'}" [baseZIndex]="10000">
   <form style="text-align: center" method="POST" >
     <div style="display:inline-block" class="form-group">
