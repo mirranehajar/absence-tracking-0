@@ -54,7 +54,7 @@ export class SectorService {
   }
   public update() {
     console.log(this.sectorFounded);
-    this.http.put<number>(this._url, this.sectorFounded).subscribe(
+    this.http.post<number>(this._url + 'update', this.sectorFounded).subscribe(
       (data) => {
         if (data > 0) {
           this.deleteFromList(this.sectorFounded);

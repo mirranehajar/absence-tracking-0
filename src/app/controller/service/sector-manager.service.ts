@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
-import {Sector} from '../model/sector';
 import {HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import {SectorManager} from '../model/sector-manager';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SectorManagerService {
   // tslint:disable-next-line:variable-name
   private _sectorManager: SectorManager;
   // tslint:disable-next-line:variable-name
-  private _sectorManagers: Array<SectorManager>;
+  private _sectorManagers: SectorManager[];
   // tslint:disable-next-line:variable-name
   private _sectorManagerFounded: SectorManager;
   // tslint:disable-next-line:variable-name
@@ -19,61 +18,61 @@ export class SectorManagerService {
 
   public findByEnseignant(sectorManager: SectorManager) {
     this.http.get<SectorManager>(this._url + 'enseignant/' ).subscribe(
-      data => {
+      (data) => {
         this.sectorManagerFounded = data;
-      }
+      },
     );
   }
   public findByFilière(sectorManager: SectorManager) {
     this.http.get<SectorManager>(this._url + 'filiere/' ).subscribe(
-      data => {
+      (data) => {
         this.sectorManagerFounded = data;
-      }
+      },
     );
   }
   public deleteByFilière(sectorManager: SectorManager) {
     this.http.delete<number>(this._url + 'filiere/').subscribe(
-      data => {
+      (data) => {
         console.log(data);
         this.deleteFromList(sectorManager);
-      }
+      },
     );
   }
   public deleteFromList(sectorManager: SectorManager) {
-    const index = this.sectorManagers.findIndex(e => e.sector === sectorManager.sector);
+    const index = this.sectorManagers.findIndex((e) => e.sector === sectorManager.sector);
     if (index !== -1) {
       this.sectorManagers.splice(index, 1);
     }
   }
   public findAll() {
-    this.http.get<Array<SectorManager>>(this._url).subscribe(
-      data => {
+    this.http.get<SectorManager[]>(this._url).subscribe(
+      (data) => {
         this.sectorManagers = data;
-      }
+      },
     );
   }
   public update() {
-    this.http.put<number>(this._url, this.sectorManagers).subscribe(
-      data => {
+    this.http.post<number>(this._url + 'update' , this.sectorManagers).subscribe(
+      (data) => {
         if (data > 0) {
           this.deleteFromList(this.sectorManagerFounded);
           this.sectorManagers.push(this.clone(this.sectorManagerFounded));
         }
-      }, error => {
+      }, (error) => {
         console.log('error');
-      }
+      },
     );
   }
   public save() {
     this.http.post<number>(this._url, this.sectorManager).subscribe(
-      data => {
+      (data) => {
         if (data > 0) {
           this.sectorManagers.push(this.clone(this.sectorManager));
           this.sectorManager = null;
         }
-      }, error => {
+      }, (error) => {
         console.log('error');
-      }
+      },
     );
   }
   private clone(sectorManager: SectorManager) {
@@ -93,14 +92,14 @@ export class SectorManagerService {
     this._sectorManager = value;
   }
 
-  get sectorManagers(): Array<SectorManager> {
+  get sectorManagers(): SectorManager[] {
     if (this._sectorManagers == null) {
       this._sectorManagers = new Array<SectorManager>();
     }
     return this._sectorManagers;
   }
 
-  set sectorManagers(value: Array<SectorManager>) {
+  set sectorManagers(value: SectorManager[]) {
     this._sectorManagers = value;
   }
 

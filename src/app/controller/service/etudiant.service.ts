@@ -1,8 +1,8 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Etudiant} from '../model/etudiant.model';
-import {Sector} from '../model/sector';
 import {Groupe} from '../model/groupe';
+import {Sector} from '../model/sector';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +14,7 @@ export class EtudiantService {
   private _etudiants: Etudiant[];
   // tslint:disable-next-line:variable-name
   private _etudiantFounded: Etudiant;
+  private _etudiantsFounded: Etudiant[];
   // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/etudiant/';
 
@@ -32,6 +33,13 @@ export class EtudiantService {
       },
     );
   }
+  public findByGroupe(groupe: Groupe) {
+    this.http.post<Etudiant[]>(this._url + 'groupe', groupe).subscribe(
+      (data) => {
+        this.etudiantsFounded = data;
+      },
+    );
+  }
   public findByCne(etudiant: Etudiant) {
     this.http.get<Etudiant>(this._url + 'cne/' + etudiant.cne).subscribe(
       (data) => {
@@ -47,7 +55,7 @@ export class EtudiantService {
     );
   }
   public update() {
-    this.http.put<number>(this._url, this.etudiantFounded).subscribe(
+    this.http.post<number>(this._url + 'update', this.etudiantFounded).subscribe(
       (data) => {
         if (data > 0) {
           this.deleteFromList(this.etudiantFounded);
@@ -126,5 +134,13 @@ export class EtudiantService {
   }
   set etudiants(value: Etudiant[]) {
     this._etudiants = value;
+  }
+
+  get etudiantsFounded(): Etudiant[] {
+    return this._etudiantsFounded;
+  }
+
+  set etudiantsFounded(value: Etudiant[]) {
+    this._etudiantsFounded = value;
   }
 }

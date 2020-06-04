@@ -1,15 +1,15 @@
+import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {TypeSession} from '../model/type-session';
-import {HttpClient} from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TypeSessionService {
 // tslint:disable-next-line:variable-name
   private _typeSession: TypeSession;
   // tslint:disable-next-line:variable-name
-  private _typeSessions: Array<TypeSession>;
+  private _typeSessions: TypeSession[];
   // tslint:disable-next-line:variable-name
   private _typeSessionFounded: TypeSession;
   // tslint:disable-next-line:variable-name
@@ -18,61 +18,61 @@ export class TypeSessionService {
 
   public findByLibelle(typeSession: TypeSession) {
     this.http.get<TypeSession>(this._url + 'libelle/' + typeSession.libelle).subscribe(
-      data => {
+      (data) => {
         this.typeSessionFounded = data;
-      }
+      },
     );
   }
   public findByReference(typeSession: TypeSession) {
     this.http.get<TypeSession>(this._url + 'reference/' + typeSession.reference).subscribe(
-      data => {
+      (data) => {
         this.typeSessionFounded = data;
-      }
+      },
     );
   }
   public findAll() {
-    this.http.get<Array<TypeSession>>(this._url).subscribe(
-      data => {
+    this.http.get<TypeSession[]>(this._url).subscribe(
+      (data) => {
         this.typeSessions = data;
-      }
+      },
     );
   }
   public deleteByReference(typeSession: TypeSession) {
     this.http.delete<number>(this._url + 'reference/' + typeSession.reference).subscribe(
-      data => {
+      (data) => {
         console.log(data);
         this.deleteFromList(typeSession);
-      }
+      },
     );
   }
   public deleteFromList(typeSession: TypeSession) {
-    const index = this.typeSessions.findIndex(e => e.reference === typeSession.reference);
+    const index = this.typeSessions.findIndex((e) => e.reference === typeSession.reference);
     if (index !== -1) {
       this.typeSessions.splice(index, 1);
     }
   }
   public update() {
-    this.http.put<number>(this._url, this._typeSessionFounded).subscribe(
-      data => {
+    this.http.post<number>(this._url + 'update', this._typeSessionFounded).subscribe(
+      (data) => {
         if (data > 0) {
           this.deleteFromList(this._typeSessionFounded);
           this.typeSessions.push(this.clone(this.typeSessionFounded));
         }
-      }, error => {
+      }, (error) => {
         console.log('error');
-      }
+      },
     );
   }
   public save() {
     this.http.post<number>(this._url, this._typeSession).subscribe(
-      data => {
+      (data) => {
         if (data > 0) {
           this._typeSessions.push(this.clone(this.typeSession));
           this.typeSession = null;
         }
-      }, error => {
+      }, (error) => {
         console.log('error');
-      }
+      },
     );
   }
   private clone(typeSession: TypeSession) {
@@ -93,14 +93,14 @@ export class TypeSessionService {
     this._typeSession = value;
   }
 
-  get typeSessions(): Array<TypeSession> {
+  get typeSessions(): TypeSession[] {
     if (this._typeSessions == null) {
       this._typeSessions = new Array<TypeSession>();
     }
     return this._typeSessions;
   }
 
-  set typeSessions(value: Array<TypeSession>) {
+  set typeSessions(value: TypeSession[]) {
     this._typeSessions = value;
   }
 
