@@ -9,4 +9,5 @@ export class Enseignant {
   public password: string;
   public role: number;
   public image: any;
+  public src: any;
 }

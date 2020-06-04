@@ -20,21 +20,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/absence/absence.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/absence/absence.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/absence.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/absence.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/try/try.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/try/try.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/try/try.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/try/try.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/try/try.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/try/try.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/model/enseignant.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/enseignant.model.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/controller/service/enseignant.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/enseignant.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/etudiant.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/etudiant.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/groupe.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/groupe.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/controller/service/sector-manager.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/sector-manager.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/controller/service/sector.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/sector.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/semestre.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/semestre.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/session.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/session.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/type-session.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/type-session.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout/main/main.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/main/main.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +67,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../absence-tracking" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -161,7 +162,9 @@
       <workItem from="1591056393827" duration="3315000" />
       <workItem from="1591112807637" duration="698000" />
       <workItem from="1591128746634" duration="14038000" />
-      <workItem from="1591182314093" duration="8175000" />
+      <workItem from="1591182314093" duration="14796000" />
+      <workItem from="1591226839746" duration="2748000" />
+      <workItem from="1591265617432" duration="20105000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -310,7 +313,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590338063623</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="post update">
+      <created>1591194155757</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1591194155757</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,7 +363,8 @@
     <MESSAGE value="session but not done" />
     <MESSAGE value="upload sector done, save groupe in student done" />
     <MESSAGE value="photo enseignant" />
-    <option name="LAST_COMMIT_MESSAGE" value="photo enseignant" />
+    <MESSAGE value="post update" />
+    <option name="LAST_COMMIT_MESSAGE" value="post update" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -368,38 +379,38 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="447" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1587949360269" />
-    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1591133373304">
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1591228763001">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1591133373304" />
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1591228763001" />
     <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1587997149012">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587997149012" />
-    <state x="463" y="121" key="FileChooserDialogImpl" timestamp="1590194035548">
+    <state x="463" y="121" key="FileChooserDialogImpl" timestamp="1591274884660">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1590194035548" />
+    <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1591274884660" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
-    <state width="1345" height="184" key="GridCell.Tab.0.bottom" timestamp="1591187676080">
+    <state width="1345" height="184" key="GridCell.Tab.0.bottom" timestamp="1591275106845">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="184" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591187676080" />
+    <state width="1345" height="184" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591275106845" />
     <state width="813" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="184" key="GridCell.Tab.0.center" timestamp="1591187676079">
+    <state width="1345" height="184" key="GridCell.Tab.0.center" timestamp="1591275106844">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="184" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591187676079" />
+    <state width="1345" height="184" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591275106844" />
     <state width="813" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="184" key="GridCell.Tab.0.left" timestamp="1591187676079">
+    <state width="1345" height="184" key="GridCell.Tab.0.left" timestamp="1591275106844">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="184" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591187676079" />
+    <state width="1345" height="184" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591275106844" />
     <state width="813" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="184" key="GridCell.Tab.0.right" timestamp="1591187676080">
+    <state width="1345" height="184" key="GridCell.Tab.0.right" timestamp="1591275106844">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="184" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591187676080" />
+    <state width="1345" height="184" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591275106844" />
     <state width="813" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
     <state x="258" y="54" key="MergeDialog" timestamp="1589468841036">
       <screen x="0" y="0" width="1366" height="728" />
@@ -417,10 +428,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1589844739293" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1590338072313">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1591194245204">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1590338072313" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1591194245204" />
     <state x="492" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589468653460">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -429,10 +440,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="371" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1590194812895" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1591033102788">
+    <state x="339" y="162" key="run.anything.popup" timestamp="1591197183574">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1591033102788" />
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1591197183574" />
     <state x="346" y="58" width="672" height="669" key="search.everywhere.popup" timestamp="1591033157042">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

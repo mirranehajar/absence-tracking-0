@@ -121,9 +121,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
           <tr>
-            <td>
-              <img [src]="getImage(rowData.cin)" >
-           </td>
+            <td><img width="50" height="50" [src]="'data:image/jpeg;base64,' + rowData.src" ></td>
             <td *ngFor="let col of columns">
               {{rowData[col.field]}}
             </td>

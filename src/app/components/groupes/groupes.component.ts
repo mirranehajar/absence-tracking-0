@@ -19,7 +19,7 @@ export class GroupesComponent implements OnInit {
   displayBasic: boolean;
   displayBasic2: boolean;
   cols: any[];
-  etudiantdrag: Etudiant;
+  groupeE: Groupe;
   constructor(private semestreService: SemestreService, private etudiantService: EtudiantService,
               private groupeService: GroupeService, private sectorService: SectorService) {}
 
@@ -55,6 +55,11 @@ export class GroupesComponent implements OnInit {
   }
   public save() {
     this.groupeService.save();
+    for ( const e of this.groupe.etudiants) {
+      this.etudiantService.etudiantFounded = e;
+      this.etudiantService.etudiantFounded.groupe = this.groupe;
+      this.etudiantService.update();
+    }
     this.displayBasic = false;
   }
   get etudiants(): Etudiant[] {
@@ -116,5 +121,8 @@ export class GroupesComponent implements OnInit {
   }
   public findByGroupe(groupe: Groupe) {
     return this.etudiantService.findByGroupe(groupe);
+    this.groupeFounded.etudiants = this.etudiantsFounded;
+    this.etudiantService.update();
+    console.log(this.etudiantsFounded);
   }
 }

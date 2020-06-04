@@ -14,7 +14,7 @@ export class EnseignantService {
   private _enseignantFounded: Enseignant;
   // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/enseignant/';
-
+return: string;
   constructor(private http: HttpClient) { }
   public deleteFromList(enseignant: Enseignant) {
     const index = this.enseignants.findIndex((e) => e.numeroSOM === enseignant.numeroSOM);
@@ -77,6 +77,8 @@ export class EnseignantService {
     myclone.tel = enseignant.tel;
     myclone.birthDay = enseignant.birthDay;
     myclone.mail = enseignant.mail;
+    myclone.image = enseignant.image;
+    myclone.src = enseignant.src;
     return myclone;
   }
   get enseignantFounded(): Enseignant {

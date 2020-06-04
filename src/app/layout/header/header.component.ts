@@ -125,7 +125,7 @@ export class HeaderComponent implements OnInit {
   }
   public save() {
     this.sectorService.save();
-    this.sectorManager.sector = this.sector;
+    this.sectorManagerService.sectorManager.sector = this.sector;
     this.sectorManagerService.save();
     this.displayBasic = false;
   }

@@ -22,12 +22,18 @@
           <li class="nav-item dropdown mega-dropdown" mdbDropdown>
             <a mdbDropdownToggle class="nav-link dropdown-toggle"><i class="pi pi-list" style="font-size: 30px"></i>Filière</a>
             <div class="dropdown-menu mega-menu row z-depth-1">
-              <div *ngFor="let s of sectors">
-              <a href="#"><i class="pi pi-desktop" style="font-size: 1em"></i>{{s.libelle}}</a>
-                <button pButton type="button" style="float: right" (click)="showBasicDialog2(s)"  icon="pi pi-user-edit" ></button>
-              <div class="dropdown-divider"></div>
+              <div *ngFor="let s of sectors" class="item has_submenu">
+              <a href="#" ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + s.libelle}}</a>
+                <button pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 "  (click)="showBasicDialog2(s)"  icon="pi pi-pencil" ></button>
+                <div class="submenu">
+                  <div class="item"><i class="material-icons">face</i>ITEM 2a</div>
+                  <div class="item"><i class="material-icons">face</i>ITEM 2b</div>
+                </div>
+                <div class="dropdown-divider"></div>
               </div>
-              <button class="pi pi-plus" (click)="showBasicDialog()" pButton type="button" label="Ajouter une filière" ></button>
+              <div style="text-align: center">
+              <button pButton type="button"  icon="pi pi-plus" (click)="showBasicDialog()" style="opacity: 0.8" label="Nouvelle Filière" ></button>
+            </div>
             </div>
           </li>
           <li class="nav-item">
