@@ -24,7 +24,7 @@ export class EtudiantsComponent implements OnInit {
   displayBasic: boolean;
   displayBasic2: boolean;
   wopts: XLSX.WritingOptions = {bookType: 'xlsx', type: 'array'};
-  data: AOA = [['Cne', 'Cin', 'Code Apogee', 'First Name', 'Last Name', 'Birthday', 'Phone Number', 'Sector', 'Group']];
+  data: AOA = [['Cne', 'Cin', 'C.Apogee', 'Prénom', 'Nom', 'J.Naissance', 'N°tél', 'Filière', 'Groupe']];
   fileName = 'Example-student.xlsx';
   private _url = 'http://localhost:8090/absence-tracking/etudiant/';
   selectedFile: File;
@@ -38,8 +38,12 @@ export class EtudiantsComponent implements OnInit {
               private sectorService: SectorService, private groupeService: GroupeService, private http: HttpClient) {
   }
 
-  ngOnInit(): void {
-    this.etudiantService.findAll();
+  async ngOnInit(): Promise<void> {
+    await this.etudiantService.findAll();
+    for ( const e of this.etudiants) {
+      await this.getImage(e.cin);
+      e.src = this.retrievedImage;
+    }
     this.groupeService.findAll();
     this.sectorService.findAll();
     this.cols = [
@@ -51,8 +55,6 @@ export class EtudiantsComponent implements OnInit {
       { field: 'mail', header: 'Email' },
       { field: 'tel', header: 'Tel' },
       { field: 'birthDay', header: 'J.Naissance' },
-      { field: 'filiere', header: 'Filière' },
-      { field: 'groupe', header: 'Groupe' },
     ];
   }
 
@@ -81,7 +83,6 @@ export class EtudiantsComponent implements OnInit {
   public update() {
     this.etudiantService.update();
     this.displayBasic2 = false;
-    window.location.reload();
   }
 
   get etudiantFounded(): Etudiant {
@@ -184,14 +185,13 @@ export class EtudiantsComponent implements OnInit {
       );
   }
   // Gets called when the user clicks on retieve image button to get the image from back end
-  getImage(cin: string): any {
+  async getImage(cin: string): Promise<any> {
     // Make a call to Spring Boot to get the Image Bytes.
-    this.http.get<Etudiant>(this._url + 'get/' + cin)
-      .subscribe(
+    await this.http.get<Etudiant>(this._url + 'get/' + cin)
+      .toPromise().then(
         (res) => {
           this.retrievedImage = 'data:image/jpeg;base64,' + res.image;
           console.log(this.retrievedImage);
-          return this.retrievedImage;
         },
       );
   }

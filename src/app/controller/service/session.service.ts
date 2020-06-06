@@ -15,7 +15,7 @@ export class SessionService {
   // tslint:disable-next-line:variable-name
   private _sessionFounded: Session;
   // tslint:disable-next-line:variable-name
-  private _url = 'http://localhost:8090/absence-tracking/seance/';
+  private _url = 'http://localhost:8090/absence-tracking/session/';
   constructor(private http: HttpClient) { }
 
   public findByLibelle(session: Session) {
@@ -31,9 +31,10 @@ export class SessionService {
         this.sessionFounded = data;
       },
     );
+    console.log(this.sessionFounded);
   }
-  public findAll() {
-    this.http.get<Session[]>(this._url).subscribe(
+  public async findAll() {
+    await this.http.get<Session[]>(this._url).toPromise().then(
       (data) => {
         this.sessions = data;
       },
@@ -42,7 +43,6 @@ export class SessionService {
   public deleteByReference(session: Session) {
     this.http.delete<number>(this._url + 'reference/' + session.reference).subscribe(
       (data) => {
-        console.log(data);
         this.deleteFromList(session);
       },
     );
@@ -69,6 +69,7 @@ export class SessionService {
     this.http.post<number>(this._url, this.session).subscribe(
       (data) => {
         if (data > 0) {
+          console.log(this.session);
           this.sessions.push(this.clone(this.session));
           this.session = null;
         }
@@ -84,7 +85,9 @@ export class SessionService {
     myclone.dateStart = session.dateStart ;
     myclone.dateStop = session.dateStop ;
     myclone.groupes = session.groupes ;
+    console.log(session.typeSession);
     myclone.typeSession = session.typeSession ;
+    console.log(myclone.typeSession);
     return myclone;
   }
   get session(): Session {

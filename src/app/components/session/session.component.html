@@ -20,44 +20,30 @@
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="text" placeholder="Reference" name="reference" [(ngModel)]="session.reference">
+              <input type="texte" name="libelle" placeholder="Titre" [(ngModel)]="session.libelle">
             </div>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="date" name="dateStart" [(ngModel)]="session.dateStart">
+              <input type="number" name="durée" placeholder="La durée de la séance (H)" [(ngModel)]="period">
             </div>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="number" name="durée" placeholder="La durée de la séance en heures" [(ngModel)]="period">
+              <p-dropdown name="typeSession" [options]="typeSessions" [(ngModel)]="session.typeSession" placeholder="Choisir type de la séance" optionLabel="libelle"></p-dropdown>
             </div>
           </div>
           <br>
           <div class="row">
-            <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <select  name="TypeSession"  [(ngModel)]="session.typeSession" required>
-                <option *ngFor="let t of typeSessions" [ngValue]="t">{{t.libelle}}</option>
-              </select>
-            </div>
+          <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+            <p-multiSelect name="groupes" defaultLabel="Choisir des groupes" [options]="groupes" [(ngModel)]="session.groupes" optionLabel="libelle"></p-multiSelect>
           </div>
-          <br>
-          <div class="row">
-            <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <mat-form-field>
-                <mat-label>Choisir les groupes</mat-label>
-                <mat-select [(ngModel)]="session.groupes" name="etudiants" multiple>
-                  <mat-option *ngFor="let g of groupes" [value]="g">{{g.libelle}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-          </div>
+        </div>
         </div>
         <br>
         <p-footer>
@@ -71,58 +57,36 @@
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="text" [(ngModel)]="sessionFounded.reference" name="libelle" >
+              <input type="texte" name="reference" disabled [(ngModel)]="sessionFounded.reference">
             </div>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="text" [(ngModel)]="sessionFounded.libelle" name="libelle" >
+              <input type="texte" name="libelle" disabled [(ngModel)]="sessionFounded.libelle">
             </div>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="datetime-local"  [(ngModel)]="sessionFounded.dateStart" name="dateStart">
+              <input type="texte" name="typeSession" disabled [(ngModel)]="sessionFounded.typeSession">
             </div>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="datetime-local" [(ngModel)]="sessionFounded.dateStop"  name="dateStop">
-            </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <select  name="TypeSession" [(ngModel)]="sessionFounded.typeSession" required>
-                <option *ngFor="let t of typeSessions" [ngValue]="t">{{t.libelle}}</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <mat-form-field>
-                <mat-label>Choisir les groupes </mat-label>
-                <mat-select name="groupes" [(ngModel)]="sessionFounded.groupes" multiple>
-                  <mat-option *ngFor="let g of groupes" [value]="g">{{g.libelle}}</mat-option>
-                </mat-select>
-              </mat-form-field>
+              <input type="texte" name="groupes" disabled [(ngModel)]="sessionFounded.groupes">
             </div>
           </div>
         </div>
         <br>
         <p-footer>
-          <button (click)="update()" type="submit" pButton icon="pi pi-check" style="float: left"  label="Modifier"></button>
-          <button (click)="deleteByReference(sessionFounded)" type="reset" pButton icon="pi pi-check" style="float: right"  label="Supprimer"></button>
+          <button (click)="deleteByReference(sessionFounded)" type="reset" class="ui-button-danger" pButton icon="pi pi-check"   label="Supprimer"></button>
         </p-footer>
       </form>
     </p-dialog>
   </div>
-
 </div>

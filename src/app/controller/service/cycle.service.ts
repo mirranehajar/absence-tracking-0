@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import {Cycle} from '../model/cycle';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CycleService {
   // tslint:disable-next-line:variable-name
   private _cycle: Cycle;
   // tslint:disable-next-line:variable-name
-  private _cycles: Array<Cycle>;
+  private _cycles: Cycle[];
   // tslint:disable-next-line:variable-name
   private _cycleFounded: Cycle;
   // tslint:disable-next-line:variable-name
@@ -18,42 +18,42 @@ export class CycleService {
 
   public findByLibelle(cycle: Cycle) {
     this.http.get<Cycle>(this._url + 'libelle/' + cycle.libelle).subscribe(
-      data => {
+      (data) => {
         this.cycleFounded = data;
-      }
+      },
     );
   }
   public findAll() {
-    this.http.get<Array<Cycle>>(this._url).subscribe(
-      data => {
+    this.http.get<Cycle[]>(this._url).subscribe(
+      (data) => {
         this.cycles = data;
-      }
+      },
     );
   }
   public deleteByLibelle(cycle: Cycle) {
     this.http.delete<number>(this._url + 'cycle/' + cycle.libelle).subscribe(
-      data => {
+      (data) => {
         console.log(data);
         this.deleteFromList(cycle);
-      }
+      },
     );
   }
   public deleteFromList(cycle: Cycle) {
-    const index = this.cycles.findIndex(e => e.libelle === cycle.libelle);
+    const index = this.cycles.findIndex((e) => e.libelle === cycle.libelle);
     if (index !== -1) {
       this.cycles.splice(index, 1);
     }
   }
   public save() {
     this.http.post<number>(this._url, this._cycle).subscribe(
-      data => {
+      (data) => {
         if (data > 0) {
           this._cycles.push(this.clone(this.cycle));
           this.cycle = null;
         }
-      }, error => {
+      }, (error) => {
         console.log('error');
-      }
+      },
     );
   }
   private clone(cycle: Cycle) {
@@ -72,14 +72,14 @@ export class CycleService {
     this._cycle = value;
   }
 
-  get cycles(): Array<Cycle> {
+  get cycles(): Cycle[] {
     if (this._cycles == null) {
       this._cycles = new Array<Cycle>();
     }
     return this._cycles;
   }
 
-  set cycles(value: Array<Cycle>) {
+  set cycles(value: Cycle[]) {
     this._cycles = value;
   }
 

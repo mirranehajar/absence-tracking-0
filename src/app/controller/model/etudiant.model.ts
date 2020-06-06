@@ -4,8 +4,8 @@ import {Sector} from './sector';
 export class Etudiant {
   public cin: string ;
   public cne: string ;
-  public  codeApogee: number;
-  public  firstName: string ;
+  public codeApogee: number;
+  public firstName: string ;
   public lastName: string ;
   public birthDay: Date;
   public tel: number;
@@ -14,6 +14,7 @@ export class Etudiant {
   public password: string;
   public role: number;
   public image: any;
-  public filiere: Sector;
+  public sector: Sector;
   public groupe: Groupe;
+  public src: any;
 }

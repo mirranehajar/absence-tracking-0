@@ -7,5 +7,5 @@ export class Absence {
   public absent: boolean;
   public justification: string;
   public etudiant: Etudiant;
-  public séance: Session;
+  public session: Session;
 }

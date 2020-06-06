@@ -12,10 +12,25 @@ export class TypeSessionService {
   private _typeSessions: TypeSession[];
   // tslint:disable-next-line:variable-name
   private _typeSessionFounded: TypeSession;
+  private _typeSessionsFounded: TypeSession[];
   // tslint:disable-next-line:variable-name
-  private _url = 'http://localhost:8090/absence-tracking/typeSeance/';
+  private _url = 'http://localhost:8090/absence-tracking/typeSession/';
   constructor(private http: HttpClient) { }
 
+  public findByModule(typeSession: TypeSession) {
+    this.http.post<TypeSession>(this._url + 'module/' , typeSession.module).subscribe(
+      (data) => {
+        this.typeSessionFounded = data;
+      },
+    );
+  }
+  public findBySubject(typeSession: TypeSession) {
+    this.http.post<TypeSession>(this._url + 'subject/' , typeSession.subject).subscribe(
+      (data) => {
+        this.typeSessionFounded = data;
+      },
+    );
+  }
   public findByLibelle(typeSession: TypeSession) {
     this.http.get<TypeSession>(this._url + 'libelle/' + typeSession.libelle).subscribe(
       (data) => {
@@ -52,10 +67,10 @@ export class TypeSessionService {
     }
   }
   public update() {
-    this.http.post<number>(this._url + 'update', this._typeSessionFounded).subscribe(
+    this.http.post<number>(this._url + 'update', this.typeSessionFounded).subscribe(
       (data) => {
         if (data > 0) {
-          this.deleteFromList(this._typeSessionFounded);
+          this.deleteFromList(this.typeSessionFounded);
           this.typeSessions.push(this.clone(this.typeSessionFounded));
         }
       }, (error) => {
@@ -64,10 +79,10 @@ export class TypeSessionService {
     );
   }
   public save() {
-    this.http.post<number>(this._url, this._typeSession).subscribe(
+    this.http.post<number>(this._url, this.typeSession).subscribe(
       (data) => {
         if (data > 0) {
-          this._typeSessions.push(this.clone(this.typeSession));
+          this.typeSessions.push(this.clone(this.typeSession));
           this.typeSession = null;
         }
       }, (error) => {
@@ -80,6 +95,7 @@ export class TypeSessionService {
     myclone.libelle = typeSession.libelle ;
     myclone.enseignant = typeSession.enseignant ;
     myclone.module = typeSession.module ;
+    myclone.subject = typeSession.subject ;
     return myclone;
   }
   get typeSession(): TypeSession {
@@ -110,5 +126,13 @@ export class TypeSessionService {
 
   set typeSessionFounded(value: TypeSession) {
     this._typeSessionFounded = value;
+  }
+
+  get typeSessionsFounded(): TypeSession[] {
+    return this._typeSessionsFounded;
+  }
+
+  set typeSessionsFounded(value: TypeSession[]) {
+    this._typeSessionsFounded = value;
   }
 }

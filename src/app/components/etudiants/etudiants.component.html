@@ -1,8 +1,19 @@
+<div class="container row">
+  <div class="col-md-6">
+    <input type="file" (change)="onFileChanged($event)">
+  </div>
+  <div class="col-md-6">
+    <input type="button" (click)="upload()" value="upload">
+  </div>
+  <div class="col-md-6">
+    <input type="text" [(ngModel)]="cne">
+  </div>
+</div>
 <div class="container">
   <div class="card text-center">
     <div class="card-header">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
           <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un étudiant"></button>
           <p-dialog  header="Ajout d'un nouveau étudiant" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
             <form style="text-align: center" method="POST" >
@@ -59,18 +70,14 @@
               <div class="row">
                 <div class="ui-inputgroup">
                   <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                  <select  name="Filiere"  [(ngModel)]="etudiant.filiere" required>
-                    <option *ngFor="let s of sectors" [ngValue]="s">{{s.libelle}}</option>
-                  </select>
+                  <p-dropdown name="sector" [options]="sectors" [(ngModel)]="etudiant.sector" placeholder="Choisir une filière" optionLabel="libelle"></p-dropdown>
                 </div>
               </div>
               <br>
               <div class="row">
                 <div class="ui-inputgroup">
                   <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                  <select  name="Groupe"  [(ngModel)]="etudiant.groupe" required>
-                    <option *ngFor="let g of groupes" [ngValue]="g">{{g.libelle}}</option>
-                  </select>
+                  <p-dropdown name="groupe" [options]="groupes" [(ngModel)]="etudiant.groupe" placeholder="Choisir un groupe" optionLabel="libelle"></p-dropdown>
                 </div>
               </div>
               </div>
@@ -84,19 +91,11 @@
           </p-dialog>
           <p-messages [value]="msgs">msg</p-messages>
         </div>
-
-        <div class="col-md-3">
+        <div class="col-md-4">
           <input type="file" (change)="onFileChange($event)" multiple="false" />
         </div>
-        <div class="col-md-3">
-          <p-button label="Donwload example" styleClass="ui-button-warning" (click)="export()" icon="pi pi-download" ></p-button>
-        </div>
-        <div class="col-md-3">
-<span class="ui-float-label">
-  <input type="text" class="form-control" size="15"id="disabled-input"/>
-    <label for="disabled-input">Search</label>
-    <p-button icon="pi pi-search" styleClass="ui-button-secondary"></p-button>
-</span>
+        <div class="col-md-4">
+          <p-button label="Donwload example" (click)="export()" icon="pi pi-download" ></p-button>
         </div>
       </div>
     </div>
@@ -111,16 +110,20 @@
                   {{col.header}}
                   <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
                 </th>
+                <th>Filière</th>
+                <th>Groupe</th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-columns="columns">
               <tr>
-                <td>
-                  <img [src]="getImage(rowData.cin)">
-                </td>
+                <td><img width="40" height="40" [src]="rowData.src" ></td>
                 <td *ngFor="let col of columns">
                   {{rowData[col.field]}}
                 </td>
+                <td *ngIf="rowData.sector == null"></td>
+                <td *ngIf="rowData.groupe == null"></td>
+                <td *ngIf="rowData.sector">{{rowData.sector.libelle}}</td>
+                <td *ngIf="rowData.groupe">{{rowData.groupe.libelle}}</td>
               <p-button icon="pi pi-user-edit" (click)="showBasicDialog2(rowData)" styleClass="ui-button-info"></p-button>
               <p-dialog  header="Modification d'un étudiant" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
                 <form style="text-align: center" method="POST" >
@@ -173,6 +176,20 @@
                         <input [(ngModel)]="etudiantFounded.tel" name="tel" type="tel" pInputText >
                       </div>
                     </div>
+                  <br>
+                  <div class="row">
+                    <div class="ui-inputgroup">
+                      <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                      <p-dropdown name="sector" [options]="sectors" [(ngModel)]="etudiantFounded.sector" optionLabel="libelle"></p-dropdown>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="ui-inputgroup">
+                      <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                      <p-dropdown name="groupe" [options]="groupes" [(ngModel)]="etudiantFounded.groupe"  optionLabel="libelle"></p-dropdown>
+                    </div>
+                  </div>
                   </div>
                   <br>
                   <p-footer>

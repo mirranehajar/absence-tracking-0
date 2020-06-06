@@ -1,8 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Enseignant} from '../../controller/model/enseignant.model';
-import {Module, TypeSeance} from '../../controller/model/module';
+import {Module} from '../../controller/model/module';
+import {Subject} from '../../controller/model/subject';
+import {TypeSession} from '../../controller/model/type-session';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {ModuleService} from '../../controller/service/module.service';
+import {SubjectService} from '../../controller/service/subject.service';
+import {TypeSessionService} from '../../controller/service/type-session.service';
 
 @Component({
   selector: 'app-module',
@@ -11,69 +15,67 @@ import {ModuleService} from '../../controller/service/module.service';
 })
 export class ModuleComponent implements OnInit {
   displayBasic: boolean;
-  displayBasicM: boolean;
-  displayBasicT: boolean;
-  moduleTypes: TypeSeance[];
+  displayBasic2: boolean;
+  displayBasic3: boolean;
 
-  constructor(private moduleService: ModuleService) {
+  constructor(private moduleService: ModuleService, private subjectService: SubjectService,
+              private enseignantService: EnseignantService, private typeSessionService: TypeSessionService) {
   }
 
   ngOnInit(): void {
     this.moduleService.findAll();
-    this.moduleService.findAllT();
-    this.moduleService.findAll();
+    this.subjectService.findAll();
+    this.enseignantService.findAll();
   }
 
   get modules(): Module[] {
     return this.moduleService.modules;
   }
-
   get module(): Module {
     return this.moduleService.module;
   }
-
   get moduleFounded(): Module {
     return this.moduleService.moduleFounded;
   }
-
-  get typeSeance(): TypeSeance {
-    return this.moduleService.typeSeance;
+  public deleteByLibelle(module: Module) {
+    this.moduleService.deleteByLibelle(module);
   }
-
-  get typeSeances(): TypeSeance[] {
-    return this.moduleService.typeSeances;
+  save() {
+    this.moduleService.save();
+    this.displayBasic = false;
   }
-  get enseignant(): Enseignant {
-    return this.moduleService.enseignant;
+  async addSubject() {
+    await this.subjectService.save();
+    this.subjectService.findAll();
   }
-  get enseignants(): Enseignant[] {
-    return this.moduleService.enseignants;
-  }
-
-  public deleteByLibelle(m: Module) {
-    this.moduleService.deleteByLibelle(m);
-  }
-
-  showBasicDialog(m: Module) {
-    this.moduleTypes = this.typeSeances.filter((type) => type.module.libelle === m.libelle);
+  showBasicDialog() {
     this.displayBasic = true;
   }
-
-  showSaveModule() {
-    this.displayBasicM = true;
+  showBasicDialog2() {
+    this.displayBasic2 = true;
   }
-
-  saveModule() {
-    this.moduleService.saveModule();
-    this.displayBasicM = false;
+  showBasicDialog3() {
+    this.displayBasic3 = true;
   }
-
-  saveTypeSeance() {
-    this.moduleService.saveTypeSeance();
-    this.displayBasicT = false;
+  get subjects(): Subject[] {
+    return this.subjectService.subjects;
   }
-
-  showTypeSeance() {
-    this.displayBasicT = true;
+  get subject(): Subject {
+    return this.subjectService.subject;
+  }
+  get enseignants(): Enseignant[] {
+    return this.enseignantService.enseignants;
+  }
+  get typeSession(): TypeSession {
+    return this.typeSessionService.typeSession;
+  }
+  get typeSessions(): TypeSession[] {
+    return this.typeSessionService.typeSessions;
+  }
+  get typeSessionFounded(): TypeSession {
+    return this.typeSessionService.typeSessionFounded;
+  }
+  get typeSessionsFounded(): TypeSession[] {
+    return this.typeSessionService.typeSessionsFounded;
   }
 }

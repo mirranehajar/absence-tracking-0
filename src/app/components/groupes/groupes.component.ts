@@ -19,12 +19,12 @@ export class GroupesComponent implements OnInit {
   displayBasic: boolean;
   displayBasic2: boolean;
   cols: any[];
-  groupeE: Groupe;
+
   constructor(private semestreService: SemestreService, private etudiantService: EtudiantService,
               private groupeService: GroupeService, private sectorService: SectorService) {}
 
-  ngOnInit(): void {
-    this.etudiantService.findAll();
+  async ngOnInit(): Promise<void> {
+    await this.etudiantService.findAll();
     this.groupeService.findAll();
     this.cols = [
       { field: 'cne', header: 'Cne' },
@@ -90,7 +90,7 @@ export class GroupesComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
       this.etudiantService.etudiantFounded.groupe = groupe;
-      console.log(this.etudiantService.etudiantFounded);
+      console.log(this.etudiantsFounded);
       this.etudiantService.update();
     }
   }

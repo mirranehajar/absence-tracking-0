@@ -13,7 +13,7 @@
         <div class="row">
           <div class="ui-inputgroup">
             <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-            <p-dropdown name="semestre" [options]="semestres" [(ngModel)]="groupe.semestre" placeholder="Choisir un semestre" optionLabel="name"></p-dropdown>
+            <p-dropdown name="semestre" [options]="semestres" [(ngModel)]="groupe.semestre" placeholder="Choisir un semestre" optionLabel="libelle"></p-dropdown>
           </div>
         </div>
         <br>
@@ -89,8 +89,8 @@
           </p-footer>
       </form>
     </p-dialog>
-      <div cdkDropList [cdkDropListData]="findByGroupe(g)" class="example-list" (cdkDropListDropped)="dropGroupe($event,g)">
-        <p-table [columns]="cols" [value]="findByGroupe(g)" [paginator]="true" [rows]="7">
+      <div cdkDropList [cdkDropListData]="g.etudiants" class="example-list" (cdkDropListDropped)="dropGroupe($event,g)">
+        <p-table [columns]="cols" [value]="g.etudiants" [paginator]="true" [rows]="7">
           <ng-template pTemplate="header" let-columns>
             <tr>
               <th *ngFor="let col of columns" [pSortableColumn]="col.field">

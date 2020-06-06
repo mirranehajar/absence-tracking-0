@@ -30,9 +30,11 @@ export class SessionComponent implements OnInit {
   calendarWeekends = true;
   calendarEvents: EventInput[] = [];
 
-  ngOnInit(): void {
-    this.sessionService.findAll();
+  async ngOnInit(): Promise<void> {
+    await this.sessionService.findAll();
+    console.log(this.sessions);
     this.groupeService.findAll();
+    this.typeSessionService.findAll();
     for (const s of this.sessions) {
     this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
     }
@@ -41,6 +43,8 @@ export class SessionComponent implements OnInit {
     this.displayBasic = true;
     this.session.dateStart = arg.date;
     this.session.dateStop = arg.date;
+    // this.session.dateStop.setHours(arg.date.getHours() + this.period);
+    // this.session.dateStop.setTime(arg.date.getTime + )
   }
     public async showBasicDialog2(event) {
     this.displayBasic2 = true;
@@ -53,7 +57,7 @@ export class SessionComponent implements OnInit {
   handleDateClick() {
     this.calendarEvents = this.calendarEvents.concat({ // add new event data. must create new array
         id: this.session.reference,
-        title: this.session.libelle,
+        title: this.session.reference,
         start: this.session.dateStart,
         end: this.session.dateStop ,
         editable: true,
@@ -72,8 +76,8 @@ export class SessionComponent implements OnInit {
     this.sessionService.update();
   }
   public save() {
-    this.sessionService.save();
     this.handleDateClick();
+    this.sessionService.save();
     this.displayBasic = false;
   }
   get groupes(): Groupe[] {

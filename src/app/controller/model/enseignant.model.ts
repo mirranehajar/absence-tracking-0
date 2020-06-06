@@ -1,3 +1,5 @@
+import {Departement} from './departement';
+
 export class Enseignant {
   public numeroSOM: number;
   public cin: string;
@@ -9,5 +11,6 @@ export class Enseignant {
   public password: string;
   public role: number;
   public image: any;
+  public departement: Departement;
   public src: any;
 }

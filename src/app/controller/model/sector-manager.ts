@@ -6,4 +6,3 @@ export class SectorManager {
   public sector: Sector;
   public enseignant: Enseignant;
 }
-

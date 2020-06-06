@@ -1,89 +1,106 @@
-<div class="card-body">
-  <div class="row">
-    <div class="table-responsive">
-      <table  class="grid table table-bordered table-sortable">
-        <thead>
-          <th>Module</th>
-        </thead>
-        <tbody>
-        <tr *ngFor="let m of modules">
-          <td>{{m.libelle}}</td>
-          <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByLibelle(m)"></p-button>
-          <p-button icon="pi pi-info" styleClass="ui-button-danger" (click)="showBasicDialog(m)"></p-button>
-          <p-dialog  header="More Infos" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
-            <table  class="grid table table-bordered table-sortable">
-              <thead>
-              <th>Type seance</th>
-              <th>Prof</th>
-              </thead>
-              <tbody>
-              <tr *ngFor="let t of moduleTypes">
-                <td>{{t.libelle}}</td>
-                <td>{{t.enseignant.lastName}}</td>
-              </tr>
-              </tbody>
-            </table>
-          </p-dialog>
-        </tr>
-        </tbody>
-      </table>
+<br>
+<div class="row justify-content-center">
+<button (click)="showBasicDialog()" class="btn btn-primary">Ajouter un module</button>
+  </div>
+<br>
+<div class="row" >
+  <div class="col-sm-4" *ngFor="let m of modules">
+    <div class="card text-center">
+      <div class="card-body  back">
+        <h5 class="card-title">{{m.abreveation}}</h5>
+        <p class="card-text">{{m.libelle}}</p>
+        <a href="#" class="btn btn-primary"></a>
+      </div>
+      <div class="card-footer">
+        <button (click)="showBasicDialog2()" pButton type="button" icon="pi pi-info"></button>&nbsp;&nbsp;
+        <button (click)="deleteByLibelle(m)" pButton type="button" icon="pi pi-trash" class="ui-button-danger"></button>
+      </div>
     </div>
+    <br>
   </div>
 </div>
-    <p-button styleClass="ui-button-danger" label="ajouter module" (click)="showSaveModule()"></p-button>
-    <p-dialog  header="Add a new module" [(visible)]="displayBasicM" [style]="{width: '50vw'}" [baseZIndex]="10000">
-      <form style="text-align: center" method="POST" >
-        <div style="display:inline-block" class="form-group">
-          <div class="row">
-            <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input [(ngModel)]="module.libelle" name="libelle" type="text" pInputText placeholder="Module Name" >
-            </div>
-          </div>
-        <p-footer>
-          <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="saveModule()" label="Sauvegarder"></button>
-          <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasicM=false" label="Annuler" class="ui-button-secondary"></button>
-        </p-footer>
-        </div>
-      </form>
-    </p-dialog>
 
-<p-button styleClass="ui-button-danger" label="ajouter type seance" (click)="showTypeSeance()"></p-button>
-<p-dialog  header="Add a new typeSeance" [(visible)]="displayBasicT" [style]="{width: '50vw'}" [baseZIndex]="10000">
-  <form style="text-align: center" method="POST" >
+<p-dialog  header="Ajout d'un module" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <form style="text-align: center" method="POST">
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input [(ngModel)]="typeSeance.reference" name="reference" type="text" pInputText placeholder="Reference" >
+          <input [(ngModel)]="module.libelle" name="libelle" type="text" pInputText placeholder="Libelle" required>
         </div>
       </div>
+      <br>
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input [(ngModel)]="typeSeance.libelle" name="reference" type="text" pInputText placeholder="Reference" >
-        </div>
-        <div class="ui-inputgroup">
-          <select name="MODULE" [(ngModel)]="typeSeance.module"  required >
-            <option *ngFor="let m of modules" [ngValue]="m">{{m.libelle}}</option>
-          </select>
-        </div>
-        <div class="ui-inputgroup">
-          <select name="Enseignant" [(ngModel)]="typeSeance.enseignant"  required >
-            <option *ngFor="let e of enseignants" [ngValue]="e">{{e.lastName}}</option>
-          </select>
+          <input [(ngModel)]="module.abreveation" name="abreveation" type="text" pInputText placeholder="abreveation" required>
         </div>
       </div>
-      <p-footer>
-        <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="saveTypeSeance()" label="Sauvegarder"></button>
-        <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasicT=false" label="Annuler" class="ui-button-secondary"></button>
-      </p-footer>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input [(ngModel)]="subject.libelle" name="subject" type="text" pInputText placeholder="Ajouter une matière" required>
+        </div>&nbsp;
+        <div>
+        <button pButton class="ui-button-success" (click)="addSubject()" icon="pi pi-plus"></button>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <p-multiSelect name="etudiants" editable="true" defaultLabel="Choisir des matières" [options]="subjects" [(ngModel)]="module.subjects" optionLabel="libelle"></p-multiSelect>
+        </div>
+      </div>
     </div>
+    <br>
+    <p-footer>
+      <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Sauvegarder"></button>
+      <button type="reset" pButton icon="pi pi-times" style="float: right"   class="ui-button-secondary"(click)="displayBasic=false" label="Annuler" class="ui-button-secondary"></button>
+    </p-footer>
   </form>
 </p-dialog>
-
-
-
-
+<p-dialog  header="Ajout d'un type de séance" [(visible)]="displayBasic3" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <form style="text-align: center" method="POST">
+    <div style="display:inline-block" class="form-group">
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input [(ngModel)]="module.libelle" name="libelle" type="text" pInputText placeholder="Libelle" required>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input [(ngModel)]="module.abreveation" name="abreveation" type="text" pInputText placeholder="abreveation" required>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input [(ngModel)]="subject.libelle" name="subject" type="text" pInputText placeholder="Ajouter une matière" required>
+        </div>&nbsp;
+        <div>
+        <button pButton class="ui-button-success" (click)="addSubject()" icon="pi pi-plus"></button>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <p-multiSelect name="etudiants" editable="true" defaultLabel="Choisir des matières" [options]="subjects" [(ngModel)]="module.subjects" optionLabel="libelle"></p-multiSelect>
+        </div>
+      </div>
+    </div>
+    <br>
+    <p-footer>
+      <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Sauvegarder"></button>
+      <button type="reset" pButton icon="pi pi-times" style="float: right"   class="ui-button-secondary"(click)="displayBasic=false" label="Annuler" class="ui-button-secondary"></button>
+    </p-footer>
+  </form>
+</p-dialog>
 
 

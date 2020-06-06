@@ -1,15 +1,10 @@
-import {Enseignant} from './enseignant.model';
+import {Semestre} from './semestre';
+import {Subject} from './subject';
 
 export class Module {
   public id: number;
   public libelle: string;
-}
-
-// tslint:disable-next-line:max-classes-per-file
-export class TypeSeance {
-  public id: number;
-  public reference: string;
-  public libelle: string;
-  public module: Module;
-  public enseignant: Enseignant;
+  public abreveation: string;
+  public semestre: Semestre;
+  public subjects: Subject[];
 }

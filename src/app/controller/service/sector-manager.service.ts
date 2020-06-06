@@ -14,7 +14,7 @@ export class SectorManagerService {
   // tslint:disable-next-line:variable-name
   private _sectorManagerFounded: SectorManager;
   // tslint:disable-next-line:variable-name
-  private _url = 'http://localhost:8090/absence-tracking/responsable/';
+  private _url = 'http://localhost:8090/absence-tracking/sectorManager/';
   constructor(private http: HttpClient, private sectorService: SectorService) { }
 
   public findByEnseignant(sectorManager: SectorManager) {
@@ -25,14 +25,14 @@ export class SectorManagerService {
     );
   }
   public findByFilière(sectorManager: SectorManager) {
-    this.http.get<SectorManager>(this._url + 'filiere/' ).subscribe(
+    this.http.get<SectorManager>(this._url + 'sector/' ).subscribe(
       (data) => {
         this.sectorManagerFounded = data;
       },
     );
   }
   public deleteByFilière(sectorManager: SectorManager) {
-    this.http.delete<number>(this._url + 'filiere/').subscribe(
+    this.http.delete<number>(this._url + 'sector/').subscribe(
       (data) => {
         console.log(data);
         this.deleteFromList(sectorManager);
@@ -53,14 +53,14 @@ export class SectorManagerService {
     );
   }
   public update() {
-    this.http.post<number>(this._url + 'update' , this.sectorManagers).subscribe(
+    this.http.post<number>(this._url + 'update/' + this.sectorService.sectorFounded.libelle , this.sectorManagerFounded).subscribe(
       (data) => {
         if (data > 0) {
           this.deleteFromList(this.sectorManagerFounded);
           this.sectorManagers.push(this.clone(this.sectorManagerFounded));
         }
       }, (error) => {
-        console.log('error');
+        console.log(error);
       },
     );
   }
@@ -105,6 +105,9 @@ export class SectorManagerService {
   }
 
   get sectorManagerFounded(): SectorManager {
+    if (this._sectorManagerFounded == null) {
+      this._sectorManagerFounded = new SectorManager();
+    }
     return this._sectorManagerFounded;
   }
 

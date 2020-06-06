@@ -1,6 +1,5 @@
 import {HttpClient} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
-import {MdbTableDirective} from 'angular-bootstrap-md';
 import {ConfirmationService} from 'primeng/api';
 import {Message} from 'primeng/api';
 import {MessageService} from 'primeng/api';
@@ -23,20 +22,23 @@ export class EnseignantComponent implements OnInit {
   displayBasic: boolean;
   displayBasic2: boolean;
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
-  data: AOA = [['Numéro de SOM', 'Cin', 'Prénom', 'Nom', 'Jour de naissance', 'Numéro de téléphone', 'Departement']];
+  data: AOA = [['N°SOM', 'Cin', 'Prénom', 'Nom', 'J.Naissance', 'N°tél']];
   fileName = 'Example-professor.xlsx';
   private _url = 'http://localhost:8090/absence-tracking/enseignant/';
   selectedFile: File;
   retrievedImage: any;
   message: string;
-  imageName: any;
   numeroSOM: number;
   cols: any[];
   constructor(private http: HttpClient, private enseignantService: EnseignantService, private messageService: MessageService) { }
 
-  ngOnInit(): void {this.enseignantService.findAll();
-                    console.log(this.enseignants);
-                    this.cols = [
+  async ngOnInit(): Promise<void> {
+    await this.enseignantService.findAll();
+    for ( const e of this.enseignants) {
+      await this.getImage(e.cin);
+      e.src = this.retrievedImage;
+    }
+    this.cols = [
       { field: 'numeroSOM', header: 'N°SOM' },
       { field: 'cin', header: 'Cin' },
       { field: 'lastName', header: 'Nom' },
@@ -142,10 +144,10 @@ export class EnseignantComponent implements OnInit {
       );
   }
   // Gets called when the user clicks on retrieved image button to get the image from back end
-  getImage(cin: string): any {
+  async getImage(cin: string): Promise<any> {
     // Make a call to Spring Boot to get the Image Bytes.
-    this.http.get<Enseignant>(this._url + 'get/' + cin)
-      .subscribe(
+    await this.http.get<Enseignant>(this._url + 'get/' + cin)
+      .toPromise().then(
         (res) => {
           this.retrievedImage = 'data:image/jpeg;base64,' + res.image;
           console.log(this.retrievedImage);

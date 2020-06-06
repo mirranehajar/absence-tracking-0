@@ -2,6 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Cycle} from '../model/cycle';
 import {Sector} from '../model/sector';
+import {Semestre} from '../model/semestre';
+import {SemestreService} from './semestre.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +16,8 @@ export class SectorService {
   // tslint:disable-next-line:variable-name
   private _sectorFounded: Sector;
   // tslint:disable-next-line:variable-name
-  private _url = 'http://localhost:8090/absence-tracking/filiere/';
-  constructor(private http: HttpClient) { }
+  private _url = 'http://localhost:8090/absence-tracking/sector/';
+  constructor(private http: HttpClient, private semestreService: SemestreService) { }
 
   public findByCycle(sector: Sector) {
     this.http.get<Sector>(this._url + 'cycle').subscribe(
@@ -47,8 +49,12 @@ export class SectorService {
   }
   public findAll() {
     this.http.get<Sector[]>(this._url).subscribe(
-      (data) => {
+      async (data) => {
         this.sectors = data;
+        for (const s of this.sectors) {
+          await this.findBySector(s);
+          s.semestres = this.semestresFounded;
+        }
       },
     );
   }
@@ -70,6 +76,7 @@ export class SectorService {
       (data) => {
         if (data > 0) {
           this.sectors.push(this.clone(this.sector));
+          this.sector = null;
         }
       }, (error) => {
         console.log('error');
@@ -80,6 +87,7 @@ export class SectorService {
     const myclone = new Sector();
     myclone.libelle = sector.libelle ;
     myclone.cycle = sector.cycle;
+    myclone.semestres = sector.semestres;
     return myclone;
   }
   get sector(): Sector {
@@ -116,5 +124,11 @@ export class SectorService {
 
   set sectorFounded(value: Sector) {
     this._sectorFounded = value;
+  }
+  public async findBySector(sector: Sector) {
+   await this.semestreService.findBySector(sector);
+  }
+  get semestresFounded(): Semestre[] {
+    return this.semestreService.semestresFounded;
   }
 }

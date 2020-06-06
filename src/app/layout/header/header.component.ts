@@ -34,10 +34,11 @@ export class HeaderComponent implements OnInit {
    constructor(public sectorManagerService: SectorManagerService, public sectorService: SectorService,
                public cycleService: CycleService, public enseignantService: EnseignantService, public semestreService: SemestreService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.cycleService.findAll();
     this.sectorService.findAll();
-    this.semestreService.findAll();
+    await this.semestreService.findAll();
+    this.enseignantService.findAll();
     this.items = [
       {
         label: 'Acceuil',
@@ -141,6 +142,9 @@ export class HeaderComponent implements OnInit {
   }
   public update() {
     this.sectorService.update();
+    this.sectorManagerService.sectorManagerFounded.sector = this.sectorFounded;
+    console.log(this.sectorManagerFounded);
+    this.sectorManagerService.update();
     this.displayBasic2 = false;
   }
   public save2() {
@@ -170,6 +174,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public deleteByReference(semestre: Semestre) {
-    return this.semestreService.deleteByReference(semestre);
+     console.log(semestre.reference);
+     return this.semestreService.deleteByReference(semestre);
   }
 }

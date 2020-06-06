@@ -1,5 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Sector} from '../model/sector';
 import {Semestre} from '../model/semestre';
 
 @Injectable({
@@ -12,14 +13,15 @@ export class SemestreService {
   private _semestres: Semestre[];
   // tslint:disable-next-line:variable-name
   private _semestreFounded: Semestre;
+  private _semestresFounded: Semestre[];
   // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/semestre/';
   constructor(private http: HttpClient) { }
 
-  public findByFiliere(semestre: Semestre) {
-    this.http.get<Semestre>(this._url + 'filiere/').subscribe(
+  public async findBySector(sector: Sector) {
+    await this.http.post<Semestre[]>(this._url + 'sector/', sector).toPromise().then(
       (data) => {
-        this.semestreFounded = data;
+        this.semestresFounded = data;
       },
     );
   }
@@ -30,8 +32,8 @@ export class SemestreService {
       },
     );
   }
-  public findAll() {
-    this.http.get<Semestre[]>(this._url).subscribe(
+  public async findAll() {
+    await this.http.get<Semestre[]>(this._url).toPromise().then(
       (data) => {
         this.semestres = data;
       },
@@ -52,6 +54,8 @@ export class SemestreService {
     }
   }
   public update() {
+    this.semestresFounded = this.semestreFounded.sector.semestres;
+    this.semestreFounded.sector.semestres = null;
     this.http.post<number>(this._url + 'update' , this.semestreFounded).subscribe(
       (data) => {
         if (data > 0) {
@@ -59,9 +63,10 @@ export class SemestreService {
           this.semestres.push(this.clone(this.semestreFounded));
         }
       }, (error) => {
-        console.log('error');
+        console.log('error' + error);
       },
     );
+    this.semestreFounded.sector.semestres = this.semestresFounded;
   }
   public save(filiere: string) {
     this.http.post<number>(this._url + filiere, this.semestre).subscribe(
@@ -71,7 +76,7 @@ export class SemestreService {
           this.semestre = null;
         }
       }, (error) => {
-        console.log('error');
+        console.log('error' + error);
       },
     );
   }
@@ -80,7 +85,7 @@ export class SemestreService {
     myclone.libelle = semestre.libelle ;
     myclone.reference = semestre.reference ;
     myclone.anneeUniversitaire = semestre.anneeUniversitaire ;
-    myclone.filiere = semestre.filiere;
+    myclone.sector = semestre.sector;
     myclone.groupes = semestre.groupes;
     myclone.modules = semestre.modules;
     myclone.number = semestre.number;
@@ -114,5 +119,13 @@ export class SemestreService {
 
   set semestreFounded(value: Semestre) {
     this._semestreFounded = value;
+  }
+
+  get semestresFounded(): Semestre[] {
+    return this._semestresFounded;
+  }
+
+  set semestresFounded(value: Semestre[]) {
+    this._semestresFounded = value;
   }
 }

@@ -74,7 +74,7 @@ export class AbsenceService {
     myclone.justification = absence.justification ;
     myclone.etudiant = absence.etudiant ;
     myclone.absent = absence.absent ;
-    myclone.séance = absence.séance ;
+    myclone.session = absence.session ;
     return myclone;
   }
   get absence(): Absence {

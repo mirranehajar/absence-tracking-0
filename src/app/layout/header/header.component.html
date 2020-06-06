@@ -16,7 +16,7 @@
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a  class="nav-link"><i class="pi pi-user" style="font-size: 30px"></i> Profile</a>
+            <a href="#" routerLink="/profil" class="nav-link"><i class="pi pi-user" style="font-size: 30px"></i> Profile</a>
           </li>
           <!-- Dropdown -->
           <li class="nav-item dropdown mega-dropdown" mdbDropdown>
@@ -26,16 +26,14 @@
               <a href="#" ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + s.libelle}}</a>
                 <button pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 "  (click)="showBasicDialog2(s)"  icon="pi pi-pencil" ></button>
                 <div class="submenu">
-                  <div *ngFor="let ss of semestres" class="item has_submenu">
+                  <div *ngFor="let ss of s.semestres" class="item has_submenu">
                     <a href="#" ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + ss.libelle}}</a>
-                    <button pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 " (click)="deleteByReference(ss)" icon="pi pi-trash" ></button>
+                    <button pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 " class="ui-button-danger" (click)="deleteByReference(ss)" icon="pi pi-trash" ></button>
                   <div class="dropdown-divider"></div>
                   </div>
                   <div style="text-align: center">
-                    <button pButton type="button"  icon="pi pi-plus" (click)="showBasicDialog3(s.libelle)" style="opacity: 0.8" label="Nouveau Semestre" ></button>
+                    <button pButton type="button"  icon="pi pi-plus"  (click)="showBasicDialog3(s.libelle)" style="opacity: 0.8" label="Nouveau Semestre" ></button>
                   </div>
-                  <div class="dropdown-divider"></div>
-                  <div class="item"><i class="material-icons">face</i>ITEM 2b</div>
                 </div>
                 <div class="dropdown-divider"></div>
               </div>
@@ -45,10 +43,10 @@
             </div>
           </li>
           <li class="nav-item">
-            <a  class="nav-link"><i class="pi pi-users" style="font-size: 30px"></i>Étudiants</a>
+            <a routerLink="/etudiant" class="nav-link"><i class="pi pi-users" style="font-size: 30px"></i>Étudiants</a>
           </li>
           <li class="nav-item">
-            <a  class="nav-link"><i class="pi pi-star" style="font-size: 30px"></i>Enseignants</a>
+            <a routerLink="/enseignant" class="nav-link"><i class="pi pi-star" style="font-size: 30px"></i>Enseignants</a>
           </li>
         </ul>
         <i class="pi pi-bell"></i>
@@ -78,18 +76,14 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <select  name="Cycle"  [(ngModel)]="sector.cycle" required>
-            <option *ngFor="let c of cycles" [ngValue]="c">{{c.libelle}}</option>
-          </select>
+          <p-dropdown name="cycle" [options]="cycles" [(ngModel)]="sector.cycle" placeholder="Choisir un cycle" optionLabel="libelle"></p-dropdown>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <select  name="Responsable"  [(ngModel)]="sectorManager.enseignant" required>
-            <option *ngFor="let e of enseignants" [ngValue]="e" >{{e.lastName +" " + e.firstName }}</option>
-          </select>
+          <p-dropdown name="sectorManager" [options]="enseignants" [(ngModel)]="sectorManager.enseignant" placeholder="Choisir un responsable" optionLabel="lastName"></p-dropdown>
          </div>
       </div>
     </div>
@@ -115,18 +109,14 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <select name="Cycle"  [(ngModel)]="sectorFounded.cycle" required>
-            <option *ngFor="let c of cycles" [ngValue]="c">{{c.libelle}}</option>
-          </select>
+          <p-dropdown name="cycles" [options]="cycles" [(ngModel)]="sectorFounded.cycle"  optionLabel="libelle"></p-dropdown>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <select name="Responsable"  [(ngModel)]="sectorManager.enseignant" required>
-            <option *ngFor="let e of enseignants" [ngValue]="e" >{{e.lastName +" " + e.firstName }}</option>
-          </select>
+          <p-dropdown name="enseignant" [options]="enseignants" [(ngModel)]="sectorManagerFounded.enseignant" optionLabel="lastName"></p-dropdown>
         </div>
       </div>
     </div>
@@ -148,6 +138,7 @@
           <input  placeholder="N°Semestre" [(ngModel)]="semestre.number" name="number" type="number" pInputText  required>
         </div>
       </div>
+      <br>
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>

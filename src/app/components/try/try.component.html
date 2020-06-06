@@ -1,9 +1,17 @@
-<div class="item has_submenu"><i class="material-icons">signal_cellular_alt</i>Priorytety</div>
-<div class="item has_submenu">
-  <i class="material-icons">class</i>Klasyfikacje
-  <div class="submenu">
-    <div class="item"><i class="material-icons">face</i>ITEM 2a</div>
-    <div class="item"><i class="material-icons">face</i>ITEM 2b</div>
+<br>
+<div class="row" >
+  <div class="col-sm-4" *ngFor="let e of etudiants">
+    <div class="card text-center">
+      <div class="card-body  back">
+        <h5 class="card-title">{{e.firstName}}Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+      <div class="card-footer">
+        <button  pButton type="button" icon="pi pi-info"></button>&nbsp;&nbsp;
+        <button pButton type="button" icon="pi pi-trash" class="ui-button-danger"></button>
+      </div>
+    </div>
+    <br>
   </div>
 </div>
-<div class="item has_submenu"><i class="material-icons">local_offer</i>Tagi</div>

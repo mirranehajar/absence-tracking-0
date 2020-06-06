@@ -7,7 +7,7 @@ export class Semestre {
   public libelle: string;
   public number: number;
   public anneeUniversitaire: string;
-  public filiere: Sector;
+  public sector: Sector;
   public modules: Module[];
   public groupes: Groupe[];
 }
