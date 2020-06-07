@@ -1,6 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {TypeSession} from '../model/type-session';
+import {Module} from '../model/module';
 
 @Injectable({
   providedIn: 'root',
@@ -17,10 +18,11 @@ export class TypeSessionService {
   private _url = 'http://localhost:8090/absence-tracking/typeSession/';
   constructor(private http: HttpClient) { }
 
-  public findByModule(typeSession: TypeSession) {
-    this.http.post<TypeSession>(this._url + 'module/' , typeSession.module).subscribe(
+  public async findByModule(module: Module) {
+    await this.http.post<TypeSession[]>(this._url + 'module/' , module).toPromise().then(
       (data) => {
-        this.typeSessionFounded = data;
+        this.typeSessionsFounded = data;
+        console.log(this.typeSessionsFounded);
       },
     );
   }
@@ -67,9 +69,15 @@ export class TypeSessionService {
     }
   }
   public update() {
+    console.log('haha');
+    this.typeSessionsFounded = this.typeSessionFounded.module.typeSessions;
+    this.typeSessionFounded.module.typeSessions = null;
+    console.log(this.typeSessionsFounded);
+    console.log(this.typeSessionFounded);
     this.http.post<number>(this._url + 'update', this.typeSessionFounded).subscribe(
       (data) => {
         if (data > 0) {
+          console.log('hoho');
           this.deleteFromList(this.typeSessionFounded);
           this.typeSessions.push(this.clone(this.typeSessionFounded));
         }
@@ -77,6 +85,7 @@ export class TypeSessionService {
         console.log('error');
       },
     );
+    this.typeSessionFounded.module.typeSessions = this.typeSessionsFounded;
   }
   public save() {
     this.http.post<number>(this._url, this.typeSession).subscribe(
@@ -86,7 +95,7 @@ export class TypeSessionService {
           this.typeSession = null;
         }
       }, (error) => {
-        console.log('error');
+        console.log(error);
       },
     );
   }

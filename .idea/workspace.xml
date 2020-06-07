@@ -20,67 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
-      <change afterPath="$PROJECT_DIR$/src/app/controller/service/subject.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/session/session.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/session/session.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/session/session.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/session/session.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/try/try.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/try/try.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/try/try.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/try/try.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/try/try.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/try/try.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/absence.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/absence.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/absence.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/cycle.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/departement.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/enseignant.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/enseignant.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/etudiant.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/etudiant.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/groupe.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/module.spec.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/controller/model/module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/sector-manager.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/sector-manager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/sector-manager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/sector.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/sector.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/sector.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/semestre.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/semestre.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/semestre.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/session.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/subject.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/subject.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/subject.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/type-session.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/type-session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/type-session.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/absence.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/absence.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/cycle.service.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/cycle.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/cycle.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/enseignant.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/enseignant.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/etudiant.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/etudiant.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/groupe.service.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/groupe.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/groupe.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/controller/service/module.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/module.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/sector-manager.service.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/sector-manager.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/sector-manager.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/sector.service.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/sector.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/sector.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/semestre.service.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/semestre.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/semestre.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/session.service.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/session.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/session.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/type-session.service.spec.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/controller/service/type-session.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/type-session.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/main/main.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/main/main.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/aside/aside.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/aside/aside.component.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +168,7 @@
       <workItem from="1591398978440" duration="5898000" />
       <workItem from="1591437153379" duration="18176000" />
       <workItem from="1591458578519" duration="15648000" />
-      <workItem from="1591475171756" duration="2658000" />
+      <workItem from="1591475171756" duration="16829000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -406,7 +352,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591313737125</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="working on module rn">
+      <created>1591477906608</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1591477906608</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,38 +440,38 @@
     </state>
     <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1591459133920" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
-    <state width="1345" height="184" key="GridCell.Tab.0.bottom" timestamp="1591477791918">
+    <state width="1345" height="184" key="GridCell.Tab.0.bottom" timestamp="1591492298413">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1591361539321" />
-    <state width="1345" height="184" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591477791918" />
+    <state width="1345" height="184" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591492298413" />
     <state width="813" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="184" key="GridCell.Tab.0.center" timestamp="1591477791918">
+    <state width="1345" height="184" key="GridCell.Tab.0.center" timestamp="1591492298413">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1591361539320" />
-    <state width="1345" height="184" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591477791918" />
+    <state width="1345" height="184" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591492298413" />
     <state width="813" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="184" key="GridCell.Tab.0.left" timestamp="1591477791918">
+    <state width="1345" height="184" key="GridCell.Tab.0.left" timestamp="1591492298413">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1591361539319" />
-    <state width="1345" height="184" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591477791918" />
+    <state width="1345" height="184" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591492298413" />
     <state width="813" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="184" key="GridCell.Tab.0.right" timestamp="1591477791918">
+    <state width="1345" height="184" key="GridCell.Tab.0.right" timestamp="1591492298413">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1591361539320" />
-    <state width="1345" height="184" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591477791918" />
+    <state width="1345" height="184" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591492298413" />
     <state width="813" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
     <state x="258" y="54" key="MergeDialog" timestamp="1591288607111">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="258" y="54" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1591288607111" />
-    <state x="512" y="231" width="722" height="265" key="MultipleFileMergeDialog" timestamp="1591301047733">
+    <state x="512" y="231" width="722" height="265" key="MultipleFileMergeDialog" timestamp="1591477935942">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="512" y="231" width="722" height="265" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1591301047732" />
+    <state x="512" y="231" width="722" height="265" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1591477935942" />
     <state x="184" y="13" key="SettingsEditor" timestamp="1587939886192">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -527,10 +480,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1589844739293" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1591302214831">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1591477982217">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1591302214831" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1591477982217" />
     <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1591477316393">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -539,14 +492,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="492" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1591295775266" />
-    <state x="371" y="152" key="git4idea.merge.GitPullDialog" timestamp="1591301041884">
+    <state x="371" y="152" key="git4idea.merge.GitPullDialog" timestamp="1591477968515">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="371" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1591301041884" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1591472493132">
+    <state x="371" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1591477968515" />
+    <state x="406" y="135" key="refactoring.ChangeSignatureDialog" timestamp="1591481265324">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1591472493132" />
+    <state x="406" y="135" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1591481265324" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1591488541871">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1591488541871" />
     <state x="346" y="58" width="672" height="669" key="search.everywhere.popup" timestamp="1591033157042">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

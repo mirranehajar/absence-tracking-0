@@ -2,6 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Module} from '../model/module';
 import {Session} from '../model/session';
+import {TypeSessionService} from './type-session.service';
+import {TypeSession} from '../model/type-session';
 
 @Injectable({
   providedIn: 'root',
@@ -18,12 +20,18 @@ export class ModuleService {
   // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/module/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private typeSessionService: TypeSessionService) { }
 
   public findAll() {
     this.http.get<Module[]>(this._url).subscribe(
-      (data) => {
+      async (data) => {
         this.modules = data;
+        for ( const m of this.modules) {
+          await this.findByModule(m);
+          console.log(this.typeSessionsFounded);
+          m.typeSessions = this.typeSessionsFounded;
+          console.log(m);
+        }
       },
     );
   }
@@ -116,5 +124,11 @@ export class ModuleService {
 
   set modulesFounded(value: Module[]) {
     this._modulesFounded = value;
+  }
+  public async findByModule(module: Module) {
+   await this.typeSessionService.findByModule(module);
+  }
+  get typeSessionsFounded(): TypeSession[] {
+    return this.typeSessionService.typeSessionsFounded;
   }
 }
