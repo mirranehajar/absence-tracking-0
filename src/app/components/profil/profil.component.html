@@ -59,6 +59,7 @@
         <input [(ngModel)]="enseignantConnected.tel" name="tel" type="tel" pInputText style="margin-left: 100px;">
       </div>
     </div>
+  </div>
   <br>
     <div class="row">
       <div class="ui-inputgroup">
@@ -93,7 +94,6 @@
             </div>
           </form>
         </p-dialog>
-    </div>
     <br>
       <button type="submit" pButton (click)="showBasicDialog2()" icon="pi pi-check" style="float: left"  label="Update" style="margin-left: 50px;"></button>
       <p-dialog  header="Change your password" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
@@ -110,6 +110,6 @@
           </div>
         </form>
       </p-dialog>
-    </div>
+  </div>
   </div>
 </form>
