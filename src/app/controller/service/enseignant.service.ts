@@ -44,7 +44,6 @@ export class EnseignantService {
         this.enseignants = data;
       },
     );
-    console.log(this.enseignants);
   }
   public update() {
     this.http.post<number>(this._url + 'update', this.enseignantFounded).subscribe(
@@ -54,7 +53,7 @@ export class EnseignantService {
           this.enseignants.push(this.clone(this.enseignantFounded));
         }
       }, (error) => {
-        console.log('error');
+        console.log('error' + error);
       },
     );
   }

@@ -27,6 +27,7 @@ export class TryComponent implements OnInit {
   }
   ShowBasicDialog(absence: Absence) {
     this.absenceService.absenceFounded = absence;
+    console.log(this.absenceFounded);
     this.basicDialog = true;
   }
   update() {

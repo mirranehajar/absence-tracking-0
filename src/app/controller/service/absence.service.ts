@@ -100,13 +100,13 @@ export class AbsenceService {
   }
 
   get absenceFounded(): Absence {
+    if (this._absenceFounded == null) {
+      this._absenceFounded = new Absence();
+    }
     return this._absenceFounded;
   }
 
   set absenceFounded(value: Absence) {
-    if (this._absenceFounded == null) {
-      this._absenceFounded = new Absence();
-    }
     this._absenceFounded = value;
   }
 }
