@@ -1,6 +1,6 @@
 <div class="card">
-<img src="assets/images/profile.png" >
-  <button pButton type="button" class="ui-button-raised " label="Add picture"></button>
+<img [src]="etudiantConnected.src" >
+  <button pButton type="button" class="ui-button-raised " label="Modifier la photo"></button>
 </div>
 <form style="text-align: center" method="POST" >
   <div style="display:inline-block" class="form-group">
@@ -8,47 +8,55 @@
       <div class="ui-inputgroup">
         <span class="ui-inputgroup-addon" ><i class="pi pi-id-card" ></i></span>
         <h5>Cin:</h5>
-        <input [(ngModel)]="enseignantConnected.cin" disabled  name="cin" type="text" pInputText  required style="margin-left: 100px;">
+        <input  disabled [(ngModel)]="etudiantConnected.cin" name="cin" type="text" pInputText  required style="margin-left: 100px;">
       </div>
     </div>
     <br>
     <div class="row">
       <div class="ui-inputgroup">
         <span class="ui-inputgroup-addon" ><i class="pi pi-id-card" style="line-height: 1.25;"></i></span>
-        <h5>N°SOM:</h5>
-        <input  disabled [(ngModel)]="enseignantConnected.numeroSOM" name="numeroSOM" type="number" pInputText style="margin-left: 100px;">
+        <h5>Cne:</h5>
+        <input [(ngModel)]="etudiantConnected.cne" disabled name="cne" type="text" pInputText style="margin-left: 100px;">
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="pi pi-id-card" style="line-height: 1.25;"></i></span>
+        <h5>Code Apogee:</h5>
+        <input [(ngModel)]="etudiantConnected.codeApogee" disabled name="codeApogee" type="text" pInputText style="margin-left: 10px;">
       </div>
     </div>
     <br>
     <div class="row">
       <div class="ui-inputgroup">
         <span class="ui-inputgroup-addon"><i class="pi pi-user-edit" style="line-height: 1.25;"></i></span>
-        <h5>Nom:</h5>
-        <input [(ngModel)]="enseignantConnected.lastName" name="firstName" type="text" pInputText style="margin-left: 35px;">
+        <h5>First Name:</h5>
+        <input [(ngModel)]="etudiantConnected.firstName" name="firstName" type="text" pInputText style="margin-left: 35px;">
       </div>
     </div>
     <br>
     <div class="row">
       <div class="ui-inputgroup">
         <span class="ui-inputgroup-addon"><i class="pi pi-user-edit" style="line-height: 1.25;"></i></span>
-        <h5>Prénom:</h5>
-        <input [(ngModel)]="enseignantConnected.firstName" name="lastName" type="text" pInputText style="margin-left: 35px;">
+        <h5>Last Name:</h5>
+        <input [(ngModel)]="etudiantConnected.lastName" name="lastName" type="text" pInputText style="margin-left: 35px;">
       </div>
     </div>
     <br>
     <div class="row">
       <div class="ui-inputgroup">
         <span class="ui-inputgroup-addon"><i class="pi pi-user-edit" style="line-height: 1.25;"></i></span>
-        <h5>Email:</h5>
-        <input [(ngModel)]="enseignantConnected.mail" name="mail" type="text" pInputText style="margin-left: 90px;">
+        <h5>Mail:</h5>
+        <input [(ngModel)]="etudiantConnected.mail" name="mail" type="text" pInputText style="margin-left: 90px;">
       </div>
     </div>
     <br>
     <div class="row">
       <div class="ui-inputgroup">
         <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-        <h5>J.Naissance:</h5>
-        <input [(ngModel)]="enseignantConnected.birthDay" name="birthDay" type="date" pInputText style="margin-left: 45px;">
+        <h5>Birth date:</h5>
+        <input [(ngModel)]="etudiantConnected.birthDay" name="birthDay" type="date" pInputText style="margin-left: 45px;">
       </div>
     </div>
     <br>
@@ -56,15 +64,16 @@
       <div class="ui-inputgroup">
         <span class="ui-inputgroup-addon"><i class="pi pi-mobile" style="line-height: 1.25;"></i></span>
         <h5>Tél:</h5>
-        <input [(ngModel)]="enseignantConnected.tel" name="tel" type="tel" pInputText style="margin-left: 100px;">
+        <input [(ngModel)]="etudiantConnected.tel" name="tel" type="tel" pInputText style="margin-left: 100px;">
       </div>
     </div>
+  </div>
   <br>
     <div class="row">
       <div class="ui-inputgroup">
         <span class="ui-inputgroup-addon" style="margin-left: 410px;"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
         <h5>password:</h5>
-        <button type="submit" pButton (click)="showBasicDialog()" icon="pi pi-update" style="float: left"  label="Change password" style="margin-left: 50px;"></button>
+        <button type="button" pButton (click)="showBasicDialog()" icon="pi pi-update"   label="Change password" style="margin-left: 50px;"></button>
         <p-dialog  header="Change your password" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
           <form style="text-align: center" method="POST" >
             <div style="display:inline-block" class="form-group">
@@ -93,10 +102,9 @@
             </div>
           </form>
         </p-dialog>
-    </div>
     <br>
-      <button type="submit" pButton (click)="showBasicDialog2()" icon="pi pi-check" style="float: left"  label="Update" style="margin-left: 50px;"></button>
-      <p-dialog  header="Change your password" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+      <button type="submit" pButton (click)="showBasicDialog2()" icon="pi pi-check"   label="Update" style="margin-left: 50px;"></button>
+      <p-dialog  header="Confirmer modification" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
         <form style="text-align: center" method="POST" >
           <div style="display:inline-block" class="form-group">
             <div class="row">

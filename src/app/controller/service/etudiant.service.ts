@@ -16,6 +16,7 @@ export class EtudiantService {
   private _etudiantFounded: Etudiant;
   private _etudiantsFounded: Etudiant[];
   // tslint:disable-next-line:variable-name
+  private _etudiantConnected: Etudiant;
   private _url = 'http://localhost:8090/absence-tracking/etudiant/';
 
   constructor(private http: HttpClient) { }
@@ -40,8 +41,8 @@ export class EtudiantService {
       },
     );
   }
-  public findByCne(etudiant: Etudiant) {
-    this.http.get<Etudiant>(this._url + 'cne/' + etudiant.cne).subscribe(
+  public async findByCne(etudiant: Etudiant) {
+    await this.http.get<Etudiant>(this._url + 'cne/' + etudiant.cne).toPromise().then(
       (data) => {
         this.etudiantFounded = data;
       },
@@ -135,5 +136,16 @@ export class EtudiantService {
 
   set etudiantsFounded(value: Etudiant[]) {
     this._etudiantsFounded = value;
+  }
+
+  get etudiantConnected(): Etudiant {
+    if (this._etudiantConnected == null) {
+      this._etudiantConnected = new Etudiant();
+    }
+    return this._etudiantConnected;
+  }
+
+  set etudiantConnected(value: Etudiant) {
+    this._etudiantConnected = value;
   }
 }

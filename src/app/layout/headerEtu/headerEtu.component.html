@@ -1,0 +1,136 @@
+<div class="container">
+  <div class="row">
+  <div class="col-md-1">
+    <img  src="assets/images/fstg.jpg" alt="image" style="width:100%">
+  </div>
+  <div class="col-md-10">
+    <!--Navbar-->
+    <mdb-navbar #nav SideClass="navbar navbar-expand-lg navbar-light white">
+
+      <!-- Navbar brand -->
+      <mdb-navbar-brand>
+        <a class="navbar-brand" href="#"><i class="pi pi-home" style="font-size: 30px"></i>Acceuil</a>
+      </mdb-navbar-brand>
+
+      <links>
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a href="#" routerLink="/profilEtu" class="nav-link"><i class="pi pi-user" style="font-size: 30px"></i> Profile</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/module" class="nav-link"><i class="pi pi-users" style="font-size: 30px"></i>Modules</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/groupe" href="groupe" class="nav-link"><i class="pi pi-users" style="font-size: 30px"></i>Groupe</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/justificatif" class="nav-link"><i class="pi pi-star" style="font-size: 30px"></i>Mes Absences</a>
+          </li>
+        </ul>
+        <i  class="pi pi-bell"></i>
+        <i href="login" routerLink="login" class="pi pi-sign-out"></i>
+        <!-- Links -->
+      </links>
+      <!-- Collapsible content -->
+    </mdb-navbar>
+    <!--/.Navbar-->
+
+  </div>
+    <div class="col-md-1">
+      <img  src="assets/images/logoFst.png" alt="image" style="width:250%">
+    </div>
+  </div>
+</div>
+<p-dialog  header="Ajout d'une filière" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <form style="text-align: center" method="POST" >
+    <div style="display:inline-block" class="form-group">
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input  placeholder="Libelle" [(ngModel)]="sector.libelle" name="libelle" type="text" pInputText  required>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <p-dropdown name="cycle" [options]="cycles" [(ngModel)]="sector.cycle" placeholder="Choisir un cycle" optionLabel="libelle"></p-dropdown>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <p-dropdown name="sectorManager" [options]="enseignants" [(ngModel)]="sectorManager.enseignant" placeholder="Choisir un responsable" optionLabel="lastName"></p-dropdown>
+         </div>
+      </div>
+    </div>
+    <br>
+    <p-footer>
+      <p-footer>
+        <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Confirm"></button>
+        <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Cancel" class="ui-button-secondary"></button>
+      </p-footer>
+    </p-footer>
+  </form>
+</p-dialog>
+<p-dialog  header="Modification d'une filière" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <form style="text-align: center" method="POST" >
+    <div style="display:inline-block" class="form-group">
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input disabled [(ngModel)]="sectorFounded.libelle" name="libelle" type="text" pInputText  required>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <p-dropdown name="cycles" [options]="cycles" [(ngModel)]="sectorFounded.cycle"  optionLabel="libelle"></p-dropdown>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <p-dropdown name="enseignant" [options]="enseignants" [(ngModel)]="sectorManagerFounded.enseignant" optionLabel="lastName"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <br>
+    <p-footer>
+      <p-footer>
+        <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="update()" label="enregister"></button>
+        <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="deleteByLibelle(sectorFounded)" label="Supprimer" class="ui-button-danger"></button>
+      </p-footer>
+    </p-footer>
+  </form>
+</p-dialog>
+<p-dialog  header="Ajout d'un semestre" [(visible)]="displayBasic3" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <form style="text-align: center" method="POST" >
+    <div style="display:inline-block" class="form-group">
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input  placeholder="N°Semestre" [(ngModel)]="semestre.number" name="number" type="number" pInputText  required>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input  placeholder="Année Universitaire" [(ngModel)]="semestre.anneeUniversitaire" name="anneeUnivesitaire" type="text" pInputText  required>
+        </div>
+      </div>
+    </div>
+    <br>
+    <p-footer>
+      <p-footer>
+        <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save2()" label="Confirm"></button>
+        <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic3=false" label="Cancel" class="ui-button-secondary"></button>
+      </p-footer>
+    </p-footer>
+  </form>
+</p-dialog>

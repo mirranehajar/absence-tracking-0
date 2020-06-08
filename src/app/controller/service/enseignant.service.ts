@@ -13,6 +13,7 @@ export class EnseignantService {
   // tslint:disable-next-line:variable-name
   private _enseignantFounded: Enseignant;
   // tslint:disable-next-line:variable-name
+  private _enseignantConnected: Enseignant;
   private _url = 'http://localhost:8090/absence-tracking/enseignant/';
 
   constructor(private http: HttpClient) { }
@@ -30,8 +31,8 @@ export class EnseignantService {
       },
     );
   }
-  public findByNumeroSOM(enseignant: Enseignant) {
-    this.http.get<Enseignant>(this._url + 'numeroSOM/' + enseignant.numeroSOM).subscribe(
+  public async findByNumeroSOM(enseignant: Enseignant) {
+    await this.http.get<Enseignant>(this._url + 'numeroSOM/' + enseignant.numeroSOM).toPromise().then(
       (data) => {
         this.enseignantFounded = data;
       },
@@ -116,5 +117,16 @@ export class EnseignantService {
 
   set enseignants(value: Enseignant[]) {
     this._enseignants = value;
+  }
+
+  get enseignantConnected(): Enseignant {
+    if (this._enseignantConnected == null) {
+      this._enseignantConnected = new Enseignant();
+    }
+    return this._enseignantConnected;
+  }
+
+  set enseignantConnected(value: Enseignant) {
+    this._enseignantConnected = value;
   }
 }

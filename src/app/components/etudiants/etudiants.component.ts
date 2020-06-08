@@ -132,12 +132,12 @@ export class EtudiantsComponent implements OnInit {
       /* save data */
       this.importStudents = (XLSX.utils.sheet_to_json(ws, {header: 1})) as Etudiant[];
       for (const stud of this.importStudents) {
-        this.etudiant.cin = stud[0];
+        this.etudiant.cin = stud[1];
         this.etudiant.codeApogee = stud[2];
         this.etudiant.birthDay = stud[5];
         this.etudiant.firstName = stud[3];
         this.etudiant.lastName = stud[4];
-        this.etudiant.cne = stud[1];
+        this.etudiant.cne = stud[0];
         this.etudiant.tel = stud[6];
         this.etudiantService.save();
         window.location.reload();

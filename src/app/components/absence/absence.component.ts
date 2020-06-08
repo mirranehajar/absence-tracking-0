@@ -17,12 +17,12 @@ export class AbsenceComponent implements OnInit {
     this.types = [
       {label: 'Prs', value: false},
       {label: 'Abs', value: true},
-      {label: 'AbsNJ', value: true},
     ];
   }
 
   ngOnInit(): void {
     this.etudiantService.findAll();
+    this.absenceService.findAll();
     this.cols = [
       { field: 'cne', header: 'Cne' },
       { field: 'codeApogee', header: 'C.Apogée' },
@@ -39,7 +39,14 @@ export class AbsenceComponent implements OnInit {
   get absence(): Absence {
     return this.absenceService.absence;
   }
+  get absenceFounded(): Absence {
+    return this.absenceService.absenceFounded;
+  }
   public save() {
     return this.absenceService.save();
+  }
+  public update(absence: Absence) {
+    this.absenceService.absenceFounded = absence;
+    this.absenceService.update();
   }
 }

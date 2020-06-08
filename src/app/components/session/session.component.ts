@@ -4,12 +4,15 @@ import {EventInput} from '@fullcalendar/core/structs/event';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGrigPlugin from '@fullcalendar/timegrid';
+import {Etudiant} from '../../controller/model/etudiant.model';
 import {Groupe} from '../../controller/model/groupe';
 import {Session} from '../../controller/model/session';
 import {TypeSession} from '../../controller/model/type-session';
+import {AbsenceService} from '../../controller/service/absence.service';
 import {GroupeService} from '../../controller/service/groupe.service';
 import {SessionService} from '../../controller/service/session.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
+import {Absence} from '../../controller/model/absence';
 
 @Component({
   selector: 'app-session',
@@ -21,7 +24,7 @@ export class SessionComponent implements OnInit {
   displayBasic2: boolean;
   period: number;
   constructor(private groupeService: GroupeService, private typeSessionService: TypeSessionService,
-              private sessionService: SessionService) { }
+              private sessionService: SessionService, private absenceService: AbsenceService) { }
 
   @ViewChild('calendar') calendarComponent: FullCalendarComponent; // the #calendar in the template
 
@@ -29,8 +32,11 @@ export class SessionComponent implements OnInit {
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
   calendarWeekends = true;
   calendarEvents: EventInput[] = [];
+  students:  Etudiant[];
+  seance: Session;
 
   async ngOnInit(): Promise<void> {
+    this.students = new Array<Etudiant>();
     await this.sessionService.findAll();
     console.log(this.sessions);
     this.groupeService.findAll();
@@ -57,7 +63,7 @@ export class SessionComponent implements OnInit {
   handleDateClick() {
     this.calendarEvents = this.calendarEvents.concat({ // add new event data. must create new array
         id: this.session.reference,
-        title: this.session.reference,
+        title: this.session.libelle,
         start: this.session.dateStart,
         end: this.session.dateStop ,
         editable: true,
@@ -75,9 +81,22 @@ export class SessionComponent implements OnInit {
   public update() {
     this.sessionService.update();
   }
-  public save() {
+  public async save() {
     this.handleDateClick();
-    this.sessionService.save();
+    for ( const g of this.session.groupes) {
+      for ( const e of g.etudiants) {
+        this.students.push(e);
+      }
+    }
+    this.seance = this.session;
+    await this.sessionService.save();
+    console.log('haha');
+    for ( const e of this.students) {
+      this.absenceService.absence.etudiant = e;
+      this.absenceService.absence.session = this.seance;
+      console.log(this.absence);
+      this.absenceService.save();
+    }
     this.displayBasic = false;
   }
   get groupes(): Groupe[] {
@@ -100,5 +119,8 @@ export class SessionComponent implements OnInit {
   }
   get sessionFounded(): Session {
     return this.sessionService.sessionFounded;
+  }
+  get absence(): Absence {
+    return this.absenceService.absence;
   }
 }

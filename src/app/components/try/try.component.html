@@ -1,17 +1,32 @@
-<br>
-<div class="row" >
-  <div class="col-sm-4" *ngFor="let e of etudiants">
-    <div class="card text-center">
-      <div class="card-body  back">
-        <h5 class="card-title">{{e.firstName}}Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-      <div class="card-footer">
-        <button  pButton type="button" icon="pi pi-info"></button>&nbsp;&nbsp;
-        <button pButton type="button" icon="pi pi-trash" class="ui-button-danger"></button>
-      </div>
+<p-dataView [value]="absences" layout="grid" >
+  <ng-template let-a pTemplate="gridItem">
+    <div style="padding:.5em" class="col-sm-3">
+      <p-panel [header]="a.session.libelle"  [style]="{'text-align':'center'}">
+        <div class="car-detail">{{a.session.dateStart}}</div>
+        <div>{{a.session.typeSession.reference}}</div>
+        <div>{{a.session.typeSession.enseignant.lastName}} {{a.session.typeSession.enseignant.firstName}}</div>
+        <div *ngFor="let g of a.session.groupes">{{g.libelle}}</div>
+        <p-footer >
+        <button pButton (click)="ShowBasicDialog(a)" type="button" icon="pi pi-comment" label="Justifier" style="margin-top:0"></button>
+        </p-footer>
+      </p-panel>
     </div>
-    <br>
-  </div>
-</div>
+  </ng-template>
+</p-dataView>
+<p-dialog header="Justifier une absence" [style]="{'text-align':'center'}" [(visible)]="basicDialog" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <form style="text-align: center" method="POST" >
+    <div style="display:inline-block" class="form-group">
+      <div class="row">
+        <div class="ui-inputgroup">
+          <textarea [rows]="5"  [cols]="30" name="justification" pInputTextarea autoResize="autoResize"></textarea>
+        </div>
+      </div>
+      <br>
+    </div>
+  </form>
+  <p-footer>
+    <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="update()" label="Envoyer"></button>
+    <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="basicDialog=false" label="Annuler" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
+

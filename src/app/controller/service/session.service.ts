@@ -65,8 +65,8 @@ export class SessionService {
       },
     );
   }
-  public save() {
-    this.http.post<number>(this._url, this.session).subscribe(
+  public async save() {
+    await this.http.post<number>(this._url, this.session).toPromise().then(
       (data) => {
         if (data > 0) {
           console.log(this.session);
@@ -85,9 +85,7 @@ export class SessionService {
     myclone.dateStart = session.dateStart ;
     myclone.dateStop = session.dateStop ;
     myclone.groupes = session.groupes ;
-    console.log(session.typeSession);
     myclone.typeSession = session.typeSession ;
-    console.log(myclone.typeSession);
     return myclone;
   }
   get session(): Session {

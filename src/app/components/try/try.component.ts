@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {Absence} from '../../controller/model/absence';
 import {Etudiant} from '../../controller/model/etudiant.model';
+import {AbsenceService} from '../../controller/service/absence.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 
 @Component({
@@ -9,13 +11,25 @@ import {EtudiantService} from '../../controller/service/etudiant.service';
 })
 
 export class TryComponent implements OnInit {
-  constructor(private etudiantService: EtudiantService) {
+  basicDialog: boolean;
+  constructor(private etudiantService: EtudiantService, private absenceService: AbsenceService) {
   }
 
-  ngOnInit(): void {
-    this.etudiantService.findAll();
+  ngOnInit() {
+    this.absenceService.findAll();
   }
-  get etudiants(): Etudiant[] {
-    return this.etudiantService.etudiants;
+
+  get absences(): Absence[] {
+    return this.absenceService.absences;
+  }
+  get absenceFounded(): Absence {
+    return this.absenceService.absenceFounded;
+  }
+  ShowBasicDialog(absence: Absence) {
+    this.absenceService.absenceFounded = absence;
+    this.basicDialog = true;
+  }
+  update() {
+    return this.absenceService.update();
   }
 }

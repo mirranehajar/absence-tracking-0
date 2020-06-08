@@ -19,15 +19,15 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import { IconsModule } from 'angular-bootstrap-md';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {
-    AccordionModule,
-    ConfirmDialogModule,
-    DialogModule, DropdownModule,
-    FileUploadModule, MegaMenuModule,
-    MenubarModule,
-    MessagesModule, MultiSelectModule, PanelModule, SelectButtonModule,
-    SplitButtonModule, TableModule,
-    TabViewModule,
-    ToastModule,
+  AccordionModule,
+  ConfirmDialogModule, DataViewModule, DialogModule,
+  DropdownModule,
+  FileUploadModule, MegaMenuModule,
+  MenubarModule,
+  MessagesModule, MultiSelectModule, PanelModule, SelectButtonModule,
+  SplitButtonModule, TableModule,
+  TabViewModule,
+  ToastModule,
 } from 'primeng';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,10 +40,16 @@ import {ModuleComponent} from './components/module/module.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import { SessionComponent } from './components/session/session.component';
 import { TryComponent } from './components/try/try.component';
+import {AppEnsComponent} from './layout/appEns/appEns.component';
+import {AppEtuComponent} from './layout/appEtu/appEtu.component';
 import { AsideComponent } from './layout/aside/aside.component';
+import {AsideEtuComponent} from './layout/asideEtu/asideEtu.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
+import {HeaderEtuComponent} from './layout/headerEtu/headerEtu.component';
 import { MainComponent } from './layout/main/main.component';
+import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
+import {ProfilEtuComponent} from './components/profilEtu/profilEtu.component';
 
 @NgModule({
   declarations: [
@@ -61,48 +67,55 @@ import { MainComponent } from './layout/main/main.component';
     SessionComponent,
     TryComponent,
     ModuleComponent,
+    HeaderEtuComponent,
+    AsideEtuComponent,
+    MainEtuComponent,
+    AppEnsComponent,
+    AppEtuComponent,
+    ProfilEtuComponent,
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        MenubarModule,
-        TabViewModule,
-        SplitButtonModule,
-        DialogModule,
-        MessagesModule,
-        ConfirmDialogModule,
-        ToastModule,
-        FormsModule,
-        FileUploadModule,
-        ReactiveFormsModule,
-        MDBBootstrapModule.forRoot(),
-        FontAwesomeModule,
-        MatButtonModule,
-        MatTableModule,
-        MatSortModule,
-        FullCalendarModule,
-        AccordionModule,
-        DragDropModule,
-        SelectButtonModule,
-        PanelModule,
-        FullCalendarModule,
-        TooltipModule.forRoot(),
-        IconsModule,
-        TableModule,
-        MatPaginatorModule,
-        WavesModule.forRoot(),
-        InputsModule.forRoot(),
-        MatOptionModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        TableModule,
-        MultiSelectModule,
-        DropdownModule,
-        MegaMenuModule,
-        MatGridListModule,
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MenubarModule,
+    TabViewModule,
+    SplitButtonModule,
+    DialogModule,
+    MessagesModule,
+    ConfirmDialogModule,
+    ToastModule,
+    FormsModule,
+    FileUploadModule,
+    ReactiveFormsModule,
+    MDBBootstrapModule.forRoot(),
+    FontAwesomeModule,
+    MatButtonModule,
+    MatTableModule,
+    MatSortModule,
+    FullCalendarModule,
+    AccordionModule,
+    DragDropModule,
+    SelectButtonModule,
+    PanelModule,
+    FullCalendarModule,
+    TooltipModule.forRoot(),
+    IconsModule,
+    TableModule,
+    MatPaginatorModule,
+    WavesModule.forRoot(),
+    InputsModule.forRoot(),
+    MatOptionModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    TableModule,
+    MultiSelectModule,
+    DropdownModule,
+    MegaMenuModule,
+    MatGridListModule,
+    DataViewModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

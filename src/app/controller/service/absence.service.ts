@@ -104,6 +104,9 @@ export class AbsenceService {
   }
 
   set absenceFounded(value: Absence) {
+    if (this._absenceFounded == null) {
+      this._absenceFounded = new Absence();
+    }
     this._absenceFounded = value;
   }
 }
