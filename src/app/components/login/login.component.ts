@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {EnseignantService} from '../../controller/service/enseignant.service';
@@ -11,7 +12,7 @@ import {EtudiantService} from '../../controller/service/etudiant.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private etudiantService: EtudiantService, private enseignantService: EnseignantService) { }
+  constructor(private etudiantService: EtudiantService, private enseignantService: EnseignantService, private router: Router) { }
 
   ngOnInit(): void {
     this.etudiantService.etudiantFounded = null;
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
             this.etudiantService.etudiantConnected = this.etudiantFounded;
             console.log(this.etudiantConnected);
             console.log(this.etudiantConnected);
+            this.router.navigate(['/profilEtu']);
           } else {
             console.log('mail ou mdp not correct');
           }
@@ -58,7 +60,7 @@ export class LoginComponent implements OnInit {
         if (this.enseignantFounded.mail === this.enseignantConnected.mail && this.enseignantFounded.password === this.enseignantConnected.password) {
           console.log('mail and password correct');
           this.enseignantService.enseignantConnected = this.enseignantFounded;
-          window.location.href = '/appEns';
+          this.router.navigate(['/profil']);
         } else {
           console.log('mail ou mdp not correct');
         }

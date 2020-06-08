@@ -14,18 +14,22 @@ import {AppEnsComponent} from './layout/appEns/appEns.component';
 import {AppEtuComponent} from './layout/appEtu/appEtu.component';
 
 const routes: Routes = [
-  {path: 'enseignant', component: EnseignantComponent},
-  {path: 'etudiant', component: EtudiantsComponent},
-  {path: 'profil', component: ProfilComponent},
-  {path: 'session', component: SessionComponent},
-  {path: 'module', component: ModuleComponent},
-  {path: 'groupe', component: GroupesComponent},
-  {path: 'absence', component: AbsenceComponent},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'appEtu', component: AppEtuComponent},
-  {path: 'appEns', component: AppEnsComponent},
-  {path: 'profilEtu', component: ProfilEtuComponent},
-  {path: 'justificatif', component: TryComponent},
+  {path: '', component: AppEtuComponent, children: [
+      {path: 'profilEtu', component: ProfilEtuComponent},
+      {path: 'justificatif', component: TryComponent},
+      {path: 'groupe', component: GroupesComponent},
+      {path: 'session', component: SessionComponent},
+    ]},
+  {path: '', component: AppEnsComponent, children: [
+      {path: 'enseignant', component: EnseignantComponent},
+      {path: 'etudiant', component: EtudiantsComponent},
+      {path: 'profil', component: ProfilComponent},
+      {path: 'module', component: ModuleComponent},
+      {path: 'absence', component: AbsenceComponent},
+      {path: 'groupe', component: GroupesComponent},
+    ]},
 ];
 
 @NgModule({
