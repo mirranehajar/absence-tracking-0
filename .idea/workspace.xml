@@ -19,11 +19,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/service/module.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/module.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/aside/aside.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/aside/aside.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/aside/aside.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/aside/aside.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/asideEtu/asideEtu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/asideEtu/asideEtu.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/asideEtu/asideEtu.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/asideEtu/asideEtu.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/headerEtu/header-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/headerEtu/header-routing.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +69,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="ts.external.directory.path" value="C:\Users\blackswan\WebstormProjects\absence-tracking-0\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -173,7 +180,8 @@
       <workItem from="1591553897391" duration="21434000" />
       <workItem from="1591610253445" duration="8741000" />
       <workItem from="1591619272209" duration="3434000" />
-      <workItem from="1591629609406" duration="3074000" />
+      <workItem from="1591629609406" duration="3246000" />
+      <workItem from="1591635584548" duration="5660000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -378,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591622011799</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="header etu">
+      <created>1591635381305</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1591635381305</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,7 +413,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="export workinh" />
     <MESSAGE value="import and export students" />
     <MESSAGE value="sorted table and other classes" />
     <MESSAGE value="sessions plus absence plus groups" />
@@ -423,7 +437,8 @@
     <MESSAGE value="working on module rn" />
     <MESSAGE value="module done" />
     <MESSAGE value="justification and login" />
-    <option name="LAST_COMMIT_MESSAGE" value="justification and login" />
+    <MESSAGE value="header etu" />
+    <option name="LAST_COMMIT_MESSAGE" value="header etu" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -446,10 +461,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1591457289443" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1587997149012">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1591635379003">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587997149012" />
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1591635379003" />
     <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1591301767189">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -459,38 +475,39 @@
     </state>
     <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1591614933731" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
-    <state width="864" height="610" key="GridCell.Tab.0.bottom" timestamp="1591632201135">
+    <state width="851" height="610" key="GridCell.Tab.0.bottom" timestamp="1591638317879">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1591361539321" />
     <state width="1345" height="184" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591621891675" />
-    <state width="864" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1591632201135" />
-    <state width="864" height="610" key="GridCell.Tab.0.center" timestamp="1591632201135">
+    <state width="851" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1591638317879" />
+    <state width="851" height="610" key="GridCell.Tab.0.center" timestamp="1591638317879">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1591361539320" />
     <state width="1345" height="184" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591621891674" />
-    <state width="864" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1591632201135" />
-    <state width="864" height="610" key="GridCell.Tab.0.left" timestamp="1591632201135">
+    <state width="851" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1591638317879" />
+    <state width="851" height="610" key="GridCell.Tab.0.left" timestamp="1591638317879">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1591361539319" />
     <state width="1345" height="184" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591621891674" />
-    <state width="864" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1591632201135" />
-    <state width="864" height="610" key="GridCell.Tab.0.right" timestamp="1591632201135">
+    <state width="851" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1591638317879" />
+    <state width="851" height="610" key="GridCell.Tab.0.right" timestamp="1591638317879">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1591361539320" />
     <state width="1345" height="184" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591621891675" />
-    <state width="864" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1591632201135" />
+    <state width="851" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1591638317879" />
     <state x="258" y="54" key="MergeDialog" timestamp="1591288607111">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="258" y="54" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1591288607111" />
-    <state x="512" y="231" width="722" height="265" key="MultipleFileMergeDialog" timestamp="1591477935942">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="512" y="234" width="722" height="265" key="MultipleFileMergeDialog" timestamp="1591635476180">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="512" y="231" width="722" height="265" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1591477935942" />
+    <state x="512" y="234" key="MultipleFileMergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1591635476180" />
     <state x="184" y="13" key="SettingsEditor" timestamp="1587939886192">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -515,10 +532,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="0" width="587" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1591570812262" />
-    <state x="371" y="152" key="git4idea.merge.GitPullDialog" timestamp="1591477968515">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="371" y="154" key="git4idea.merge.GitPullDialog" timestamp="1591635389778">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="371" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1591477968515" />
+    <state x="371" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.738@0.0.1366.738" timestamp="1591635389778" />
     <state x="406" y="135" key="refactoring.ChangeSignatureDialog" timestamp="1591481265324">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

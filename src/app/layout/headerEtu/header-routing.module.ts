@@ -6,10 +6,10 @@ import {HeaderEtuComponent} from './headerEtu.component';
   imports: [
     RouterModule.forChild([
       {path: '', component: HeaderEtuComponent},
-    ])
+    ]),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class HeaderRoutingModule {}

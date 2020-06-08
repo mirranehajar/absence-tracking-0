@@ -2,8 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Module} from '../model/module';
 import {Session} from '../model/session';
-import {TypeSessionService} from './type-session.service';
 import {TypeSession} from '../model/type-session';
+import {TypeSessionService} from './type-session.service';
 
 @Injectable({
   providedIn: 'root',
