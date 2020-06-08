@@ -1,16 +1,13 @@
-<div class="container">
-  <div class="row">
-  <div class="col-md-1">
-    <img  src="assets/images/fstg.jpg" alt="image" style="width:100%">
-  </div>
-  <div class="col-md-10">
+
+
     <!--Navbar-->
     <mdb-navbar #nav SideClass="navbar navbar-expand-lg navbar-light white">
 
+
       <!-- Navbar brand -->
-      <mdb-navbar-brand>
-        <a class="navbar-brand" href="#"><i class="pi pi-home" style="font-size: 30px"></i>Acceuil</a>
-      </mdb-navbar-brand>
+      <a class="navbar-brand" href="#">
+        <img src="assets/images/fstg.jpg" height="30" alt="">
+      </a>
 
       <links>
         <!-- Links -->
@@ -31,17 +28,15 @@
         <i  class="pi pi-bell"></i>
         <i href="login" routerLink="login" class="pi pi-sign-out"></i>
         <!-- Links -->
+        <a class="navbar-brand" href="#">
+          <img src="assets/images/logoFst.png" height="30" alt="">
+        </a>
       </links>
+
       <!-- Collapsible content -->
     </mdb-navbar>
     <!--/.Navbar-->
 
-  </div>
-    <div class="col-md-1">
-      <img  src="assets/images/logoFst.png" alt="image" style="width:250%">
-    </div>
-  </div>
-</div>
 <p-dialog  header="Ajout d'une filière" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
   <form style="text-align: center" method="POST" >
     <div style="display:inline-block" class="form-group">
