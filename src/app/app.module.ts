@@ -20,12 +20,12 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import { IconsModule } from 'angular-bootstrap-md';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {
-  AccordionModule,
+  AccordionModule, CardModule,
   ConfirmDialogModule, DataViewModule, DialogModule,
   DropdownModule,
   FileUploadModule, KeyFilterModule, MegaMenuModule,
   MenubarModule, MessageModule,
-  MessagesModule, MultiSelectModule, PanelModule, SelectButtonModule,
+  MessagesModule, MultiSelectModule, PanelModule, SelectButtonModule, SidebarModule,
   SplitButtonModule, TableModule,
   TabViewModule,
   ToastModule,
@@ -51,6 +51,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import {HeaderEtuComponent} from './layout/headerEtu/headerEtu.component';
 import { MainComponent } from './layout/main/main.component';
 import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -119,6 +120,9 @@ import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
     DataViewModule,
     KeyFilterModule,
     MessageModule,
+    MatCardModule,
+    CardModule,
+    SidebarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

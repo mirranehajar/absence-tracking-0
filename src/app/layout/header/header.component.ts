@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit {
     displayBasic3: boolean;
     displayBasic4: boolean;
     filiere: string;
+    display: boolean;
 
    constructor(public sectorManagerService: SectorManagerService, public sectorService: SectorService,
                public cycleService: CycleService, public enseignantService: EnseignantService,
@@ -186,5 +187,8 @@ export class HeaderComponent implements OnInit {
      this.semestreService.semestre = semestre;
      console.log(this.semestre);
      this.router.navigate(['/module']);
+  }
+  show() {
+     this.display = true;
   }
 }
