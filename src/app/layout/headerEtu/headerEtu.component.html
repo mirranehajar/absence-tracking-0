@@ -1,42 +1,47 @@
-
-
+<div class="container">
+  <div class="row">
+  <div class="col-md-1">
+    <img  src="assets/images/fstg.jpg" alt="image" style="width:100%">
+  </div>
+  <div class="col-md-10">
     <!--Navbar-->
     <mdb-navbar #nav SideClass="navbar navbar-expand-lg navbar-light white">
 
-
       <!-- Navbar brand -->
-      <a class="navbar-brand" href="#">
-        <img src="assets/images/fstg.jpg" height="30" alt="">
-      </a>
+      <mdb-navbar-brand>
+        <a class="navbar-brand" href="#"><i class="iconColor pi pi-home" ></i>Acceuil</a>
+      </mdb-navbar-brand>
 
       <links>
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a href="#" routerLink="/profilEtu" class="nav-link"><i class="pi pi-user" style="font-size: 30px"></i> Profile</a>
+            <a href="#" routerLink="/profilEtu" class="nav-link"><i class="iconColor pi pi-user" ></i> Profile</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/module" class="nav-link"><i class="pi pi-users" style="font-size: 30px"></i>Modules</a>
+            <a routerLink="/module" class="nav-link"><i class="iconColor pi pi-list" ></i>Modules</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/groupe" href="groupe" class="nav-link"><i class="pi pi-users" style="font-size: 30px"></i>Groupe</a>
+            <a routerLink="/groupe" href="groupe" class="nav-link"><i  class="pi pi-users iconColor" ></i>Groupe</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/justificatif" class="nav-link"><i class="pi pi-star" style="font-size: 30px"></i>Mes Absences</a>
+            <a routerLink="/justificatif" class="nav-link"><i class="iconColor pi pi-star" ></i>Mes Absences</a>
           </li>
         </ul>
-        <i  class="pi pi-bell"></i>
-        <i href="login" routerLink="login" class="pi pi-sign-out"></i>
+        <i  class="iconColor pi pi-bell"></i>
+        <i href="login" routerLink="login" class="iconColor pi pi-sign-out"></i>
         <!-- Links -->
-        <a class="navbar-brand" href="#">
-          <img src="assets/images/logoFst.png" height="30" alt="">
-        </a>
       </links>
-
       <!-- Collapsible content -->
     </mdb-navbar>
     <!--/.Navbar-->
 
+  </div>
+    <div class="col-md-1">
+      <img  src="assets/images/logoFst.png" alt="image" style="width:250%">
+    </div>
+  </div>
+</div>
 <p-dialog  header="Ajout d'une filière" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
   <form style="text-align: center" method="POST" >
     <div style="display:inline-block" class="form-group">

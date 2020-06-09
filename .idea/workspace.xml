@@ -20,30 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/profil/profil.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profil/profil.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/profil/profil.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profil/profil.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/profilEtu/profilEtu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profilEtu/profilEtu.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/profilEtu/profilEtu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profilEtu/profilEtu.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/session/session.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/session/session.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/session/session.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/session/session.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/try/try.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Justification/justification.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/try/try.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Justification/justification.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/try/try.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Justification/justification.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/try/try.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Justification/justification.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/module.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/module.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/semestre.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/semestre.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/aside/aside.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/aside/aside.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/aside/aside.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/aside/aside.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/asideEtu/asideEtu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/asideEtu/asideEtu.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/asideEtu/asideEtu.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/asideEtu/asideEtu.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/footer/footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/footer/footer.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/headerEtu/header-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/headerEtu/header-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +181,7 @@
       <workItem from="1591619272209" duration="12881000" />
       <workItem from="1591639830931" duration="1124000" />
       <workItem from="1591641052762" duration="18995000" />
-      <workItem from="1591694105992" duration="1294000" />
+      <workItem from="1591694105992" duration="4573000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -414,7 +400,21 @@
       <option name="project" value="LOCAL" />
       <updated>1591633594995</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="bricolage">
+      <created>1591695679014</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1591695679016</updated>
+    </task>
+    <task id="LOCAL-00033" summary="suppression justification test">
+      <created>1591696012764</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1591696012764</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,6 +423,31 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
@@ -430,12 +455,15 @@
         </entry>
       </map>
     </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="1" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="sorted table and other classes" />
-    <MESSAGE value="sessions plus absence plus groups" />
     <MESSAGE value="profil login filière" />
     <MESSAGE value="profil" />
     <MESSAGE value="session and type session" />
@@ -459,7 +487,9 @@
     <MESSAGE value="justification and login" />
     <MESSAGE value="ng model justification" />
     <MESSAGE value="page login to others" />
-    <option name="LAST_COMMIT_MESSAGE" value="page login to others" />
+    <MESSAGE value="bricolage" />
+    <MESSAGE value="suppression justification test" />
+    <option name="LAST_COMMIT_MESSAGE" value="suppression justification test" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -495,38 +525,38 @@
     </state>
     <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1591641361645" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
-    <state width="1345" height="184" key="GridCell.Tab.0.bottom" timestamp="1591647856744">
+    <state width="1345" height="148" key="GridCell.Tab.0.bottom" timestamp="1591700420058">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1591361539321" />
-    <state width="1345" height="184" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591647856744" />
+    <state width="1345" height="148" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591700420058" />
     <state width="813" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="184" key="GridCell.Tab.0.center" timestamp="1591647856744">
+    <state width="1345" height="148" key="GridCell.Tab.0.center" timestamp="1591700420058">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1591361539320" />
-    <state width="1345" height="184" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591647856744" />
+    <state width="1345" height="148" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591700420058" />
     <state width="813" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="184" key="GridCell.Tab.0.left" timestamp="1591647856744">
+    <state width="1345" height="148" key="GridCell.Tab.0.left" timestamp="1591700420058">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1591361539319" />
-    <state width="1345" height="184" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591647856744" />
+    <state width="1345" height="148" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591700420058" />
     <state width="813" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="184" key="GridCell.Tab.0.right" timestamp="1591647856744">
+    <state width="1345" height="148" key="GridCell.Tab.0.right" timestamp="1591700420058">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1591361539320" />
-    <state width="1345" height="184" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591647856744" />
+    <state width="1345" height="148" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591700420058" />
     <state width="813" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state x="258" y="54" key="MergeDialog" timestamp="1591288607111">
+    <state x="87" y="66" key="MergeDialog" timestamp="1591696288860">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="258" y="54" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1591288607111" />
-    <state x="512" y="231" width="722" height="265" key="MultipleFileMergeDialog" timestamp="1591477935942">
+    <state x="87" y="66" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1591696288860" />
+    <state x="512" y="231" width="722" height="265" key="MultipleFileMergeDialog" timestamp="1591696290758">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="512" y="231" width="722" height="265" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1591477935942" />
+    <state x="512" y="231" width="722" height="265" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1591696290758" />
     <state x="184" y="13" key="SettingsEditor" timestamp="1587939886192">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -539,10 +569,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1591633620696" />
-    <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1591477316393">
+    <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1591700422503">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1591477316393" />
+    <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1591700422503" />
     <state x="492" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591295775266">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -551,10 +581,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="0" width="587" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1591570812262" />
-    <state x="371" y="152" key="git4idea.merge.GitPullDialog" timestamp="1591477968515">
+    <state x="371" y="152" key="git4idea.merge.GitPullDialog" timestamp="1591696027564">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="371" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1591477968515" />
+    <state x="371" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1591696027564" />
     <state x="406" y="135" key="refactoring.ChangeSignatureDialog" timestamp="1591481265324">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
