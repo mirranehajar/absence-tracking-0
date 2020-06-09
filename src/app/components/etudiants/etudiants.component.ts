@@ -3,9 +3,11 @@ import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, Message} from 'primeng/api';
 import {MessageService} from 'primeng/api';
 import * as XLSX from 'xlsx';
+import {Enseignant} from '../../controller/model/enseignant.model';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {Groupe} from '../../controller/model/groupe';
 import {Sector} from '../../controller/model/sector';
+import {EnseignantService} from '../../controller/service/enseignant.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 import {GroupeService} from '../../controller/service/groupe.service';
 import {SectorService} from '../../controller/service/sector.service';
@@ -35,7 +37,8 @@ export class EtudiantsComponent implements OnInit {
   cols: any[];
 
   constructor(private etudiantService: EtudiantService, private messageService: MessageService,
-              private sectorService: SectorService, private groupeService: GroupeService, private http: HttpClient) {
+              private sectorService: SectorService, private groupeService: GroupeService,
+              private http: HttpClient, private enseignantService: EnseignantService) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -194,5 +197,8 @@ export class EtudiantsComponent implements OnInit {
           console.log(this.retrievedImage);
         },
       );
+  }
+  get enseignantConnected(): Enseignant {
+    return this.enseignantService.enseignantConnected;
   }
 }

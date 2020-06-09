@@ -154,4 +154,7 @@ export class EnseignantComponent implements OnInit {
         },
       );
   }
+  get enseignantConnected(): Enseignant {
+    return this.enseignantService.enseignantConnected;
+  }
 }

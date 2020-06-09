@@ -1,6 +1,6 @@
 <div class="card">
-<img [src]="etudiantConnected.src" >
-  <button pButton type="button" class="ui-button-raised " label="Modifier la photo"></button>
+<img #img [src]="etudiantConnected.src" >
+  <input type="file" (change)="onFileChanged($event)">
 </div>
 <form style="text-align: center" method="POST" >
   <div style="display:inline-block" class="form-group">
@@ -73,48 +73,48 @@
       <div class="ui-inputgroup">
         <span class="ui-inputgroup-addon" style="margin-left: 410px;"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
         <h5>password:</h5>
-        <button type="button" pButton (click)="showBasicDialog()" icon="pi pi-update"   label="Change password" style="margin-left: 50px;"></button>
-        <p-dialog  header="Change your password" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <button type="button" pButton (click)="showBasicDialog()" icon="pi pi-update"   label="Changer le mot de passe" style="margin-left: 50px;"></button>
+        <p-dialog  header="Changement le mot de passe" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
           <form style="text-align: center" method="POST" >
             <div style="display:inline-block" class="form-group">
               <div class="row">
                 <div class="ui-inputgroup">
                   <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
-                  <input  name="matricule" type="password" pInputText placeholder="current password" required>
+                  <input [(ngModel)]="currentPassword" name="currentPassword" type="password" pInputText placeholder="Mot de passe actuel" required>
                 </div>
               </div>
               <br>
               <div class="row">
                 <div class="ui-inputgroup">
                   <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
-                  <input  name="cin" type="password" pInputText placeholder="new password">
+                  <input [(ngModel)]="password" name="cin" type="password" pInputText placeholder="Nouveau mot de passe">
                 </div>
               </div>
               <br>
               <div class="row">
                 <div class="ui-inputgroup">
                   <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
-                  <input  name="firstName" type="password" pInputText placeholder="confirm new password">
+                  <input [(ngModel)]="passwordConfirm" name="ConfirmPassword" type="password" pInputText placeholder="Confirmer mot de passe">
                 </div>
               </div>
               <br>
-              <button type="submit" pButton  icon="pi pi-check" style="float: left"   style="margin-left: 50px;"></button>
+              <button type="submit" pButton  (click)="updatePassword()" icon="pi pi-check" style="float: left"   style="margin-left: 50px;"></button>
             </div>
           </form>
         </p-dialog>
     <br>
-      <button type="submit" pButton (click)="showBasicDialog2()" icon="pi pi-check"   label="Update" style="margin-left: 50px;"></button>
+      <button type="submit" pButton (click)="showBasicDialog2()" icon="pi pi-check"   label="Modifier" style="margin-left: 50px;"></button>
       <p-dialog  header="Confirmer modification" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
         <form style="text-align: center" method="POST" >
           <div style="display:inline-block" class="form-group">
             <div class="row">
               <div class="ui-inputgroup">
                 <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
-                <input  name="matricule" type="password" pInputText placeholder="enter your password" required>
+                <input  name="passwordUpdate" [(ngModel)]="passwordUpdate" type="password" pInputText placeholder="enter your password" required>
               </div>
             </div>
             <br>
-            <button type="submit" pButton  icon="pi pi-check" style="float: left"   style="margin-left: 50px;"></button>
+            <button type="submit" pButton (click)="update()" icon="pi pi-check" style="float: left"   style="margin-left: 50px;"></button>
           </div>
         </form>
       </p-dialog>

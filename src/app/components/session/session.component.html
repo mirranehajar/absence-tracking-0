@@ -8,6 +8,7 @@
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
       }"
+      timeZone="local"
       [plugins]="calendarPlugins"
       [weekends]="calendarWeekends"
       [events]="calendarEvents"
@@ -34,7 +35,7 @@
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <p-dropdown name="typeSession" [options]="typeSessions" [(ngModel)]="session.typeSession" placeholder="Choisir type de la séance" optionLabel="libelle"></p-dropdown>
+              <p-dropdown name="typeSession" [options]="typeSessions" [(ngModel)]="session.typeSession" placeholder="Choisir type de la séance" optionLabel="reference"></p-dropdown>
             </div>
           </div>
           <br>
@@ -51,7 +52,7 @@
         </p-footer>
       </form>
     </p-dialog>
-    <p-dialog  header="Modification d'une séance" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <p-dialog  header="Affichage d'une séance" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
       <form style="text-align: center" method="POST" >
         <div style="display:inline-block" class="form-group">
           <div class="row">
@@ -71,7 +72,7 @@
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="texte" name="typeSession" disabled [(ngModel)]="sessionFounded.typeSession">
+              <input type="texte" name="typeSession" disabled [(ngModel)]="sessionFounded.typeSession.reference">
             </div>
           </div>
           <br>

@@ -4,6 +4,7 @@ import {EventInput} from '@fullcalendar/core/structs/event';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGrigPlugin from '@fullcalendar/timegrid';
+import {Absence} from '../../controller/model/absence';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {Groupe} from '../../controller/model/groupe';
 import {Session} from '../../controller/model/session';
@@ -12,7 +13,6 @@ import {AbsenceService} from '../../controller/service/absence.service';
 import {GroupeService} from '../../controller/service/groupe.service';
 import {SessionService} from '../../controller/service/session.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
-import {Absence} from '../../controller/model/absence';
 
 @Component({
   selector: 'app-session',
@@ -23,6 +23,7 @@ export class SessionComponent implements OnInit {
   displayBasic: boolean;
   displayBasic2: boolean;
   period: number;
+  today: Date;
   constructor(private groupeService: GroupeService, private typeSessionService: TypeSessionService,
               private sessionService: SessionService, private absenceService: AbsenceService) { }
 
@@ -36,6 +37,9 @@ export class SessionComponent implements OnInit {
   seance: Session;
 
   async ngOnInit(): Promise<void> {
+    this.today = new Date();
+    console.log(this.today);
+    console.log(this.today.getHours() + ' ' + this.today.getMinutes());
     this.students = new Array<Etudiant>();
     await this.sessionService.findAll();
     console.log(this.sessions);
@@ -46,11 +50,19 @@ export class SessionComponent implements OnInit {
     }
   }
   showBasicDialog(arg) {
-    this.displayBasic = true;
-    this.session.dateStart = arg.date;
-    this.session.dateStop = arg.date;
-    // this.session.dateStop.setHours(arg.date.getHours() + this.period);
-    // this.session.dateStop.setTime(arg.date.getTime + )
+    if (arg.date >= this.today) {
+      this.displayBasic = true;
+      this.session.dateStart = arg.date;
+      this.session.dateStop = arg.date;
+      console.log(this.session.dateStart);
+      // this.session.dateStop.setHours(this.session.dateStop.getHours() + this.period);
+      console.log(this.session.dateStop.getMinutes());
+      this.session.dateStop.setHours(this.period);
+      console.log(this.period);
+      console.log(this.session.dateStop);
+      // this.session.dateStop.setHours(arg.date.getHours() + this.period);
+      // this.session.dateStop.setTime(arg.date.getTime + )
+    }
   }
     public async showBasicDialog2(event) {
     this.displayBasic2 = true;
@@ -77,6 +89,7 @@ export class SessionComponent implements OnInit {
   }
   public deleteByReference(session: Session) {
     this.sessionService.deleteByReference(session);
+    this.displayBasic2 = false;
   }
   public update() {
     this.sessionService.update();
@@ -88,6 +101,9 @@ export class SessionComponent implements OnInit {
         this.students.push(e);
       }
     }
+    this.session.dateStop.setUTCHours(this.session.dateStop.getUTCHours() + this.period);
+    console.log(this.session.dateStop);
+    console.log(this.period);
     this.seance = this.session;
     await this.sessionService.save();
     console.log('haha');

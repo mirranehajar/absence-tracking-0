@@ -1,6 +1,8 @@
 <div class="card">
-<img src="assets/images/profile.png" >
-  <button pButton type="button" class="ui-button-raised " label="Add picture"></button>
+<img [src]="enseignantConnected.src" >
+  <div class="col-md-6">
+    <input type="file" (change)="onFileChanged($event)">
+  </div>
 </div>
 <form style="text-align: center" method="POST" >
   <div style="display:inline-block" class="form-group">
@@ -72,41 +74,41 @@
               <div class="row">
                 <div class="ui-inputgroup">
                   <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
-                  <input  name="matricule" type="password" pInputText placeholder="current password" required>
+                  <input [(ngModel)]="currentPassword" name="matricule" type="password" pInputText placeholder="current password" required>
                 </div>
               </div>
               <br>
               <div class="row">
                 <div class="ui-inputgroup">
                   <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
-                  <input  name="cin" type="password" pInputText placeholder="new password">
+                  <input [(ngModel)]="password" name="cin" type="password" pInputText placeholder="new password">
                 </div>
               </div>
               <br>
               <div class="row">
                 <div class="ui-inputgroup">
                   <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
-                  <input  name="firstName" type="password" pInputText placeholder="confirm new password">
+                  <input [(ngModel)]="passwordConfirm" name="firstName" type="password" pInputText placeholder="confirm new password">
                 </div>
               </div>
               <br>
-              <button type="submit" pButton  icon="pi pi-check" style="float: left"   style="margin-left: 50px;"></button>
+              <button (click)="updatePassword()" type="submit" pButton  icon="pi pi-check" style="float: left"   style="margin-left: 50px;"></button>
             </div>
           </form>
         </p-dialog>
     <br>
       <button type="submit" pButton (click)="showBasicDialog2()" icon="pi pi-check" style="float: left"  label="Update" style="margin-left: 50px;"></button>
-      <p-dialog  header="Change your password" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+      <p-dialog  header="Modification" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
         <form style="text-align: center" method="POST" >
           <div style="display:inline-block" class="form-group">
             <div class="row">
               <div class="ui-inputgroup">
                 <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
-                <input  name="matricule" type="password" pInputText placeholder="enter your password" required>
+                <input [(ngModel)]="passwordUpdate" name="matricule" type="password" pInputText placeholder="enter your password" required>
               </div>
             </div>
             <br>
-            <button type="submit" pButton  icon="pi pi-check" style="float: left"   style="margin-left: 50px;"></button>
+            <button type="submit" (click)="update()" pButton  icon="pi pi-check" style="float: left"   style="margin-left: 50px;"></button>
           </div>
         </form>
       </p-dialog>

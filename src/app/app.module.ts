@@ -12,6 +12,7 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import { InputsModule, WavesModule } from 'angular-bootstrap-md';
@@ -22,8 +23,8 @@ import {
   AccordionModule,
   ConfirmDialogModule, DataViewModule, DialogModule,
   DropdownModule,
-  FileUploadModule, MegaMenuModule,
-  MenubarModule,
+  FileUploadModule, KeyFilterModule, MegaMenuModule,
+  MenubarModule, MessageModule,
   MessagesModule, MultiSelectModule, PanelModule, SelectButtonModule,
   SplitButtonModule, TableModule,
   TabViewModule,
@@ -35,11 +36,12 @@ import { AbsenceComponent } from './components/absence/absence.component';
 import { EnseignantComponent } from './components/enseignant/enseignant.component';
 import { EtudiantsComponent } from './components/etudiants/etudiants.component';
 import { GroupesComponent } from './components/groupes/groupes.component';
+import {JustificationComponent} from './components/Justification/justification.component';
 import { LoginComponent } from './components/login/login.component';
 import {ModuleComponent} from './components/module/module.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import {ProfilEtuComponent} from './components/profilEtu/profilEtu.component';
 import { SessionComponent } from './components/session/session.component';
-import { TryComponent } from './components/try/try.component';
 import {AppEnsComponent} from './layout/appEns/appEns.component';
 import {AppEtuComponent} from './layout/appEtu/appEtu.component';
 import { AsideComponent } from './layout/aside/aside.component';
@@ -49,7 +51,6 @@ import { HeaderComponent } from './layout/header/header.component';
 import {HeaderEtuComponent} from './layout/headerEtu/headerEtu.component';
 import { MainComponent } from './layout/main/main.component';
 import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
-import {ProfilEtuComponent} from './components/profilEtu/profilEtu.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import {ProfilEtuComponent} from './components/profilEtu/profilEtu.component';
     LoginComponent,
     ProfilComponent,
     SessionComponent,
-    TryComponent,
+    JustificationComponent,
     ModuleComponent,
     HeaderEtuComponent,
     AsideEtuComponent,
@@ -77,6 +78,7 @@ import {ProfilEtuComponent} from './components/profilEtu/profilEtu.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    NoopAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     MenubarModule,
@@ -115,6 +117,8 @@ import {ProfilEtuComponent} from './components/profilEtu/profilEtu.component';
     MegaMenuModule,
     MatGridListModule,
     DataViewModule,
+    KeyFilterModule,
+    MessageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

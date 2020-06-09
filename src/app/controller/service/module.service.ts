@@ -1,9 +1,9 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Module} from '../model/module';
-import {Session} from '../model/session';
-import {TypeSessionService} from './type-session.service';
+import {Semestre} from '../model/semestre';
 import {TypeSession} from '../model/type-session';
+import {TypeSessionService} from './type-session.service';
 
 @Injectable({
   providedIn: 'root',
@@ -35,8 +35,8 @@ export class ModuleService {
       },
     );
   }
-  public findBySemestre(module: Module) {
-    this.http.post<Module[]>(this._url + 'semestre/', module.semestre).subscribe(
+  public async findBySemestre(semestre: Semestre) {
+    await this.http.post<Module[]>(this._url + 'semestre/', semestre).toPromise().then(
       (data) => {
         this.modulesFounded = data;
       },

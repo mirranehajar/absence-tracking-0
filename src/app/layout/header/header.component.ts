@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 import {MenuItem} from 'primeng/api';
 import {Cycle} from '../../controller/model/cycle';
 import {Enseignant} from '../../controller/model/enseignant.model';
@@ -32,12 +33,13 @@ export class HeaderComponent implements OnInit {
     filiere: string;
 
    constructor(public sectorManagerService: SectorManagerService, public sectorService: SectorService,
-               public cycleService: CycleService, public enseignantService: EnseignantService, public semestreService: SemestreService) { }
+               public cycleService: CycleService, public enseignantService: EnseignantService,
+               public semestreService: SemestreService, private router: Router) { }
 
-  async ngOnInit(): Promise<void> {
+   ngOnInit(): void {
     this.cycleService.findAll();
     this.sectorService.findAll();
-    await this.semestreService.findAll();
+    this.semestreService.findAll();
     this.enseignantService.findAll();
     this.items = [
       {
@@ -119,6 +121,9 @@ export class HeaderComponent implements OnInit {
   get enseignant(): Enseignant {
     return this.enseignantService.enseignant;
   }
+  get enseignantConnected(): Enseignant {
+    return this.enseignantService.enseignantConnected;
+  }
   get enseignants(): Enseignant[] {
     return this.enseignantService.enseignants;
   }
@@ -176,5 +181,10 @@ export class HeaderComponent implements OnInit {
   public deleteByReference(semestre: Semestre) {
      console.log(semestre.reference);
      return this.semestreService.deleteByReference(semestre);
+  }
+  goToModule(semestre: Semestre) {
+     this.semestreService.semestre = semestre;
+     console.log(this.semestre);
+     this.router.navigate(['/module']);
   }
 }

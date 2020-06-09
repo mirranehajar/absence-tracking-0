@@ -10,16 +10,16 @@
   </div>
 </div>
 <hr />
-<div class="row">
+<div *ngIf="enseignantConnected.role == 1" class="row">
     <div class="col-md-4">
       <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Add a professor"></button>
       <p-dialog  header="Ajouter un enseignant" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
-        <form style="text-align: center" method="POST" >
+        <form style="text-align: center" method="POST" #form="ngForm" >
             <div style="display:inline-block" class="form-group">
               <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignant.numeroSOM" name="numeroSOM" type="number" pInputText placeholder="Numéro de SOM" >
+                    <input [(ngModel)]="enseignant.numeroSOM" name="numeroSOM" type="text" pKeyFilter="pnum"  [pValidateOnly]="true" pInputText placeholder="Numéro de SOM" >
                 </div>
               </div>
               <br>
@@ -47,7 +47,7 @@
               <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignant.birthDay" name="jour de naissance" type="date" pInputText placeholder="Jour de naissance">
+                    <input max="1995-01-01" [(ngModel)]="enseignant.birthDay" name="jour de naissance" type="date" pInputText placeholder="Jour de naissance">
                   </div>
                 </div>
               <br>
@@ -93,7 +93,7 @@
             <td *ngFor="let col of columns">
               {{rowData[col.field]}}
             </td>
-          <p-button (click)="showBasicDialog2(rowData)" icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>
+          <p-button *ngIf="enseignantConnected.role == 1"  (click)="showBasicDialog2(rowData)" icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>
             <p-dialog  header="modification d'un professeur" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
             <form style="text-align: center" method="POST" >
               <div style="display:inline-block" class="form-group">
@@ -153,7 +153,7 @@
               </p-footer>
             </form>
           </p-dialog>
-          <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByNumeroSOM(rowData)"></p-button>
+          <p-button *ngIf="enseignantConnected.role == 1"  icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByNumeroSOM(rowData)"></p-button>
         </tr>
         </ng-template>
         </p-table>
