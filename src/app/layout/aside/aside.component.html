@@ -1,10 +1,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div class="card">
-  <img src="assets/images/fstg.jpg" alt="image" style="width:100%">
-  <h1>Name</h1>
-  <h3>Email</h3>
-  <h5 class="title">Role</h5>
-  <p>Facultee FSTG Marrakech</p>
-  <p><button>More infos</button></p>
-</div>
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image" style="background-image: url('https://media.istockphoto.com/vectors/user-men-icon-guys-profile-man-in-business-suit-with-a-tie-male-web-vector-id1131324870')" ></div>
+    <mat-card-title>Name</mat-card-title>
+    <mat-card-subtitle>Role</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Infos about the user ( what he can dooo )
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button style="background-color: #0882A1">MORE</button>
+    <button mat-raised-button style="background-color: #63C7F2">LogOut</button>
+  </mat-card-actions>
+</mat-card>
