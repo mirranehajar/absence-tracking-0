@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./asideEtu.component.scss'],
 })
 export class AsideEtuComponent implements OnInit {
-
+  display: boolean;
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  Show() {
+    this.display = true;
+}
 }

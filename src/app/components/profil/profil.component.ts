@@ -11,15 +11,19 @@ import {EnseignantService} from '../../controller/service/enseignant.service';
 export class ProfilComponent implements OnInit {
   displayBasic: boolean;
   displayBasic2: boolean;
-  private _url = 'http://localhost:8090/absence-tracking/etudiant/';
+  private _url = 'http://localhost:8090/absence-tracking/enseignant/';
   selectedFile: File;
   retrievedImage: any;
   message: string;
-  cne: string;
+  password: string;
+  passwordConfirm: string;
+  currentPassword: string;
+  passwordUpdate: string;
 
   constructor(private http: HttpClient, private enseignantService: EnseignantService) { }
 
   ngOnInit(): void {
+    this.getImage(this.enseignantConnected.cin);
 
   }
 
@@ -30,13 +34,20 @@ export class ProfilComponent implements OnInit {
   showBasicDialog2() {
     this.displayBasic2 = true;
   }
-  public upload() {
-    console.log(this.selectedFile);
 
+  // Gets called when the user selects an image
+  public onFileChanged(event) {
+    // Select File
+    this.selectedFile = event.target.files[0];
+    this.upload();
+  }
+  // Gets called when the user clicks on submit to upload the image
+  public async upload() {
+    console.log(this.selectedFile);
     // FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
-    this.http.post(this._url + 'upload/' + this.cne , uploadImageData, { observe: 'response' })
+    this.http.post(this._url + 'upload/' + this.enseignantConnected.numeroSOM , uploadImageData, { observe: 'response' })
       .subscribe((response) => {
           if (response.status === 200) {
             this.message = 'Image uploaded successfully';
@@ -45,8 +56,38 @@ export class ProfilComponent implements OnInit {
           }
         },
       );
+    await this.getImage(this.enseignantConnected.cin);
+    await this.enseignantService.findByNumeroSOM(this.enseignantConnected);
+  }
+  // Gets called when the user clicks on retrieved image button to get the image from back end
+  async getImage(cin: string): Promise<any> {
+    // Make a call to Spring Boot to get the Image Bytes.
+    await this.http.get<Enseignant>(this._url + 'get/' + cin)
+      .toPromise().then(
+        (res) => {
+          this.enseignantConnected.src = 'data:image/jpeg;base64,' + res.image;
+        },
+      );
   }
   get enseignantConnected(): Enseignant {
     return this.enseignantService.enseignantConnected;
+  }
+  get enseignantFounded(): Enseignant {
+    return this.enseignantService.enseignantFounded;
+  }
+  updatePassword() {
+    if (this.currentPassword === this.enseignantConnected.password && this.password === this.passwordConfirm) {
+      this.enseignantService.enseignantFounded = this.enseignantConnected;
+      this.enseignantService.enseignantFounded.password = this.password;
+      this.enseignantService.update();
+      this.displayBasic = false;
+    }
+  }
+  update() {
+    if (this.enseignantConnected.password === this.passwordUpdate) {
+      this.enseignantService.enseignantFounded = this.enseignantConnected;
+      this.enseignantService.update();
+      this.displayBasic2 = false;
+    }
   }
 }

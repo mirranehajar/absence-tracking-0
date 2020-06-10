@@ -1,18 +1,7 @@
-<div class="container row">
-  <div class="col-md-6">
-    <input type="file" (change)="onFileChanged($event)">
-  </div>
-  <div class="col-md-6">
-    <input type="button" (click)="upload()" value="upload">
-  </div>
-  <div class="col-md-6">
-    <input type="text" [(ngModel)]="cne">
-  </div>
-</div>
 <div class="container">
   <div class="card text-center">
     <div class="card-header">
-      <div class="row">
+      <div *ngIf="enseignantConnected.role == 1"  class="row">
         <div class="col-md-4">
           <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un étudiant"></button>
           <p-dialog  header="Ajout d'un nouveau étudiant" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
@@ -56,7 +45,7 @@
                 <div class="row">
                   <div class="ui-inputgroup">
                     <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="etudiant.birthDay" name="birthDay" type="date" pInputText placeholder="Jour de naissance">
+                    <input [(ngModel)]="etudiant.birthDay" max="2000-03-31"name="birthDay" type="date" pInputText placeholder="Jour de naissance">
                   </div>
                 </div>
                 <br>
@@ -67,6 +56,21 @@
                   </div>
                 </div>
               <br>
+                <div class="row">
+                <div class="ui-inputgroup">
+                  <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                  <p-radioButton name="sex" label="Feminin" value="F" [(ngModel)]="etudiant.sex"></p-radioButton>
+                  <p-radioButton name="sex" label="Masculin" value="M" [(ngModel)]="etudiant.sex"></p-radioButton>
+                </div>
+              </div>
+                <br>
+                <div class="row">
+                  <div class="ui-inputgroup">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                    <p-dropdown name="ville" [options]="cities" [(ngModel)]="city" placeholder="Choisir une ville" optionLabel="ville" ></p-dropdown>
+                  </div>
+                </div>
+                <br>
               <div class="row">
                 <div class="ui-inputgroup">
                   <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
@@ -100,9 +104,8 @@
       </div>
     </div>
     <div class="card-body">
-      <div class="row">
         <div class="table-responsive-sm">
-          <p-table [columns]="cols" [value]="etudiants" [paginator]="true" [rows]="7">
+          <p-table [autoLayout]="true" [columns]="cols" [value]="etudiants" [paginator]="true" [rows]="7">
             <ng-template pTemplate="header" let-columns>
               <tr>
                 <th>Image</th>
@@ -121,10 +124,10 @@
                   {{rowData[col.field]}}
                 </td>
                 <td *ngIf="rowData.sector == null"></td>
-                <td *ngIf="rowData.groupe == null"></td>
                 <td *ngIf="rowData.sector">{{rowData.sector.libelle}}</td>
+                <td *ngIf="rowData.groupe == null"></td>
                 <td *ngIf="rowData.groupe">{{rowData.groupe.libelle}}</td>
-              <p-button icon="pi pi-user-edit" (click)="showBasicDialog2(rowData)" styleClass="ui-button-info"></p-button>
+              <p-button *ngIf="enseignantConnected.role == 1"  icon="pi pi-user-edit" (click)="showBasicDialog2(rowData)" styleClass="ui-button-info"></p-button>
               <p-dialog  header="Modification d'un étudiant" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
                 <form style="text-align: center" method="POST" >
                   <div style="display:inline-block" class="form-group">
@@ -177,6 +180,21 @@
                       </div>
                     </div>
                   <br>
+                    <div class="row">
+                      <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                        <p-radioButton name="sex" label="Feminin" value="F" [(ngModel)]="etudiantFounded.sex"></p-radioButton>
+                        <p-radioButton name="sex" label="Masculin" value="M" [(ngModel)]="etudiantFounded.sex"></p-radioButton>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+                        <p-dropdown name="ville" [options]="cities" [(ngModel)]="city"  optionLabel="ville" ></p-dropdown>
+                      </div>
+                    </div>
+                    <br>
                   <div class="row">
                     <div class="ui-inputgroup">
                       <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
@@ -198,12 +216,11 @@
                   </p-footer>
                 </form>
               </p-dialog>
-              <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByCne(rowData)"></p-button>
+              <p-button *ngIf="enseignantConnected.role == 1"  icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByCne(rowData)"></p-button>
             </tr>
             </ng-template>
             </p-table>
         </div>
-      </div>
     </div>
   </div>
 </div>

@@ -1,16 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {Absence} from '../../controller/model/absence';
-import {Etudiant} from '../../controller/model/etudiant.model';
 import {AbsenceService} from '../../controller/service/absence.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 
 @Component({
   selector: 'app-try',
-  templateUrl: './try.component.html',
-  styleUrls: ['./try.component.scss'],
+  templateUrl: './justification.component.html',
+  styleUrls: ['./justification.component.scss'],
 })
 
-export class TryComponent implements OnInit {
+export class JustificationComponent implements OnInit {
   basicDialog: boolean;
   constructor(private etudiantService: EtudiantService, private absenceService: AbsenceService) {
   }
@@ -32,5 +31,6 @@ export class TryComponent implements OnInit {
   }
   update() {
     return this.absenceService.update();
+    this.basicDialog = false;
   }
 }

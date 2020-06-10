@@ -1,19 +1,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<mat-card class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image" style="background-image: url('https://media.istockphoto.com/vectors/user-men-icon-guys-profile-man-in-business-suit-with-a-tie-male-web-vector-id1131324870')"></div>
-    <mat-card-title>Name</mat-card-title>
-    <mat-card-subtitle>Role</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      Infos about the user ( what he can dooo )
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button style="background-color: #0882A1">MORE</button>
-    <button mat-raised-button style="background-color: #63C7F2">LogOut</button>
-  </mat-card-actions>
-</mat-card>
 
+
+<p-sidebar [(visible)]="display" [style]="{width:'14em'}">
+    <p-header>
+      <img src="" >
+      Last Name First Name
+    </p-header>
+    <p>CIN - N°SOM <br> Email <br>Tél <br> J.Naissance </p>
+    <p-footer>
+      <button class="ui-button-rounded ui-button-info" pButton label="Plus d'info"></button>
+    </p-footer>
+</p-sidebar>
+
+<button type="text" (click)="Show()" pButton icon="pi pi-plus" label="Show"></button>

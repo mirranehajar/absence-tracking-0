@@ -2,10 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {SelectItem} from 'primeng';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {Module} from '../../controller/model/module';
+import {Semestre} from '../../controller/model/semestre';
 import {Subject} from '../../controller/model/subject';
 import {TypeSession} from '../../controller/model/type-session';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {ModuleService} from '../../controller/service/module.service';
+import {SemestreService} from '../../controller/service/semestre.service';
 import {SubjectService} from '../../controller/service/subject.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
 
@@ -23,7 +25,8 @@ export class ModuleComponent implements OnInit {
   cols: any[];
 
   constructor(private moduleService: ModuleService, private subjectService: SubjectService,
-              private enseignantService: EnseignantService, private typeSessionService: TypeSessionService) {
+              private enseignantService: EnseignantService, private typeSessionService: TypeSessionService,
+              private semestreService: SemestreService) {
     this.libelles = [
       {label: 'Cours', value: 'Cours'},
       {label: 'TD', value: 'TD'},
@@ -31,13 +34,16 @@ export class ModuleComponent implements OnInit {
     ];
   }
 
-  ngOnInit(): void {
-    this.moduleService.findAll();
+   async ngOnInit(): Promise<void> {
+    console.log(this.semestre);
     this.subjectService.findAll();
     this.enseignantService.findAll();
     this.typeSessionService.findAll();
+    this.moduleService.findAll();
+    await this.semestreService.findAll();
+    console.log(this.semestre.modules);
     this.cols = [
-      { field: 'libelle', header: 'Libelle' },
+      {field: 'libelle', header: 'Libelle'},
     ];
   }
 
@@ -50,6 +56,9 @@ export class ModuleComponent implements OnInit {
   get moduleFounded(): Module {
     return this.moduleService.moduleFounded;
   }
+  get modulesFounded(): Module[] {
+    return this.moduleService.modulesFounded;
+  }
   public deleteByLibelle(module: Module) {
     this.moduleService.deleteByLibelle(module);
   }
@@ -59,6 +68,7 @@ export class ModuleComponent implements OnInit {
     this.displayBasic3 = false;
   }
   save() {
+    this.moduleService.module.semestre = this.semestre;
     this.moduleService.save();
     this.displayBasic = false;
   }
@@ -114,5 +124,11 @@ export class ModuleComponent implements OnInit {
 
   public deleteByReference(typeSession: TypeSession) {
     return this.typeSessionService.deleteByReference(typeSession);
+  }
+  get semestre(): Semestre {
+    return this.semestreService.semestre;
+  }
+    public async findBySemestre(semestre: Semestre) {
+    await this.moduleService.findBySemestre(semestre);
   }
 }

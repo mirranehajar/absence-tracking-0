@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 import {MenuItem} from 'primeng/api';
 import {Cycle} from '../../controller/model/cycle';
 import {Enseignant} from '../../controller/model/enseignant.model';
@@ -30,14 +31,16 @@ export class HeaderComponent implements OnInit {
     displayBasic3: boolean;
     displayBasic4: boolean;
     filiere: string;
+    display: boolean;
 
    constructor(public sectorManagerService: SectorManagerService, public sectorService: SectorService,
-               public cycleService: CycleService, public enseignantService: EnseignantService, public semestreService: SemestreService) { }
+               public cycleService: CycleService, public enseignantService: EnseignantService,
+               public semestreService: SemestreService, private router: Router) { }
 
-  async ngOnInit(): Promise<void> {
+   ngOnInit(): void {
     this.cycleService.findAll();
     this.sectorService.findAll();
-    await this.semestreService.findAll();
+    this.semestreService.findAll();
     this.enseignantService.findAll();
     this.items = [
       {
@@ -119,6 +122,9 @@ export class HeaderComponent implements OnInit {
   get enseignant(): Enseignant {
     return this.enseignantService.enseignant;
   }
+  get enseignantConnected(): Enseignant {
+    return this.enseignantService.enseignantConnected;
+  }
   get enseignants(): Enseignant[] {
     return this.enseignantService.enseignants;
   }
@@ -147,21 +153,22 @@ export class HeaderComponent implements OnInit {
     this.sectorManagerService.update();
     this.displayBasic2 = false;
   }
-  public save2() {
-    this.semestreService.save(this.filiere);
+  public async save2() {
+    await this.semestreService.save(this.filiere);
     this.displayBasic3 = false;
+    this.sectorService.findAll();
   }
   public update2() {
     this.semestreService.update();
     this.displayBasic4 = false;
   }
   public findByLibelle(sector: Sector) {
-  return this.sectorService.findByLibelle(sector);
+  return this.sectorService.findByLibelle(sector.libelle);
   }
-  public deleteByLibelle(sector: Sector) {
-    return this.sectorService.deleteByLibelle(sector);
+  public async deleteByLibelle(sector: Sector) {
+    await this.sectorService.deleteByLibelle(sector);
     this.displayBasic2 = false;
-    window.location.reload();
+    this.sectorService.findAll();
   }
   get semestres(): Semestre[] {
     return this.semestreService.semestres;
@@ -173,8 +180,17 @@ export class HeaderComponent implements OnInit {
     return this.semestreService.semestreFounded;
   }
 
-  public deleteByReference(semestre: Semestre) {
+  public async deleteByReference(semestre: Semestre) {
      console.log(semestre.reference);
-     return this.semestreService.deleteByReference(semestre);
+     await this.semestreService.deleteByReference(semestre);
+     this.sectorService.findAll();
+  }
+  goToModule(semestre: Semestre) {
+     this.semestreService.semestre = semestre;
+     console.log(this.semestre);
+     this.router.navigate(['/module']);
+  }
+  show() {
+     this.display = true;
   }
 }

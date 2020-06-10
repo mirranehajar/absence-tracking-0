@@ -8,25 +8,33 @@
       <a class="navbar-brand" href="#">
         <img src="assets/images/fstg.jpg" height="30" alt="">
       </a>
-
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <links>
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a href="#" routerLink="/profilEtu" class="nav-link"><i class="pi pi-user" style="font-size: 30px"></i> Profile</a>
+            <a class="nav-link"><i (click)="show()" class="pi pi-ellipsis-v iconColor"></i></a>
+          </li>
+          &nbsp;
+          <li class="nav-item">
+            <a class="nav-link" href="/home"><i class="pi pi-home iconColor"></i>Acceuil</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/module" class="nav-link"><i class="pi pi-users" style="font-size: 30px"></i>Modules</a>
+            <a href="#" routerLink="/profilEtu" class="nav-link"><i class="pi pi-user iconColor"></i> Profile</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/groupe" href="groupe" class="nav-link"><i class="pi pi-users" style="font-size: 30px"></i>Groupe</a>
+            <a routerLink="/module" class="nav-link"><i class="pi pi-users iconColor"></i>Modules</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/justificatif" class="nav-link"><i class="pi pi-star" style="font-size: 30px"></i>Mes Absences</a>
+            <a routerLink="/groupe" href="groupe" class="nav-link"><i class="pi pi-users iconColor"></i>Groupe</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/justificatif" class="nav-link"><i class="pi pi-star iconColor"></i>Mes Absences</a>
           </li>
         </ul>
-        <i  class="pi pi-bell"></i>
-        <i href="login" routerLink="login" class="pi pi-sign-out"></i>
+        <i  class="iconColor pi pi-bell"></i>
+        <i href="login" routerLink="login" class="iconColor pi pi-sign-out"></i>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <!-- Links -->
         <a class="navbar-brand" href="#">
           <img src="assets/images/logoFst.png" height="30" alt="">
@@ -129,3 +137,13 @@
     </p-footer>
   </form>
 </p-dialog>
+    <p-sidebar [(visible)]="display" [style]="{width:'14em'}">
+      <p-header>
+        <img src="" >
+        Last Name First Name
+      </p-header>
+      <p>CIN - N°SOM <br> Email <br>Tél <br> J.Naissance </p>
+      <p-footer>
+        <button class="ui-button-rounded ui-button-info" pButton label="Plus d'info"></button>
+      </p-footer>
+    </p-sidebar>

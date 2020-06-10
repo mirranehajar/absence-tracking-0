@@ -30,9 +30,11 @@ export class HeaderEtuComponent implements OnInit {
     displayBasic3: boolean;
     displayBasic4: boolean;
     filiere: string;
+    display: boolean;
 
-   constructor(public sectorManagerService: SectorManagerService, public sectorService: SectorService,
-               public cycleService: CycleService, public enseignantService: EnseignantService, public semestreService: SemestreService) { }
+   constructor(private sectorManagerService: SectorManagerService, private sectorService: SectorService,
+               private cycleService: CycleService, private enseignantService: EnseignantService,
+               private semestreService: SemestreService) { }
 
   async ngOnInit(): Promise<void> {
     this.cycleService.findAll();
@@ -156,7 +158,7 @@ export class HeaderEtuComponent implements OnInit {
     this.displayBasic4 = false;
   }
   public findByLibelle(sector: Sector) {
-  return this.sectorService.findByLibelle(sector);
+  return this.sectorService.findByLibelle(sector.libelle);
   }
   public deleteByLibelle(sector: Sector) {
     return this.sectorService.deleteByLibelle(sector);
@@ -176,5 +178,8 @@ export class HeaderEtuComponent implements OnInit {
   public deleteByReference(semestre: Semestre) {
      console.log(semestre.reference);
      return this.semestreService.deleteByReference(semestre);
+  }
+  show() {
+     this.display = true;
   }
 }

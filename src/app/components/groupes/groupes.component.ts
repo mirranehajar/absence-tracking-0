@@ -42,7 +42,7 @@ export class GroupesComponent implements OnInit {
     this.etudiantService.etudiantFounded = etudiant;
   }
   public findByLibelle(groupe: Groupe) {
-    return this.groupeService.findByLibelle(groupe);
+    return this.groupeService.findByLibelle(groupe.libelle);
   }
   public deleteByReference(groupe: Groupe) {
     this.groupeService.deleteByReference(groupe);

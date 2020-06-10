@@ -1,28 +1,38 @@
-
 <!--Navbar-->
-<mdb-navbar #nav SideClass="navbar navbar-expand-lg navbar-light white">
+    <mdb-navbar #nav SideClass="navbar navbar-expand-lg navbar-light white">
 
+      <!-- Navbar brand -->
+      <mdb-navbar-brand>
+        <a class="navbar-brand" href="#">
+          <img src="assets/images/fstg.jpg" height="30" alt="">
+        </a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </mdb-navbar-brand>
 
-  <!-- Navbar brand -->
-  <a class="navbar-brand" href="#">
-    <img src="assets/images/fstg.jpg" height="30" alt="">
-  </a>
       <links>
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
+          &nbsp;&nbsp;
           <li class="nav-item">
-            <a href="#" routerLink="/profil" class="nav-link"><i class="pi pi-user" style="font-size: 30px"></i> Profile</a>
+            <a class="nav-link"><i (click)="show()" class="pi pi-ellipsis-v iconColor"></i></a>
+          </li>
+          &nbsp;
+          <li class="nav-item">
+            <a class="nav-link" href="/home"><i class="pi pi-home iconColor"></i>Acceuil</a>
+          </li>
+          <li class="nav-item">
+            <a href="/profil" routerLink="/profil" class="nav-link"><i class="pi pi-user iconColor"></i> Profile</a>
           </li>
           <!-- Dropdown -->
           <li class="nav-item dropdown mega-dropdown" mdbDropdown>
-            <a mdbDropdownToggle class="nav-link dropdown-toggle"><i class="pi pi-list" style="font-size: 30px"></i>Filière</a>
+            <a mdbDropdownToggle class="nav-link dropdown-toggle"><i class="pi pi-list iconColor"></i>Filière</a>
             <div class="dropdown-menu mega-menu row z-depth-1 ">
               <div *ngFor="let s of sectors" class="item has_submenu">
               <a href="#" ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + s.libelle}}</a>
-                <button pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 "  (click)="showBasicDialog2(s)"  icon="pi pi-pencil" ></button>
+                <button *ngIf="enseignantConnected.role === 1" pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 "  (click)="showBasicDialog2(s)"  icon="pi pi-pencil" ></button>
                 <div class="submenu">
                   <div *ngFor="let ss of s.semestres" class="item has_submenu">
-                    <a href="#" ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + ss.libelle}}</a>
+                    <a  (click)="goToModule(ss)"><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + ss.libelle}}</a>
                     <button pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 " class="ui-button-danger" (click)="deleteByReference(ss)" icon="pi pi-trash" ></button>
                   <div class="dropdown-divider"></div>
                   </div>
@@ -33,30 +43,29 @@
                 <div class="dropdown-divider"></div>
               </div>
               <div style="text-align: center">
-              <button pButton type="button"  icon="pi pi-plus" (click)="showBasicDialog()" style="opacity: 0.8" label="Nouvelle Filière" ></button>
+              <button *ngIf="enseignantConnected.role === 1" pButton type="button"  icon="pi pi-plus" (click)="showBasicDialog()" style="opacity: 0.8" label="Nouvelle Filière" ></button>
             </div>
             </div>
           </li>
           <li class="nav-item">
-            <a routerLink="/etudiant" class="nav-link"><i class="pi pi-users" style="font-size: 30px"></i>Étudiants</a>
+            <a routerLink="/etudiant" class="nav-link"><i class="pi pi-users iconColor" ></i>Étudiants</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/enseignant" class="nav-link"><i class="pi pi-star" style="font-size: 30px"></i>Enseignants</a>
+            <a routerLink="/enseignant" class="nav-link"><i class="pi pi-star iconColor"></i>Enseignants</a>
           </li>
         </ul>
-        <i  class="pi pi-bell"></i>
-        <i href="login" routerLink="login" class="pi pi-sign-out"></i>
+        <i  class=" iconColor pi pi-bell"></i>
+        <i routerLink="/login" class="pi pi-sign-out iconColor"></i>
         <!-- Links -->
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a class="navbar-brand" href="#">
           <img src="assets/images/logoFst.png" height="30" alt="">
         </a>
-
-        <!-- Links -->
       </links>
-
       <!-- Collapsible content -->
-</mdb-navbar>
+    </mdb-navbar>
     <!--/.Navbar-->
+
 
 <p-dialog  header="Ajout d'une filière" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
   <form style="text-align: center" method="POST" >
@@ -150,3 +159,13 @@
     </p-footer>
   </form>
 </p-dialog>
+<p-sidebar [(visible)]="display" [style]="{width:'14em'}">
+  <p-header>
+    <img src="" >
+    Last Name First Name
+  </p-header>
+  <p>CIN - N°SOM <br> Email <br>Tél <br> J.Naissance </p>
+  <p-footer>
+    <button class="ui-button-rounded ui-button-info" pButton label="Plus d'info"></button>
+  </p-footer>
+</p-sidebar>

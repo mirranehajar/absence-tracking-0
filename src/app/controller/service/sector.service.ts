@@ -26,15 +26,15 @@ export class SectorService {
       },
     );
   }
-  public findByLibelle(sector: Sector) {
-    this.http.get<Sector>(this._url + 'libelle/' + sector.libelle).subscribe(
+  public async findByLibelle(libelle: string) {
+    await this.http.get<Sector>(this._url + 'libelle/' + libelle).toPromise().then(
       (data) => {
         this.sectorFounded = data;
       },
     );
   }
-  public deleteByLibelle(sector: Sector) {
-    this.http.delete<number>(this._url + 'libelle/' + sector.libelle).subscribe(
+  public async deleteByLibelle(sector: Sector) {
+    await this.http.delete<number>(this._url + 'libelle/' + sector.libelle).toPromise().then(
       (data) => {
         console.log(data);
         this.deleteFromList(sector);

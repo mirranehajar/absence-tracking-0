@@ -13,6 +13,7 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import { InputsModule, WavesModule } from 'angular-bootstrap-md';
@@ -20,12 +21,12 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import { IconsModule } from 'angular-bootstrap-md';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {
-  AccordionModule,
+  AccordionModule, CardModule,
   ConfirmDialogModule, DataViewModule, DialogModule,
   DropdownModule,
-  FileUploadModule, MegaMenuModule,
-  MenubarModule,
-  MessagesModule, MultiSelectModule, PanelModule, SelectButtonModule,
+  FileUploadModule, KeyFilterModule, MegaMenuModule,
+  MenubarModule, MessageModule,
+  MessagesModule, MultiSelectModule, PanelModule, RadioButtonModule, SelectButtonModule, SidebarModule,
   SplitButtonModule, TableModule,
   TabViewModule,
   ToastModule,
@@ -36,12 +37,12 @@ import { AbsenceComponent } from './components/absence/absence.component';
 import { EnseignantComponent } from './components/enseignant/enseignant.component';
 import { EtudiantsComponent } from './components/etudiants/etudiants.component';
 import { GroupesComponent } from './components/groupes/groupes.component';
+import {JustificationComponent} from './components/Justification/justification.component';
 import { LoginComponent } from './components/login/login.component';
 import {ModuleComponent} from './components/module/module.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import {ProfilEtuComponent} from './components/profilEtu/profilEtu.component';
 import { SessionComponent } from './components/session/session.component';
-import { TryComponent } from './components/try/try.component';
 import {AppEnsComponent} from './layout/appEns/appEns.component';
 import {AppEtuComponent} from './layout/appEtu/appEtu.component';
 import { AsideComponent } from './layout/aside/aside.component';
@@ -66,7 +67,7 @@ import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
     LoginComponent,
     ProfilComponent,
     SessionComponent,
-    TryComponent,
+    JustificationComponent,
     ModuleComponent,
     HeaderEtuComponent,
     AsideEtuComponent,
@@ -78,6 +79,7 @@ import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    NoopAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     MenubarModule,
@@ -116,7 +118,12 @@ import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
     MegaMenuModule,
     MatGridListModule,
     DataViewModule,
+    KeyFilterModule,
+    MessageModule,
     MatCardModule,
+    CardModule,
+    SidebarModule,
+    RadioButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

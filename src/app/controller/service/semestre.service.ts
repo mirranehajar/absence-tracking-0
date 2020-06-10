@@ -1,7 +1,9 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Module} from '../model/module';
 import {Sector} from '../model/sector';
 import {Semestre} from '../model/semestre';
+import {ModuleService} from './module.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +18,7 @@ export class SemestreService {
   private _semestresFounded: Semestre[];
   // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/semestre/';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private moduleService: ModuleService) { }
 
   public async findBySector(sector: Sector) {
     await this.http.post<Semestre[]>(this._url + 'sector/', sector).toPromise().then(
@@ -32,15 +34,20 @@ export class SemestreService {
       },
     );
   }
-  public async findAll() {
-    await this.http.get<Semestre[]>(this._url).toPromise().then(
-      (data) => {
+  public  findAll() {
+     this.http.get<Semestre[]>(this._url).subscribe(
+      async (data) => {
         this.semestres = data;
+        for ( const s of this.semestres) {
+          await this.findBySemeste(s);
+          s.modules = this.modulesFounded;
+          console.log(s);
+        }
       },
     );
   }
-  public deleteByReference(semestre: Semestre) {
-    this.http.delete<number>(this._url + 'reference/' + semestre.reference).subscribe(
+  public async deleteByReference(semestre: Semestre) {
+    await this.http.delete<number>(this._url + 'reference/' + semestre.reference).toPromise().then(
       (data) => {
         console.log(data);
         this.deleteFromList(semestre);
@@ -68,8 +75,8 @@ export class SemestreService {
     );
     this.semestreFounded.sector.semestres = this.semestresFounded;
   }
-  public save(filiere: string) {
-    this.http.post<number>(this._url + filiere, this.semestre).subscribe(
+  public async save(filiere: string) {
+    await this.http.post<number>(this._url + filiere, this.semestre).toPromise().then(
       (data) => {
         if (data > 0) {
           this.semestres.push(this.clone(this.semestre));
@@ -127,5 +134,11 @@ export class SemestreService {
 
   set semestresFounded(value: Semestre[]) {
     this._semestresFounded = value;
+  }
+  public async findBySemeste(semestre: Semestre) {
+    await  this.moduleService.findBySemestre(semestre);
+  }
+  get modulesFounded(): Module[] {
+    return this.moduleService.modulesFounded;
   }
 }
