@@ -42,7 +42,7 @@ export class ProfilComponent implements OnInit {
     this.upload();
   }
   // Gets called when the user clicks on submit to upload the image
-  public upload() {
+  public async upload() {
     console.log(this.selectedFile);
     // FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
     const uploadImageData = new FormData();
@@ -56,7 +56,8 @@ export class ProfilComponent implements OnInit {
           }
         },
       );
-    this.getImage(this.enseignantConnected.cin);
+    await this.getImage(this.enseignantConnected.cin);
+    await this.enseignantService.findByNumeroSOM(this.enseignantConnected);
   }
   // Gets called when the user clicks on retrieved image button to get the image from back end
   async getImage(cin: string): Promise<any> {
@@ -70,6 +71,9 @@ export class ProfilComponent implements OnInit {
   }
   get enseignantConnected(): Enseignant {
     return this.enseignantService.enseignantConnected;
+  }
+  get enseignantFounded(): Enseignant {
+    return this.enseignantService.enseignantFounded;
   }
   updatePassword() {
     if (this.currentPassword === this.enseignantConnected.password && this.password === this.passwordConfirm) {

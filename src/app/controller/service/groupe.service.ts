@@ -18,8 +18,15 @@ export class GroupeService {
   private _url = 'http://localhost:8090/absence-tracking/groupe/';
   constructor(private http: HttpClient, private etudiantService: EtudiantService) { }
 
-  public findByLibelle(groupe: Groupe) {
-    this.http.get<Groupe>(this._url + 'libelle/' + groupe.libelle).subscribe(
+  public async findByReference(reference: string) {
+   await this.http.get<Groupe>(this._url + 'reference/' + reference).toPromise().then(
+      (data) => {
+        this.groupeFounded = data;
+      },
+    );
+  }
+  public async findByLibelle(libelle: string) {
+   await this.http.get<Groupe>(this._url + 'libelle/' + libelle).toPromise().then(
       (data) => {
         this.groupeFounded = data;
       },

@@ -46,8 +46,8 @@ export class SemestreService {
       },
     );
   }
-  public deleteByReference(semestre: Semestre) {
-    this.http.delete<number>(this._url + 'reference/' + semestre.reference).subscribe(
+  public async deleteByReference(semestre: Semestre) {
+    await this.http.delete<number>(this._url + 'reference/' + semestre.reference).toPromise().then(
       (data) => {
         console.log(data);
         this.deleteFromList(semestre);
@@ -75,8 +75,8 @@ export class SemestreService {
     );
     this.semestreFounded.sector.semestres = this.semestresFounded;
   }
-  public save(filiere: string) {
-    this.http.post<number>(this._url + filiere, this.semestre).subscribe(
+  public async save(filiere: string) {
+    await this.http.post<number>(this._url + filiere, this.semestre).toPromise().then(
       (data) => {
         if (data > 0) {
           this.semestres.push(this.clone(this.semestre));

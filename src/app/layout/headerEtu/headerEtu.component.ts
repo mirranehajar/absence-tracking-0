@@ -158,7 +158,7 @@ export class HeaderEtuComponent implements OnInit {
     this.displayBasic4 = false;
   }
   public findByLibelle(sector: Sector) {
-  return this.sectorService.findByLibelle(sector);
+  return this.sectorService.findByLibelle(sector.libelle);
   }
   public deleteByLibelle(sector: Sector) {
     return this.sectorService.deleteByLibelle(sector);

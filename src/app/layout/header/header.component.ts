@@ -153,21 +153,22 @@ export class HeaderComponent implements OnInit {
     this.sectorManagerService.update();
     this.displayBasic2 = false;
   }
-  public save2() {
-    this.semestreService.save(this.filiere);
+  public async save2() {
+    await this.semestreService.save(this.filiere);
     this.displayBasic3 = false;
+    this.sectorService.findAll();
   }
   public update2() {
     this.semestreService.update();
     this.displayBasic4 = false;
   }
   public findByLibelle(sector: Sector) {
-  return this.sectorService.findByLibelle(sector);
+  return this.sectorService.findByLibelle(sector.libelle);
   }
-  public deleteByLibelle(sector: Sector) {
-    return this.sectorService.deleteByLibelle(sector);
+  public async deleteByLibelle(sector: Sector) {
+    await this.sectorService.deleteByLibelle(sector);
     this.displayBasic2 = false;
-    window.location.reload();
+    this.sectorService.findAll();
   }
   get semestres(): Semestre[] {
     return this.semestreService.semestres;
@@ -179,9 +180,10 @@ export class HeaderComponent implements OnInit {
     return this.semestreService.semestreFounded;
   }
 
-  public deleteByReference(semestre: Semestre) {
+  public async deleteByReference(semestre: Semestre) {
      console.log(semestre.reference);
-     return this.semestreService.deleteByReference(semestre);
+     await this.semestreService.deleteByReference(semestre);
+     this.sectorService.findAll();
   }
   goToModule(semestre: Semestre) {
      this.semestreService.semestre = semestre;

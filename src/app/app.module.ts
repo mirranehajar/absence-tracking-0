@@ -3,6 +3,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 import {MatOptionModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -25,7 +26,7 @@ import {
   DropdownModule,
   FileUploadModule, KeyFilterModule, MegaMenuModule,
   MenubarModule, MessageModule,
-  MessagesModule, MultiSelectModule, PanelModule, SelectButtonModule, SidebarModule,
+  MessagesModule, MultiSelectModule, PanelModule, RadioButtonModule, SelectButtonModule, SidebarModule,
   SplitButtonModule, TableModule,
   TabViewModule,
   ToastModule,
@@ -51,7 +52,6 @@ import { HeaderComponent } from './layout/header/header.component';
 import {HeaderEtuComponent} from './layout/headerEtu/headerEtu.component';
 import { MainComponent } from './layout/main/main.component';
 import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
-import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -123,6 +123,7 @@ import {MatCardModule} from '@angular/material/card';
     MatCardModule,
     CardModule,
     SidebarModule,
+    RadioButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
