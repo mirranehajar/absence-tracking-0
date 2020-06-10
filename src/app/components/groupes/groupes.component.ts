@@ -1,11 +1,15 @@
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import {Enseignant} from '../../controller/model/enseignant.model';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {Groupe} from '../../controller/model/groupe';
 import {Sector} from '../../controller/model/sector';
+import {SectorManager} from '../../controller/model/sector-manager';
 import {Semestre} from '../../controller/model/semestre';
+import {EnseignantService} from '../../controller/service/enseignant.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 import {GroupeService} from '../../controller/service/groupe.service';
+import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
 
@@ -21,11 +25,12 @@ export class GroupesComponent implements OnInit {
   cols: any[];
 
   constructor(private semestreService: SemestreService, private etudiantService: EtudiantService,
-              private groupeService: GroupeService, private sectorService: SectorService) {}
+              private groupeService: GroupeService, private sectorService: SectorService,
+              private sectorManagerService: SectorManagerService, private enseignantService: EnseignantService) {}
 
   async ngOnInit(): Promise<void> {
     await this.etudiantService.findAll();
-    this.groupeService.findAll();
+    this.groupeService.findBySemestre(this.semestreConnected);
     this.cols = [
       { field: 'cne', header: 'Cne' },
       { field: 'codeApogee', header: 'C.Apogée' },
@@ -81,6 +86,9 @@ export class GroupesComponent implements OnInit {
   get groupeFounded(): Groupe {
     return this.groupeService.groupeFounded;
   }
+  get groupesFounded(): Groupe[] {
+    return this.groupeService.groupesFounded;
+  }
   dropGroupe(event: CdkDragDrop<Etudiant[]>, groupe: Groupe) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -124,5 +132,14 @@ export class GroupesComponent implements OnInit {
     this.groupeFounded.etudiants = this.etudiantsFounded;
     this.etudiantService.update();
     console.log(this.etudiantsFounded);
+  }
+  get semestreConnected(): Semestre {
+    return this.semestreService.semestreConnected;
+  }
+  get enseignantConnected(): Enseignant {
+    return this.enseignantService.enseignantConnected;
+  }
+  get sectorManagerConnected(): SectorManager {
+    return this.sectorManagerService.sectorManagerConnected;
   }
 }

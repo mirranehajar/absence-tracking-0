@@ -23,7 +23,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {
   AccordionModule, CardModule,
   ConfirmDialogModule, DataViewModule, DialogModule,
-  DropdownModule,
+  DropdownModule, FieldsetModule,
   FileUploadModule, KeyFilterModule, MegaMenuModule,
   MenubarModule, MessageModule,
   MessagesModule, MultiSelectModule, PanelModule, RadioButtonModule, SelectButtonModule, SidebarModule,
@@ -124,6 +124,7 @@ import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
     CardModule,
     SidebarModule,
     RadioButtonModule,
+    FieldsetModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

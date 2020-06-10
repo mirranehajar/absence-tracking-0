@@ -27,17 +27,17 @@
           <li class="nav-item dropdown mega-dropdown" mdbDropdown>
             <a mdbDropdownToggle class="nav-link dropdown-toggle"><i class="pi pi-list iconColor"></i>Filière</a>
             <div class="dropdown-menu mega-menu row z-depth-1 ">
-              <div *ngFor="let s of sectors" class="item has_submenu">
-              <a href="#" ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + s.libelle}}</a>
+              <div (mouseover)="onHover(s)" *ngFor="let s of sectors" class="item has_submenu">
+              <a href="#"  ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + s.libelle}}</a>
                 <button *ngIf="enseignantConnected.role === 1" pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 "  (click)="showBasicDialog2(s)"  icon="pi pi-pencil" ></button>
-                <div class="submenu">
+                <div *ngIf="s.semestres != null" class="submenu">
                   <div *ngFor="let ss of s.semestres" class="item has_submenu">
-                    <a  (click)="goToModule(ss)"><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + ss.libelle}}</a>
-                    <button pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 " class="ui-button-danger" (click)="deleteByReference(ss)" icon="pi pi-trash" ></button>
+                    <i><a  (click)="goToModule(ss)"><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + ss.libelle}}</a></i>
+                    <button *ngIf="sectorManagerFounded.enseignant.numeroSOM == enseignantConnected.numeroSOM" pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 " class="ui-button-danger" (click)="deleteByReference(ss)" icon="pi pi-trash" ></button>
                   <div class="dropdown-divider"></div>
                   </div>
                   <div style="text-align: center">
-                    <button pButton type="button"  icon="pi pi-plus"  (click)="showBasicDialog3(s.libelle)" style="opacity: 0.8" label="Nouveau Semestre" ></button>
+                    <button pButton type="button" *ngIf="sectorManagerFounded.enseignant.numeroSOM == enseignantConnected.numeroSOM" icon="pi pi-plus"  (click)="showBasicDialog3(s.libelle)" style="opacity: 0.8" label="Nouveau Semestre" ></button>
                   </div>
                 </div>
                 <div class="dropdown-divider"></div>
@@ -87,7 +87,7 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <p-dropdown name="sectorManager" [options]="enseignants" [(ngModel)]="sectorManager.enseignant" placeholder="Choisir un responsable" optionLabel="lastName"></p-dropdown>
+          <p-dropdown name="sectorManager" [options]="enseignantsFounded" [(ngModel)]="sectorManager.enseignant" placeholder="Choisir un responsable" optionLabel="lastName"></p-dropdown>
          </div>
       </div>
     </div>
@@ -120,7 +120,7 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <p-dropdown name="enseignant" [options]="enseignants" [(ngModel)]="sectorManagerFounded.enseignant" optionLabel="lastName"></p-dropdown>
+          <p-dropdown name="enseignant" [options]="enseignantsFounded" [(ngModel)]="sectorManagerFounded.enseignant" optionLabel="lastName"></p-dropdown>
         </div>
       </div>
     </div>

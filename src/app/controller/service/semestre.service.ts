@@ -1,9 +1,9 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Groupe} from '../model/groupe';
 import {Module} from '../model/module';
 import {Sector} from '../model/sector';
 import {Semestre} from '../model/semestre';
-import {ModuleService} from './module.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +17,9 @@ export class SemestreService {
   private _semestreFounded: Semestre;
   private _semestresFounded: Semestre[];
   // tslint:disable-next-line:variable-name
+  private _semestreConnected: Semestre;
   private _url = 'http://localhost:8090/absence-tracking/semestre/';
-  constructor(private http: HttpClient, private moduleService: ModuleService) { }
+  constructor(private http: HttpClient) { }
 
   public async findBySector(sector: Sector) {
     await this.http.post<Semestre[]>(this._url + 'sector/', sector).toPromise().then(
@@ -38,11 +39,6 @@ export class SemestreService {
      this.http.get<Semestre[]>(this._url).subscribe(
       async (data) => {
         this.semestres = data;
-        for ( const s of this.semestres) {
-          await this.findBySemeste(s);
-          s.modules = this.modulesFounded;
-          console.log(s);
-        }
       },
     );
   }
@@ -135,10 +131,21 @@ export class SemestreService {
   set semestresFounded(value: Semestre[]) {
     this._semestresFounded = value;
   }
-  public async findBySemeste(semestre: Semestre) {
-    await  this.moduleService.findBySemestre(semestre);
+
+  get semestreConnected(): Semestre {
+    if (this._semestreConnected == null) {
+      this._semestreConnected = new Semestre();
+    }
+    if (this._semestreConnected.modules == null) {
+      this._semestreConnected.modules = new Array<Module>();
+    }
+    if (this._semestreConnected.groupes == null) {
+      this._semestreConnected.groupes = new Array<Groupe>();
+    }
+    return this._semestreConnected;
   }
-  get modulesFounded(): Module[] {
-    return this.moduleService.modulesFounded;
+
+  set semestreConnected(value: Semestre) {
+    this._semestreConnected = value;
   }
 }

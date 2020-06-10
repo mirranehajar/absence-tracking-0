@@ -2,11 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {SelectItem} from 'primeng';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {Module} from '../../controller/model/module';
+import {SectorManager} from '../../controller/model/sector-manager';
 import {Semestre} from '../../controller/model/semestre';
 import {Subject} from '../../controller/model/subject';
 import {TypeSession} from '../../controller/model/type-session';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {ModuleService} from '../../controller/service/module.service';
+import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SemestreService} from '../../controller/service/semestre.service';
 import {SubjectService} from '../../controller/service/subject.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
@@ -23,10 +25,11 @@ export class ModuleComponent implements OnInit {
   displayBasic4: boolean;
   libelles: SelectItem[];
   cols: any[];
+  show = false;
 
   constructor(private moduleService: ModuleService, private subjectService: SubjectService,
               private enseignantService: EnseignantService, private typeSessionService: TypeSessionService,
-              private semestreService: SemestreService) {
+              private semestreService: SemestreService, private sectorManagerService: SectorManagerService) {
     this.libelles = [
       {label: 'Cours', value: 'Cours'},
       {label: 'TD', value: 'TD'},
@@ -35,18 +38,31 @@ export class ModuleComponent implements OnInit {
   }
 
    async ngOnInit(): Promise<void> {
-    console.log(this.semestre);
-    this.subjectService.findAll();
+    console.log(this.semestreConnected);
+    console.log(this.modules);
+    console.log(this.sectorManagerConnected);
+    await this.subjectService.findAll();
     this.enseignantService.findAll();
     this.typeSessionService.findAll();
-    this.moduleService.findAll();
     await this.semestreService.findAll();
-    console.log(this.semestre.modules);
+    for (const m of this.modules) {
+      await this.findByModule(m);
+      m.typeSessions = this.typeSessionsFounded;
+      console.log(m);
+    }
+    for (const m of this.modulesConnected) {
+      await this.findByModule(m);
+      m.typeSessions = this.typeSessionsFounded;
+      console.log(m);
+    }
     this.cols = [
       {field: 'libelle', header: 'Libelle'},
     ];
   }
 
+  get modulesConnected(): Module[] {
+    return this.moduleService.modulesConnected;
+  }
   get modules(): Module[] {
     return this.moduleService.modules;
   }
@@ -62,35 +78,48 @@ export class ModuleComponent implements OnInit {
   public deleteByLibelle(module: Module) {
     this.moduleService.deleteByLibelle(module);
   }
-  addTypeSession() {
-    this.typeSessionService.typeSession.module = this.module;
-    this.typeSessionService.save();
+  async addTypeSession() {
+    this.typeSessionService.typeSession.module = this.moduleConnected;
+    console.log(this.moduleConnected);
+    await this.typeSessionService.save();
+    for (const m of this.modules) {
+      await this.findByModule(m);
+      m.typeSessions = this.typeSessionsFounded;
+      console.log(m);
+    }
     this.displayBasic3 = false;
   }
   save() {
-    this.moduleService.module.semestre = this.semestre;
+    this.moduleService.module.semestre = this.semestreConnected;
     this.moduleService.save();
     this.displayBasic = false;
   }
-  update(typeSession: TypeSession) {
+  async update(typeSession: TypeSession) {
     this.typeSessionService.typeSessionFounded = typeSession;
     this.typeSessionService.typeSessionFounded.enseignant = this.typeSession.enseignant;
     console.log('hihi');
-    this.typeSessionService.update();
+    await this.typeSessionService.update();
+    for (const m of this.modules) {
+      await this.findByModule(m);
+      m.typeSessions = this.typeSessionsFounded;
+      console.log(m);
+    }
   }
   async addSubject() {
     await this.subjectService.save();
-    this.subjectService.findAll();
+    await this.subjectService.findAll();
   }
   showBasicDialog() {
     this.displayBasic = true;
   }
-  showBasicDialog2(module: Module) {
-    this.moduleService.module = module;
-    console.log(this.module);
-    this.displayBasic2 = true;
+  async showBasicDialog2(module: Module) {
+    this.moduleService.moduleConnected = module;
   }
-  showBasicDialog3() {
+  async miniUpdate(module: Module) {
+    await this.moduleService.update(module);
+  }
+  showBasicDialog3(module: Module) {
+    this.subjectService.subjectsFounded = module.subjects;
     this.displayBasic3 = true;
   }
   showBasicDialog4(typeSession: TypeSession) {
@@ -121,14 +150,37 @@ export class ModuleComponent implements OnInit {
   public findByReference(typeSession: TypeSession) {
     return this.typeSessionService.findByReference(typeSession);
   }
-
-  public deleteByReference(typeSession: TypeSession) {
-    return this.typeSessionService.deleteByReference(typeSession);
+  public async deleteByReference(typeSession: TypeSession) {
+    await this.typeSessionService.deleteByReference(typeSession);
+    for (const m of this.modules) {
+      await this.findByModule(m);
+      m.typeSessions = this.typeSessionsFounded;
+      console.log(m);
+    }
   }
   get semestre(): Semestre {
     return this.semestreService.semestre;
   }
+  get semestreConnected(): Semestre {
+    return this.semestreService.semestreConnected;
+  }
+    public async findByModule(module: Module) {
+    await this.typeSessionService.findByModule(module);
+  }
     public async findBySemestre(semestre: Semestre) {
     await this.moduleService.findBySemestre(semestre);
+  }
+
+  get moduleConnected(): Module {
+    return this.moduleService.moduleConnected;
+  }
+  get sectorManagerConnected(): SectorManager {
+    return this.sectorManagerService.sectorManagerConnected;
+  }
+  get enseignantConnected(): Enseignant {
+    return this.enseignantService.enseignantConnected;
+  }
+  get subjectsFounded(): Subject[] {
+    return this.subjectService.subjectsFounded;
   }
 }

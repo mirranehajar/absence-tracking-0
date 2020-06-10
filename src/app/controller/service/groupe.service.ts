@@ -2,6 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Etudiant} from '../model/etudiant.model';
 import {Groupe} from '../model/groupe';
+import {Semestre} from '../model/semestre';
 import {EtudiantService} from './etudiant.service';
 
 @Injectable({
@@ -14,6 +15,7 @@ export class GroupeService {
   private _groupes: Groupe[];
   // tslint:disable-next-line:variable-name
   private _groupeFounded: Groupe;
+  private _groupesFounded: Groupe[];
   // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/groupe/';
   constructor(private http: HttpClient, private etudiantService: EtudiantService) { }
@@ -29,6 +31,18 @@ export class GroupeService {
    await this.http.get<Groupe>(this._url + 'libelle/' + libelle).toPromise().then(
       (data) => {
         this.groupeFounded = data;
+      },
+    );
+  }
+  public async findBySemestre(semestre: Semestre) {
+   await this.http.post<Groupe[]>(this._url + 'semestre' , semestre).toPromise().then(
+     async (data) => {
+        this.groupesFounded = data;
+        for ( const g of this.groupesFounded) {
+          await this.findByGroupe(g);
+          g.etudiants = this.etudiantsFounded;
+          console.log(g);
+        }
       },
     );
   }
@@ -128,5 +142,16 @@ export class GroupeService {
   }
   get etudiantsFounded(): Etudiant[] {
     return this.etudiantService.etudiantsFounded;
+  }
+
+  get groupesFounded(): Groupe[] {
+    if (this._groupesFounded == null) {
+      this._groupesFounded = new Array<Groupe>();
+    }
+    return this._groupesFounded;
+  }
+
+  set groupesFounded(value: Groupe[]) {
+    this._groupesFounded = value;
   }
 }

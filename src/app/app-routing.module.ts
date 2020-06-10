@@ -19,8 +19,9 @@ const routes: Routes = [
   {path: '', component: AppEtuComponent, children: [
       {path: 'profilEtu', component: ProfilEtuComponent},
       {path: 'justificatif', component: JustificationComponent},
-      {path: 'groupe', component: GroupesComponent},
-      {path: 'session', component: SessionComponent},
+      {path: 'moduleEtu', component: ModuleComponent},
+      {path: 'groupeEtu', component: GroupesComponent},
+      {path: 'sessionEtu', component: SessionComponent},
     ]},
   {path: '', component: AppEnsComponent, children: [
       {path: 'enseignant', component: EnseignantComponent},
@@ -29,6 +30,7 @@ const routes: Routes = [
       {path: 'module', component: ModuleComponent},
       {path: 'absence', component: AbsenceComponent},
       {path: 'groupe', component: GroupesComponent},
+      {path: 'session', component: SessionComponent},
     ]},
 ];
 

@@ -21,8 +21,8 @@ export class SubjectService {
 
   constructor(private http: HttpClient) { }
 
-  public findAll() {
-    this.http.get<Subject[]>(this._url).subscribe(
+  public async findAll() {
+    await this.http.get<Subject[]>(this._url).toPromise().then(
       (data) => {
         this.subjects = data;
       },

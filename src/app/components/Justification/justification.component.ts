@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Absence} from '../../controller/model/absence';
+import {Etudiant} from '../../controller/model/etudiant.model';
 import {AbsenceService} from '../../controller/service/absence.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 
@@ -32,5 +33,8 @@ export class JustificationComponent implements OnInit {
   update() {
     return this.absenceService.update();
     this.basicDialog = false;
+  }
+  get etudiantConnected(): Etudiant {
+    return this.etudiantService.etudiantConnected;
   }
 }

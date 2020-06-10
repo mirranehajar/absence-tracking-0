@@ -1,5 +1,6 @@
 <div style="margin-bottom: 1em">
-  <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un groupe"></button>
+  <button type="button" style="float: left" *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un groupe"></button>
+  <button type="button" style="float:right" href="/module" routerLink="/module" pButton icon="pi pi-plus" label="Modules"></button>
   <p-dialog  header="Ajout un groupe" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
     <form style="text-align: center" method="POST">
       <div style="display:inline-block" class="form-group">
@@ -33,7 +34,7 @@
   </p-dialog>
 </div>
 
-<p-accordion [(activeIndex)]="index">
+<p-accordion *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" [(activeIndex)]="index">
   <div cdkDropListGroup>
     <p-accordionTab [selected]="true" header="Liste des étudiants sans groupe">
           <div cdkDropList [cdkDropListData]="etudiants" class="example-list" (cdkDropListDropped)="drop($event)">
@@ -56,7 +57,7 @@
             </p-table>
           </div>
     </p-accordionTab>
-  <p-accordionTab *ngFor="let g of groupes">
+  <p-accordionTab *ngFor="let g of groupesFounded">
     <p-header><p-button icon="pi pi-user-edit"  (click)="showBasicDialog2(g)" ></p-button>{{g.libelle}}</p-header>
     <p-dialog  header="Modification d'un groupe" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
       <form style="text-align: center" method="POST">
@@ -101,6 +102,84 @@
           </ng-template>
           <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr cdkDrag (cdkDragStarted)="onDrag(rowData)">
+              <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+  </p-accordionTab>
+  </div>
+</p-accordion>
+<p-accordion *ngIf="sectorManagerConnected.enseignant.numeroSOM != enseignantConnected.numeroSOM" [(activeIndex)]="index">
+  <div>
+    <p-accordionTab [selected]="true" header="Liste des étudiants sans groupe">
+          <div class="example-list">
+            <p-table [columns]="cols" [value]="etudiants" [paginator]="true" [rows]="7">
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                  <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+    </p-accordionTab>
+  <p-accordionTab *ngFor="let g of groupesFounded">
+    <p-header><p-button icon="pi pi-user-edit"  (click)="showBasicDialog2(g)" ></p-button>{{g.libelle}}</p-header>
+    <p-dialog  header="Modification d'un groupe" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+      <form style="text-align: center" method="POST">
+        <div style="display:inline-block" class="form-group">
+          <div class="row">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+              <input [(ngModel)]="groupeFounded.libelle" name="libelle" type="text" pInputText  required>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+              <p-dropdown name="semestre" [options]="semestres" [(ngModel)]="groupeFounded.semestre" placeholder="Choisir un semestre" optionLabel="name"></p-dropdown>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+              <p-multiSelect name="etudiants" defaultLabel="Choisir des étudiants" [options]="etudiants" [(ngModel)]="groupeFounded.etudiants" optionLabel="firstName"></p-multiSelect>
+            </div>
+          </div>
+        </div>
+        <br>
+          <p-footer>
+            <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="update()" label="Confirmer"></button>
+            <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="deleteByReference(g)" label="Supprimer" class="ui-button-danger"></button>
+          </p-footer>
+      </form>
+    </p-dialog>
+      <div class="example-list" >
+        <p-table [columns]="cols" [value]="g.etudiants" [paginator]="true" [rows]="7">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr >
               <td *ngFor="let col of columns">
                 {{rowData[col.field]}}
               </td>

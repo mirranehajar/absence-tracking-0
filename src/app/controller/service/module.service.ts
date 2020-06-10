@@ -17,21 +17,21 @@ export class ModuleService {
   // tslint:disable-next-line:variable-name
   private _moduleFounded: Module;
   private _modulesFounded: Module[];
+  private _modulesConnected: Module[];
   // tslint:disable-next-line:variable-name
+  private _moduleConnected: Module;
   private _url = 'http://localhost:8090/absence-tracking/module/';
 
   constructor(private http: HttpClient, private typeSessionService: TypeSessionService) { }
 
-  public findAll() {
-    this.http.get<Module[]>(this._url).subscribe(
+  public async update(module: Module) {
+          await this.deleteFromList(module);
+          await this.modules.push(this.clone(module));
+        }
+  public async findAll() {
+    await this.http.get<Module[]>(this._url).toPromise().then(
       async (data) => {
         this.modules = data;
-        for ( const m of this.modules) {
-          await this.findByModule(m);
-          console.log(this.typeSessionsFounded);
-          m.typeSessions = this.typeSessionsFounded;
-          console.log(m);
-        }
       },
     );
   }
@@ -130,5 +130,26 @@ export class ModuleService {
   }
   get typeSessionsFounded(): TypeSession[] {
     return this.typeSessionService.typeSessionsFounded;
+  }
+  get moduleConnected(): Module {
+    if (this._moduleConnected == null) {
+      this._moduleConnected = new Module();
+    }
+    return this._moduleConnected;
+  }
+
+  set moduleConnected(value: Module) {
+    this._moduleConnected = value;
+  }
+
+  get modulesConnected(): Module[] {
+    if (this._modulesConnected == null) {
+      this._modulesConnected = new Array<Module>();
+    }
+    return this._modulesConnected;
+  }
+
+  set modulesConnected(value: Module[]) {
+    this._modulesConnected = value;
   }
 }
