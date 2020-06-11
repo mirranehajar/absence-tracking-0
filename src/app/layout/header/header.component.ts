@@ -4,6 +4,7 @@ import {MenuItem} from 'primeng/api';
 import {Cycle} from '../../controller/model/cycle';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {Module} from '../../controller/model/module';
+import {Notification} from '../../controller/model/notification';
 import {Sector} from '../../controller/model/sector';
 import {SectorManager} from '../../controller/model/sector-manager';
 import {Semestre} from '../../controller/model/semestre';
@@ -11,10 +12,13 @@ import {TypeSession} from '../../controller/model/type-session';
 import {CycleService} from '../../controller/service/cycle.service';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {ModuleService} from '../../controller/service/module.service';
+import {NotificationService} from '../../controller/service/notification.service';
 import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
+import {AbsenceService} from '../../controller/service/absence.service';
+import {not} from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-header',
@@ -38,13 +42,20 @@ export class HeaderComponent implements OnInit {
    constructor(public sectorManagerService: SectorManagerService, public sectorService: SectorService,
                public cycleService: CycleService, public enseignantService: EnseignantService,
                public semestreService: SemestreService, private router: Router,
-               private moduleService: ModuleService, private typeSessionService: TypeSessionService) { }
+               private moduleService: ModuleService, private typeSessionService: TypeSessionService,
+               private notificationService: NotificationService, private absenceService: AbsenceService) { }
 
    async ngOnInit(): Promise<void> {
     this.cycleService.findAll();
     this.sectorService.findAll();
     this.semestreService.findAll();
     this.enseignantService.findAll();
+    await this.notificationService.findByEnseignant(this.enseignantConnected);
+    for (const n of this.notificationsFounded) {
+      if (n.state === null) {
+        this.notifications.push(n);
+      }
+    }
     await this.findByRole(3);
     this.items = [
       {
@@ -90,6 +101,33 @@ export class HeaderComponent implements OnInit {
     ];
   }
 
+  async refuser(notification: Notification) {
+     notification.state = 'refusée';
+     this.notificationService.notificationFounded = notification;
+     await this.notificationService.update();
+     await this.notificationService.findByEnseignant(this.enseignantConnected);
+     for (const n of this.notificationsFounded) {
+       this.notificationService.notifications = null;
+       if (n.state === null) {
+        this.notifications.push(n);
+      }
+    }
+  }
+  async accepter(notification: Notification) {
+    notification.state = 'acceptée';
+    this.notificationService.notificationFounded = notification;
+    await this.absenceService.findByReference(notification.absence);
+    this.absenceService.absenceFounded.justification = notification.contenu;
+    await this.absenceService.update();
+    await this.notificationService.update();
+    await this.notificationService.findByEnseignant(this.enseignantConnected);
+    for (const n of this.notificationsFounded) {
+      this.notificationService.notifications = null;
+      if (n.state === null) {
+        this.notifications.push(n);
+      }
+    }
+  }
   setClasses() {
     return this.classes;
   }
@@ -254,4 +292,11 @@ export class HeaderComponent implements OnInit {
   get modulesConnected(): Module[] {
     return this.moduleService.modulesConnected;
   }
+  get notificationsFounded(): Notification[] {
+    return this.notificationService.notificationsFounded;
+  }
+  get notifications(): Notification[] {
+    return this.notificationService.notifications;
+  }
+
 }

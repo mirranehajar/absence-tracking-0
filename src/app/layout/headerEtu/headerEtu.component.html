@@ -35,14 +35,15 @@
         <i (click)="op1.toggle($event)" class=" iconColor pi pi-bell"></i>
         <p-overlayPanel #op1>
           <ng-template pTemplate>
-                <div ui-overlaypanel-content>
-                  khikhi
+                <div ui-overlaypanel-content *ngFor="let n of notifications">
+                  <p *ngIf="n.state == 'acceptée'">Votre justification a été {{n.state}}</p>
+                  <p *ngIf="n.state == 'refusée'">Votre justification a été {{n.state}}</p>
+                  <button pButton icon="pi pi-times" class="ui-button-danger" (click)="deleteByAbsence(n.absence)"></button>
                   <div class="dropdown-divider"></div>
-                  khikhia
                 </div>
           </ng-template>
         </p-overlayPanel>
-        <i href="login" routerLink="login" class="iconColor pi pi-sign-out"></i>
+        <i  routerLink="/login" class="iconColor pi pi-sign-out"></i>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <!-- Links -->
         <a class="navbar-brand" href="#">

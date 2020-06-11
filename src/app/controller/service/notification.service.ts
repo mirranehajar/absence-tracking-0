@@ -1,5 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Absence} from '../model/absence';
 import {Enseignant} from '../model/enseignant.model';
 import {Notification} from '../model/notification';
 
@@ -18,6 +19,13 @@ export class NotificationService {
   private _url = 'http://localhost:8090/absence-tracking/notification/';
   constructor(private http: HttpClient) { }
 
+  public async findByAbsence(absence: Absence) {
+    await this.http.post<Notification>(this._url + 'absence' , absence).toPromise().then(
+      (data) => {
+        this.notificationFounded = data;
+      },
+    );
+  }
   public async findByEnseignant(enseignant: Enseignant) {
     await this.http.post<Notification[]>(this._url + 'enseignant' , enseignant).toPromise().then(
       (data) => {
@@ -25,8 +33,8 @@ export class NotificationService {
       },
     );
   }
-  public findByState(state: string) {
-    this.http.get<Notification[]>(this._url + 'state/' + state).subscribe(
+  public async findByState(state: string) {
+    await this.http.get<Notification[]>(this._url + 'state/' + state).toPromise().then(
       (data) => {
         this.notificationsFounded = data;
       },
@@ -39,11 +47,12 @@ export class NotificationService {
       },
     );
   }
-  public deleteByAbsence(notification: Notification) {
-    this.http.delete<number>(this._url + '/' + notification.absence.ref).subscribe(
+  public deleteByAbsence(absence: Absence) {
+    this.http.delete<number>(this._url + '/' + absence.ref).subscribe(
       (data) => {
         console.log(data);
-        this.deleteFromList(notification);
+        this.findByAbsence(absence);
+        this.deleteFromList(this.notificationFounded);
       },
     );
   }
@@ -65,8 +74,9 @@ export class NotificationService {
       },
     );
   }
-  public save() {
-    this.http.post<Notification>(this._url, this.notification).subscribe(
+  public async save() {
+    console.log('wlh ta hani jit lsave');
+    await this.http.post<Notification>(this._url, this.notification).toPromise().then(
       (data) => {
         if (data) {
           this.notifications.push(this.clone(data));
@@ -76,6 +86,7 @@ export class NotificationService {
         console.log('error');
       },
     );
+    console.log('hani khrj mn save');
   }
   private clone(notification: Notification) {
     const myclone = new Notification();
@@ -87,6 +98,9 @@ export class NotificationService {
   }
 
   get notifications(): Notification[] {
+    if (this._notifications == null) {
+      this._notifications = new Array<Notification>();
+    }
     return this._notifications;
   }
 
@@ -95,6 +109,9 @@ export class NotificationService {
   }
 
   get notification(): Notification {
+    if (this._notification == null) {
+      this._notification = new Notification();
+    }
     return this._notification;
   }
 
@@ -111,6 +128,9 @@ export class NotificationService {
   }
 
   get notificationsFounded(): Notification[] {
+    if (this._notificationsFounded == null) {
+      this._notificationsFounded = new Array<Notification>();
+    }
     return this._notificationsFounded;
   }
 

@@ -7,6 +7,7 @@ import {Semestre} from '../../controller/model/semestre';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 import {ModuleService} from '../../controller/service/module.service';
+import {NotificationService} from '../../controller/service/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ import {ModuleService} from '../../controller/service/module.service';
 export class LoginComponent implements OnInit {
 
   constructor(private etudiantService: EtudiantService, private enseignantService: EnseignantService,
-              private router: Router, private moduleService: ModuleService) { }
+              private router: Router, private moduleService: ModuleService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.etudiantService.etudiantFounded = null;

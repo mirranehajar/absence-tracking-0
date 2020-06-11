@@ -50,10 +50,14 @@
         <i (click)="op1.toggle($event)" class=" iconColor pi pi-bell"></i>
         <p-overlayPanel #op1>
           <ng-template pTemplate>
-            <div  ui-overlaypanel-content>
-              khikhi
+            <div  ui-overlaypanel-content *ngFor="let n of notifications">
+              {{n.absence.etudiant.lastName}} {{n.absence.etudiant.firstName}}
+              <br>{{n.absence.session.dateStart}}-{{n.absence.session.libelle}}
+              <br>{{n.contenu}}
+              <br>
+              <button pButton (click)="accepter(n)" type="button" style="float: left">Accepter</button>
+              <button pButton (click)="refuser(n)" type="button" style="float: right" class="ui-button-danger">Refuser</button>
               <div class="dropdown-divider"></div>
-              khikhia
             </div>
           </ng-template>
         </p-overlayPanel>

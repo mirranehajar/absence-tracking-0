@@ -10,6 +10,10 @@ import {EnseignantService} from '../../controller/service/enseignant.service';
 import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
+import {Absence} from '../../controller/model/absence';
+import {NotificationService} from '../../controller/service/notification.service';
+import {Notification} from '../../controller/model/notification';
+import {EtudiantService} from '../../controller/service/etudiant.service';
 
 // @ts-ignore
 @Component({
@@ -34,13 +38,24 @@ export class HeaderEtuComponent implements OnInit {
 
    constructor(private sectorManagerService: SectorManagerService, private sectorService: SectorService,
                private cycleService: CycleService, private enseignantService: EnseignantService,
-               private semestreService: SemestreService) { }
+               private semestreService: SemestreService, private notificationService: NotificationService,
+               private etudiantService: EtudiantService) { }
 
   async ngOnInit(): Promise<void> {
     this.cycleService.findAll();
     this.sectorService.findAll();
     await this.semestreService.findAll();
     this.enseignantService.findAll();
+    await this.notificationService.findByState(null);
+    this.notificationService.notifications = null;
+    for (const n of this.notificationsFounded) {
+      console.log(this.notificationsFounded);
+      if (n.absence.etudiant === this.etudiantService.etudiantConnected) {
+        this.notifications.push(n);
+        console.log(this.notifications);
+      }
+    }
+
     this.items = [
       {
         label: 'Acceuil',
@@ -181,5 +196,14 @@ export class HeaderEtuComponent implements OnInit {
   }
   show() {
      this.display = true;
+  }
+  public deleteByAbsence(absence: Absence) {
+     return this.notificationService.deleteByAbsence(absence);
+  }
+  get notificationsFounded(): Notification[] {
+    return this.notificationService.notificationsFounded;
+  }
+  get notifications(): Notification[] {
+    return this.notificationService.notifications;
   }
 }

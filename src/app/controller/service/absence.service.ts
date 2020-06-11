@@ -34,8 +34,8 @@ export class AbsenceService {
       },
     );
   }
-  public findByReference(absence: Absence) {
-    this.http.get<Absence>(this._url + 'ref/' + absence.ref).subscribe(
+  public async findByReference(absence: Absence) {
+    await this.http.get<Absence>(this._url + 'ref/' + absence.ref).toPromise().then(
       (data) => {
         this.absenceFounded = data;
       },
@@ -62,8 +62,8 @@ export class AbsenceService {
       this.absences.splice(index, 1);
     }
   }
-  public update() {
-    this.http.post<number>(this._url + 'update', this.absenceFounded).subscribe(
+  public async update() {
+    await this.http.post<number>(this._url + 'update', this.absenceFounded).toPromise().then(
       (data) => {
         if (data > 0) {
           this.deleteFromList(this.absenceFounded);
