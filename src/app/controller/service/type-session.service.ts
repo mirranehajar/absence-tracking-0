@@ -114,6 +114,7 @@ export class TypeSessionService {
     myclone.enseignant = typeSession.enseignant ;
     myclone.module = typeSession.module ;
     myclone.subject = typeSession.subject ;
+    myclone.groupes = typeSession.groupes ;
     return myclone;
   }
   get typeSession(): TypeSession {

@@ -1,6 +1,6 @@
 <br>
 <button style="float: left" *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog()" class="btn btn-primary">Ajouter un module</button>
-  <a style="float: right" routerLink="/groupe"><button   class="btn btn-primary">Groupes</button></a>
+  <button style="float: right" routerLink="/groupe"  class="btn btn-primary">Groupes</button>
 <br>
 <div class="row" *ngIf="sectorManagerConnected.enseignant.numeroSOM != enseignantConnected.numeroSOM" >
   <div  class="col-sm-4" *ngFor="let m of modulesConnected">
@@ -83,6 +83,9 @@
                     Enseignant
                     <p-sortIcon ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
                   </th>
+                  <th>
+                    Groupes
+                  </th>
                 </tr>
               </ng-template>
               <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -102,7 +105,29 @@
                       </ng-template>
                     </p-cellEditor>
                   </td>
-                  <td *ngIf="rowData.enseignant == null"></td>
+                  <td *ngIf="rowData.enseignant == null" pEditableColumn>
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <p-dropdown name="enseignant" [options]="enseignants" [(ngModel)]="typeSession.enseignant" optionLabel="lastName"></p-dropdown>
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+                  <td *ngIf="rowData.groupes" pEditableColumn>
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <p-multiSelect name="groupes" tooltipPosition="bottom" [options]="groupesFounded" [(ngModel)]="rowData.groupes" optionLabel="libelle"></p-multiSelect>
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+                  <td *ngIf="rowData.groupes == null" pEditableColumn>
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <p-multiSelect name="groupes" tooltipPosition="bottom" [options]="groupesFounded" [(ngModel)]="rowData.groupes" optionLabel="libelle"></p-multiSelect>
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
                   <p-button (click)="update(rowData)" icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>
                   <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByReference(rowData)"></p-button>
                 </tr>
@@ -177,6 +202,13 @@
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
           <p-dropdown name="enseignant" [options]="enseignants" [(ngModel)]="typeSession.enseignant" placeholder="Choisir une enseignant" optionLabel="lastName"></p-dropdown>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <p-multiSelect name="groupes" defaultLabel="Choisir des groupes" [options]="groupesFounded" [(ngModel)]="typeSession.groupes" optionLabel="libelle"></p-multiSelect>
         </div>
       </div>
     </div>

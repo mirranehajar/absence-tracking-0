@@ -207,6 +207,9 @@
         <th>
           Matière
         </th>
+        <th>
+          Groupes
+        </th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -218,6 +221,12 @@
         <td *ngIf="rowData.module == null "></td>
         <td *ngIf="rowData.subject">{{rowData.subject.libelle}}</td>
         <td *ngIf="rowData.subject == null "></td>
+        <td *ngIf="rowData.groupes">
+          <p *ngFor="let g of rowData.groupes">
+          {{g.libelle}}&nbsp;
+          </p>
+        </td>
+        <td *ngIf="rowData.groupes == null "></td>
       </tr>
     </ng-template>
   </p-table>

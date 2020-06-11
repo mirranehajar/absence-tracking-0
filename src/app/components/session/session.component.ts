@@ -96,7 +96,7 @@ export class SessionComponent implements OnInit {
   }
   public async save() {
     this.handleDateClick();
-    for ( const g of this.session.groupes) {
+    for ( const g of this.session.typeSession.groupes) {
       for ( const e of g.etudiants) {
         this.students.push(e);
       }
@@ -109,7 +109,7 @@ export class SessionComponent implements OnInit {
     console.log('haha');
     for ( const e of this.students) {
       this.absenceService.absence.etudiant = e;
-      this.absenceService.absence.session = this.seance;
+      this.absenceService.absence.session = this.sessionFounded;
       console.log(this.absence);
       this.absenceService.save();
     }

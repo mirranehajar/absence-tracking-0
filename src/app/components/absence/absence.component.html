@@ -1,4 +1,7 @@
-<p-table [autoLayout]="true" [columns]="cols" [value]="absences" [paginator]="true" [rows]="7">
+<br>
+<button style="float: right" routerLink="/session"  class="btn btn-primary">Séances</button>
+<br>
+<p-table [autoLayout]="true" [columns]="cols" [value]="absencesFounded" [paginator]="true" [rows]="7">
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th *ngFor="let col of columns" >

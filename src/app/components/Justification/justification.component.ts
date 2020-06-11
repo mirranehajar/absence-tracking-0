@@ -15,10 +15,21 @@ export class JustificationComponent implements OnInit {
   constructor(private etudiantService: EtudiantService, private absenceService: AbsenceService) {
   }
 
-  ngOnInit() {
-    this.absenceService.findAll();
+  async ngOnInit() {
+    this.absenceService.absencesEtudiant = null;
+    await this.absenceService.findByEtudiant(this.etudiantService.etudiantConnected);
+    for (const a of this.absencesFounded) {
+      if (a.absent === true) {
+        this.absencesEtudiant.push(a);
+      }
+    }
   }
-
+  get absencesFounded(): Absence[] {
+    return this.absenceService.absencesFounded;
+  }
+  get absencesEtudiant(): Absence[] {
+    return this.absenceService.absencesEtudiant;
+  }
   get absences(): Absence[] {
     return this.absenceService.absences;
   }

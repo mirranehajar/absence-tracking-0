@@ -7,5 +7,4 @@ export class Session {
   public dateStart: Date;
   public dateStop: Date;
   public typeSession: TypeSession;
-  public groupes: Groupe[];
 }

@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {SelectItem} from 'primeng';
 import {Enseignant} from '../../controller/model/enseignant.model';
+import {Groupe} from '../../controller/model/groupe';
 import {Module} from '../../controller/model/module';
 import {SectorManager} from '../../controller/model/sector-manager';
 import {Semestre} from '../../controller/model/semestre';
 import {Subject} from '../../controller/model/subject';
 import {TypeSession} from '../../controller/model/type-session';
 import {EnseignantService} from '../../controller/service/enseignant.service';
+import {GroupeService} from '../../controller/service/groupe.service';
 import {ModuleService} from '../../controller/service/module.service';
 import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SemestreService} from '../../controller/service/semestre.service';
@@ -29,7 +31,8 @@ export class ModuleComponent implements OnInit {
 
   constructor(private moduleService: ModuleService, private subjectService: SubjectService,
               private enseignantService: EnseignantService, private typeSessionService: TypeSessionService,
-              private semestreService: SemestreService, private sectorManagerService: SectorManagerService) {
+              private semestreService: SemestreService, private sectorManagerService: SectorManagerService,
+              private groupeService: GroupeService) {
     this.libelles = [
       {label: 'Cours', value: 'Cours'},
       {label: 'TD', value: 'TD'},
@@ -38,6 +41,7 @@ export class ModuleComponent implements OnInit {
   }
 
    async ngOnInit(): Promise<void> {
+    await this.groupeService.findBySemestre(this.semestreConnected);
     console.log(this.semestreConnected);
     console.log(this.modules);
     console.log(this.sectorManagerConnected);
@@ -192,5 +196,8 @@ export class ModuleComponent implements OnInit {
   }
   get subjectsFounded(): Subject[] {
     return this.subjectService.subjectsFounded;
+  }
+  get groupesFounded(): Groupe[] {
+    return this.groupeService.groupesFounded;
   }
 }
