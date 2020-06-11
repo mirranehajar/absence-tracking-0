@@ -21,12 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/appEns/appEns.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/appEns/appEns.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout/appEtu/appEtu.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/appEtu/appEtu.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout/footer/footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/footer/footer.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/footer/footer.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/footer/footer.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +175,7 @@
       <workItem from="1591619272209" duration="3434000" />
       <workItem from="1591629609406" duration="3246000" />
       <workItem from="1591635584548" duration="6382000" />
-      <workItem from="1591806172828" duration="6595000" />
+      <workItem from="1591806172828" duration="8637000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -404,7 +401,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591806226735</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="aside footer">
+      <created>1591816224023</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1591816224023</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -424,7 +428,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="sorted table and other classes" />
     <MESSAGE value="sessions plus absence plus groups" />
     <MESSAGE value="profil login filière" />
     <MESSAGE value="profil" />
@@ -449,7 +452,8 @@
     <MESSAGE value="justification and login" />
     <MESSAGE value="header etu" />
     <MESSAGE value="aside" />
-    <option name="LAST_COMMIT_MESSAGE" value="aside" />
+    <MESSAGE value="aside footer" />
+    <option name="LAST_COMMIT_MESSAGE" value="aside footer" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -472,11 +476,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1591457289443" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1591806225759">
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1591816221640">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587997149012" />
-    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1591806225759" />
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1591816221640" />
     <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1591301767189">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -527,11 +531,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1591557897420" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1591642173886">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1591816254009">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1591622018712" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1591642173886" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1591816254009" />
     <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1591477316393">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -544,11 +548,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="0" width="587" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1591570812262" />
-    <state x="371" y="154" key="git4idea.merge.GitPullDialog" timestamp="1591806235020">
+    <state x="371" y="154" key="git4idea.merge.GitPullDialog" timestamp="1591816232565">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="371" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1591477968515" />
-    <state x="371" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.738@0.0.1366.738" timestamp="1591806235020" />
+    <state x="371" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.738@0.0.1366.738" timestamp="1591816232565" />
     <state x="406" y="135" key="refactoring.ChangeSignatureDialog" timestamp="1591481265324">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
