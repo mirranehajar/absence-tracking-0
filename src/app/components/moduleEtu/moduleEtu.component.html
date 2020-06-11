@@ -1,0 +1,51 @@
+<br>
+<div class="row">
+  <div  class="col-sm-4" *ngFor="let m of modulesFounded">
+    <div class="card text-center">
+      <div class="card-body  back">
+        <h5 class="card-title">{{m.abreveation}}</h5>
+        <p class="card-text">{{m.libelle}}</p>
+        <a href="/session" routerLink="/session" class="btn btn-primary">Voir les séances</a>
+      </div>
+      <p-fieldset legend="Types séance" (onBeforeToggle)="showBasicDialog2(m)" [toggleable]="true" collapsed="false">
+        <div >
+          <div >
+            <p-table [autoLayout]="true"  [columns]="cols" [value]="m.typeSessions" [paginator]="true" [rows]="7">
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                  </th>
+                  <th>
+                    Matière
+                    <p-sortIcon  ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                  </th>
+                  <th>
+                    Enseignant
+                    <p-sortIcon ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                  <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                  </td>
+                  <td *ngIf="rowData.subject">{{rowData.subject.libelle}}</td>
+                  <td *ngIf="rowData.subject == null "></td>
+                  <td *ngIf="rowData.enseignant">{{rowData.enseignant.lastName}}</td>
+                  <td *ngIf="rowData.enseignant == null "></td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </p-fieldset>
+    </div>
+    <br>
+  </div>
+</div>
+
+
+

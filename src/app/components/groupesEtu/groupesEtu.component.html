@@ -1,0 +1,27 @@
+<br>
+<p-accordion [(activeIndex)]="index">
+  <div>
+  <p-accordionTab *ngFor="let g of groupesFounded">
+    <p-header>{{g.libelle}}</p-header>
+      <div class="example-list" >
+        <p-table [autoLayout]="true" [columns]="cols" [value]="g.etudiants" [paginator]="true" [rows]="7">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{col.header}}
+                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr >
+              <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+  </p-accordionTab>
+  </div>
+</p-accordion>

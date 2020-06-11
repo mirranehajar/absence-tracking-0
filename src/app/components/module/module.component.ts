@@ -89,9 +89,14 @@ export class ModuleComponent implements OnInit {
     }
     this.displayBasic3 = false;
   }
-  save() {
+  async save() {
     this.moduleService.module.semestre = this.semestreConnected;
     this.moduleService.save();
+    for (const m of this.modules) {
+      await this.findByModule(m);
+      m.typeSessions = this.typeSessionsFounded;
+      console.log(m);
+    }
     this.displayBasic = false;
   }
   async update(typeSession: TypeSession) {
@@ -113,13 +118,18 @@ export class ModuleComponent implements OnInit {
     this.displayBasic = true;
   }
   async showBasicDialog2(module: Module) {
+    console.log(module);
     this.moduleService.moduleConnected = module;
   }
   async miniUpdate(module: Module) {
     await this.moduleService.update(module);
   }
   showBasicDialog3(module: Module) {
+    this.subjectService.subjectsFounded = null;
+    console.log(this.subjectsFounded);
+    console.log(module);
     this.subjectService.subjectsFounded = module.subjects;
+    console.log(this.subjectsFounded);
     this.displayBasic3 = true;
   }
   showBasicDialog4(typeSession: TypeSession) {

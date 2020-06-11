@@ -37,9 +37,11 @@ import { AbsenceComponent } from './components/absence/absence.component';
 import { EnseignantComponent } from './components/enseignant/enseignant.component';
 import { EtudiantsComponent } from './components/etudiants/etudiants.component';
 import { GroupesComponent } from './components/groupes/groupes.component';
+import {GroupesEtuComponent} from './components/groupesEtu/groupesEtu.component';
 import {JustificationComponent} from './components/Justification/justification.component';
 import { LoginComponent } from './components/login/login.component';
 import {ModuleComponent} from './components/module/module.component';
+import {ModuleEtuComponent} from './components/moduleEtu/moduleEtu.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import {ProfilEtuComponent} from './components/profilEtu/profilEtu.component';
 import { SessionComponent } from './components/session/session.component';
@@ -75,6 +77,8 @@ import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
     AppEnsComponent,
     AppEtuComponent,
     ProfilEtuComponent,
+    ModuleEtuComponent,
+    GroupesEtuComponent,
   ],
   imports: [
     BrowserModule,

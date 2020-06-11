@@ -96,6 +96,9 @@ export class SubjectService {
   }
 
   get subjectsFounded(): Subject[] {
+    if ( this._subjectsFounded == null) {
+      this._subjectsFounded = new Array<Subject>();
+    }
     return this._subjectsFounded;
   }
 

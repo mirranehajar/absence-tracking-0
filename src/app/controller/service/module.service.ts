@@ -2,6 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Module} from '../model/module';
 import {Semestre} from '../model/semestre';
+import {Subject} from '../model/subject';
 import {TypeSession} from '../model/type-session';
 import {TypeSessionService} from './type-session.service';
 
@@ -92,6 +93,9 @@ export class ModuleService {
     if (this._module == null) {
       this._module = new Module();
     }
+    if (this._module.subjects == null) {
+      this._module.subjects = new Array<Subject>();
+    }
     return this._module;
   }
 
@@ -134,6 +138,9 @@ export class ModuleService {
   get moduleConnected(): Module {
     if (this._moduleConnected == null) {
       this._moduleConnected = new Module();
+    }
+    if (this._moduleConnected.subjects == null) {
+      this._moduleConnected.subjects = new Array<Subject>();
     }
     return this._moduleConnected;
   }

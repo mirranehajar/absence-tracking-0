@@ -23,6 +23,7 @@ export class GroupesComponent implements OnInit {
   displayBasic: boolean;
   displayBasic2: boolean;
   cols: any[];
+  data: Groupe;
 
   constructor(private semestreService: SemestreService, private etudiantService: EtudiantService,
               private groupeService: GroupeService, private sectorService: SectorService,
@@ -30,7 +31,15 @@ export class GroupesComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.etudiantService.findAll();
-    this.groupeService.findBySemestre(this.semestreConnected);
+    this.etudiantService.etudiantsGroupe = null;
+    for (const e of this.etudiants) {
+      if (e.groupe == null) {
+        this.etudiantsGroupe.push(e);
+      }
+    }
+    await this.groupeService.findBySemestre(this.semestreConnected);
+    console.log(this.sectorManagerConnected);
+    console.log(this.enseignantConnected);
     this.cols = [
       { field: 'cne', header: 'Cne' },
       { field: 'codeApogee', header: 'C.Apogée' },
@@ -43,6 +52,19 @@ export class GroupesComponent implements OnInit {
       { field: 'nbrAbsence', header: 'N.Absence' },
     ];
   }
+  async remove(etudiant: Etudiant) {
+    etudiant.groupe = null;
+    this.etudiantService.etudiantFounded = etudiant;
+    await this.etudiantService.update();
+    await this.etudiantService.findAll();
+    this.etudiantService.etudiantsGroupe = null;
+    for (const e of this.etudiants) {
+      if (e.groupe == null) {
+        this.etudiantsGroupe.push(e);
+      }
+    }
+    await this.groupeService.findBySemestre(this.semestreConnected);
+  }
   onDrag(etudiant: Etudiant) {
     this.etudiantService.etudiantFounded = etudiant;
   }
@@ -53,18 +75,23 @@ export class GroupesComponent implements OnInit {
     this.groupeService.deleteByReference(groupe);
     this.displayBasic2 = false;
   }
-  public update() {
+  public async update() {
     this.groupeService.update();
+    await this.groupeService.findBySemestre(this.semestreConnected);
     this.displayBasic2 = false;
-    window.location.reload();
   }
-  public save() {
-    this.groupeService.save();
-    for ( const e of this.groupe.etudiants) {
+  public async save() {
+    this.groupeService.groupe.semestre = this.semestreConnected;
+    this.data = this.groupe;
+    console.log('data : ' + this.data.etudiants);
+    await this.groupeService.save();
+    for ( const e of this.data.etudiants) {
       this.etudiantService.etudiantFounded = e;
-      this.etudiantService.etudiantFounded.groupe = this.groupe;
+      this.etudiantService.etudiantFounded.sector = this.groupeSaved.semestre.sector;
+      this.etudiantService.etudiantFounded.groupe = this.groupeSaved;
       this.etudiantService.update();
     }
+    await this.groupeService.findBySemestre(this.semestreConnected);
     this.displayBasic = false;
   }
   get etudiants(): Etudiant[] {
@@ -141,5 +168,11 @@ export class GroupesComponent implements OnInit {
   }
   get sectorManagerConnected(): SectorManager {
     return this.sectorManagerService.sectorManagerConnected;
+  }
+  get groupeSaved(): Groupe {
+    return this.groupeService.groupeSaved;
+  }
+  get etudiantsGroupe(): Etudiant[] {
+    return this.etudiantService.etudiantsGroupe;
   }
 }

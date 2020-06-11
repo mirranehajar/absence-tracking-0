@@ -1,4 +1,4 @@
-<p-table [columns]="cols" [value]="absences" [paginator]="true" [rows]="7">
+<p-table [autoLayout]="true" [columns]="cols" [value]="absences" [paginator]="true" [rows]="7">
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th *ngFor="let col of columns" >

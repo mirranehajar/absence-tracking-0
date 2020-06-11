@@ -1,6 +1,6 @@
 <br>
 <button style="float: left" *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog()" class="btn btn-primary">Ajouter un module</button>
-  <a style="float: right" href="/groupe" routerLink="/groupe"><button   class="btn btn-primary">Groupes</button></a>
+  <a style="float: right" routerLink="/groupe"><button   class="btn btn-primary">Groupes</button></a>
 <br>
 <div class="row" *ngIf="sectorManagerConnected.enseignant.numeroSOM != enseignantConnected.numeroSOM" >
   <div  class="col-sm-4" *ngFor="let m of modulesConnected">
@@ -9,9 +9,6 @@
         <h5 class="card-title">{{m.abreveation}}</h5>
         <p class="card-text">{{m.libelle}}</p>
         <a href="/session" routerLink="/session" class="btn btn-primary">Voir les séances</a>
-      </div>
-      <div class="card-footer">
-        <button (click)="showBasicDialog2(m)" pButton type="button" icon="pi pi-info"></button>&nbsp;&nbsp;
       </div>
       <p-fieldset legend="Types séance" (onBeforeToggle)="showBasicDialog2(m)" [toggleable]="true" collapsed="false">
         <div >
@@ -61,7 +58,6 @@
         <a href="/session" routerLink="/session" class="btn btn-primary">Voir les séances</a>
       </div>
       <div class="card-footer">
-        <button (click)="showBasicDialog2(m)" pButton type="button" icon="pi pi-info"></button>&nbsp;&nbsp;
         <button (click)="deleteByLibelle(m)" pButton type="button" icon="pi pi-trash" class="ui-button-danger"></button>
       </div>
       <br>
