@@ -2,6 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Absence} from '../model/absence';
 import {Enseignant} from '../model/enseignant.model';
+import {Etudiant} from '../model/etudiant.model';
 import {Notification} from '../model/notification';
 
 @Injectable({
@@ -15,10 +16,18 @@ export class NotificationService {
   // tslint:disable-next-line:variable-name
   private _notificationFounded: Notification;
   private _notificationsFounded: Notification[];
+  private _deleteNotification: Notification;
   // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/notification/';
   constructor(private http: HttpClient) { }
 
+  public async findByEtudiant(etudiant: Etudiant) {
+    await this.http.post<Notification[]>(this._url + 'etudiant' , etudiant).toPromise().then(
+      (data) => {
+        this.notificationsFounded = data;
+      },
+    );
+  }
   public async findByAbsence(absence: Absence) {
     await this.http.post<Notification>(this._url + 'absence' , absence).toPromise().then(
       (data) => {
@@ -34,9 +43,11 @@ export class NotificationService {
     );
   }
   public async findByState(state: string) {
+    console.log('hani ldakhl tla fct');
     await this.http.get<Notification[]>(this._url + 'state/' + state).toPromise().then(
       (data) => {
         this.notificationsFounded = data;
+        console.log(data);
       },
     );
   }
@@ -47,12 +58,14 @@ export class NotificationService {
       },
     );
   }
-  public deleteByAbsence(absence: Absence) {
-    this.http.delete<number>(this._url + '/' + absence.ref).subscribe(
+  public async deleteByAbsence(absence: Absence) {
+    await this.http.delete<number>(this._url + '/absence/' + absence.ref).toPromise().then(
       (data) => {
         console.log(data);
         this.findByAbsence(absence);
-        this.deleteFromList(this.notificationFounded);
+        this.deleteNotification = this.notificationFounded;
+        this.deleteFromList(this.deleteNotification);
+        this.notification = null;
       },
     );
   }
@@ -136,5 +149,16 @@ export class NotificationService {
 
   set notificationsFounded(value: Notification[]) {
     this._notificationsFounded = value;
+  }
+
+  get deleteNotification(): Notification {
+    if (this._deleteNotification == null) {
+      this._deleteNotification = new Notification();
+    }
+    return this._deleteNotification;
+  }
+
+  set deleteNotification(value: Notification) {
+    this._deleteNotification = value;
   }
 }

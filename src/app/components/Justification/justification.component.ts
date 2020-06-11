@@ -22,7 +22,7 @@ export class JustificationComponent implements OnInit {
     this.absenceService.absencesEtudiant = null;
     await this.absenceService.findByEtudiant(this.etudiantService.etudiantConnected);
     for (const a of this.absencesFounded) {
-      if (a.absent === true) {
+      if (a.absent === true && a.justification === null) {
         this.absencesEtudiant.push(a);
       }
     }

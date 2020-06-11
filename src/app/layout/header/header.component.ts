@@ -39,6 +39,7 @@ export class HeaderComponent implements OnInit {
     displayBasic4: boolean;
     filiere: string;
     display: boolean;
+    notif: number;
    constructor(public sectorManagerService: SectorManagerService, public sectorService: SectorService,
                public cycleService: CycleService, public enseignantService: EnseignantService,
                public semestreService: SemestreService, private router: Router,
@@ -50,12 +51,14 @@ export class HeaderComponent implements OnInit {
     this.sectorService.findAll();
     this.semestreService.findAll();
     this.enseignantService.findAll();
+    this.notificationService.notifications = null;
     await this.notificationService.findByEnseignant(this.enseignantConnected);
     for (const n of this.notificationsFounded) {
       if (n.state === null) {
         this.notifications.push(n);
       }
     }
+    this.notif = this.notifications.length;
     await this.findByRole(3);
     this.items = [
       {
