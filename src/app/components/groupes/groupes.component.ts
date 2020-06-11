@@ -71,9 +71,14 @@ export class GroupesComponent implements OnInit {
   public findByLibelle(groupe: Groupe) {
     return this.groupeService.findByLibelle(groupe.libelle);
   }
-  public deleteByReference(groupe: Groupe) {
+  public async deleteByReference(groupe: Groupe) {
+    this.etudiantService.etudiantFounded.groupe = null;
+    console.log(this.etudiantsFounded);
+    await this.etudiantService.update();
     this.groupeService.deleteByReference(groupe);
+    await this.groupeService.findBySemestre(this.semestreConnected);
     this.displayBasic2 = false;
+    await this.groupeService.findBySemestre(this.semestreConnected);
   }
   public async update() {
     this.groupeService.update();
@@ -124,6 +129,7 @@ export class GroupesComponent implements OnInit {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+      this.etudiantService.etudiantFounded.sector = groupe.semestre.sector;
       this.etudiantService.etudiantFounded.groupe = groupe;
       console.log(this.etudiantsFounded);
       this.etudiantService.update();

@@ -53,7 +53,7 @@
           </div>
     </p-accordionTab>
   <p-accordionTab *ngFor="let g of groupesFounded">
-    <p-header>{{g.libelle}}</p-header>
+    <p-header>    &nbsp;&nbsp;<p-button  icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByReference(g)"></p-button>&nbsp; {{g.libelle}}</p-header>
       <div cdkDropList [cdkDropListData]="g.etudiants" class="example-list" (cdkDropListDropped)="dropGroupe($event,g)">
         <p-table [autoLayout]="true" [columns]="cols" [value]="g.etudiants" [paginator]="true" [rows]="7">
           <ng-template pTemplate="header" let-columns>
@@ -80,7 +80,7 @@
 <p-accordion *ngIf="sectorManagerConnected.enseignant.numeroSOM != enseignantConnected.numeroSOM" [(activeIndex)]="index">
   <div>
   <p-accordionTab *ngFor="let g of groupesFounded">
-    <p-header>{{g.libelle}}</p-header>
+    <p-header> {{g.libelle}}</p-header>
       <div class="example-list" >
         <p-table [autoLayout]="true" [columns]="cols" [value]="g.etudiants" [paginator]="true" [rows]="7">
           <ng-template pTemplate="header" let-columns>

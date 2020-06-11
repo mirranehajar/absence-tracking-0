@@ -21,8 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,6 +178,7 @@
       <workItem from="1591702093950" duration="41010000" />
       <workItem from="1591779457294" duration="40844000" />
       <workItem from="1591822846587" duration="15964000" />
+      <workItem from="1591869608479" duration="940000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
