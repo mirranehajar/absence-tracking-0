@@ -3,16 +3,23 @@ import {Router} from '@angular/router';
 import {MenuItem} from 'primeng/api';
 import {Cycle} from '../../controller/model/cycle';
 import {Enseignant} from '../../controller/model/enseignant.model';
+import {Module} from '../../controller/model/module';
+import {Notification} from '../../controller/model/notification';
 import {Sector} from '../../controller/model/sector';
 import {SectorManager} from '../../controller/model/sector-manager';
 import {Semestre} from '../../controller/model/semestre';
+import {TypeSession} from '../../controller/model/type-session';
 import {CycleService} from '../../controller/service/cycle.service';
 import {EnseignantService} from '../../controller/service/enseignant.service';
+import {ModuleService} from '../../controller/service/module.service';
+import {NotificationService} from '../../controller/service/notification.service';
 import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
+import {TypeSessionService} from '../../controller/service/type-session.service';
+import {AbsenceService} from '../../controller/service/absence.service';
+import {not} from 'rxjs/internal-compatibility';
 
-// @ts-ignore
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -32,16 +39,24 @@ export class HeaderComponent implements OnInit {
     displayBasic4: boolean;
     filiere: string;
     display: boolean;
-
    constructor(public sectorManagerService: SectorManagerService, public sectorService: SectorService,
                public cycleService: CycleService, public enseignantService: EnseignantService,
-               public semestreService: SemestreService, private router: Router) { }
+               public semestreService: SemestreService, private router: Router,
+               private moduleService: ModuleService, private typeSessionService: TypeSessionService,
+               private notificationService: NotificationService, private absenceService: AbsenceService) { }
 
-   ngOnInit(): void {
+   async ngOnInit(): Promise<void> {
     this.cycleService.findAll();
     this.sectorService.findAll();
     this.semestreService.findAll();
     this.enseignantService.findAll();
+    await this.notificationService.findByEnseignant(this.enseignantConnected);
+    for (const n of this.notificationsFounded) {
+      if (n.state === null) {
+        this.notifications.push(n);
+      }
+    }
+    await this.findByRole(3);
     this.items = [
       {
         label: 'Acceuil',
@@ -86,6 +101,33 @@ export class HeaderComponent implements OnInit {
     ];
   }
 
+  async refuser(notification: Notification) {
+     notification.state = 'refusée';
+     this.notificationService.notificationFounded = notification;
+     await this.notificationService.update();
+     await this.notificationService.findByEnseignant(this.enseignantConnected);
+     for (const n of this.notificationsFounded) {
+       this.notificationService.notifications = null;
+       if (n.state === null) {
+        this.notifications.push(n);
+      }
+    }
+  }
+  async accepter(notification: Notification) {
+    notification.state = 'acceptée';
+    this.notificationService.notificationFounded = notification;
+    await this.absenceService.findByReference(notification.absence);
+    this.absenceService.absenceFounded.justification = notification.contenu;
+    await this.absenceService.update();
+    await this.notificationService.update();
+    await this.notificationService.findByEnseignant(this.enseignantConnected);
+    for (const n of this.notificationsFounded) {
+      this.notificationService.notifications = null;
+      if (n.state === null) {
+        this.notifications.push(n);
+      }
+    }
+  }
   setClasses() {
     return this.classes;
   }
@@ -140,10 +182,11 @@ export class HeaderComponent implements OnInit {
   get sectorManagerFounded(): SectorManager {
     return this.sectorManagerService.sectorManagerFounded;
   }
-  public save() {
+  public async  save() {
     this.sectorService.save();
     this.sectorManagerService.sectorManager.sector = this.sector;
     this.sectorManagerService.save();
+    await this.findByRole(3);
     this.displayBasic = false;
   }
   public update() {
@@ -179,18 +222,81 @@ export class HeaderComponent implements OnInit {
   get semestreFounded(): Semestre {
     return this.semestreService.semestreFounded;
   }
+  get semestreConnected(): Semestre {
+    return this.semestreService.semestreConnected;
+  }
+  get typeSessionsFounded(): TypeSession[] {
+    return this.typeSessionService.typeSessionsFounded;
+  }
 
   public async deleteByReference(semestre: Semestre) {
      console.log(semestre.reference);
      await this.semestreService.deleteByReference(semestre);
      this.sectorService.findAll();
   }
-  goToModule(semestre: Semestre) {
-     this.semestreService.semestre = semestre;
-     console.log(this.semestre);
+  public async findBySemestre(semestre: Semestre) {
+    await this.moduleService.findBySemestre(semestre);
+  }
+  public async findByEnseignant(enseignant: Enseignant) {
+    await this.typeSessionService.findByEnseignant(enseignant);
+  }
+  async goToModule(semestre: Semestre) {
+     await this.findBySector(semestre.sector);
+     await this.findBySemestre(semestre);
+     console.log(this.modulesFounded);
+     this.moduleService.modules = this.modulesFounded;
+     this.sectorManagerService.sectorManagerConnected = this.sectorManagerFounded;
+     this.semestreService.semestreConnected = semestre;
+     await this.findBySemestre(this.semestreConnected);
+     console.log(this.modulesFounded);
+     await this.findByEnseignant(this.enseignantConnected);
+     this.moduleService.modulesConnected = null;
+     for (const t of this.typeSessionsFounded) {
+       console.log('kharj la boucle');
+       for (const m of this.modulesFounded) {
+         console.log('dakhl la boucle');
+         console.log(m);
+         console.log(t.module);
+         if (m.libelle === t.module.libelle) {
+           console.log('dakhl tldakhl la boucle');
+           await this.moduleService.modulesConnected.push(m);
+         } else { console.log('hani khrjt'); }
+       }
+       console.log(this.modules);
+     }
      this.router.navigate(['/module']);
+  }
+  get modulesFounded(): Module[] {
+    return this.moduleService.modulesFounded;
+  }
+  get modules(): Module[] {
+    return this.moduleService.modules;
   }
   show() {
      this.display = true;
   }
+  async onHover(sector: Sector) {
+     console.log(sector);
+     console.log('sector');
+     await this.findBySector(sector);
+  }
+  public async findBySector(sector: Sector) {
+    await this.sectorManagerService.findBySector(sector);
+  }
+  public async findByRole(role: number) {
+     await this.enseignantService.findByRole(role);
+  }
+  get enseignantsFounded(): Enseignant[] {
+    return this.enseignantService.enseignantsFounded;
+  }
+  get modulesConnected(): Module[] {
+    return this.moduleService.modulesConnected;
+  }
+  get notificationsFounded(): Notification[] {
+    return this.notificationService.notificationsFounded;
+  }
+  get notifications(): Notification[] {
+    return this.notificationService.notifications;
+  }
+
 }

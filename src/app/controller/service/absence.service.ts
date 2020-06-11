@@ -1,6 +1,8 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Absence} from '../model/absence';
+import {Etudiant} from '../model/etudiant.model';
+import {Session} from '../model/session';
 
 @Injectable({
   providedIn: 'root',
@@ -12,12 +14,28 @@ export class AbsenceService {
   private _absences: Absence[];
   // tslint:disable-next-line:variable-name
   private _absenceFounded: Absence;
+  private _absencesFounded: Absence[];
+  private _absencesEtudiant: Absence[];
   // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/absence/';
   constructor(private http: HttpClient) { }
 
-  public findByReference(absence: Absence) {
-    this.http.get<Absence>(this._url + 'ref/' + absence.ref).subscribe(
+  public async findBySession(session: Session) {
+    await this.http.post<Absence[]>(this._url + 'session' , session).toPromise().then(
+      (data) => {
+        this.absencesFounded = data;
+      },
+    );
+  }
+  public async findByEtudiant(etudiant: Etudiant) {
+    await this.http.post<Absence[]>(this._url + 'etudiant' , etudiant).toPromise().then(
+      (data) => {
+        this.absencesFounded = data;
+      },
+    );
+  }
+  public async findByReference(absence: Absence) {
+    await this.http.get<Absence>(this._url + 'ref/' + absence.ref).toPromise().then(
       (data) => {
         this.absenceFounded = data;
       },
@@ -44,8 +62,8 @@ export class AbsenceService {
       this.absences.splice(index, 1);
     }
   }
-  public update() {
-    this.http.post<number>(this._url + 'update', this.absenceFounded).subscribe(
+  public async update() {
+    await this.http.post<number>(this._url + 'update', this.absenceFounded).toPromise().then(
       (data) => {
         if (data > 0) {
           this.deleteFromList(this.absenceFounded);
@@ -57,10 +75,10 @@ export class AbsenceService {
     );
   }
   public save() {
-    this.http.post<number>(this._url, this.absence).subscribe(
+    this.http.post<Absence>(this._url, this.absence).subscribe(
       (data) => {
-        if (data > 0) {
-          this.absences.push(this.clone(this.absence));
+        if (data) {
+          this.absences.push(this.clone(data));
           this.absence = null;
         }
       }, (error) => {
@@ -108,5 +126,27 @@ export class AbsenceService {
 
   set absenceFounded(value: Absence) {
     this._absenceFounded = value;
+  }
+
+  get absencesFounded(): Absence[] {
+    if (this._absencesFounded == null) {
+      this._absencesFounded = new Array<Absence>();
+    }
+    return this._absencesFounded;
+  }
+
+  set absencesFounded(value: Absence[]) {
+    this._absencesFounded = value;
+  }
+
+  get absencesEtudiant(): Absence[] {
+    if (this._absencesEtudiant == null) {
+      this._absencesEtudiant = new Array<Absence>();
+    }
+    return this._absencesEtudiant;
+  }
+
+  set absencesEtudiant(value: Absence[]) {
+    this._absencesEtudiant = value;
   }
 }

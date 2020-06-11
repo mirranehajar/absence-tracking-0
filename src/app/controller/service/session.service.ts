@@ -66,12 +66,13 @@ export class SessionService {
     );
   }
   public async save() {
-    await this.http.post<number>(this._url, this.session).toPromise().then(
+    await this.http.post<Session>(this._url, this.session).toPromise().then(
       (data) => {
-        if (data > 0) {
+        if (data) {
           console.log(this.session);
-          this.sessions.push(this.clone(this.session));
+          this.sessions.push(this.clone(data));
           this.session = null;
+          this.sessionFounded = data;
         }
       }, (error) => {
         console.log('error');
@@ -84,7 +85,6 @@ export class SessionService {
     myclone.libelle = session.libelle ;
     myclone.dateStart = session.dateStart ;
     myclone.dateStop = session.dateStop ;
-    myclone.groupes = session.groupes ;
     myclone.typeSession = session.typeSession ;
     return myclone;
   }

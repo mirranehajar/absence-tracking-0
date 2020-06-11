@@ -1,11 +1,15 @@
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import {Enseignant} from '../../controller/model/enseignant.model';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {Groupe} from '../../controller/model/groupe';
 import {Sector} from '../../controller/model/sector';
+import {SectorManager} from '../../controller/model/sector-manager';
 import {Semestre} from '../../controller/model/semestre';
+import {EnseignantService} from '../../controller/service/enseignant.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 import {GroupeService} from '../../controller/service/groupe.service';
+import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
 
@@ -19,13 +23,23 @@ export class GroupesComponent implements OnInit {
   displayBasic: boolean;
   displayBasic2: boolean;
   cols: any[];
+  data: Groupe;
 
   constructor(private semestreService: SemestreService, private etudiantService: EtudiantService,
-              private groupeService: GroupeService, private sectorService: SectorService) {}
+              private groupeService: GroupeService, private sectorService: SectorService,
+              private sectorManagerService: SectorManagerService, private enseignantService: EnseignantService) {}
 
   async ngOnInit(): Promise<void> {
     await this.etudiantService.findAll();
-    this.groupeService.findAll();
+    this.etudiantService.etudiantsGroupe = null;
+    for (const e of this.etudiants) {
+      if (e.groupe == null) {
+        this.etudiantsGroupe.push(e);
+      }
+    }
+    await this.groupeService.findBySemestre(this.semestreConnected);
+    console.log(this.sectorManagerConnected);
+    console.log(this.enseignantConnected);
     this.cols = [
       { field: 'cne', header: 'Cne' },
       { field: 'codeApogee', header: 'C.Apogée' },
@@ -38,28 +52,51 @@ export class GroupesComponent implements OnInit {
       { field: 'nbrAbsence', header: 'N.Absence' },
     ];
   }
+  async remove(etudiant: Etudiant) {
+    etudiant.groupe = null;
+    this.etudiantService.etudiantFounded = etudiant;
+    await this.etudiantService.update();
+    await this.etudiantService.findAll();
+    this.etudiantService.etudiantsGroupe = null;
+    for (const e of this.etudiants) {
+      if (e.groupe == null) {
+        this.etudiantsGroupe.push(e);
+      }
+    }
+    await this.groupeService.findBySemestre(this.semestreConnected);
+  }
   onDrag(etudiant: Etudiant) {
     this.etudiantService.etudiantFounded = etudiant;
   }
   public findByLibelle(groupe: Groupe) {
     return this.groupeService.findByLibelle(groupe.libelle);
   }
-  public deleteByReference(groupe: Groupe) {
+  public async deleteByReference(groupe: Groupe) {
+    this.etudiantService.etudiantFounded.groupe = null;
+    console.log(this.etudiantsFounded);
+    await this.etudiantService.update();
     this.groupeService.deleteByReference(groupe);
+    await this.groupeService.findBySemestre(this.semestreConnected);
     this.displayBasic2 = false;
+    await this.groupeService.findBySemestre(this.semestreConnected);
   }
-  public update() {
+  public async update() {
     this.groupeService.update();
+    await this.groupeService.findBySemestre(this.semestreConnected);
     this.displayBasic2 = false;
-    window.location.reload();
   }
-  public save() {
-    this.groupeService.save();
-    for ( const e of this.groupe.etudiants) {
+  public async save() {
+    this.groupeService.groupe.semestre = this.semestreConnected;
+    this.data = this.groupe;
+    console.log('data : ' + this.data.etudiants);
+    await this.groupeService.save();
+    for ( const e of this.data.etudiants) {
       this.etudiantService.etudiantFounded = e;
-      this.etudiantService.etudiantFounded.groupe = this.groupe;
+      this.etudiantService.etudiantFounded.sector = this.groupeSaved.semestre.sector;
+      this.etudiantService.etudiantFounded.groupe = this.groupeSaved;
       this.etudiantService.update();
     }
+    await this.groupeService.findBySemestre(this.semestreConnected);
     this.displayBasic = false;
   }
   get etudiants(): Etudiant[] {
@@ -81,6 +118,9 @@ export class GroupesComponent implements OnInit {
   get groupeFounded(): Groupe {
     return this.groupeService.groupeFounded;
   }
+  get groupesFounded(): Groupe[] {
+    return this.groupeService.groupesFounded;
+  }
   dropGroupe(event: CdkDragDrop<Etudiant[]>, groupe: Groupe) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -89,6 +129,7 @@ export class GroupesComponent implements OnInit {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
+      this.etudiantService.etudiantFounded.sector = groupe.semestre.sector;
       this.etudiantService.etudiantFounded.groupe = groupe;
       console.log(this.etudiantsFounded);
       this.etudiantService.update();
@@ -124,5 +165,20 @@ export class GroupesComponent implements OnInit {
     this.groupeFounded.etudiants = this.etudiantsFounded;
     this.etudiantService.update();
     console.log(this.etudiantsFounded);
+  }
+  get semestreConnected(): Semestre {
+    return this.semestreService.semestreConnected;
+  }
+  get enseignantConnected(): Enseignant {
+    return this.enseignantService.enseignantConnected;
+  }
+  get sectorManagerConnected(): SectorManager {
+    return this.sectorManagerService.sectorManagerConnected;
+  }
+  get groupeSaved(): Groupe {
+    return this.groupeService.groupeSaved;
+  }
+  get etudiantsGroupe(): Etudiant[] {
+    return this.etudiantService.etudiantsGroupe;
   }
 }

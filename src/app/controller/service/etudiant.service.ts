@@ -17,6 +17,7 @@ export class EtudiantService {
   private _etudiantsFounded: Etudiant[];
   // tslint:disable-next-line:variable-name
   private _etudiantConnected: Etudiant;
+  private _etudiantsGroupe: Etudiant[];
   private _url = 'http://localhost:8090/absence-tracking/etudiant/';
 
   constructor(private http: HttpClient) { }
@@ -56,8 +57,10 @@ export class EtudiantService {
     );
   }
   public async update() {
+    if (this.etudiantFounded.groupe != null) {
     this.etudiantsFounded = this.etudiantFounded.groupe.etudiants;
     this.etudiantFounded.groupe.etudiants = null;
+    } else {this.etudiantsFounded = null; }
     await this.http.post<Etudiant>(this._url + 'update', this.etudiantFounded).toPromise().then(
       (data) => {
         if (data) {
@@ -68,7 +71,9 @@ export class EtudiantService {
         console.log(error);
       },
     );
-    this.etudiantFounded.groupe.etudiants = this.etudiantsFounded;
+    if (this.etudiantsFounded != null) {
+      this.etudiantFounded.groupe.etudiants = this.etudiantsFounded;
+    }
   }
   public async save() {
     if ( this.etudiant.sex === 'F') {
@@ -154,5 +159,16 @@ export class EtudiantService {
 
   set etudiantConnected(value: Etudiant) {
     this._etudiantConnected = value;
+  }
+
+  get etudiantsGroupe(): Etudiant[] {
+    if (this._etudiantsGroupe == null) {
+      this._etudiantsGroupe = new Array<Etudiant>();
+    }
+    return this._etudiantsGroupe;
+  }
+
+  set etudiantsGroupe(value: Etudiant[]) {
+    this._etudiantsGroupe = value;
   }
 }

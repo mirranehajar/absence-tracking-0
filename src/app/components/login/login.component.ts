@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {Etudiant} from '../../controller/model/etudiant.model';
+import {Module} from '../../controller/model/module';
+import {Semestre} from '../../controller/model/semestre';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
+import {ModuleService} from '../../controller/service/module.service';
+import {NotificationService} from '../../controller/service/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +16,8 @@ import {EtudiantService} from '../../controller/service/etudiant.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private etudiantService: EtudiantService, private enseignantService: EnseignantService, private router: Router) { }
+  constructor(private etudiantService: EtudiantService, private enseignantService: EnseignantService,
+              private router: Router, private moduleService: ModuleService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.etudiantService.etudiantFounded = null;
@@ -42,6 +47,7 @@ export class LoginComponent implements OnInit {
             this.etudiantService.etudiantConnected = this.etudiantFounded;
             console.log(this.etudiantConnected);
             console.log(this.etudiantConnected);
+            await this.findBySemestre(this.etudiantConnected.groupe.semestre);
             this.router.navigate(['/profilEtu']);
           } else {
             console.log('mail ou mdp not correct');
@@ -69,5 +75,11 @@ export class LoginComponent implements OnInit {
       }
       console.log(this.enseignantConnected);
     }
+  }
+  get modulesFounded(): Module[] {
+    return this.moduleService.modulesFounded;
+  }
+  public async findBySemestre(semestre: Semestre) {
+    await this.moduleService.findBySemestre(semestre);
   }
 }

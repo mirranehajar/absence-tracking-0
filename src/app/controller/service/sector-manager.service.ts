@@ -1,5 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Enseignant} from '../model/enseignant.model';
+import {Sector} from '../model/sector';
 import {SectorManager} from '../model/sector-manager';
 import {SectorService} from './sector.service';
 
@@ -13,19 +15,20 @@ export class SectorManagerService {
   private _sectorManagers: SectorManager[];
   // tslint:disable-next-line:variable-name
   private _sectorManagerFounded: SectorManager;
+  private _sectorManagerConnected: SectorManager;
   // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/sectorManager/';
   constructor(private http: HttpClient, private sectorService: SectorService) { }
 
-  public findByEnseignant(sectorManager: SectorManager) {
-    this.http.get<SectorManager>(this._url + 'enseignant/' ).subscribe(
+  public async findByEnseignant(enseignant: Enseignant) {
+    await this.http.post<SectorManager>(this._url + 'enseignant' , enseignant).toPromise().then(
       (data) => {
         this.sectorManagerFounded = data;
       },
     );
   }
-  public findByFilière(sectorManager: SectorManager) {
-    this.http.get<SectorManager>(this._url + 'sector/' ).subscribe(
+  public async findBySector(sector: Sector) {
+    await this.http.post<SectorManager>(this._url + 'sector', sector ).toPromise().then(
       (data) => {
         this.sectorManagerFounded = data;
       },
@@ -108,10 +111,33 @@ export class SectorManagerService {
     if (this._sectorManagerFounded == null) {
       this._sectorManagerFounded = new SectorManager();
     }
+    if (this._sectorManagerFounded.enseignant == null) {
+      this._sectorManagerFounded.enseignant = new Enseignant();
+    }
+    if (this._sectorManagerFounded.sector == null) {
+      this._sectorManagerFounded.sector = new Sector();
+    }
     return this._sectorManagerFounded;
   }
 
   set sectorManagerFounded(value: SectorManager) {
     this._sectorManagerFounded = value;
+  }
+
+  get sectorManagerConnected(): SectorManager {
+    if (this._sectorManagerConnected == null) {
+      this._sectorManagerConnected = new SectorManager();
+    }
+    if (this._sectorManagerConnected.enseignant == null) {
+      this._sectorManagerConnected.enseignant = new Enseignant();
+    }
+    if (this._sectorManagerConnected.sector == null) {
+      this._sectorManagerConnected.sector = new Sector();
+    }
+    return this._sectorManagerConnected;
+  }
+
+  set sectorManagerConnected(value: SectorManager) {
+    this._sectorManagerConnected = value;
   }
 }

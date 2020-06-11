@@ -1,13 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MenubarModule} from 'primeng/menubar';
-import {InputTextModule} from 'primeng/inputtext';
+import { NgModule } from '@angular/core';
 import {ButtonModule} from 'primeng/button';
-import {TabViewModule} from 'primeng/tabview';
 import {CodeHighlighterModule} from 'primeng/codehighlighter';
+import {InputTextModule} from 'primeng/inputtext';
+import {MenubarModule} from 'primeng/menubar';
+import {TabViewModule} from 'primeng/tabview';
 import {HeaderRoutingModule} from './header-routing.module';
-
-
 
 @NgModule({
   declarations: [ ],
@@ -18,7 +16,7 @@ import {HeaderRoutingModule} from './header-routing.module';
     InputTextModule,
     ButtonModule,
     TabViewModule,
-    CodeHighlighterModule
-  ]
+    CodeHighlighterModule,
+  ],
 })
 export class HeaderModule { }

@@ -1,10 +1,56 @@
 <br>
-<div class="row justify-content-center">
-<button (click)="showBasicDialog()" class="btn btn-primary">Ajouter un module</button>
-  </div>
+<button style="float: left" *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog()" class="btn btn-primary">Ajouter un module</button>
+  <button style="float: right" routerLink="/groupe"  class="btn btn-primary">Groupes</button>
 <br>
-<div class="row" >
-  <div class="col-sm-4" *ngFor="let m of modules">
+<div class="row" *ngIf="sectorManagerConnected.enseignant.numeroSOM != enseignantConnected.numeroSOM" >
+  <div  class="col-sm-4" *ngFor="let m of modulesConnected">
+    <div class="card text-center">
+      <div class="card-body  back">
+        <h5 class="card-title">{{m.abreveation}}</h5>
+        <p class="card-text">{{m.libelle}}</p>
+        <a href="/session" routerLink="/session" class="btn btn-primary">Voir les séances</a>
+      </div>
+      <p-fieldset legend="Types séance" (onBeforeToggle)="showBasicDialog2(m)" [toggleable]="true" collapsed="false">
+        <div >
+          <div >
+            <p-table [autoLayout]="true"  [columns]="cols" [value]="m.typeSessions" [paginator]="true" [rows]="7">
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                  </th>
+                  <th>
+                    Matière
+                    <p-sortIcon  ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                  </th>
+                  <th>
+                    Enseignant
+                    <p-sortIcon ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                  <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                  </td>
+                  <td *ngIf="rowData.subject">{{rowData.subject.libelle}}</td>
+                  <td *ngIf="rowData.subject == null "></td>
+                  <td *ngIf="rowData.enseignant">{{rowData.enseignant.lastName}}</td>
+                  <td *ngIf="rowData.enseignant == null "></td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </p-fieldset>
+    </div>
+    <br>
+  </div>
+</div>
+<div class="row" *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" >
+  <div  class="col-sm-4" *ngFor="let m of modules">
     <div class="card text-center">
       <div class="card-body  back">
         <h5 class="card-title">{{m.abreveation}}</h5>
@@ -12,14 +58,88 @@
         <a href="/session" routerLink="/session" class="btn btn-primary">Voir les séances</a>
       </div>
       <div class="card-footer">
-        <button (click)="showBasicDialog2(m)" pButton type="button" icon="pi pi-info"></button>&nbsp;&nbsp;
         <button (click)="deleteByLibelle(m)" pButton type="button" icon="pi pi-trash" class="ui-button-danger"></button>
       </div>
+      <br>
+      <p-fieldset legend="Types séance" (onBeforeToggle)="showBasicDialog2(m)" [toggleable]="true" collapsed="false">
+        <div >
+          <div class=" row justify-content-center">
+            <button *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog3(m)" class="btn btn-primary">Ajouter un type séance</button>
+          </div>
+          <br>
+          <div >
+            <p-table [autoLayout]="true"  [columns]="cols" [value]="m.typeSessions" [paginator]="true" [rows]="7">
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                  </th>
+                  <th>
+                    Matière
+                    <p-sortIcon  ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                  </th>
+                  <th>
+                    Enseignant
+                    <p-sortIcon ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                  </th>
+                  <th>
+                    Groupes
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                  <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                  </td>
+                  <td *ngIf="rowData.subject">{{rowData.subject.libelle}}</td>
+                  <td *ngIf="rowData.subject == null "></td>
+                  <td *ngIf="rowData.enseignant" pEditableColumn>
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <p-dropdown name="enseignant" [options]="enseignants" [(ngModel)]="typeSession.enseignant" optionLabel="lastName"></p-dropdown>
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                        {{rowData.enseignant.lastName + " " + rowData.enseignant.firstName}}
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+                  <td *ngIf="rowData.enseignant == null" pEditableColumn>
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <p-dropdown name="enseignant" [options]="enseignants" [(ngModel)]="typeSession.enseignant" optionLabel="lastName"></p-dropdown>
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+                  <td *ngIf="rowData.groupes" pEditableColumn>
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <p-multiSelect name="groupes" tooltipPosition="bottom" [options]="groupesFounded" [(ngModel)]="rowData.groupes" optionLabel="libelle"></p-multiSelect>
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+                  <td *ngIf="rowData.groupes == null" pEditableColumn>
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <p-multiSelect name="groupes" tooltipPosition="bottom" [options]="groupesFounded" [(ngModel)]="rowData.groupes" optionLabel="libelle"></p-multiSelect>
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+                  <p-button (click)="update(rowData)" icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>
+                  <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByReference(rowData)"></p-button>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </p-fieldset>
     </div>
     <br>
   </div>
 </div>
-
 <p-dialog  header="Ajout d'un module" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
   <form style="text-align: center" method="POST">
     <div style="display:inline-block" class="form-group">
@@ -56,56 +176,10 @@
     </div>
     <br>
     <p-footer>
-      <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Sauvegarder"></button>
-      <button type="reset" pButton icon="pi pi-times" style="float: right"   class="ui-button-secondary"(click)="displayBasic=false" label="Annuler" class="ui-button-secondary"></button>
+      <button type="button" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Sauvegarder"></button>
+      <button type="button" pButton icon="pi pi-times" style="float: right"   class="ui-button-secondary"(click)="displayBasic=false" label="Annuler" class="ui-button-secondary"></button>
     </p-footer>
   </form>
-</p-dialog>
-<p-dialog  header="List des types séances" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
-  <div class="row justify-content-center">
-    <button (click)="showBasicDialog3()" class="btn btn-primary">Ajouter un type séance</button>
-  </div>
-  <br>
-  <p-table [columns]="cols" [value]="module.typeSessions" [paginator]="true" [rows]="7">
-    <ng-template pTemplate="header" let-columns>
-      <tr>
-        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-          {{col.header}}
-          <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-        </th>
-        <th>
-          Matière
-          <p-sortIcon  ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-        </th>
-        <th>
-          Enseignant
-          <p-sortIcon ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-        </th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr>
-        <td *ngFor="let col of columns">
-          {{rowData[col.field]}}
-        </td>
-        <td *ngIf="rowData.subject">{{rowData.subject.libelle}}</td>
-        <td *ngIf="rowData.subject == null "></td>
-        <td *ngIf="rowData.enseignant" pEditableColumn>
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <p-dropdown name="enseignant" [options]="enseignants" [(ngModel)]="typeSession.enseignant" optionLabel="lastName"></p-dropdown>
-            </ng-template>
-            <ng-template pTemplate="output">
-              {{rowData.enseignant.lastName + " " + rowData.enseignant.firstName}}
-            </ng-template>
-          </p-cellEditor>
-        </td>
-        <td *ngIf="rowData.enseignant == null"></td>
-        <p-button (click)="update(rowData)" icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>
-        <p-button icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByReference(rowData)"></p-button>
-      </tr>
-    </ng-template>
-  </p-table>
 </p-dialog>
 <p-dialog  header="Ajout d'un type de séance" [(visible)]="displayBasic3" [style]="{width: '50vw'}" [baseZIndex]="10000">
   <form style="text-align: center" method="POST">
@@ -120,7 +194,7 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <p-dropdown name="subject" [options]="module.subjects" [(ngModel)]="typeSession.subject" placeholder="Choisir une matière" optionLabel="libelle"></p-dropdown>
+          <p-dropdown name="subject" [options]="subjectsFounded" [(ngModel)]="typeSession.subject" placeholder="Choisir une matière" optionLabel="libelle"></p-dropdown>
         </div>
       </div>
       <br>
@@ -130,13 +204,21 @@
           <p-dropdown name="enseignant" [options]="enseignants" [(ngModel)]="typeSession.enseignant" placeholder="Choisir une enseignant" optionLabel="lastName"></p-dropdown>
         </div>
       </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <p-multiSelect name="groupes" defaultLabel="Choisir des groupes" [options]="groupesFounded" [(ngModel)]="typeSession.groupes" optionLabel="libelle"></p-multiSelect>
+        </div>
+      </div>
     </div>
     <br>
     <p-footer>
-      <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="addTypeSession()" label="Sauvegarder"></button>
-      <button type="reset" pButton icon="pi pi-times" style="float: right"   class="ui-button-secondary"(click)="displayBasic3=false" label="Annuler" class="ui-button-secondary"></button>
+      <button type="button" pButton icon="pi pi-check" style="float: left" (click)="addTypeSession()" label="Sauvegarder"></button>
+      <button type="button" pButton icon="pi pi-times" style="float: right"   class="ui-button-secondary"(click)="displayBasic3=false" label="Annuler" class="ui-button-secondary"></button>
     </p-footer>
   </form>
 </p-dialog>
+
 
 

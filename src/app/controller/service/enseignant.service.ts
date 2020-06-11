@@ -13,6 +13,7 @@ export class EnseignantService {
   private _enseignants: Enseignant[];
   // tslint:disable-next-line:variable-name
   private _enseignantFounded: Enseignant;
+  private _enseignantsFounded: Enseignant[];
   // tslint:disable-next-line:variable-name
   private _enseignantConnected: Enseignant;
   private _departements: Departement[];
@@ -31,6 +32,13 @@ export class EnseignantService {
       (data) => {
         console.log(data);
         this.deleteFromList(enseignant);
+      },
+    );
+  }
+  public async findByRole(role: number) {
+    await this.http.get<Enseignant[]>(this._url + 'role/' + role).toPromise().then(
+      (data) => {
+        this.enseignantsFounded = data;
       },
     );
   }
@@ -159,5 +167,16 @@ export class EnseignantService {
 
   set departement(value: Departement) {
     this._departement = value;
+  }
+
+  get enseignantsFounded(): Enseignant[] {
+    if (this._enseignantsFounded == null) {
+      this._enseignantsFounded = new Array<Enseignant>();
+    }
+    return this._enseignantsFounded;
+  }
+
+  set enseignantsFounded(value: Enseignant[]) {
+    this._enseignantsFounded = value;
   }
 }

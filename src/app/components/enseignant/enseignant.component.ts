@@ -6,7 +6,9 @@ import {MessageService} from 'primeng/api';
 import * as XLSX from 'xlsx';
 import {Departement} from '../../controller/model/departement';
 import {Enseignant} from '../../controller/model/enseignant.model';
+import {TypeSession} from '../../controller/model/type-session';
 import {EnseignantService} from '../../controller/service/enseignant.service';
+import {TypeSessionService} from '../../controller/service/type-session.service';
 
 type AOA = any[][];
 
@@ -22,6 +24,7 @@ export class EnseignantComponent implements OnInit {
   msgs: Message[] = [];
   displayBasic: boolean;
   displayBasic2: boolean;
+  displayBasic3: boolean;
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
   data: AOA = [['N°SOM', 'Cin', 'Prénom', 'Nom', 'Sexe', 'J.Naissance', 'N°tél', 'Ville', 'Département']];
   fileName = 'Example-enseignant.xlsx';
@@ -31,7 +34,9 @@ export class EnseignantComponent implements OnInit {
   message: string;
   numeroSOM: number;
   cols: any[];
+  cols2: any[];
   city: any;
+  enseignantSelected: Enseignant;
   cities: any[] = [
     {
       id: '1',
@@ -2003,7 +2008,8 @@ export class EnseignantComponent implements OnInit {
       region: '5',
     },
   ];
-  constructor(private http: HttpClient, private enseignantService: EnseignantService, private messageService: MessageService) { }
+  constructor(private http: HttpClient, private enseignantService: EnseignantService,
+              private messageService: MessageService, private typeSessionService: TypeSessionService) { }
 
   async ngOnInit(): Promise<void> {
     this.findAll();
@@ -2022,6 +2028,9 @@ export class EnseignantComponent implements OnInit {
       { field: 'mail', header: 'Email' },
       { field: 'tel', header: 'Tel' },
       { field: 'ville', header: 'Ville' },
+    ];
+    this.cols2 = [
+      {field: 'libelle', header: 'Libelle'},
     ];
   }
   public deleteByNumeroSOM(enseignant: Enseignant) {
@@ -2174,5 +2183,14 @@ export class EnseignantComponent implements OnInit {
   }
   get departement(): Departement {
     return this.enseignantService.departement;
+  }
+  select(event) {
+    console.log(event.data);
+    this.typeSessionService.findByEnseignant(event.data);
+    console.log(this.typeSessionService.typeSessionsFounded);
+    this.displayBasic3 = true;
+  }
+  get typeSessionsFounded(): TypeSession[] {
+    return this.typeSessionService.typeSessionsFounded;
   }
 }

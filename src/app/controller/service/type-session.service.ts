@@ -1,7 +1,8 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {TypeSession} from '../model/type-session';
+import {Enseignant} from '../model/enseignant.model';
 import {Module} from '../model/module';
+import {TypeSession} from '../model/type-session';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,15 @@ export class TypeSessionService {
   constructor(private http: HttpClient) { }
 
   public async findByModule(module: Module) {
-    await this.http.post<TypeSession[]>(this._url + 'module/' , module).toPromise().then(
+    await this.http.post<TypeSession[]>(this._url + 'module' , module).toPromise().then(
+      (data) => {
+        this.typeSessionsFounded = data;
+        console.log(this.typeSessionsFounded);
+      },
+    );
+  }
+  public async findByEnseignant(enseignant: Enseignant) {
+    await this.http.post<TypeSession[]>(this._url + 'enseignant' , enseignant).toPromise().then(
       (data) => {
         this.typeSessionsFounded = data;
         console.log(this.typeSessionsFounded);
@@ -54,8 +63,8 @@ export class TypeSessionService {
       },
     );
   }
-  public deleteByReference(typeSession: TypeSession) {
-    this.http.delete<number>(this._url + 'reference/' + typeSession.reference).subscribe(
+  public async deleteByReference(typeSession: TypeSession) {
+    await this.http.delete<number>(this._url + 'reference/' + typeSession.reference).toPromise().then(
       (data) => {
         console.log(data);
         this.deleteFromList(typeSession);
@@ -68,13 +77,13 @@ export class TypeSessionService {
       this.typeSessions.splice(index, 1);
     }
   }
-  public update() {
+  public async update() {
     console.log('haha');
     this.typeSessionsFounded = this.typeSessionFounded.module.typeSessions;
     this.typeSessionFounded.module.typeSessions = null;
     console.log(this.typeSessionsFounded);
     console.log(this.typeSessionFounded);
-    this.http.post<number>(this._url + 'update', this.typeSessionFounded).subscribe(
+    await this.http.post<number>(this._url + 'update', this.typeSessionFounded).toPromise().then(
       (data) => {
         if (data > 0) {
           console.log('hoho');
@@ -87,8 +96,8 @@ export class TypeSessionService {
     );
     this.typeSessionFounded.module.typeSessions = this.typeSessionsFounded;
   }
-  public save() {
-    this.http.post<number>(this._url, this.typeSession).subscribe(
+  public async save() {
+    await this.http.post<number>(this._url, this.typeSession).toPromise().then(
       (data) => {
         if (data > 0) {
           this.typeSessions.push(this.clone(this.typeSession));
@@ -105,6 +114,7 @@ export class TypeSessionService {
     myclone.enseignant = typeSession.enseignant ;
     myclone.module = typeSession.module ;
     myclone.subject = typeSession.subject ;
+    myclone.groupes = typeSession.groupes ;
     return myclone;
   }
   get typeSession(): TypeSession {
