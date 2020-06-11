@@ -32,7 +32,16 @@
             <a routerLink="/justificatif" class="nav-link"><i class="pi pi-star iconColor"></i>Mes Absences</a>
           </li>
         </ul>
-        <i  class="iconColor pi pi-bell"></i>
+        <i (click)="op1.toggle($event)" class=" iconColor pi pi-bell"></i>
+        <p-overlayPanel #op1>
+          <ng-template pTemplate>
+                <div ui-overlaypanel-content>
+                  khikhi
+                  <div class="dropdown-divider"></div>
+                  khikhia
+                </div>
+          </ng-template>
+        </p-overlayPanel>
         <i href="login" routerLink="login" class="iconColor pi pi-sign-out"></i>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <!-- Links -->
@@ -45,98 +54,6 @@
     </mdb-navbar>
     <!--/.Navbar-->
 
-<p-dialog  header="Ajout d'une filière" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
-  <form style="text-align: center" method="POST" >
-    <div style="display:inline-block" class="form-group">
-      <div class="row">
-        <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input  placeholder="Libelle" [(ngModel)]="sector.libelle" name="libelle" type="text" pInputText  required>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <p-dropdown name="cycle" [options]="cycles" [(ngModel)]="sector.cycle" placeholder="Choisir un cycle" optionLabel="libelle"></p-dropdown>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <p-dropdown name="sectorManager" [options]="enseignants" [(ngModel)]="sectorManager.enseignant" placeholder="Choisir un responsable" optionLabel="lastName"></p-dropdown>
-         </div>
-      </div>
-    </div>
-    <br>
-    <p-footer>
-      <p-footer>
-        <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Confirm"></button>
-        <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Cancel" class="ui-button-secondary"></button>
-      </p-footer>
-    </p-footer>
-  </form>
-</p-dialog>
-<p-dialog  header="Modification d'une filière" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
-  <form style="text-align: center" method="POST" >
-    <div style="display:inline-block" class="form-group">
-      <div class="row">
-        <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input disabled [(ngModel)]="sectorFounded.libelle" name="libelle" type="text" pInputText  required>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <p-dropdown name="cycles" [options]="cycles" [(ngModel)]="sectorFounded.cycle"  optionLabel="libelle"></p-dropdown>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <p-dropdown name="enseignant" [options]="enseignants" [(ngModel)]="sectorManagerFounded.enseignant" optionLabel="lastName"></p-dropdown>
-        </div>
-      </div>
-    </div>
-    <br>
-    <p-footer>
-      <p-footer>
-        <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="update()" label="enregister"></button>
-        <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="deleteByLibelle(sectorFounded)" label="Supprimer" class="ui-button-danger"></button>
-      </p-footer>
-    </p-footer>
-  </form>
-</p-dialog>
-<p-dialog  header="Ajout d'un semestre" [(visible)]="displayBasic3" [style]="{width: '50vw'}" [baseZIndex]="10000">
-  <form style="text-align: center" method="POST" >
-    <div style="display:inline-block" class="form-group">
-      <div class="row">
-        <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input  placeholder="N°Semestre" [(ngModel)]="semestre.number" name="number" type="number" pInputText  required>
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input  placeholder="Année Universitaire" [(ngModel)]="semestre.anneeUniversitaire" name="anneeUnivesitaire" type="text" pInputText  required>
-        </div>
-      </div>
-    </div>
-    <br>
-    <p-footer>
-      <p-footer>
-        <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save2()" label="Confirm"></button>
-        <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic3=false" label="Cancel" class="ui-button-secondary"></button>
-      </p-footer>
-    </p-footer>
-  </form>
-</p-dialog>
     <p-sidebar [(visible)]="display" [style]="{width:'14em'}">
       <p-header>
         <img src="" >

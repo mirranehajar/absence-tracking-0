@@ -20,22 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
+      <change afterPath="$PROJECT_DIR$/src/app/controller/model/notification.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/service/notification.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Justification/justification.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Justification/justification.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Justification/justification.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Justification/justification.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/absence/absence.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/absence/absence.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/absence/absence.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/absence/absence.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/session/session.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/session/session.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/session/session.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/session/session.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/session.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/model/type-session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/model/type-session.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/absence.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/absence.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/session.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/session.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/type-session.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/type-session.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +57,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/app/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/app/controller/service" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -78,11 +69,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Haraj\WebstormProjects\absence-tracking-work\src\app\controller\service" />
+      <recent name="C:\Users\Haraj\WebstormProjects\absence-tracking-work\src\app\controller\model" />
       <recent name="C:\Users\Haraj\WebstormProjects\absence-tracking-work\src\app\components" />
       <recent name="C:\Users\Haraj\WebstormProjects\absence-tracking-WS\src\app\components\login" />
       <recent name="C:\Users\Haraj\WebstormProjects\absence-tracking-WS\src\app\components" />
-      <recent name="C:\Users\Haraj\WebstormProjects\absence-tracking-WS\src\app\layout" />
-      <recent name="C:\Users\Haraj\WebstormProjects\absence-tracking-WS\src\app\controller\service" />
     </key>
   </component>
   <component name="RunManager" selected="npm.Angular CLI Server">
@@ -191,7 +182,7 @@
       <workItem from="1591702093950" duration="41010000" />
       <workItem from="1591779457294" duration="40844000" />
       <workItem from="1591822846587" duration="15964000" />
-      <workItem from="1591869608479" duration="9598000" />
+      <workItem from="1591869608479" duration="15099000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -466,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591870744028</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="add groupes in type session and delete from session">
+      <created>1591879708882</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1591879708882</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,7 +514,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="id even know" />
     <MESSAGE value="trying to fix the menu" />
     <MESSAGE value="menu update" />
     <MESSAGE value="find global not working" />
@@ -541,7 +538,8 @@
     <MESSAGE value="routage semestre modules groupes" />
     <MESSAGE value="groupe and module done" />
     <MESSAGE value="add delete in groupe" />
-    <option name="LAST_COMMIT_MESSAGE" value="add delete in groupe" />
+    <MESSAGE value="add groupes in type session and delete from session" />
+    <option name="LAST_COMMIT_MESSAGE" value="add groupes in type session and delete from session" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -556,10 +554,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="447" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1587949360269" />
-    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1591871187049">
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1591886697947">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1591871187049" />
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1591886697947" />
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591457289443">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -577,29 +575,29 @@
     </state>
     <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1591641361645" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
-    <state width="1345" height="148" key="GridCell.Tab.0.bottom" timestamp="1591838604857">
+    <state width="1345" height="148" key="GridCell.Tab.0.bottom" timestamp="1591879657790">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1591361539321" />
-    <state width="1345" height="148" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591838604857" />
+    <state width="1345" height="148" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591879657790" />
     <state width="813" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="148" key="GridCell.Tab.0.center" timestamp="1591838604857">
+    <state width="1345" height="148" key="GridCell.Tab.0.center" timestamp="1591879657790">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1591361539320" />
-    <state width="1345" height="148" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591838604857" />
+    <state width="1345" height="148" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591879657790" />
     <state width="813" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="148" key="GridCell.Tab.0.left" timestamp="1591838604854">
+    <state width="1345" height="148" key="GridCell.Tab.0.left" timestamp="1591879657790">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1591361539319" />
-    <state width="1345" height="148" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591838604854" />
+    <state width="1345" height="148" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591879657790" />
     <state width="813" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
-    <state width="1345" height="148" key="GridCell.Tab.0.right" timestamp="1591838604857">
+    <state width="1345" height="148" key="GridCell.Tab.0.right" timestamp="1591879657790">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1591361539320" />
-    <state width="1345" height="148" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591838604857" />
+    <state width="1345" height="148" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591879657790" />
     <state width="813" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1588004996208" />
     <state width="1345" height="177" key="GridCell.Tab.1.bottom" timestamp="1591822636944">
       <screen x="0" y="0" width="1366" height="728" />
@@ -665,10 +663,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1591815061158" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1591870748627">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1591880833513">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1591870748627" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1591880833513" />
     <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1591722448212">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

@@ -1,5 +1,5 @@
 <!--Navbar-->
-    <mdb-navbar #nav SideClass="navbar navbar-expand-lg navbar-light white">
+<mdb-navbar #nav SideClass="navbar navbar-expand-lg navbar-light white">
 
       <!-- Navbar brand -->
       <mdb-navbar-brand>
@@ -47,7 +47,16 @@
             <a routerLink="/enseignant" class="nav-link"><i class="pi pi-star iconColor"></i>Enseignants</a>
           </li>
         </ul>
-        <i  class=" iconColor pi pi-bell"></i>
+        <i (click)="op1.toggle($event)" class=" iconColor pi pi-bell"></i>
+        <p-overlayPanel #op1>
+          <ng-template pTemplate>
+            <div  ui-overlaypanel-content>
+              khikhi
+              <div class="dropdown-divider"></div>
+              khikhia
+            </div>
+          </ng-template>
+        </p-overlayPanel>
         <i routerLink="/login" class="pi pi-sign-out iconColor"></i>
         <!-- Links -->
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
