@@ -54,11 +54,11 @@ export class SessionService {
     }
   }
   public update() {
-    this.http.post<number>(this._url + 'update', this.sessionFounded).subscribe(
+    this.http.post<Session>(this._url + 'update', this.sessionFounded).subscribe(
       (data) => {
-        if (data > 0) {
+        if (data) {
           this.deleteFromList(this.sessionFounded);
-          this.sessions.push(this.clone(this.sessionFounded));
+          this.sessions.push(this.clone(data));
         }
       }, (error) => {
         console.log('error');

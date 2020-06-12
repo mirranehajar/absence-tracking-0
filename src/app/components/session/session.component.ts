@@ -10,6 +10,7 @@ import {Groupe} from '../../controller/model/groupe';
 import {Session} from '../../controller/model/session';
 import {TypeSession} from '../../controller/model/type-session';
 import {AbsenceService} from '../../controller/service/absence.service';
+import {EtudiantService} from '../../controller/service/etudiant.service';
 import {GroupeService} from '../../controller/service/groupe.service';
 import {SessionService} from '../../controller/service/session.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
@@ -22,10 +23,10 @@ import {TypeSessionService} from '../../controller/service/type-session.service'
 export class SessionComponent implements OnInit {
   displayBasic: boolean;
   displayBasic2: boolean;
-  period: number;
   today: Date;
   constructor(private groupeService: GroupeService, private typeSessionService: TypeSessionService,
-              private sessionService: SessionService, private absenceService: AbsenceService) { }
+              private sessionService: SessionService, private absenceService: AbsenceService,
+              private etudiantService: EtudiantService) { }
 
   @ViewChild('calendar') calendarComponent: FullCalendarComponent; // the #calendar in the template
 
@@ -34,12 +35,17 @@ export class SessionComponent implements OnInit {
   calendarWeekends = true;
   calendarEvents: EventInput[] = [];
   students:  Etudiant[];
+  groups: Groupe[];
   seance: Session;
+  hours =  {
+  daysOfWeek: [ 1, 2, 3, 4 , 5 , 6],
+  startTime: '08:00',
+  endTime: '19:00',
+};
 
   async ngOnInit(): Promise<void> {
     this.today = new Date();
     console.log(this.today);
-    console.log(this.today.getHours() + ' ' + this.today.getMinutes());
     this.students = new Array<Etudiant>();
     await this.sessionService.findAll();
     console.log(this.sessions);
@@ -50,18 +56,10 @@ export class SessionComponent implements OnInit {
     }
   }
   showBasicDialog(arg) {
+    console.log(arg.dateStr);
     if (arg.date >= this.today) {
       this.displayBasic = true;
-      this.session.dateStart = arg.date;
-      this.session.dateStop = arg.date;
-      console.log(this.session.dateStart);
-      // this.session.dateStop.setHours(this.session.dateStop.getHours() + this.period);
-      console.log(this.session.dateStop.getMinutes());
-      this.session.dateStop.setHours(this.period);
-      console.log(this.period);
-      console.log(this.session.dateStop);
-      // this.session.dateStop.setHours(arg.date.getHours() + this.period);
-      // this.session.dateStop.setTime(arg.date.getTime + )
+      this.session.dateStart = arg.dateStr;
     }
   }
     public async showBasicDialog2(event) {
@@ -74,10 +72,10 @@ export class SessionComponent implements OnInit {
   }
   handleDateClick() {
     this.calendarEvents = this.calendarEvents.concat({ // add new event data. must create new array
-        id: this.session.reference,
-        title: this.session.libelle,
-        start: this.session.dateStart,
-        end: this.session.dateStop ,
+        id: this.seance.reference,
+        title: this.seance.libelle,
+        start: this.seance.dateStart,
+        end: this.seance.dateStop ,
         editable: true,
       });
   }
@@ -91,21 +89,47 @@ export class SessionComponent implements OnInit {
     this.sessionService.deleteByReference(session);
     this.displayBasic2 = false;
   }
-  public update() {
+  async onDrag(arg) {
+    console.log(arg.event.id);
+    await this.findByReference(arg.event.id);
+    console.log(this.sessionFounded);
+  }
+  async onDrop(arg) {
+    this.sessionService.sessionFounded.dateStart = arg.event.start;
+    console.log(arg.event.start);
+    await this.sessionService.update();
+    await this.typeSessionService.findAll();
+    this.calendarEvents = [];
+    for (const s of this.sessions) {
+      this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
+    }
+  }
+  async onResize(arg) {
+    await this.sessionService.findByReference(arg.event.id);
+    this.sessionService.sessionFounded.dateStop = arg.event.end;
     this.sessionService.update();
+    await this.typeSessionService.findAll();
+    this.calendarEvents = [];
+    for (const s of this.sessions) {
+      this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
+    }
   }
   public async save() {
-    this.handleDateClick();
     for ( const g of this.session.typeSession.groupes) {
+      await this.findByGroupe(g);
+      g.etudiants = this.etudiantsFounded;
+      console.log(g);
+    }
+    for ( const g of this.session.typeSession.groupes) {
+      console.log(this.session.typeSession.groupes);
       for ( const e of g.etudiants) {
         this.students.push(e);
       }
     }
-    this.session.dateStop.setUTCHours(this.session.dateStop.getUTCHours() + this.period);
     console.log(this.session.dateStop);
-    console.log(this.period);
-    this.seance = this.session;
     await this.sessionService.save();
+    this.seance = this.sessionFounded;
+    this.handleDateClick();
     console.log('haha');
     for ( const e of this.students) {
       this.absenceService.absence.etudiant = e;
@@ -138,5 +162,11 @@ export class SessionComponent implements OnInit {
   }
   get absence(): Absence {
     return this.absenceService.absence;
+  }
+  public async findByGroupe(groupe: Groupe) {
+    await this.etudiantService.findByGroupe(groupe);
+  }
+  get etudiantsFounded(): Etudiant[] {
+    return this.etudiantService.etudiantsFounded;
   }
 }

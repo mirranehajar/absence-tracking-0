@@ -12,10 +12,14 @@
       [plugins]="calendarPlugins"
       editable="true"
       eventLimit="true"
+      [businessHours]="hours"
       [weekends]="calendarWeekends"
       [events]="calendarEvents"
       (dateClick)="showBasicDialog($event)"
-      (eventClick)="showBasicDialog2($event)">
+      (eventClick)="showBasicDialog2($event)"
+      (eventDragStart)="onDrag($event)"
+      (eventDrop)="onDrop($event)"
+    (eventResize)="onResize($event)">
     </full-calendar>
     <p-dialog  header="Ajout d'une séance" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
       <form style="text-align: center" method="POST" >
@@ -30,7 +34,7 @@
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="number" name="durée" placeholder="La durée de la séance (Min)" [(ngModel)]="period">
+              <input type="number" name="durée" placeholder="La durée de la séance (H)" [(ngModel)]="session.periode">
             </div>
           </div>
           <br>

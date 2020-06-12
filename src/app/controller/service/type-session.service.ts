@@ -56,8 +56,8 @@ export class TypeSessionService {
       },
     );
   }
-  public findAll() {
-    this.http.get<TypeSession[]>(this._url).subscribe(
+  public async findAll() {
+    await this.http.get<TypeSession[]>(this._url).toPromise().then(
       (data) => {
         this.typeSessions = data;
       },
