@@ -5,13 +5,17 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGrigPlugin from '@fullcalendar/timegrid';
 import {Absence} from '../../controller/model/absence';
+import {Enseignant} from '../../controller/model/enseignant.model';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {Groupe} from '../../controller/model/groupe';
+import {Module} from '../../controller/model/module';
 import {Session} from '../../controller/model/session';
 import {TypeSession} from '../../controller/model/type-session';
 import {AbsenceService} from '../../controller/service/absence.service';
+import {EnseignantService} from '../../controller/service/enseignant.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 import {GroupeService} from '../../controller/service/groupe.service';
+import {ModuleService} from '../../controller/service/module.service';
 import {SessionService} from '../../controller/service/session.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
 
@@ -26,7 +30,8 @@ export class SessionComponent implements OnInit {
   today: Date;
   constructor(private groupeService: GroupeService, private typeSessionService: TypeSessionService,
               private sessionService: SessionService, private absenceService: AbsenceService,
-              private etudiantService: EtudiantService) { }
+              private etudiantService: EtudiantService, private enseignantService: EnseignantService,
+              private moduleService: ModuleService) { }
 
   @ViewChild('calendar') calendarComponent: FullCalendarComponent; // the #calendar in the template
 
@@ -47,13 +52,20 @@ export class SessionComponent implements OnInit {
     this.today = new Date();
     console.log(this.today);
     this.students = new Array<Etudiant>();
-    await this.sessionService.findAll();
+    console.log(this.moduleConnected);
+    this.typeSessionService.findByModule(this.moduleConnected);
+    for (const t of this.typeSessionsFounded) {
+      console.log(t);
+      await this.sessionService.findByTypeSession(t);
+      for (const s of this.sessionService.sessionsFounded) {
+        console.log(s);
+        this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
+      }
+    }
+
+    this.typeSessionService.findByEnseignant(this.enseignantConnected);
     console.log(this.sessions);
     this.groupeService.findAll();
-    this.typeSessionService.findAll();
-    for (const s of this.sessions) {
-    this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
-    }
   }
   showBasicDialog(arg) {
     console.log(arg.dateStr);
@@ -97,8 +109,16 @@ export class SessionComponent implements OnInit {
   async onDrop(arg) {
     this.sessionService.sessionFounded.dateStart = arg.event.start;
     console.log(arg.event.start);
+    if (this.enseignantConnected === this.sessionFounded.typeSession.enseignant) {
     await this.sessionService.update();
-    await this.typeSessionService.findAll();
+    }
+    await this.typeSessionService.findByModule(this.moduleConnected);
+    for (const t of this.typeSessionsFounded) {
+      this.sessionService.findByTypeSession(t);
+      for (const s of this.sessionService.sessionsFounded) {
+        this.sessionService.sessions.push(s);
+      }
+    }
     this.calendarEvents = [];
     for (const s of this.sessions) {
       this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
@@ -106,9 +126,17 @@ export class SessionComponent implements OnInit {
   }
   async onResize(arg) {
     await this.sessionService.findByReference(arg.event.id);
-    this.sessionService.sessionFounded.dateStop = arg.event.end;
-    this.sessionService.update();
-    await this.typeSessionService.findAll();
+    if (this.enseignantConnected === this.sessionFounded.typeSession.enseignant) {
+      this.sessionService.sessionFounded.dateStop = arg.event.end;
+      this.sessionService.update();
+    }
+    this.typeSessionService.findByModule(this.moduleConnected);
+    for (const t of this.typeSessionsFounded) {
+      this.sessionService.findByTypeSession(t);
+      for (const s of this.sessionService.sessionsFounded) {
+        this.sessionService.sessions.push(s);
+      }
+    }
     this.calendarEvents = [];
     for (const s of this.sessions) {
       this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
@@ -148,6 +176,9 @@ export class SessionComponent implements OnInit {
   get typeSessions(): TypeSession[] {
     return this.typeSessionService.typeSessions;
   }
+  get typeSessionsFounded(): TypeSession[] {
+    return this.typeSessionService.typeSessionsFounded;
+  }
   get typeSession(): TypeSession {
     return this.typeSessionService.typeSession;
   }
@@ -168,5 +199,11 @@ export class SessionComponent implements OnInit {
   }
   get etudiantsFounded(): Etudiant[] {
     return this.etudiantService.etudiantsFounded;
+  }
+  get enseignantConnected(): Enseignant {
+    return this.enseignantService.enseignantConnected;
+  }
+  get moduleConnected(): Module {
+    return this.moduleService.moduleConnected;
   }
 }

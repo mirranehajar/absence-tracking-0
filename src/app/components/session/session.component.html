@@ -41,7 +41,7 @@
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <p-dropdown name="typeSession" [options]="typeSessions" [(ngModel)]="session.typeSession" placeholder="Choisir type de la séance" optionLabel="reference"></p-dropdown>
+              <p-dropdown name="typeSession" [options]="typeSessionsFounded" [(ngModel)]="session.typeSession" placeholder="Choisir type de la séance" optionLabel="reference"></p-dropdown>
             </div>
           </div>
         </div>
@@ -77,8 +77,8 @@
         </div>
         <br>
         <p-footer>
-          <button style="float: right" (click)="deleteByReference(sessionFounded)" type="button" class="ui-button-danger" pButton icon="pi pi-check"   label="Supprimer"></button>
-          <button style="float: left" routerLink="/absence" type="button"  pButton icon="pi pi-check"   label="Noter l'absence"></button>
+          <button style="float: right" (click)="deleteByReference(sessionFounded)" *ngIf="enseignantConnected == sessionFounded.typeSession.enseignant" type="button" class="ui-button-danger" pButton icon="pi pi-check"   label="Supprimer"></button>
+          <button style="float: left"  *ngIf="enseignantConnected == sessionFounded.typeSession.enseignant" routerLink="/absence" type="button"  pButton icon="pi pi-check"   label="Noter l'absence"></button>
         </p-footer>
       </form>
     </p-dialog>
