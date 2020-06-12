@@ -46,11 +46,12 @@ export class HeaderEtuComponent implements OnInit {
     this.sectorService.findAll();
     await this.semestreService.findAll();
     this.enseignantService.findAll();
-    await this.notificationService.findByState(null);
+    await this.notificationService.findByEtudiant(this.etudiantService.etudiantConnected);
+    console.log(this.notificationsFounded);
     this.notificationService.notifications = null;
     for (const n of this.notificationsFounded) {
       console.log(this.notificationsFounded);
-      if (n.absence.etudiant === this.etudiantService.etudiantConnected) {
+      if (n.state !== null) {
         this.notifications.push(n);
         console.log(this.notifications);
       }
@@ -197,8 +198,18 @@ export class HeaderEtuComponent implements OnInit {
   show() {
      this.display = true;
   }
-  public deleteByAbsence(absence: Absence) {
-     return this.notificationService.deleteByAbsence(absence);
+  public async deleteByAbsence(absence: Absence) {
+    await this.notificationService.deleteByAbsence(absence);
+    await this.notificationService.findByEtudiant(this.etudiantService.etudiantConnected);
+    console.log(this.notificationsFounded);
+    this.notificationService.notifications = null;
+    for (const n of this.notificationsFounded) {
+      console.log(this.notificationsFounded);
+      if (n.state !== null) {
+        this.notifications.push(n);
+        console.log(this.notifications);
+      }
+    }
   }
   get notificationsFounded(): Notification[] {
     return this.notificationService.notificationsFounded;

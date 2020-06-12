@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {SelectItem} from 'primeng';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {Groupe} from '../../controller/model/groupe';
@@ -12,6 +13,7 @@ import {GroupeService} from '../../controller/service/groupe.service';
 import {ModuleService} from '../../controller/service/module.service';
 import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SemestreService} from '../../controller/service/semestre.service';
+import {SessionService} from '../../controller/service/session.service';
 import {SubjectService} from '../../controller/service/subject.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
 
@@ -32,7 +34,7 @@ export class ModuleComponent implements OnInit {
   constructor(private moduleService: ModuleService, private subjectService: SubjectService,
               private enseignantService: EnseignantService, private typeSessionService: TypeSessionService,
               private semestreService: SemestreService, private sectorManagerService: SectorManagerService,
-              private groupeService: GroupeService) {
+              private groupeService: GroupeService, private sessionService: SessionService, private router: Router) {
     this.libelles = [
       {label: 'Cours', value: 'Cours'},
       {label: 'TD', value: 'TD'},
@@ -199,5 +201,11 @@ export class ModuleComponent implements OnInit {
   }
   get groupesFounded(): Groupe[] {
     return this.groupeService.groupesFounded;
+  }
+  goToSession(module: Module) {
+    this.moduleService.moduleConnected = module;
+    console.log(module);
+    console.log(this.modulesConnected);
+    this.router.navigate(['/session']);
   }
 }

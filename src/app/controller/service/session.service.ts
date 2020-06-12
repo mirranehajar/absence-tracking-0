@@ -14,6 +14,7 @@ export class SessionService {
   private _sessions: Session[];
   // tslint:disable-next-line:variable-name
   private _sessionFounded: Session;
+  private _sessionsFounded: Session[];
   // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/session/';
   constructor(private http: HttpClient) { }
@@ -24,6 +25,14 @@ export class SessionService {
         this.sessionFounded = data;
       },
     );
+  }
+  public async findByTypeSession(typeSession: TypeSession) {
+    await this.http.post<Session[]>(this._url + 'typeSession' , typeSession).toPromise().then(
+      (data) => {
+        this.sessionsFounded = data;
+      },
+    );
+    console.log(this.sessionsFounded);
   }
   public async findByReference(reference: string) {
     await this.http.get<Session>(this._url + 'reference/' + reference).toPromise().then(
@@ -54,11 +63,11 @@ export class SessionService {
     }
   }
   public update() {
-    this.http.post<number>(this._url + 'update', this.sessionFounded).subscribe(
+    this.http.post<Session>(this._url + 'update', this.sessionFounded).subscribe(
       (data) => {
-        if (data > 0) {
+        if (data) {
           this.deleteFromList(this.sessionFounded);
-          this.sessions.push(this.clone(this.sessionFounded));
+          this.sessions.push(this.clone(data));
         }
       }, (error) => {
         console.log('error');
@@ -125,5 +134,16 @@ export class SessionService {
 
   set sessionFounded(value: Session) {
     this._sessionFounded = value;
+  }
+
+  get sessionsFounded(): Session[] {
+    if (this._sessionsFounded == null) {
+      this._sessionsFounded = new Array<Session>();
+    }
+    return this._sessionsFounded;
+  }
+
+  set sessionsFounded(value: Session[]) {
+    this._sessionsFounded = value;
   }
 }

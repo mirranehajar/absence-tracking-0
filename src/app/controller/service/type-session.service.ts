@@ -15,6 +15,7 @@ export class TypeSessionService {
   // tslint:disable-next-line:variable-name
   private _typeSessionFounded: TypeSession;
   private _typeSessionsFounded: TypeSession[];
+  private _typeSessionsConnected: TypeSession[];
   // tslint:disable-next-line:variable-name
   private _url = 'http://localhost:8090/absence-tracking/typeSession/';
   constructor(private http: HttpClient) { }
@@ -56,8 +57,8 @@ export class TypeSessionService {
       },
     );
   }
-  public findAll() {
-    this.http.get<TypeSession[]>(this._url).subscribe(
+  public async findAll() {
+    await this.http.get<TypeSession[]>(this._url).toPromise().then(
       (data) => {
         this.typeSessions = data;
       },
