@@ -35,6 +35,13 @@ export class EtudiantService {
       },
     );
   }
+  public async findBySector(sector: Sector) {
+    await this.http.post<Etudiant[]>(this._url + 'sector', sector).toPromise().then(
+      (data) => {
+        this.etudiantsFounded = data;
+      },
+    );
+  }
   public async findByGroupe(groupe: Groupe) {
     await this.http.post<Etudiant[]>(this._url + 'groupe', groupe).toPromise().then(
       (data) => {
@@ -143,6 +150,9 @@ export class EtudiantService {
   }
 
   get etudiantsFounded(): Etudiant[] {
+    if (this._etudiantsFounded == null) {
+      this._etudiantsFounded = new Array<Etudiant>();
+    }
     return this._etudiantsFounded;
   }
 

@@ -125,6 +125,9 @@ export class SemestreService {
   }
 
   get semestresFounded(): Semestre[] {
+    if (this._semestresFounded == null) {
+      this._semestresFounded = new Array<Semestre>();
+    }
     return this._semestresFounded;
   }
 

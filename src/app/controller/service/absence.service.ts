@@ -2,6 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Absence} from '../model/absence';
 import {Etudiant} from '../model/etudiant.model';
+import {Module} from '../model/module';
 import {Session} from '../model/session';
 
 @Injectable({
@@ -20,6 +21,13 @@ export class AbsenceService {
   private _url = 'http://localhost:8090/absence-tracking/absence/';
   constructor(private http: HttpClient) { }
 
+  public async findByModule(module: Module) {
+    await this.http.post<Absence[]>(this._url + 'module' , module).toPromise().then(
+      (data) => {
+        this.absencesFounded = data;
+      },
+    );
+  }
   public async findBySession(session: Session) {
     await this.http.post<Absence[]>(this._url + 'session' , session).toPromise().then(
       (data) => {

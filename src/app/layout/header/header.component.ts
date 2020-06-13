@@ -9,6 +9,7 @@ import {Sector} from '../../controller/model/sector';
 import {SectorManager} from '../../controller/model/sector-manager';
 import {Semestre} from '../../controller/model/semestre';
 import {TypeSession} from '../../controller/model/type-session';
+import {AbsenceService} from '../../controller/service/absence.service';
 import {CycleService} from '../../controller/service/cycle.service';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {ModuleService} from '../../controller/service/module.service';
@@ -17,8 +18,6 @@ import {SectorManagerService} from '../../controller/service/sector-manager.serv
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
-import {AbsenceService} from '../../controller/service/absence.service';
-import {not} from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-header',
@@ -242,6 +241,16 @@ export class HeaderComponent implements OnInit {
   }
   public async findByEnseignant(enseignant: Enseignant) {
     await this.typeSessionService.findByEnseignant(enseignant);
+  }
+  async goToStatistique() {
+    await this.sectorManagerService.findByEnseignant(this.enseignantService.enseignantConnected);
+    console.log(this.sectorManagerService.sectorManagerFounded);
+    if (this.sectorManagerService.sectorManagerFounded != null) {
+      this.sectorService.sector = this.sectorManagerService.sectorManagerFounded.sector;
+      console.log(this.sector);
+    }
+    await this.semestreService.findBySector(this.sector);
+    console.log(this.semestreService.semestresFounded);
   }
   async goToModule(semestre: Semestre) {
      await this.findBySector(semestre.sector);

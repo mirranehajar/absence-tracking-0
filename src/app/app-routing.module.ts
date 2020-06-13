@@ -12,6 +12,7 @@ import {ModuleEtuComponent} from './components/moduleEtu/moduleEtu.component';
 import {ProfilComponent} from './components/profil/profil.component';
 import {ProfilEtuComponent} from './components/profilEtu/profilEtu.component';
 import {SessionComponent} from './components/session/session.component';
+import {StatistiqueComponent} from './components/statistique/statistique.component';
 import {AppEnsComponent} from './layout/appEns/appEns.component';
 import {AppEtuComponent} from './layout/appEtu/appEtu.component';
 
@@ -33,6 +34,7 @@ const routes: Routes = [
       {path: 'absence', component: AbsenceComponent},
       {path: 'groupe', component: GroupesComponent},
       {path: 'session', component: SessionComponent},
+      {path: 'statistique', component: StatistiqueComponent},
     ]},
 ];
 

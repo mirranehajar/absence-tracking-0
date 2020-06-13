@@ -46,6 +46,9 @@
           <li class="nav-item">
             <a routerLink="/enseignant" class="nav-link"><i class="pi pi-star iconColor"></i>Enseignants</a>
           </li>
+          <li class="nav-item">
+            <a routerLink="/statistique" (click)="goToStatistique()" class="nav-link"><i class="pi pi-chart-bar iconColor"></i>Statistique</a>
+          </li>
         </ul>
         <i (click)="op1.toggle($event)" class=" iconColor pi pi-bell"></i>
         <p-overlayPanel #op1>
