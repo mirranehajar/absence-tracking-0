@@ -130,11 +130,12 @@ export class ModuleComponent implements OnInit {
   async miniUpdate(module: Module) {
     await this.moduleService.update(module);
   }
-  showBasicDialog3(module: Module) {
+  async showBasicDialog3(module: Module) {
+    await this.moduleService.findByLibelle(module);
     this.subjectService.subjectsFounded = null;
     console.log(this.subjectsFounded);
-    console.log(module);
-    this.subjectService.subjectsFounded = module.subjects;
+    console.log(this.moduleFounded);
+    this.subjectService.subjectsFounded = this.moduleFounded.subjects;
     console.log(this.subjectsFounded);
     this.displayBasic3 = true;
   }

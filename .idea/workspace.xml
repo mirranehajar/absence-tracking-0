@@ -21,9 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/etudiant.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/etudiant.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/controller/service/module.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/module.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +188,7 @@
       <workItem from="1592003853475" duration="2253000" />
       <workItem from="1592043922386" duration="14362000" />
       <workItem from="1592063337398" duration="30199000" />
-      <workItem from="1592126520785" duration="17340000" />
+      <workItem from="1592126520785" duration="21098000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -520,7 +519,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592141930035</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="groupe done">
+      <created>1592146134828</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1592146134830</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,7 +576,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="photo enseignant" />
     <MESSAGE value="post update" />
     <MESSAGE value="sector done" />
     <MESSAGE value="semestre start" />
@@ -595,7 +600,8 @@
     <MESSAGE value="statistique général et par semestre" />
     <MESSAGE value="statistique par filière" />
     <MESSAGE value="imported data plus importeed date done" />
-    <option name="LAST_COMMIT_MESSAGE" value="imported data plus importeed date done" />
+    <MESSAGE value="groupe done" />
+    <option name="LAST_COMMIT_MESSAGE" value="groupe done" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -719,10 +725,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1591815061158" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1592141933391">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1592146155696">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1592141933391" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1592146155696" />
     <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1591722448212">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
