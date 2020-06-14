@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SelectItem} from 'primeng';
 import {Enseignant} from '../../controller/model/enseignant.model';
+import {Module} from '../../controller/model/module';
 import {Sector} from '../../controller/model/sector';
 import {SectorManager} from '../../controller/model/sector-manager';
 import {Semestre} from '../../controller/model/semestre';
@@ -13,6 +14,7 @@ import {SectorManagerService} from '../../controller/service/sector-manager.serv
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
 import {YearsService} from '../../controller/service/years.service';
+import {TypeSessionService} from '../../controller/service/type-session.service';
 
 @Component({
   selector: 'app-statistique',
@@ -24,12 +26,16 @@ export class StatistiqueComponent implements OnInit {
   data: any;
   data2: any;
   data3: any;
+  data4: any;
   n: number;
   filiere: Sector;
+  module: Module;
   labelsSemestres = new Array<string>();
   sommeSemestres = new Array<number>();
   dataSemestres =  new Array<any>();
   i = 0;
+  labels3: string[];
+  somme3: number[];
   labels2: string[];
   somme2: number[];
   labels: string[];
@@ -40,7 +46,8 @@ export class StatistiqueComponent implements OnInit {
   constructor(private sectorService: SectorService, private etudiantService: EtudiantService,
               private absenceService: AbsenceService, private moduleService: ModuleService,
               private sectorManagerService: SectorManagerService, private enseignantService: EnseignantService,
-              private semestreService: SemestreService, private yearsService: YearsService) {
+              private semestreService: SemestreService, private yearsService: YearsService,
+              private typeSessionService: TypeSessionService) {
   }
 
   selectData(event) {
@@ -48,6 +55,7 @@ export class StatistiqueComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
   }
   async ngOnInit(): Promise<void> {
+    await this.moduleService.findAll();
     await this.sectorManagerService.findByEnseignant(this.enseignantService.enseignantConnected);
     console.log(this.sectorManagerService.sectorManagerFounded);
     this.sectorManager = this.sectorManagerService.sectorManagerFounded;
@@ -206,5 +214,40 @@ export class StatistiqueComponent implements OnInit {
       labels: this.labelsSemestres,
       datasets: this.dataSemestres,
     };
+  }
+  async statistiqueModule() {
+    this.labels3 = new Array<string>();
+    this.somme3 = new Array<number>();
+    await this.typeSessionService.findByModule(this.module);
+    for (const t of this.typeSessionService.typeSessionsFounded) {
+      console.log(this.typeSessionService.typeSessionsFounded);
+      await this.absenceService.findByTypeSession(t);
+      this.n = 0;
+      console.log(this.absenceService.absencesFounded);
+      for (const a of this.absenceService.absencesFounded) {
+          if (a.absent === true && a.justification == null) {
+            this.n++;
+          }
+        }
+      console.log(this.n);
+      this.somme3.push(this.n);
+      this.labels3.push(t.reference);
+      }
+    console.log(this.labels3);
+    console.log(this.somme3);
+    this.data3 = {
+      labels: this.labels3,
+      datasets: [
+        {
+          label: this.module.abreveation,
+          data: this.somme3,
+          fill: true,
+          borderColor: '#4bc0c0',
+        },
+      ],
+    };
+  }
+  get modules(): Module[] {
+    return this.moduleService.modules;
   }
 }
