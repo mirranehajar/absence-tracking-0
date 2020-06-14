@@ -4,6 +4,8 @@
 <p-dropdown name="semestre" optionLabel="reference" (onChange)="statistiqueSemestre()"  placeholder="Choisir un semestre" [options]="semestres" [(ngModel)]="semestre"></p-dropdown>
 </div>
 </div>
+
+<p-dropdown name="semestre" optionLabel="libelle" (onChange)="statistiqueSector()"  placeholder="Choisir une filière" [options]="sectors" [(ngModel)]="filiere"></p-dropdown>
   <br>
 
 
@@ -11,3 +13,5 @@
 <p-chart *ngIf="enseignantConnected.role == 1" type="bar" [data]="data"></p-chart>
 <br>
 <p-chart *ngIf="data2 != null" type="bar" [data]="data2"></p-chart>
+<br>
+<p-chart *ngIf="data3 != null" type="bar" [data]="data3"></p-chart>

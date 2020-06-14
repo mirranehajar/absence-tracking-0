@@ -4,6 +4,7 @@ import {Enseignant} from '../../controller/model/enseignant.model';
 import {Sector} from '../../controller/model/sector';
 import {SectorManager} from '../../controller/model/sector-manager';
 import {Semestre} from '../../controller/model/semestre';
+import {Years} from '../../controller/model/years';
 import {AbsenceService} from '../../controller/service/absence.service';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
@@ -11,6 +12,7 @@ import {ModuleService} from '../../controller/service/module.service';
 import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
+import {YearsService} from '../../controller/service/years.service';
 
 @Component({
   selector: 'app-statistique',
@@ -21,7 +23,13 @@ export class StatistiqueComponent implements OnInit {
   cities1: SelectItem[];
   data: any;
   data2: any;
+  data3: any;
   n: number;
+  filiere: Sector;
+  labelsSemestres = new Array<string>();
+  sommeSemestres = new Array<number>();
+  dataSemestres =  new Array<any>();
+  i = 0;
   labels2: string[];
   somme2: number[];
   labels: string[];
@@ -32,7 +40,7 @@ export class StatistiqueComponent implements OnInit {
   constructor(private sectorService: SectorService, private etudiantService: EtudiantService,
               private absenceService: AbsenceService, private moduleService: ModuleService,
               private sectorManagerService: SectorManagerService, private enseignantService: EnseignantService,
-              private semestreService: SemestreService) {
+              private semestreService: SemestreService, private yearsService: YearsService) {
   }
 
   selectData(event) {
@@ -127,5 +135,76 @@ export class StatistiqueComponent implements OnInit {
   }
   get enseignantConnected(): Enseignant {
     return this.enseignantService.enseignantConnected;
+  }
+  async statistiqueSector() {
+    this.data3 = null;
+    this.labelsSemestres = new Array<string>();
+    this.dataSemestres = new Array<any>();
+    this.sommeSemestres = new Array<number>();
+    console.log(this.filiere);
+    await this.semestreService.findBySector(this.filiere);
+    console.log(this.semestreService.semestresFounded);
+    for (const s of this.semestreService.semestresFounded) {
+      this.i = 0;
+      for ( const l of this.labelsSemestres) {
+        if ( s.libelle !== l) {
+          this.i++;
+        }
+      }
+      console.log(this.i);
+      if (this.i === this.labelsSemestres.length) {
+        this.labelsSemestres.push(s.libelle);
+      }
+    }
+    console.log(this.labelsSemestres);
+    this.statistiqueSectorAndAnnee();
+  }
+  get yearss(): Years[] {
+    return this.yearsService.yearss;
+  }
+  get sectors(): Sector[] {
+    return this.sectorService.sectors;
+  }
+  async statistiqueSectorAndAnnee() {
+    this.data3 = null;
+    this.dataSemestres = new Array<any>();
+    this.sommeSemestres = new Array<number>();
+    await this.yearsService.findAll();
+    for (const y of this.yearss) {
+      console.log(y.libelle);
+      await this.semestreService.findBySectorAndAnneeUniversitaire(this.filiere, y.libelle);
+      console.log(this.semestresFounded);
+      for (const l of this.labelsSemestres) {
+        console.log(l);
+        for (const s of this.semestresFounded) {
+          console.log(s);
+          if (s.libelle === l) {
+          await this.etudiantService.findBySemestre(s);
+          console.log(this.etudiantService.etudiantsFounded);
+          this.n = 0;
+          for (const e of this.etudiantService.etudiantsFounded) {
+            console.log(e);
+            this.n = this.n + e.nbrAbsence;
+          }
+          console.log(this.n);
+          this.sommeSemestres.push(this.n);
+        }
+      }
+    }
+      console.log(this.sommeSemestres);
+      this.dataSemestres.push(
+        {
+          label: y.libelle,
+          data: this.sommeSemestres,
+          fill: true,
+          borderColor: '#4bc0c0',
+        },
+      );
+    }
+    console.log(this.dataSemestres);
+    this.data3 = {
+      labels: this.labelsSemestres,
+      datasets: this.dataSemestres,
+    };
   }
 }

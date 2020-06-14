@@ -28,15 +28,23 @@ export class SemestreService {
       },
     );
   }
-  public findByReference(semestre: Semestre) {
-    this.http.get<Semestre>(this._url + 'refrence/' + semestre.reference).subscribe(
+  public async findBySectorAndAnneeUniversitaire(sector: Sector, anneeUniversitaire: string) {
+    // tslint:disable-next-line:max-line-length
+    await this.http.post<Semestre[]>(this._url + 'sectorAndAnneeUniversitaire/anneeUniversitaire/' + anneeUniversitaire, sector).toPromise().then(
       (data) => {
-        this.semestreFounded = data;
+        this.semestresFounded = data;
       },
     );
   }
-  public  findAll() {
-     this.http.get<Semestre[]>(this._url).subscribe(
+  public async findByAnneeUniversitaire(anneeUniversitaire: string) {
+    await this.http.get<Semestre[]>(this._url + 'anneeUniversitaire/' + anneeUniversitaire).toPromise().then(
+      (data) => {
+        this.semestresFounded = data;
+      },
+    );
+  }
+  public  async findAll() {
+     await this.http.get<Semestre[]>(this._url).toPromise().then(
       async (data) => {
         this.semestres = data;
       },
