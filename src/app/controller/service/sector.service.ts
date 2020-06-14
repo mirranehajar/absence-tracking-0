@@ -47,8 +47,8 @@ export class SectorService {
       this.sectors.splice(index, 1);
     }
   }
-  public findAll() {
-    this.http.get<Sector[]>(this._url).subscribe(
+  public async findAll() {
+    await this.http.get<Sector[]>(this._url).toPromise().then(
       async (data) => {
         this.sectors = data;
         for (const s of this.sectors) {
@@ -71,8 +71,8 @@ export class SectorService {
       },
     );
   }
-  public save() {
-    this.http.post<number>(this._url, this.sector).subscribe(
+  public async save() {
+    await this.http.post<number>(this._url, this.sector).toPromise().then(
       (data) => {
         if (data > 0) {
           this.sectors.push(this.clone(this.sector));

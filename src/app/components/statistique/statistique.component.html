@@ -1,0 +1,19 @@
+<br>
+<div *ngIf="enseignantConnected.role == 2" class="row">
+<div style="align-content: center">
+<p-dropdown name="semestre" optionLabel="reference" (onChange)="statistiqueSemestre()"  placeholder="Choisir un semestre" [options]="semestres" [(ngModel)]="semestre"></p-dropdown>
+</div>
+</div>
+
+<p-dropdown name="semestre" *ngIf="enseignantConnected.role == 1" optionLabel="libelle" (onChange)="statistiqueSector()"  placeholder="Choisir une filière" [options]="sectors" [(ngModel)]="filiere"></p-dropdown>
+  <br>
+<p-dropdown name="semestre" optionLabel="libelle" (onChange)="statistiqueModule()"  placeholder="Choisir un module" [options]="modules" [(ngModel)]="module"></p-dropdown>
+  <br>
+
+
+
+<p-chart *ngIf="enseignantConnected.role == 1" type="bar" [data]="data"></p-chart>
+<br>
+<p-chart *ngIf="data2 != null" type="bar" [data]="data2"></p-chart>
+<br>
+<p-chart *ngIf="data3 != null" type="bar" [data]="data3"></p-chart>

@@ -2061,9 +2061,9 @@ export class EnseignantComponent implements OnInit {
   }
   public async update() {
     this.enseignantService.enseignantFounded.ville = this.city.ville;
-    this.enseignantService.update();
+    await this.enseignantService.update();
     this.displayBasic2 = false;
-    this.enseignantService.findAll();
+    await this.enseignantService.findAll();
     for ( const e of this.enseignants) {
       await this.getImage(e.cin);
       e.src = this.retrievedImage;
@@ -2096,7 +2096,7 @@ export class EnseignantComponent implements OnInit {
       this.importProfessors = (XLSX.utils.sheet_to_json(ws, { header: 1 })) as Enseignant[];
       for (const prof of this.importProfessors) {
         this.enseignant.numeroSOM = prof[0];
-        this.enseignant.birthDay = prof[5];
+        this.enseignant.birthDay = new Date((prof[5] - (25567 + 2)) * 86400 * 1000);
         this.enseignant.firstName = prof[3];
         this.enseignant.sex = prof[4];
         this.enseignant.lastName = prof[2];

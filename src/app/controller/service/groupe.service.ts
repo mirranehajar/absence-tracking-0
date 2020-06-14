@@ -36,6 +36,18 @@ export class GroupeService {
       },
     );
   }
+  public async findBySector(sector: Sector) {
+   await this.http.post<Groupe[]>(this._url + 'sector' , sector).toPromise().then(
+     async (data) => {
+        this.groupesFounded = data;
+        for ( const g of this.groupesFounded) {
+          await this.findByGroupe(g);
+          g.etudiants = this.etudiantsFounded;
+          console.log(g);
+        }
+      },
+    );
+  }
   public async findBySemestre(semestre: Semestre) {
    await this.http.post<Groupe[]>(this._url + 'semestre' , semestre).toPromise().then(
      async (data) => {
