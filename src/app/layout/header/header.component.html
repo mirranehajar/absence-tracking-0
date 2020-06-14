@@ -39,6 +39,9 @@
           <li class="nav-item">
             <a routerLink="/enseignant" class="nav-link"><i class="pi pi-star iconColor">Enseignants</i></a>
           </li>
+          <li class="nav-item">
+            <a routerLink="/statistique" (click)="goToStatistique()" class="nav-link"><i class="pi pi-chart-bar iconColor"></i>Statistique</a>
+          </li>
         </ul>
         <i (click)="op1.toggle($event)" class=" iconColor pi pi-bell"></i>
         <p-overlayPanel #op1>
@@ -144,7 +147,17 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input  placeholder="Année Universitaire" [(ngModel)]="semestre.anneeUniversitaire" name="anneeUnivesitaire" type="text" pInputText  required>
+          <input [(ngModel)]="years.libelle" name="subject" type="text" pInputText placeholder="Ajouter une année universitaire" required>
+        </div>&nbsp;
+        <div>
+          <button pButton class="ui-button-success" (click)="addYears()" icon="pi pi-plus"></button>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <p-dropdown name="years" placeholder="Choisir une année universitaire" [options]="yearss" [(ngModel)]="year" optionLabel="libelle"></p-dropdown>
         </div>
       </div>
     </div>

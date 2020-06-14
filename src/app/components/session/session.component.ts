@@ -58,6 +58,7 @@ export class SessionComponent implements OnInit {
       console.log(t);
       await this.sessionService.findByTypeSession(t);
       for (const s of this.sessionService.sessionsFounded) {
+        this.sessionService.sessions.push(s);
         console.log(s);
         this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
       }
@@ -112,13 +113,6 @@ export class SessionComponent implements OnInit {
     if (this.enseignantConnected === this.sessionFounded.typeSession.enseignant) {
     await this.sessionService.update();
     }
-    await this.typeSessionService.findByModule(this.moduleConnected);
-    for (const t of this.typeSessionsFounded) {
-      this.sessionService.findByTypeSession(t);
-      for (const s of this.sessionService.sessionsFounded) {
-        this.sessionService.sessions.push(s);
-      }
-    }
     this.calendarEvents = [];
     for (const s of this.sessions) {
       this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
@@ -129,13 +123,6 @@ export class SessionComponent implements OnInit {
     if (this.enseignantConnected === this.sessionFounded.typeSession.enseignant) {
       this.sessionService.sessionFounded.dateStop = arg.event.end;
       this.sessionService.update();
-    }
-    this.typeSessionService.findByModule(this.moduleConnected);
-    for (const t of this.typeSessionsFounded) {
-      this.sessionService.findByTypeSession(t);
-      for (const s of this.sessionService.sessionsFounded) {
-        this.sessionService.sessions.push(s);
-      }
     }
     this.calendarEvents = [];
     for (const s of this.sessions) {

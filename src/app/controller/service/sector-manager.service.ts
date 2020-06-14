@@ -67,8 +67,8 @@ export class SectorManagerService {
       },
     );
   }
-  public save() {
-    this.http.post<number>(this._url + this.sectorService.sector.libelle, this.sectorManager).subscribe(
+  public async save() {
+    await this.http.post<number>(this._url + this.sectorManager.sector.libelle, this.sectorManager).toPromise().then(
       (data) => {
         if (data > 0) {
           this.sectorManagers.push(this.clone(this.sectorManager));
@@ -88,6 +88,9 @@ export class SectorManagerService {
   get sectorManager(): SectorManager {
     if (this._sectorManager == null) {
       this._sectorManager = new SectorManager();
+    }
+    if (this._sectorManager.sector == null) {
+      this._sectorManager.sector = new Sector();
     }
     return this._sectorManager;
   }

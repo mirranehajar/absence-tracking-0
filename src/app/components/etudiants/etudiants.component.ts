@@ -13,6 +13,7 @@ import {EtudiantService} from '../../controller/service/etudiant.service';
 import {GroupeService} from '../../controller/service/groupe.service';
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
+import {City} from '../../controller/model/city';
 
 type AOA = any[][];
 
@@ -38,7 +39,9 @@ export class EtudiantsComponent implements OnInit {
   imageName: any;
   cne: string;
   cols: any[];
-  city: any;
+  city = new City();
+  sectorImport: Sector;
+  groupeImport: Groupe;
   cities: any[] = [
     {
       id: '1',
@@ -2043,16 +2046,19 @@ export class EtudiantsComponent implements OnInit {
   }
 
   showBasicDialog() {
+    this.groupeService.groupesFounded = new Array<Groupe>();
     this.displayBasic = true;
   }
 
-  showBasicDialog2(etudiant: Etudiant) {
+  async showBasicDialog2(etudiant: Etudiant) {
     this.displayBasic2 = true;
-    this.findByCne(etudiant);
+    await this.findByCne(etudiant);
+    await this.groupeService.findBySector(this.etudiantFounded.sector);
+    this.city.ville = this.etudiantFounded.ville;
   }
 
-  public findByCne(etudiantFounded: Etudiant) {
-    this.etudiantService.findByCne(etudiantFounded);
+  public async findByCne(etudiantFounded: Etudiant) {
+    await this.etudiantService.findByCne(etudiantFounded);
   }
 
   public async save() {
@@ -2068,7 +2074,7 @@ export class EtudiantsComponent implements OnInit {
 
   public async update() {
     this.etudiantService.etudiantFounded.ville = this.city.ville;
-    this.etudiantService.update();
+    await this.etudiantService.update();
     this.displayBasic2 = false;
     await this.etudiantService.findAll();
     for ( const e of this.etudiants) {
@@ -2110,7 +2116,18 @@ export class EtudiantsComponent implements OnInit {
   get groupes(): Groupe[] {
     return this.groupeService.groupes;
   }
-
+  get groupesFounded(): Groupe[] {
+    return this.groupeService.groupesFounded;
+  }
+  async onChangeSector() {
+    await this.groupeService.findBySector(this.etudiant.sector);
+}
+  async onChangeImport() {
+    await this.groupeService.findBySector(this.sectorImport);
+}
+  async onChangeSectorFounded() {
+    await this.groupeService.findBySector(this.etudiantFounded.sector);
+}
   onFileChange(evt: any) {
     /* wire up file reader */
     const target: DataTransfer = (evt.target) as DataTransfer;
@@ -2130,20 +2147,17 @@ export class EtudiantsComponent implements OnInit {
       for (const stud of this.importStudents) {
         this.etudiant.cin = stud[3];
         this.etudiant.codeApogee = stud[1];
-        this.etudiant.birthDay = stud[10];
+        this.etudiant.birthDay = new Date((stud[10] - (25567 + 2)) * 86400 * 1000);
+        console.log(this.etudiant.birthDay);
         this.etudiant.firstName = stud[5];
         this.etudiant.lastName = stud[4];
         this.etudiant.cne = stud[2];
         this.etudiant.tel = stud[11];
         this.etudiant.sex = stud[8];
         this.etudiant.ville = stud[9];
-        await this.sectorService.findByLibelle(stud[12]);
-        this.etudiant.sector = this.sectorFounded;
-        console.log(this.sectorFounded);
-        console.log(stud[10] + ' ' + stud[11]);
-        await this.groupeService.findByReference(stud[13] + ' ' + stud[14]);
-        console.log(this.groupeFounded);
-        this.etudiant.groupe = this.groupeFounded;
+        this.etudiant.sector = this.sectorImport;
+        this.etudiant.groupe = this.groupeImport;
+        console.log(this.etudiant);
         await this.etudiantService.save();
       }
       await this.etudiantService.findAll();
