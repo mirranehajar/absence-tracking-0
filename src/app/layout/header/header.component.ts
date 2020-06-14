@@ -8,10 +8,7 @@ import {Notification} from '../../controller/model/notification';
 import {Sector} from '../../controller/model/sector';
 import {SectorManager} from '../../controller/model/sector-manager';
 import {Semestre} from '../../controller/model/semestre';
-import {Subject} from '../../controller/model/subject';
 import {TypeSession} from '../../controller/model/type-session';
-import {Years} from '../../controller/model/years';
-import {AbsenceService} from '../../controller/service/absence.service';
 import {CycleService} from '../../controller/service/cycle.service';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {ModuleService} from '../../controller/service/module.service';
@@ -20,7 +17,8 @@ import {SectorManagerService} from '../../controller/service/sector-manager.serv
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
-import {YearsService} from '../../controller/service/years.service';
+import {AbsenceService} from '../../controller/service/absence.service';
+import {not} from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-header',
@@ -42,20 +40,17 @@ export class HeaderComponent implements OnInit {
     filiere: string;
     display: boolean;
     notif: number;
-    year = new Years();
    constructor(public sectorManagerService: SectorManagerService, public sectorService: SectorService,
                public cycleService: CycleService, public enseignantService: EnseignantService,
                public semestreService: SemestreService, private router: Router,
                private moduleService: ModuleService, private typeSessionService: TypeSessionService,
-               private notificationService: NotificationService, private absenceService: AbsenceService,
-               private yearsService: YearsService) { }
+               private notificationService: NotificationService, private absenceService: AbsenceService) { }
 
    async ngOnInit(): Promise<void> {
     this.cycleService.findAll();
     this.sectorService.findAll();
     this.semestreService.findAll();
     this.enseignantService.findAll();
-    this.yearsService.findAll();
     this.notificationService.notifications = null;
     await this.notificationService.findByEnseignant(this.enseignantConnected);
     for (const n of this.notificationsFounded) {
@@ -64,6 +59,7 @@ export class HeaderComponent implements OnInit {
       }
     }
     this.notif = this.notifications.length;
+    await this.findByRole(3);
     this.items = [
       {
         label: 'Acceuil',
@@ -142,8 +138,7 @@ export class HeaderComponent implements OnInit {
   onNavClick() {
     this.classes.responsive = !this.classes.responsive;
   }
-  async showBasicDialog() {
-    await this.findByRole(3);
+  showBasicDialog() {
     this.displayBasic = true;
   }
   showBasicDialog2(sector: Sector) {
@@ -191,10 +186,9 @@ export class HeaderComponent implements OnInit {
     return this.sectorManagerService.sectorManagerFounded;
   }
   public async  save() {
+    this.sectorService.save();
     this.sectorManagerService.sectorManager.sector = this.sector;
-    await this.sectorService.save();
-    console.log(this.sectorManager);
-    await this.sectorManagerService.save();
+    this.sectorManagerService.save();
     await this.findByRole(3);
     this.displayBasic = false;
   }
@@ -206,7 +200,6 @@ export class HeaderComponent implements OnInit {
     this.displayBasic2 = false;
   }
   public async save2() {
-    this.semestre.anneeUniversitaire = this.year.libelle;
     await this.semestreService.save(this.filiere);
     this.displayBasic3 = false;
     this.sectorService.findAll();
@@ -215,8 +208,8 @@ export class HeaderComponent implements OnInit {
     this.semestreService.update();
     this.displayBasic4 = false;
   }
-  public async findByLibelle(sector: Sector) {
-  await this.sectorService.findByLibelle(sector.libelle);
+  public findByLibelle(sector: Sector) {
+  return this.sectorService.findByLibelle(sector.libelle);
   }
   public async deleteByLibelle(sector: Sector) {
     await this.sectorService.deleteByLibelle(sector);
@@ -249,16 +242,6 @@ export class HeaderComponent implements OnInit {
   }
   public async findByEnseignant(enseignant: Enseignant) {
     await this.typeSessionService.findByEnseignant(enseignant);
-  }
-  async goToStatistique() {
-    await this.sectorManagerService.findByEnseignant(this.enseignantService.enseignantConnected);
-    console.log(this.sectorManagerService.sectorManagerFounded);
-    if (this.sectorManagerService.sectorManagerFounded != null) {
-      this.sectorService.sector = this.sectorManagerService.sectorManagerFounded.sector;
-      console.log(this.sector);
-    }
-    await this.semestreService.findBySector(this.sector);
-    console.log(this.semestreService.semestresFounded);
   }
   async goToModule(semestre: Semestre) {
      await this.findBySector(semestre.sector);
@@ -318,14 +301,5 @@ export class HeaderComponent implements OnInit {
   get notifications(): Notification[] {
     return this.notificationService.notifications;
   }
-  get years(): Years {
-    return this.yearsService.years;
-  }
-  get yearss(): Subject[] {
-    return this.yearsService.yearss;
-  }
-  async addYears() {
-    await this.yearsService.save();
-    await this.yearsService.findAll();
-  }
+
 }

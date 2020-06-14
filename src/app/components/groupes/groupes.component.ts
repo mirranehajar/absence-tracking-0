@@ -94,14 +94,7 @@ export class GroupesComponent implements OnInit {
       this.etudiantService.etudiantFounded = e;
       this.etudiantService.etudiantFounded.sector = this.groupeSaved.semestre.sector;
       this.etudiantService.etudiantFounded.groupe = this.groupeSaved;
-      await this.etudiantService.update();
-    }
-    await this.etudiantService.findAll();
-    this.etudiantService.etudiantsGroupe = null;
-    for (const e of this.etudiants) {
-      if (e.groupe == null) {
-        this.etudiantsGroupe.push(e);
-      }
+      this.etudiantService.update();
     }
     await this.groupeService.findBySemestre(this.semestreConnected);
     this.displayBasic = false;

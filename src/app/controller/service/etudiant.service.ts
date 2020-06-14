@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import {Etudiant} from '../model/etudiant.model';
 import {Groupe} from '../model/groupe';
 import {Sector} from '../model/sector';
-import {Semestre} from '../model/semestre';
 
 @Injectable({
   providedIn: 'root',
@@ -33,20 +32,6 @@ export class EtudiantService {
       (data) => {
         console.log(data);
         this.deleteFromList(etudiant);
-      },
-    );
-  }
-  public async findBySector(sector: Sector) {
-    await this.http.post<Etudiant[]>(this._url + 'sector', sector).toPromise().then(
-      (data) => {
-        this.etudiantsFounded = data;
-      },
-    );
-  }
-  public async findBySemestre(semestre: Semestre) {
-    await this.http.post<Etudiant[]>(this._url + 'semestre', semestre).toPromise().then(
-      (data) => {
-        this.etudiantsFounded = data;
       },
     );
   }
@@ -86,8 +71,7 @@ export class EtudiantService {
         console.log(error);
       },
     );
-    if (this.etudiantsFounded != null && this.etudiantFounded.groupe != null) {
-      this.etudiantFounded.groupe.etudiants = new Array<Etudiant>();
+    if (this.etudiantsFounded != null) {
       this.etudiantFounded.groupe.etudiants = this.etudiantsFounded;
     }
   }
@@ -159,9 +143,6 @@ export class EtudiantService {
   }
 
   get etudiantsFounded(): Etudiant[] {
-    if (this._etudiantsFounded == null) {
-      this._etudiantsFounded = new Array<Etudiant>();
-    }
     return this._etudiantsFounded;
   }
 

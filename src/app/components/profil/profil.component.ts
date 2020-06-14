@@ -36,13 +36,10 @@ export class ProfilComponent implements OnInit {
   }
 
   // Gets called when the user selects an image
-  public async onFileChanged(event) {
+  public onFileChanged(event) {
     // Select File
     this.selectedFile = event.target.files[0];
-    await this.upload();
-    await this.getImage(this.enseignantConnected.cin);
-    this.enseignantConnected.src = this.retrievedImage;
-    console.log(this.enseignantConnected);
+    this.upload();
   }
   // Gets called when the user clicks on submit to upload the image
   public async upload() {
@@ -50,15 +47,17 @@ export class ProfilComponent implements OnInit {
     // FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
-    this.http.post<number>(this._url + 'upload/' + this.enseignantConnected.numeroSOM , uploadImageData)
+    this.http.post(this._url + 'upload/' + this.enseignantConnected.numeroSOM , uploadImageData, { observe: 'response' })
       .subscribe((response) => {
-          if (response === 1) {
+          if (response.status === 200) {
             this.message = 'Image uploaded successfully';
           } else {
             this.message = 'Image not uploaded successfully';
           }
         },
       );
+    await this.getImage(this.enseignantConnected.cin);
+    await this.enseignantService.findByNumeroSOM(this.enseignantConnected);
   }
   // Gets called when the user clicks on retrieved image button to get the image from back end
   async getImage(cin: string): Promise<any> {
@@ -66,9 +65,7 @@ export class ProfilComponent implements OnInit {
     await this.http.get<Enseignant>(this._url + 'get/' + cin)
       .toPromise().then(
         (res) => {
-          this.retrievedImage = 'data:image/jpeg;base64,' + res.image;
           this.enseignantConnected.src = 'data:image/jpeg;base64,' + res.image;
-          console.log(this.retrievedImage);
         },
       );
   }

@@ -74,14 +74,14 @@
               <div class="row">
                 <div class="ui-inputgroup">
                   <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                  <p-dropdown name="sector" (onChange)="onChangeSector()" [options]="sectors" [(ngModel)]="etudiant.sector" placeholder="Choisir une filière" optionLabel="libelle"></p-dropdown>
+                  <p-dropdown name="sector" [options]="sectors" [(ngModel)]="etudiant.sector" placeholder="Choisir une filière" optionLabel="libelle"></p-dropdown>
                 </div>
               </div>
               <br>
               <div class="row">
                 <div class="ui-inputgroup">
                   <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                  <p-dropdown name="groupe" [options]="groupesFounded" [(ngModel)]="etudiant.groupe" placeholder="Choisir un groupe" optionLabel="reference"></p-dropdown>
+                  <p-dropdown name="groupe" [options]="groupes" [(ngModel)]="etudiant.groupe" placeholder="Choisir un groupe" optionLabel="libelle"></p-dropdown>
                 </div>
               </div>
               </div>
@@ -96,23 +96,7 @@
           <p-messages [value]="msgs">msg</p-messages>
         </div>
         <div class="col-md-4">
-          <div class="row">
-            <div class="ui-inputgroup">
-              <p-dropdown name="sector" placeholder="Choisir une filière" (onChange)="onChangeImport()" [options]="sectors" [(ngModel)]="sectorImport" optionLabel="libelle"></p-dropdown>
-            </div>
-          </div>
-          <br>
-          <div class="row" *ngIf="sectorImport != null">
-            <div class="ui-inputgroup">
-              <p-dropdown name="groupe" placeholder="Choisir un groupe"  [options]="groupesFounded" [(ngModel)]="groupeImport"  optionLabel="reference"></p-dropdown>
-            </div>
-          </div>
-          <br>
-          <div class="row" *ngIf="groupeImport != null">
-            <div class="ui-inputgroup">
-              <input type="file" (change)="onFileChange($event)" multiple="false" />
-            </div>
-          </div>
+          <input type="file" (change)="onFileChange($event)" multiple="false" />
         </div>
         <div class="col-md-4">
           <p-button label="Donwload example" (click)="export()" icon="pi pi-download" ></p-button>
@@ -221,7 +205,7 @@
                   <div class="row">
                     <div class="ui-inputgroup">
                       <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                      <p-dropdown name="groupe" (onChange)="onChangeSectorFounded()" [options]="groupesFounded" [(ngModel)]="etudiantFounded.groupe"  optionLabel="reference"></p-dropdown>
+                      <p-dropdown name="groupe" [options]="groupes" [(ngModel)]="etudiantFounded.groupe"  optionLabel="libelle"></p-dropdown>
                     </div>
                   </div>
                   </div>
