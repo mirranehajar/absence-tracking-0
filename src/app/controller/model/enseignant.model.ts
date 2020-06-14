@@ -1,7 +1,7 @@
 import {Departement} from './departement';
 
 export class Enseignant {
-  public numeroSOM: number;
+  public numeroSOM: string;
   public cin: string;
   public firstName: string;
   public lastName: string;

@@ -13,8 +13,8 @@ import {ModuleService} from '../../controller/service/module.service';
 import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
-import {YearsService} from '../../controller/service/years.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
+import {YearsService} from '../../controller/service/years.service';
 
 @Component({
   selector: 'app-statistique',

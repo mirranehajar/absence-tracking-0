@@ -1,117 +1,102 @@
-<div class="card">
-<img [src]="enseignantConnected.src" >
-  <div class="col-md-6">
-    <input type="file" (change)="onFileChanged($event)">
-  </div>
+
+
+<div class="card" style="width: 160px; margin-left: 1000px;  background-color: #EDEDED;">
+  <img [src]="enseignantConnected.src" alt="Avatar" style="width: 160px; height: 160px; border-radius: 50%;" >
+  <input type="file" (change)="onFileChanged($event)" style="background-color: #EDEDED">
 </div>
-<form style="text-align: center" method="POST" >
-  <div style="display:inline-block" class="form-group">
-    <div class="row">
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon" ><i class="pi pi-id-card" ></i></span>
-        <h5>Cin:</h5>
-        <input [(ngModel)]="enseignantConnected.cin" disabled  name="cin" type="text" pInputText  required style="margin-left: 100px;">
-      </div>
+
+  <form style="text-align: center" method="POST" >
+    <div style="display:inline-block; margin-right: 500px" class="form-group">
+      <table style="width:100%">
+          <tr>
+          <th style="text-align: left">Cin:</th>
+          <th><input [(ngModel)]="enseignantConnected.cin" disabled  name="cin" type="text" pInputText  required style="margin-left: 100px; width: 225px"></th>
+          </tr>
+       <br>
+          <tr>
+          <th style="text-align: left">N°SOM:</th>
+          <th><input  disabled [(ngModel)]="enseignantConnected.numeroSOM" name="numeroSOM" type="number" pInputText style="margin-left: 100px; width: 225px"></th>
+          </tr>
+        <br>
+        <tr>
+          <th style="text-align: left">Nom:</th>
+          <th><input [(ngModel)]="enseignantConnected.lastName" name="firstName" type="text" pInputText style="margin-left: 100px; width: 225px"></th>
+        </tr>
+      <br>
+        <tr>
+          <th style="text-align: left">Prénom:</th>
+          <th><input [(ngModel)]="enseignantConnected.firstName" name="lastName" type="text" pInputText style="margin-left: 100px; width: 225px"></th>
+        </tr>
+          <br>
+        <tr>
+          <th style="text-align: left">Email:</th>
+          <th><input [(ngModel)]="enseignantConnected.mail" name="mail" type="text" pInputText style="margin-left: 100px; width: 225px"></th>
+        </tr>
+      <br>
+        <tr>
+          <th style="text-align: left">Tél:</th>
+          <th><input [(ngModel)]="enseignantConnected.tel" name="tel" type="tel" pInputText style="margin-left: 100px; width: 225px"></th>
+        </tr>
+        <br>
+        <tr>
+          <th style="text-align: left">password:</th>
+          <th><button pButton (click)="showBasicDialog()" class="ui-button-raised" style="float: left"  label="Change password" style="margin-left: 100px; background-color: #FCC74F"></button></th>
+        </tr>
+      </table>
     </div>
     <br>
-    <div class="row">
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon" ><i class="pi pi-id-card" style="line-height: 1.25;"></i></span>
-        <h5>N°SOM:</h5>
-        <input  disabled [(ngModel)]="enseignantConnected.numeroSOM" name="numeroSOM" type="number" pInputText style="margin-left: 100px;">
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon"><i class="pi pi-user-edit" style="line-height: 1.25;"></i></span>
-        <h5>Nom:</h5>
-        <input [(ngModel)]="enseignantConnected.lastName" name="firstName" type="text" pInputText style="margin-left: 35px;">
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon"><i class="pi pi-user-edit" style="line-height: 1.25;"></i></span>
-        <h5>Prénom:</h5>
-        <input [(ngModel)]="enseignantConnected.firstName" name="lastName" type="text" pInputText style="margin-left: 35px;">
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon"><i class="pi pi-user-edit" style="line-height: 1.25;"></i></span>
-        <h5>Email:</h5>
-        <input [(ngModel)]="enseignantConnected.mail" name="mail" type="text" pInputText style="margin-left: 90px;">
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-        <h5>J.Naissance:</h5>
-        <input [(ngModel)]="enseignantConnected.birthDay" name="birthDay" type="date" pInputText style="margin-left: 45px;">
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon"><i class="pi pi-mobile" style="line-height: 1.25;"></i></span>
-        <h5>Tél:</h5>
-        <input [(ngModel)]="enseignantConnected.tel" name="tel" type="tel" pInputText style="margin-left: 100px;">
-      </div>
-    </div>
-  </div>
-  <br>
-    <div class="row">
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon" style="margin-left: 410px;"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
-        <h5>password:</h5>
-        <button type="submit" pButton (click)="showBasicDialog()" icon="pi pi-update" style="float: left"  label="Change password" style="margin-left: 50px;"></button>
-        <p-dialog  header="Change your password" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <p-dialog  header="Change your password" [modal]="true"  [style]="{width: '50vw'}" [baseZIndex]="10000"[(visible)]="displayBasic"  [draggable]="false" [resizable]="false">
           <form style="text-align: center" method="POST" >
             <div style="display:inline-block" class="form-group">
               <div class="row">
                 <div class="ui-inputgroup">
-                  <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
-                  <input [(ngModel)]="currentPassword" name="matricule" type="password" pInputText placeholder="current password" required>
+                  <span class="ui-float-label" style="margin-top: 10px">
+         <input [(ngModel)]="currentPassword" type="password" id="float-input" size="30" pInputText>
+         <label for="float-input">Mot de passe courrant</label>
+                  </span>
                 </div>
               </div>
               <br>
               <div class="row">
                 <div class="ui-inputgroup">
-                  <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
-                  <input [(ngModel)]="password" name="cin" type="password" pInputText placeholder="new password">
+                      <span class="ui-float-label" style="margin-top: 10px">
+         <input [(ngModel)]="password" type="password" id="float-input1" size="30" pInputText>
+         <label for="float-input1">nouveau mdp</label>
+                  </span>
                 </div>
               </div>
               <br>
               <div class="row">
                 <div class="ui-inputgroup">
-                  <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
-                  <input [(ngModel)]="passwordConfirm" name="firstName" type="password" pInputText placeholder="confirm new password">
+                           <span class="ui-float-label" style="margin-top: 10px">
+               <input [(ngModel)]="passwordConfirm" type="password" id="float-input2" size="30" pInputText>
+               <label for="float-input2">confirmer le mdp</label>
+                  </span>
                 </div>
               </div>
               <br>
-              <button (click)="updatePassword()" type="submit" pButton  icon="pi pi-check" style="float: left"   style="margin-left: 50px;"></button>
+              <button (click)="updatePassword()" type="submit" pButton  label="validé le changemant" ></button>
             </div>
           </form>
         </p-dialog>
-    <br>
-      <button type="submit" pButton (click)="showBasicDialog2()" icon="pi pi-check" style="float: left"  label="Update" style="margin-left: 50px;"></button>
-      <p-dialog  header="Modification" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
-        <form style="text-align: center" method="POST" >
-          <div style="display:inline-block" class="form-group">
-            <div class="row">
-              <div class="ui-inputgroup">
-                <span class="ui-inputgroup-addon"><i class="pi pi-key" style="line-height: 1.25;"></i></span>
-                <input [(ngModel)]="passwordUpdate" name="matricule" type="password" pInputText placeholder="enter your password" required>
+        <br>
+        <button  pButton (click)="showBasicDialog2()"  label="Mettre à jour" style="margin-right: 500px; background-color: #0882A1"></button>
+        <p-dialog  header="Modification" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+          <form style="text-align: center" method="POST" >
+            <div style="display:inline-block" class="form-group">
+              <div class="row">
+                <div class="ui-inputgroup">
+                    <span class="ui-float-label" style="margin-top: 10px">
+               <input [(ngModel)]="passwordUpdate" type="password" id="float-input3" size="30" pInputText required>
+               <label for="float-input3">Etrez votre mdp</label>
+                  </span>
+                </div>
               </div>
+              <br>
+              <button type="submit" (click)="update()" pButton  label="validé"></button>
             </div>
-            <br>
-            <button type="submit" (click)="update()" pButton  icon="pi pi-check" style="float: left"   style="margin-left: 50px;"></button>
-          </div>
-        </form>
-      </p-dialog>
-  </div>
-  </div>
-</form>
+          </form>
+        </p-dialog>
+  </form>
+
+

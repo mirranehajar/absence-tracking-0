@@ -11,25 +11,18 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <links>
         <!-- Links -->
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto" style="width: 1121px;">
           <li class="nav-item">
-            <a class="nav-link"><i (click)="show()" class="pi pi-ellipsis-v iconColor"></i></a>
-          </li>
-          &nbsp;
+          <a class="nav-link"><i (click)="show()" class="pi pi-user iconColor">Profile</i></a>
+        </li>
           <li class="nav-item">
-            <a class="nav-link" href="/home"><i class="pi pi-home iconColor"></i>Acceuil</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" routerLink="/profilEtu" class="nav-link"><i class="pi pi-user iconColor"></i> Profile</a>
+            <a routerLink="/moduleEtu" class="nav-link"><i class="pi pi-users iconColor">Modules</i></a>
           </li>
           <li class="nav-item">
-            <a routerLink="/moduleEtu" class="nav-link"><i class="pi pi-users iconColor"></i>Modules</a>
+            <a routerLink="/groupeEtu" href="groupe" class="nav-link"><i class="pi pi-users iconColor">Groupe</i></a>
           </li>
           <li class="nav-item">
-            <a routerLink="/groupeEtu" href="groupe" class="nav-link"><i class="pi pi-users iconColor"></i>Groupe</a>
-          </li>
-          <li class="nav-item">
-            <a routerLink="/justificatif" class="nav-link"><i class="pi pi-star iconColor"></i>Mes Absences</a>
+            <a routerLink="/justificatif" class="nav-link"><i class="pi pi-star iconColor">Absences</i></a>
           </li>
         </ul>
         <i (click)="op1.toggle($event)" class=" iconColor pi pi-bell"></i>
@@ -62,6 +55,6 @@
       </p-header>
       <p>CIN - N°SOM <br> Email <br>Tél <br> J.Naissance </p>
       <p-footer>
-        <button class="ui-button-rounded ui-button-info" pButton label="Plus d'info"></button>
+        <button class="ui-button-rounded ui-button-info"><a routerLink="/profilEtu">info</a></button>
       </p-footer>
     </p-sidebar>
