@@ -8,10 +8,10 @@
       <div class="card-body  back">
         <h5 class="card-title">{{m.abreveation}}</h5>
         <p class="card-text">{{m.libelle}}</p>
-        <a (click)="goToSession(m)"  class="btn btn-primary">Voir les séances</a>
+        <a (click)="goToSession(m)"  class="btn btn-primary" style="background-color: #FCC74F">Voir les séances</a>
       </div>
       <p-fieldset legend="Types séance" (onBeforeToggle)="showBasicDialog2(m)" [toggleable]="true" collapsed="false">
-        <div >
+        <div>
           <div >
             <p-table [autoLayout]="true"  [columns]="cols" [value]="m.typeSessions" [paginator]="true" [rows]="7">
               <ng-template pTemplate="header" let-columns>

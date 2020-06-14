@@ -81,7 +81,7 @@
         </p-dialog>
         <br>
         <button  pButton (click)="showBasicDialog2()"  label="Mettre à jour" style="margin-right: 500px; background-color: #0882A1"></button>
-        <p-dialog  header="Modification" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <p-dialog  header="Modification" [modal]="true" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
           <form style="text-align: center" method="POST" >
             <div style="display:inline-block" class="form-group">
               <div class="row">
