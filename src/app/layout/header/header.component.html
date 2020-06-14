@@ -5,13 +5,13 @@
         </a>
       <links>
         <!-- Links -->
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto" style="width: 1121px;">
           <li class="nav-item">
             <a class="nav-link"><i (click)="show()" class="pi pi-user iconColor">Profile</i></a>
           </li>
           <!-- Dropdown -->
           <li class="nav-item dropdown mega-dropdown" mdbDropdown>
-            <a mdbDropdownToggle class="nav-link dropdown-toggle"><i class="pi pi-list iconColor"></i>Filière</a>
+            <a mdbDropdownToggle class="nav-link dropdown-toggle"><i class="pi pi-list iconColor">Filière</i></a>
             <div class="dropdown-menu mega-menu row z-depth-1 ">
               <div (mouseover)="onHover(s)" *ngFor="let s of sectors" class="item has_submenu">
               <a href="#"  ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + s.libelle}}</a>
@@ -34,10 +34,10 @@
             </div>
           </li>
           <li class="nav-item">
-            <a routerLink="/etudiant" class="nav-link"><i class="pi pi-users iconColor" ></i>Étudiants</a>
+            <a routerLink="/etudiant" class="nav-link"><i class="pi pi-users iconColor" >Étudiants</i></a>
           </li>
           <li class="nav-item">
-            <a routerLink="/enseignant" class="nav-link"><i class="pi pi-star iconColor"></i>Enseignants</a>
+            <a routerLink="/enseignant" class="nav-link"><i class="pi pi-star iconColor">Enseignants</i></a>
           </li>
         </ul>
         <i (click)="op1.toggle($event)" class=" iconColor pi pi-bell"></i>
@@ -57,7 +57,7 @@
         <i routerLink="/login" class="pi pi-sign-out iconColor"></i>
         <!-- Links -->
         <a class="navbar-brand" href="#">
-          <img src="assets/images/fstg.jpg" height="30" alt="">
+          <img src="assets/images/logoFst.png" height="42" alt="">
         </a>
       </links>
       <!-- Collapsible content -->

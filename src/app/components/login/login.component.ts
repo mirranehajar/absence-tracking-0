@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {Etudiant} from '../../controller/model/etudiant.model';
@@ -8,7 +9,6 @@ import {EnseignantService} from '../../controller/service/enseignant.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 import {ModuleService} from '../../controller/service/module.service';
 import {NotificationService} from '../../controller/service/notification.service';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,13 +18,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private etudiantService: EtudiantService, private enseignantService: EnseignantService,
               private router: Router, private moduleService: ModuleService, private notificationService: NotificationService) { }
-
-  ngOnInit(): void {
-    this.etudiantService.etudiantFounded = null;
-    this.etudiantService.etudiantConnected = null;
-    this.enseignantService.enseignantFounded = null;
-    this.enseignantService.enseignantConnected = null;
-  }
   get etudiantConnected(): Etudiant {
     return this.etudiantService.etudiantConnected;
   }
@@ -36,6 +29,21 @@ export class LoginComponent implements OnInit {
   }
   get enseignantFounded(): Enseignant {
     return this.enseignantService.enseignantFounded;
+  }
+  get modulesFounded(): Module[] {
+    return this.moduleService.modulesFounded;
+  }
+
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
+  ngOnInit(): void {
+    this.etudiantService.etudiantFounded = null;
+    this.etudiantService.etudiantConnected = null;
+    this.enseignantService.enseignantFounded = null;
+    this.enseignantService.enseignantConnected = null;
   }
     async loginEtu() {
       if (this.etudiantConnected.cne != null) {
@@ -75,9 +83,6 @@ export class LoginComponent implements OnInit {
       }
       console.log(this.enseignantConnected);
     }
-  }
-  get modulesFounded(): Module[] {
-    return this.moduleService.modulesFounded;
   }
   public async findBySemestre(semestre: Semestre) {
     await this.moduleService.findBySemestre(semestre);
