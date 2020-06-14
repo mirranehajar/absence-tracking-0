@@ -2063,7 +2063,7 @@ export class EnseignantComponent implements OnInit {
     this.enseignantService.enseignantFounded.ville = this.city.ville;
     await this.enseignantService.update();
     this.displayBasic2 = false;
-    this.enseignantService.findAll();
+    await this.enseignantService.findAll();
     for ( const e of this.enseignants) {
       await this.getImage(e.cin);
       e.src = this.retrievedImage;

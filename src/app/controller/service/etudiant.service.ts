@@ -86,7 +86,8 @@ export class EtudiantService {
         console.log(error);
       },
     );
-    if (this.etudiantsFounded != null) {
+    if (this.etudiantsFounded != null && this.etudiantFounded.groupe != null) {
+      this.etudiantFounded.groupe.etudiants = new Array<Etudiant>();
       this.etudiantFounded.groupe.etudiants = this.etudiantsFounded;
     }
   }
