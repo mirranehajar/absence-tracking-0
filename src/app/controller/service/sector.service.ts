@@ -71,8 +71,8 @@ export class SectorService {
       },
     );
   }
-  public save() {
-    this.http.post<number>(this._url, this.sector).subscribe(
+  public async save() {
+    await this.http.post<number>(this._url, this.sector).toPromise().then(
       (data) => {
         if (data > 0) {
           this.sectors.push(this.clone(this.sector));

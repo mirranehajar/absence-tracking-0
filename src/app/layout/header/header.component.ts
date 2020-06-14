@@ -64,7 +64,6 @@ export class HeaderComponent implements OnInit {
       }
     }
     this.notif = this.notifications.length;
-    await this.findByRole(3);
     this.items = [
       {
         label: 'Acceuil',
@@ -143,7 +142,8 @@ export class HeaderComponent implements OnInit {
   onNavClick() {
     this.classes.responsive = !this.classes.responsive;
   }
-  showBasicDialog() {
+  async showBasicDialog() {
+    await this.findByRole(3);
     this.displayBasic = true;
   }
   showBasicDialog2(sector: Sector) {
@@ -191,9 +191,10 @@ export class HeaderComponent implements OnInit {
     return this.sectorManagerService.sectorManagerFounded;
   }
   public async  save() {
-    this.sectorService.save();
     this.sectorManagerService.sectorManager.sector = this.sector;
-    this.sectorManagerService.save();
+    await this.sectorService.save();
+    console.log(this.sectorManager);
+    await this.sectorManagerService.save();
     await this.findByRole(3);
     this.displayBasic = false;
   }
@@ -214,8 +215,8 @@ export class HeaderComponent implements OnInit {
     this.semestreService.update();
     this.displayBasic4 = false;
   }
-  public findByLibelle(sector: Sector) {
-  return this.sectorService.findByLibelle(sector.libelle);
+  public async findByLibelle(sector: Sector) {
+  await this.sectorService.findByLibelle(sector.libelle);
   }
   public async deleteByLibelle(sector: Sector) {
     await this.sectorService.deleteByLibelle(sector);
