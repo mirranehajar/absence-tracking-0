@@ -5,7 +5,7 @@
         </a>
       <links>
         <!-- Links -->
-        <ul class="navbar-nav mr-auto" style="width: 1121px;">
+        <ul class="navbar-nav mr-auto" style="width: 1072px; margin-left: 60px">
           <li class="nav-item">
             <a class="nav-link"><i (click)="show()" class="pi pi-user iconColor">Profile</i></a>
           </li>
@@ -23,13 +23,13 @@
                   <div class="dropdown-divider"></div>
                   </div>
                   <div style="text-align: center">
-                    <button pButton type="button" *ngIf="sectorManagerFounded.enseignant.numeroSOM == enseignantConnected.numeroSOM" icon="pi pi-plus"  (click)="showBasicDialog3(s.libelle)" style="opacity: 0.8" label="Nouveau Semestre" ></button>
+                    <button pButton type="button" *ngIf="sectorManagerFounded.enseignant.numeroSOM == enseignantConnected.numeroSOM" icon="pi pi-plus"  (click)="showBasicDialog3(s.libelle)" style="opacity: 0.8; background-color: #FCC74F" label="Nouveau Semestre"  ></button>
                   </div>
                 </div>
                 <div class="dropdown-divider"></div>
               </div>
               <div style="text-align: center">
-              <button *ngIf="enseignantConnected.role === 1" pButton type="button"  icon="pi pi-plus" (click)="showBasicDialog()" style="opacity: 0.8" label="Nouvelle Filière" ></button>
+              <button *ngIf="enseignantConnected.role === 1" pButton type="button"  icon="pi pi-plus" (click)="showBasicDialog()" style="opacity: 0.8; background-color: #FCC74F" label="Nouvelle Filière" ></button>
             </div>
             </div>
           </li>
@@ -68,26 +68,26 @@
     <!--/.Navbar-->
 
 
-<p-dialog  header="Ajout d'une filière" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+<p-dialog  header="Ajout d'une filière" [modal]="true" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
   <form style="text-align: center" method="POST" >
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input  placeholder="Libelle" [(ngModel)]="sector.libelle" name="libelle" type="text" pInputText  required>
+               <span class="ui-float-label" style="margin-top: 10px; border-color: #63C7F2">
+         <input [(ngModel)]="sector.libelle" type="text" id="float-input" size="30"  pInputText required>
+         <label for="float-input">Libelle</label>
+               </span>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
           <p-dropdown name="cycle" [options]="cycles" [(ngModel)]="sector.cycle" placeholder="Choisir un cycle" optionLabel="libelle"></p-dropdown>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
           <p-dropdown name="sectorManager" [options]="enseignantsFounded" [(ngModel)]="sectorManager.enseignant" placeholder="Choisir un responsable" optionLabel="lastName"></p-dropdown>
          </div>
       </div>
@@ -95,8 +95,8 @@
     <br>
     <p-footer>
       <p-footer>
-        <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Confirm"></button>
-        <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Cancel" class="ui-button-secondary"></button>
+        <button type="submit" pButton icon="pi pi-check"  (click)="save()" label="Confirm" style="margin-right: 100px"></button>
+        <button type="reset" pButton icon="pi pi-times"  (click)="displayBasic=false" label="Cancel" class="ui-button-secondary"></button>
       </p-footer>
     </p-footer>
   </form>
@@ -172,10 +172,38 @@
 </p-dialog>
 <p-sidebar [(visible)]="display" [style]="{width:'14em'}">
   <p-header>
-    <div class="img-circular"></div>    Last Name First Name
+    <img [src]="enseignantConnected.src" alt="Avatar" style="width: 160px; height: 160px; border-radius: 50%;">
+    <mat-form-field class="example-full-width">
+      <mat-label>Nom</mat-label>
+      <input matInput   [(ngModel)]="enseignantConnected.lastName" disabled style="color: black">
+    </mat-form-field>
+      <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Prénom</mat-label>
+      <input matInput   [(ngModel)]="enseignantConnected.firstName" disabled style="color: black">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+    <mat-label>CIN</mat-label>
+    <input matInput   [(ngModel)]="enseignantConnected.cin" disabled style="color: black">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>N°SOM</mat-label>
+      <input matInput   [(ngModel)]="enseignantConnected.numeroSOM" disabled style="color: black">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Tél</mat-label>
+      <input matInput   [(ngModel)]="enseignantConnected.tel" disabled style="color: black">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>J.Naissance</mat-label>
+      <input matInput   [(ngModel)]="enseignantConnected.birthDay" disabled style="color: black">
+    </mat-form-field>
   </p-header>
-  <p>CIN - N°SOM <br> Email <br>Tél <br> J.Naissance </p>
   <p-footer>
-    <button class="ui-button-rounded ui-button-info"><a routerLink="/profil">info</a></button>
+    <button class="ui-button-rounded ui-button-info" ><a routerLink="/profil">info</a></button>
   </p-footer>
 </p-sidebar>
