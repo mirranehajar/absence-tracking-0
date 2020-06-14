@@ -18,6 +18,8 @@ import {GroupeService} from '../../controller/service/groupe.service';
 import {ModuleService} from '../../controller/service/module.service';
 import {SessionService} from '../../controller/service/session.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
+import {SectorManagerService} from '../../controller/service/sector-manager.service';
+import {SectorManager} from '../../controller/model/sector-manager';
 
 @Component({
   selector: 'app-session',
@@ -31,7 +33,7 @@ export class SessionComponent implements OnInit {
   constructor(private groupeService: GroupeService, private typeSessionService: TypeSessionService,
               private sessionService: SessionService, private absenceService: AbsenceService,
               private etudiantService: EtudiantService, private enseignantService: EnseignantService,
-              private moduleService: ModuleService) { }
+              private moduleService: ModuleService, private sectorManagerService: SectorManagerService) { }
 
   @ViewChild('calendar') calendarComponent: FullCalendarComponent; // the #calendar in the template
 
@@ -78,6 +80,7 @@ export class SessionComponent implements OnInit {
     public async showBasicDialog2(event) {
     this.displayBasic2 = true;
     await this.findByReference(event.event.id);
+    await this.sectorManagerService.findBySector(this.sessionFounded.typeSession.module.semestre.sector);
     console.log(this.findByReference(event.event.id));
     console.log(this.sessionFounded);
     console.log(this.sessionFounded.reference);
@@ -109,9 +112,15 @@ export class SessionComponent implements OnInit {
   }
   async onDrop(arg) {
     this.sessionService.sessionFounded.dateStart = arg.event.start;
-    console.log(arg.event.start);
-    if (this.enseignantConnected === this.sessionFounded.typeSession.enseignant) {
-    await this.sessionService.update();
+    this.sessionService.sessionFounded.dateStop = null;
+    console.log(arg.event);
+    console.log(this.enseignantConnected);
+    console.log(this.sessionFounded.typeSession.enseignant);
+    this.sectorManagerService.findBySector(this.sessionFounded.typeSession.module.semestre.sector);
+    if (this.enseignantConnected.numeroSOM === this.sessionFounded.typeSession.enseignant.numeroSOM ||
+    this.sectorManagerService.sectorManagerFounded.enseignant.numeroSOM === this.enseignantConnected.numeroSOM) {
+      console.log('haha hana jit lhna');
+      await this.sessionService.update();
     }
     this.calendarEvents = [];
     for (const s of this.sessions) {
@@ -119,10 +128,15 @@ export class SessionComponent implements OnInit {
     }
   }
   async onResize(arg) {
+    console.log(arg.event.id);
+    console.log(arg.event);
+    console.log(arg.event.end.hours - arg.event.start.hours);
     await this.sessionService.findByReference(arg.event.id);
-    if (this.enseignantConnected === this.sessionFounded.typeSession.enseignant) {
+    this.sectorManagerService.findBySector(this.sessionFounded.typeSession.module.semestre.sector);
+    if (this.enseignantConnected.numeroSOM === this.sessionFounded.typeSession.enseignant.numeroSOM ||
+      this.sectorManagerService.sectorManagerFounded.enseignant.numeroSOM === this.enseignantConnected.numeroSOM) {
       this.sessionService.sessionFounded.dateStop = arg.event.end;
-      this.sessionService.update();
+      await this.sessionService.update();
     }
     this.calendarEvents = [];
     for (const s of this.sessions) {
@@ -150,7 +164,7 @@ export class SessionComponent implements OnInit {
       this.absenceService.absence.etudiant = e;
       this.absenceService.absence.session = this.sessionFounded;
       console.log(this.absence);
-      this.absenceService.save();
+      await this.absenceService.save();
     }
     this.displayBasic = false;
   }
@@ -192,5 +206,8 @@ export class SessionComponent implements OnInit {
   }
   get moduleConnected(): Module {
     return this.moduleService.moduleConnected;
+  }
+  get sectorManagerFounded(): SectorManager {
+    return this.sectorManagerService.sectorManagerFounded;
   }
 }

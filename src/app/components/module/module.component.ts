@@ -97,7 +97,7 @@ export class ModuleComponent implements OnInit {
   }
   async save() {
     this.moduleService.module.semestre = this.semestreConnected;
-    this.moduleService.save();
+    await this.moduleService.save();
     for (const m of this.modules) {
       await this.findByModule(m);
       m.typeSessions = this.typeSessionsFounded;
@@ -132,6 +132,7 @@ export class ModuleComponent implements OnInit {
   }
   async showBasicDialog3(module: Module) {
     await this.moduleService.findByLibelle(module);
+    this.moduleService.moduleConnected = this.moduleFounded;
     this.subjectService.subjectsFounded = null;
     console.log(this.subjectsFounded);
     console.log(this.moduleFounded);
@@ -208,5 +209,8 @@ export class ModuleComponent implements OnInit {
     console.log(module);
     console.log(this.modulesConnected);
     this.router.navigate(['/session']);
+  }
+  onClose() {
+    this.typeSessionService.typeSession = null;
   }
 }

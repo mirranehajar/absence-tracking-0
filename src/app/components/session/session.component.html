@@ -78,8 +78,8 @@
         </div>
         <br>
         <p-footer>
-          <button style="float: right" (click)="deleteByReference(sessionFounded)" *ngIf="enseignantConnected == sessionFounded.typeSession.enseignant" type="button" class="ui-button-danger" pButton icon="pi pi-check"   label="Supprimer"></button>
-          <button style="float: left"  *ngIf="enseignantConnected == sessionFounded.typeSession.enseignant" routerLink="/absence" type="button"  pButton icon="pi pi-check"   label="Noter l'absence"></button>
+          <button style="float: right" (click)="deleteByReference(sessionFounded)" *ngIf="enseignantConnected.numeroSOM == sessionFounded.typeSession.enseignant.numeroSOM" type="button" class="ui-button-danger" pButton icon="pi pi-check"   label="Supprimer"></button>
+          <button style="float: left"  *ngIf="enseignantConnected.numeroSOM == sessionFounded.typeSession.enseignant.numeroSOM" routerLink="/absence" type="button"  pButton icon="pi pi-check"   label="Noter l'absence"></button>
         </p-footer>
       </form>
     </p-dialog>

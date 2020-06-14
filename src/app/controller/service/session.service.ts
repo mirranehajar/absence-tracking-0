@@ -2,6 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Session} from '../model/session';
 import {TypeSession} from '../model/type-session';
+import {Enseignant} from '../model/enseignant.model';
 
 @Injectable({
   providedIn: 'root',
@@ -62,12 +63,13 @@ export class SessionService {
       this.sessions.splice(index, 1);
     }
   }
-  public update() {
-    this.http.post<Session>(this._url + 'update', this.sessionFounded).subscribe(
+  public async update() {
+    await this.http.post<Session>(this._url + 'update', this.sessionFounded).toPromise().then(
       (data) => {
         if (data) {
           this.deleteFromList(this.sessionFounded);
           this.sessions.push(this.clone(data));
+          this.sessionFounded = data;
         }
       }, (error) => {
         console.log('error');
@@ -84,7 +86,7 @@ export class SessionService {
           this.sessionFounded = data;
         }
       }, (error) => {
-        console.log('error');
+        console.log('error' + error);
       },
     );
   }
@@ -125,10 +127,14 @@ export class SessionService {
   get sessionFounded(): Session {
     if (this._sessionFounded == null) {
       this._sessionFounded = new Session();
-      if (this._sessionFounded.typeSession == null) {
-        this._sessionFounded.typeSession = new TypeSession();
-      }
     }
+    if (this._sessionFounded.typeSession == null) {
+      this._sessionFounded.typeSession = new TypeSession();
+    }
+    if (this._sessionFounded.typeSession.enseignant == null) {
+      this._sessionFounded.typeSession.enseignant = new Enseignant();
+    }
+
     return this._sessionFounded;
   }
 

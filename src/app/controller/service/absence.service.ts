@@ -90,8 +90,8 @@ export class AbsenceService {
       },
     );
   }
-  public save() {
-    this.http.post<Absence>(this._url, this.absence).subscribe(
+  public async save() {
+    await this.http.post<Absence>(this._url, this.absence).toPromise().then(
       (data) => {
         if (data) {
           this.absences.push(this.clone(data));

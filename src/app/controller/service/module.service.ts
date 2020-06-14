@@ -70,8 +70,8 @@ export class ModuleService {
       this.modules.splice(index, 1);
     }
   }
-  save() {
-    this.http.post<number>(this._url, this.module).subscribe(
+  async save() {
+    await this.http.post<number>(this._url, this.module).toPromise().then(
       (data) => {
         if (data > 0) {
           this.modules.push(this.clone(this.module));
