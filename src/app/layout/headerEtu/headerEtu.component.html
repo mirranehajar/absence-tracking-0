@@ -11,10 +11,12 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <links>
         <!-- Links -->
+        &nbsp;
         <ul class="navbar-nav mr-auto" style="width: 1072px; margin-left: 60px">
           <li class="nav-item">
           <a class="nav-link"><i (click)="show()" class="pi pi-user iconColor">Profile</i></a>
         </li>
+          &nbsp;
           <li class="nav-item">
             <a routerLink="/moduleEtu" class="nav-link"><i class="pi pi-users iconColor">Modules</i></a>
           </li>
@@ -48,12 +50,45 @@
     </mdb-navbar>
     <!--/.Navbar-->
 
-    <p-sidebar [(visible)]="display" [style]="{width:'14em'}">
+    <p-sidebar [(visible)]="display" [style]="{width:'16em'}">
       <p-header>
-        Last Name First Name
+        <img [src]="etudiantConnected.src" alt="Avatar" style="width: 160px; height: 150px; border-radius: 50%;">
+        <mat-form-field class="example-full-width">
+          <mat-label>Nom</mat-label>
+          <input matInput   [(ngModel)]="etudiantConnected.lastName" disabled style="color: black">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+          <mat-label>Prénom</mat-label>
+          <input matInput   [(ngModel)]="etudiantConnected.firstName" disabled style="color: black">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+          <mat-label>CIN</mat-label>
+          <input matInput   [(ngModel)]="etudiantConnected.cin" disabled style="color: black">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+          <mat-label>N°SOM</mat-label>
+          <input matInput   [(ngModel)]="etudiantConnected.cne" disabled style="color: black">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+          <mat-label>N°SOM</mat-label>
+          <input matInput   [(ngModel)]="etudiantConnected.codeApogee" disabled style="color: black">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+          <mat-label>D.Naissance</mat-label>
+          <input matInput   [(ngModel)]="etudiantConnected.birthDay" disabled style="color: black">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+          <mat-label>Ville</mat-label>
+          <input matInput   [(ngModel)]="etudiantConnected.ville" disabled style="color: black">
+        </mat-form-field>
       </p-header>
-      <p>CIN - N°SOM <br> Email <br>Tél <br> J.Naissance </p>
-      <p-footer>
-        <button class="ui-button-rounded ui-button-info"><a routerLink="/profilEtu">info</a></button>
+      <p-footer style="align-content: center">
+        <button class="ui-button-rounded ui-button-info" ><a routerLink="/profilEtu">Modifier</a></button>
       </p-footer>
     </p-sidebar>

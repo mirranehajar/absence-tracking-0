@@ -21,6 +21,7 @@ import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
 import {YearsService} from '../../controller/service/years.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
@@ -43,14 +44,17 @@ export class HeaderComponent implements OnInit {
     display: boolean;
     notif: number;
     year = new Years();
+  private _url = 'http://localhost:8090/absence-tracking/enseignant/';
+  retrievedImage: any;
    constructor(public sectorManagerService: SectorManagerService, public sectorService: SectorService,
                public cycleService: CycleService, public enseignantService: EnseignantService,
                public semestreService: SemestreService, private router: Router,
                private moduleService: ModuleService, private typeSessionService: TypeSessionService,
                private notificationService: NotificationService, private absenceService: AbsenceService,
-               private yearsService: YearsService) { }
+               private yearsService: YearsService, private http: HttpClient) { }
 
    async ngOnInit(): Promise<void> {
+    this.getImage(this.enseignantConnected.cin);
     this.cycleService.findAll();
     this.sectorService.findAll();
     this.semestreService.findAll();
@@ -336,5 +340,16 @@ export class HeaderComponent implements OnInit {
         this.notifications.push(n);
       }
     }
+  }
+  async getImage(cin: string): Promise<any> {
+    // Make a call to Spring Boot to get the Image Bytes.
+    await this.http.get<Enseignant>(this._url + 'get/' + cin)
+      .toPromise().then(
+        (res) => {
+          this.retrievedImage = 'data:image/jpeg;base64,' + res.image;
+          this.enseignantConnected.src = 'data:image/jpeg;base64,' + res.image;
+          console.log(this.retrievedImage);
+        },
+      );
   }
 }

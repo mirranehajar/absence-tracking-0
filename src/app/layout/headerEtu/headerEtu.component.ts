@@ -14,6 +14,8 @@ import {Absence} from '../../controller/model/absence';
 import {NotificationService} from '../../controller/service/notification.service';
 import {Notification} from '../../controller/model/notification';
 import {EtudiantService} from '../../controller/service/etudiant.service';
+import {HttpClient} from '@angular/common/http';
+import {Etudiant} from '../../controller/model/etudiant.model';
 
 // @ts-ignore
 @Component({
@@ -35,13 +37,15 @@ export class HeaderEtuComponent implements OnInit {
     displayBasic4: boolean;
     filiere: string;
     display: boolean;
-
+  private _url = 'http://localhost:8090/absence-tracking/etudiant/';
+  retrievedImage: any;
    constructor(private sectorManagerService: SectorManagerService, private sectorService: SectorService,
                private cycleService: CycleService, private enseignantService: EnseignantService,
                private semestreService: SemestreService, private notificationService: NotificationService,
-               private etudiantService: EtudiantService) { }
+               private etudiantService: EtudiantService, private http: HttpClient) { }
 
   async ngOnInit(): Promise<void> {
+    this.getImage(this.etudiantService.etudiantConnected.cin);
     this.cycleService.findAll();
     this.sectorService.findAll();
     await this.semestreService.findAll();
@@ -217,4 +221,18 @@ export class HeaderEtuComponent implements OnInit {
   get notifications(): Notification[] {
     return this.notificationService.notifications;
   }
+  async getImage(cin: string): Promise<any> {
+    // Make a call to Spring Boot to get the Image Bytes.
+    await this.http.get<Etudiant>(this._url + 'get/' + cin)
+      .toPromise().then(
+        (res) => {
+          this.retrievedImage = 'data:image/jpeg;base64,' + res.image;
+          this.etudiantService.etudiantConnected.src = 'data:image/jpeg;base64,' + res.image;
+          console.log(this.retrievedImage);
+        },
+      );
+  }
+get etudiantConnected(): Etudiant {
+     return this.etudiantService.etudiantConnected;
+}
 }

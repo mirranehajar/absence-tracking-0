@@ -5,6 +5,7 @@
         </a>
       <links>
         <!-- Links -->
+        &nbsp;
         <ul class="navbar-nav mr-auto" style="width: 1072px; margin-left: 60px">
           <li class="nav-item">
             <a class="nav-link"><i (click)="show()" class="pi pi-user iconColor">Profile</i></a>
@@ -170,9 +171,9 @@
     </p-footer>
   </form>
 </p-dialog>
-<p-sidebar [(visible)]="display" [style]="{width:'14em'}">
+<p-sidebar [(visible)]="display" [style]="{width:'16em'}">
   <p-header>
-    <img [src]="enseignantConnected.src" alt="Avatar" style="width: 160px; height: 160px; border-radius: 50%;">
+    <img [src]="enseignantConnected.src" alt="Avatar" style="width: 150px; height: 160px; border-radius: 50%;">
     <mat-form-field class="example-full-width">
       <mat-label>Nom</mat-label>
       <input matInput   [(ngModel)]="enseignantConnected.lastName" disabled style="color: black">
@@ -194,16 +195,16 @@
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
-      <mat-label>Tél</mat-label>
-      <input matInput   [(ngModel)]="enseignantConnected.tel" disabled style="color: black">
+      <mat-label>D.Naissance</mat-label>
+      <input matInput   [(ngModel)]="enseignantConnected.birthDay" disabled style="color: black">
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
-      <mat-label>J.Naissance</mat-label>
-      <input matInput   [(ngModel)]="enseignantConnected.birthDay" disabled style="color: black">
+      <mat-label>Ville</mat-label>
+      <input matInput   [(ngModel)]="enseignantConnected.ville" disabled style="color: black">
     </mat-form-field>
   </p-header>
-  <p-footer>
-    <button class="ui-button-rounded ui-button-info" ><a routerLink="/profil">info</a></button>
+  <p-footer style="align-content: center">
+    <button class="ui-button-rounded ui-button-info" ><a routerLink="/profil">Modifier</a></button>
   </p-footer>
 </p-sidebar>

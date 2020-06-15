@@ -34,12 +34,14 @@
   <component name="ChangeListManager">
     <list default="true" id="401aeb3a-e93d-40b1-9c09-337476306232" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/emploi-etu/emploi-etu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/emploi-etu/emploi-etu.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/emploi-etu/emploi-etu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/emploi-etu/emploi-etu.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/notification.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/notification.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/profil/profil.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profil/profil.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/profil/profil.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profil/profil.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/profilEtu/profilEtu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profilEtu/profilEtu.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/profilEtu/profilEtu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profilEtu/profilEtu.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,13 +204,6 @@
       <workItem from="1591906802634" duration="17115000" />
       <workItem from="1592147030315" duration="18126000" />
       <workItem from="1592238732506" duration="612000" />
-    </task>
-    <task id="LOCAL-00001" summary="Page Enseignant sans footer">
-      <created>1587994007627</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1587994007627</updated>
     </task>
     <task id="LOCAL-00002" summary="dialog style">
       <created>1587996547471</created>
@@ -546,7 +541,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592250864887</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="emploi etu done">
+      <created>1592256889865</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1592256889882</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -596,7 +598,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="sector done" />
     <MESSAGE value="semestre start" />
     <MESSAGE value="semestre done" />
     <MESSAGE value="working on module rn" />
@@ -621,7 +622,8 @@
     <MESSAGE value="ma3rt" />
     <MESSAGE value="emploi after login" />
     <MESSAGE value="emploiEtu after login" />
-    <option name="LAST_COMMIT_MESSAGE" value="emploiEtu after login" />
+    <MESSAGE value="emploi etu done" />
+    <option name="LAST_COMMIT_MESSAGE" value="emploi etu done" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -747,10 +749,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1591815061158" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1592250868367">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1592257047654">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1592250868367" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1592257047654" />
     <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1592161420291" />
     <state x="92" y="93" width="1182" height="552" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1592150157728">
       <screen x="0" y="0" width="1366" height="738" />
