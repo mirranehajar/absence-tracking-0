@@ -74,30 +74,35 @@ export class SessionComponent implements OnInit {
     this.groupeService.findAll();
   }
   async showBasicDialog(arg) {
-    await this.sectorManagerService.findBySector(this.moduleConnected.semestre.sector);
-    if (this.enseignantConnected.numeroSOM !== this.sectorManagerFounded.enseignant.numeroSOM) {
-      await this.typeSessionService.findByEnseignant(this.enseignantConnected);
-      console.log('wlh ta  hna ' + this.typeSessionsFounded);
-      for (const r of this.typeSessionsFounded) {
-        this.typeSeance = new Array<TypeSession>();
-        if (r.module.libelle === this.moduleConnected.libelle) {
-          console.log(r);
-          await this.typeSeance.push(r);
-          console.log(this.typeSeance);
+    await this.sessionService.findByDateAndEnseignant(arg.event.start, this.enseignantConnected);
+    if (this.sessionService.sessionTrouve == null) {
+      await this.sectorManagerService.findBySector(this.moduleConnected.semestre.sector);
+      if (this.enseignantConnected.numeroSOM !== this.sectorManagerFounded.enseignant.numeroSOM) {
+        await this.typeSessionService.findByEnseignant(this.enseignantConnected);
+        console.log('wlh ta  hna ' + this.typeSessionsFounded);
+        for (const r of this.typeSessionsFounded) {
+          this.typeSeance = new Array<TypeSession>();
+          if (r.module.libelle === this.moduleConnected.libelle) {
+            console.log(r);
+            await this.typeSeance.push(r);
+            console.log(this.typeSeance);
+          }
+          console.log('hani khrjt');
         }
-        console.log('hani khrjt');
+      } else {
+        await this.typeSessionService.findByModule(this.moduleConnected);
+        console.log('wlh ta jit hna ' + this.typeSessionsFounded);
+        this.typeSeance = this.typeSessionsFounded;
+        for (const t of this.typeSessionsFounded) {
+          console.log(t);
+          await this.sessionService.findByTypeSession(t);
+        }
       }
-    } else { await this.typeSessionService.findByModule(this.moduleConnected);
-             console.log('wlh ta jit hna ' + this.typeSessionsFounded);
-             this.typeSeance = this.typeSessionsFounded;
-             for (const t of this.typeSessionsFounded) {
-      console.log(t);
-      await this.sessionService.findByTypeSession(t);
-    }}
-    console.log(arg.dateStr);
-    if (arg.date >= this.today) {
-      this.displayBasic = true;
-      this.session.dateStart = arg.dateStr;
+      console.log(arg.dateStr);
+      if (arg.date >= this.today) {
+        this.displayBasic = true;
+        this.session.dateStart = arg.dateStr;
+      }
     }
   }
     public async showBasicDialog2(event) {

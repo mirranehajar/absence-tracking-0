@@ -22,6 +22,13 @@ export class AbsenceService {
   private _url = 'http://localhost:8090/absence-tracking/absence/';
   constructor(private http: HttpClient) { }
 
+  public async findBySessionAndEtudiant(session: Session, etudiant: Etudiant) {
+    await this.http.post<Absence[]>(this._url + 'sessionAndEtudiant' , { session , etudiant}).toPromise().then(
+      (data) => {
+        this.absencesFounded = data;
+      },
+    );
+  }
   public async findByTypeSession(typeSession: TypeSession) {
     await this.http.post<Absence[]>(this._url + 'typeSession' , typeSession).toPromise().then(
       (data) => {

@@ -57,6 +57,8 @@ import { HeaderComponent } from './layout/header/header.component';
 import {HeaderEtuComponent} from './layout/headerEtu/headerEtu.component';
 import { MainComponent } from './layout/main/main.component';
 import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
+import { EmploiComponent } from './components/emploi/emploi.component';
+import { EmploiEtuComponent } from './components/emploi-etu/emploi-etu.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +85,8 @@ import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
     ModuleEtuComponent,
     GroupesEtuComponent,
     StatistiqueComponent,
+    EmploiComponent,
+    EmploiEtuComponent,
   ],
   imports: [
     BrowserModule,
