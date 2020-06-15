@@ -113,8 +113,8 @@ export class HeaderComponent implements OnInit {
      this.notificationService.notificationFounded = notification;
      await this.notificationService.update();
      await this.notificationService.findByEnseignant(this.enseignantConnected);
+     this.notificationService.notifications = null;
      for (const n of this.notificationsFounded) {
-       this.notificationService.notifications = null;
        if (n.state === null) {
         this.notifications.push(n);
       }
@@ -128,8 +128,8 @@ export class HeaderComponent implements OnInit {
     await this.absenceService.update();
     await this.notificationService.update();
     await this.notificationService.findByEnseignant(this.enseignantConnected);
+    this.notificationService.notifications = null;
     for (const n of this.notificationsFounded) {
-      this.notificationService.notifications = null;
       if (n.state === null) {
         this.notifications.push(n);
       }
@@ -327,5 +327,14 @@ export class HeaderComponent implements OnInit {
   async addYears() {
     await this.yearsService.save();
     await this.yearsService.findAll();
+  }
+  async showNotif() {
+    this.notificationService.notifications = null;
+    await this.notificationService.findByEnseignant(this.enseignantConnected);
+    for (const n of this.notificationsFounded) {
+      if (n.state === null) {
+        this.notifications.push(n);
+      }
+    }
   }
 }

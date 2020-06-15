@@ -2040,11 +2040,11 @@ export class EnseignantComponent implements OnInit {
     this.displayBasic = true;
   }
   async showBasicDialog2(enseignantFounded: Enseignant) {
-    this.displayBasic2 = true;
     await  this.findByNumeroSOM(enseignantFounded);
     console.log(this.enseignantFounded);
     this.city = this.enseignantFounded.ville;
     console.log(this.city);
+    this.displayBasic2 = true;
   }
   public async findByNumeroSOM(enseignantFounded: Enseignant) {
     await  this.enseignantService.findByNumeroSOM(enseignantFounded);

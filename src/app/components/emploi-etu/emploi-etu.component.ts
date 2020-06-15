@@ -29,6 +29,7 @@ export class EmploiEtuComponent implements OnInit {
   today: Date;
   contenu: string;
   displayBasic: boolean;
+  displayBasic2: boolean;
   constructor(private sessionService: SessionService, private etudiantService: EtudiantService,
               private absenceService: AbsenceService, private notificationService: NotificationService) { }
 
@@ -45,7 +46,9 @@ export class EmploiEtuComponent implements OnInit {
     this.absenceService.boolean = true;
     await this.sessionService.findByReference(event.event.id);
     await this.absenceService.findBySessionAndEtudiant(this.sessionService.sessionFounded, this.etudiantService.etudiantConnected);
-    this.displayBasic = true;
+    if (event.date >= this.today) {
+      this.displayBasic2 = true;
+    } else {this.displayBasic = true; }
   }
   get absenceFounded(): Absence {
     return this.absenceService.absenceFounded;

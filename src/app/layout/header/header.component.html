@@ -14,7 +14,7 @@
             <a mdbDropdownToggle class="nav-link dropdown-toggle"><i class="pi pi-list iconColor">Filière</i></a>
             <div class="dropdown-menu mega-menu row z-depth-1 ">
               <div (mouseover)="onHover(s)" *ngFor="let s of sectors" class="item has_submenu">
-              <a href="#"  ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + s.libelle}}</a>
+              <a   ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + s.libelle}}</a>
                 <button *ngIf="enseignantConnected.role === 1" pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 "  (click)="showBasicDialog2(s)"  icon="pi pi-pencil" ></button>
                 <div *ngIf="s.semestres != null" class="submenu">
                   <div *ngFor="let ss of s.semestres" class="item has_submenu">
@@ -44,7 +44,7 @@
           </li>
         </ul>
         <i (click)="op1.toggle($event)" class=" iconColor pi pi-bell"></i>
-        <p-overlayPanel #op1>
+        <p-overlayPanel #op1 (onShow)="showNotif()">
           <ng-template pTemplate>
             <div  ui-overlaypanel-content *ngFor="let n of notifications">
               {{n.absence.etudiant.lastName}} {{n.absence.etudiant.firstName}}
@@ -59,7 +59,7 @@
         </p-overlayPanel>
         <i routerLink="/login" class="pi pi-sign-out iconColor"></i>
         <!-- Links -->
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" >
           <img src="assets/images/logoFst.png" height="42" alt="">
         </a>
       </links>
