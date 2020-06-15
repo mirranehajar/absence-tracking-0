@@ -3,9 +3,9 @@ import {EventInput} from '@fullcalendar/core/structs/event';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGrigPlugin from '@fullcalendar/timegrid';
-import {SessionService} from '../../controller/service/session.service';
 import {Session} from '../../controller/model/session';
 import {EnseignantService} from '../../controller/service/enseignant.service';
+import {SessionService} from '../../controller/service/session.service';
 
 @Component({
   selector: 'app-emploi',

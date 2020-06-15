@@ -30,7 +30,7 @@ export class SessionService {
     );
   }
   public async findByEnseignant(enseignant: Enseignant) {
-    await this.http.post<Session[]>(this._url + 'Enseignant ' , enseignant).toPromise().then(
+    await this.http.post<Session[]>(this._url + 'enseignant ' , enseignant).toPromise().then(
       (data) => {
         this.sessionsFounded = data;
       },
