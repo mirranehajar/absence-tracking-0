@@ -20,14 +20,24 @@
         <br>
         <tr>
           <th style="text-align: left">Nom:</th>
-          <th><input [(ngModel)]="enseignantConnected.lastName" name="firstName" type="text" pInputText style="margin-left: 100px; width: 225px"></th>
+          <th><input disabled [(ngModel)]="enseignantConnected.lastName" name="firstName" type="text" pInputText style="margin-left: 100px; width: 225px"></th>
         </tr>
       <br>
         <tr>
           <th style="text-align: left">Prénom:</th>
-          <th><input [(ngModel)]="enseignantConnected.firstName" name="lastName" type="text" pInputText style="margin-left: 100px; width: 225px"></th>
+          <th><input disabled [(ngModel)]="enseignantConnected.firstName" name="lastName" type="text" pInputText style="margin-left: 100px; width: 225px"></th>
         </tr>
           <br>
+        <tr>
+          <th style="text-align: left">D.Naissance:</th>
+          <th><input [(ngModel)]="enseignantConnected.birthDay" disabled name="birthday" type="text" pInputText style="margin-left: 100px; width: 225px"></th>
+        </tr>
+      <br>
+        <tr>
+          <th style="text-align: left">Ville:</th>
+          <th><input [(ngModel)]="enseignantConnected.ville" disabled name="ville" type="text" pInputText style="margin-left: 100px; width: 225px"></th>
+        </tr>
+      <br>
         <tr>
           <th style="text-align: left">Email:</th>
           <th><input [(ngModel)]="enseignantConnected.mail" name="mail" type="text" pInputText style="margin-left: 100px; width: 225px"></th>
@@ -40,12 +50,12 @@
         <br>
         <tr>
           <th style="text-align: left">password:</th>
-          <th><button pButton (click)="showBasicDialog()" class="ui-button-raised" style="float: left"  label="Change password" style="margin-left: 100px; background-color: #FCC74F"></button></th>
+          <th><button pButton (click)="showBasicDialog()" class="ui-button-raised" style="float: left"  label="Modifier le mot de passe" style="margin-left: 100px; background-color: #FCC74F"></button></th>
         </tr>
       </table>
     </div>
     <br>
-        <p-dialog  header="Change your password" [modal]="true"  [style]="{width: '50vw'}" [baseZIndex]="10000"[(visible)]="displayBasic"  [draggable]="false" [resizable]="false">
+        <p-dialog  header="Modification du mot de passe" [modal]="true"  [style]="{width: '50vw'}" [baseZIndex]="10000"[(visible)]="displayBasic"  [draggable]="false" [resizable]="false">
           <form style="text-align: center" method="POST" >
             <div style="display:inline-block" class="form-group">
               <div class="row">
@@ -61,7 +71,7 @@
                 <div class="ui-inputgroup">
                       <span class="ui-float-label" style="margin-top: 10px">
          <input [(ngModel)]="password" type="password" id="float-input1" name="password" size="30" pInputText>
-         <label for="float-input1">nouveau mdp</label>
+         <label for="float-input1">nouveau mot de passe</label>
                   </span>
                 </div>
               </div>
@@ -70,18 +80,18 @@
                 <div class="ui-inputgroup">
                            <span class="ui-float-label" style="margin-top: 10px">
                <input [(ngModel)]="passwordConfirm" type="password" name="confirmPassword" id="float-input2" size="30" pInputText>
-               <label for="float-input2">confirmer le mdp</label>
+               <label for="float-input2">confirmer le mot de passe</label>
                   </span>
                 </div>
               </div>
               <br>
-              <button (click)="updatePassword()" type="submit" pButton  label="validé le changemant" ></button>
+              <button (click)="updatePassword()" type="submit" pButton  label="validr le changemant" ></button>
             </div>
           </form>
         </p-dialog>
         <br>
-        <button  pButton (click)="showBasicDialog2()"  label="Mettre à jour" style="margin-right: 500px; background-color: #0882A1"></button>
-        <p-dialog  header="Modification" [modal]="true" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <button  pButton (click)="showBasicDialog2()"  label="Valider les modifications" style="margin-right: 500px; background-color: #0882A1"></button>
+        <p-dialog  header="Validation des modifications" [modal]="true" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
           <form style="text-align: center" method="POST" >
             <div style="display:inline-block" class="form-group">
               <div class="row">
@@ -93,7 +103,7 @@
                 </div>
               </div>
               <br>
-              <button type="submit" (click)="update()" pButton  label="validé"></button>
+              <button type="submit" (click)="update()" pButton  label="valider"></button>
             </div>
           </form>
         </p-dialog>

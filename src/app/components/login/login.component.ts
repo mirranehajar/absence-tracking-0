@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
             console.log(this.etudiantConnected);
             console.log(this.etudiantConnected);
             await this.findBySemestre(this.etudiantConnected.groupe.semestre);
-            this.router.navigate(['/profilEtu']);
+            this.router.navigate(['/emploiEtu']);
           } else {
             console.log('mail ou mdp not correct');
           }
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
         if (this.enseignantFounded.mail === this.enseignantConnected.mail && this.enseignantFounded.password === this.enseignantConnected.password) {
           console.log('mail and password correct');
           this.enseignantService.enseignantConnected = this.enseignantFounded;
-          this.router.navigate(['/profil']);
+          this.router.navigate(['/emploi']);
         } else {
           console.log('mail ou mdp not correct');
         }

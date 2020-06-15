@@ -1,10 +1,11 @@
 <!--Navbar-->
 <mdb-navbar #nav SideClass="navbar navbar-expand-lg navbar-light white">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" routerLink="/emploi">
           <img src="assets/images/fstg.jpg" height="30" alt="">
         </a>
       <links>
         <!-- Links -->
+        &nbsp;
         <ul class="navbar-nav mr-auto" style="width: 1072px; margin-left: 60px">
           <li class="nav-item">
             <a class="nav-link"><i (click)="show()" class="pi pi-user iconColor">Profile</i></a>
@@ -14,7 +15,7 @@
             <a mdbDropdownToggle class="nav-link dropdown-toggle"><i class="pi pi-list iconColor">Filière</i></a>
             <div class="dropdown-menu mega-menu row z-depth-1 ">
               <div (mouseover)="onHover(s)" *ngFor="let s of sectors" class="item has_submenu">
-              <a href="#"  ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + s.libelle}}</a>
+              <a   ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + s.libelle}}</a>
                 <button *ngIf="enseignantConnected.role === 1" pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 "  (click)="showBasicDialog2(s)"  icon="pi pi-pencil" ></button>
                 <div *ngIf="s.semestres != null" class="submenu">
                   <div *ngFor="let ss of s.semestres" class="item has_submenu">
@@ -44,7 +45,7 @@
           </li>
         </ul>
         <i (click)="op1.toggle($event)" class=" iconColor pi pi-bell"></i>
-        <p-overlayPanel #op1>
+        <p-overlayPanel #op1 (onShow)="showNotif()">
           <ng-template pTemplate>
             <div  ui-overlaypanel-content *ngFor="let n of notifications">
               {{n.absence.etudiant.lastName}} {{n.absence.etudiant.firstName}}
@@ -59,7 +60,7 @@
         </p-overlayPanel>
         <i routerLink="/login" class="pi pi-sign-out iconColor"></i>
         <!-- Links -->
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" >
           <img src="assets/images/logoFst.png" height="42" alt="">
         </a>
       </links>
@@ -170,9 +171,9 @@
     </p-footer>
   </form>
 </p-dialog>
-<p-sidebar [(visible)]="display" [style]="{width:'14em'}">
+<p-sidebar [(visible)]="display" [style]="{width:'16em'}">
   <p-header>
-    <img [src]="enseignantConnected.src" alt="Avatar" style="width: 160px; height: 160px; border-radius: 50%;">
+    <img [src]="enseignantConnected.src" alt="Avatar" style="width: 150px; height: 160px; border-radius: 50%;">
     <mat-form-field class="example-full-width">
       <mat-label>Nom</mat-label>
       <input matInput   [(ngModel)]="enseignantConnected.lastName" disabled style="color: black">
@@ -194,16 +195,16 @@
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
-      <mat-label>Tél</mat-label>
-      <input matInput   [(ngModel)]="enseignantConnected.tel" disabled style="color: black">
+      <mat-label>D.Naissance</mat-label>
+      <input matInput   [(ngModel)]="enseignantConnected.birthDay" disabled style="color: black">
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
-      <mat-label>J.Naissance</mat-label>
-      <input matInput   [(ngModel)]="enseignantConnected.birthDay" disabled style="color: black">
+      <mat-label>Ville</mat-label>
+      <input matInput   [(ngModel)]="enseignantConnected.ville" disabled style="color: black">
     </mat-form-field>
   </p-header>
-  <p-footer>
-    <button class="ui-button-rounded ui-button-info" ><a routerLink="/profil">info</a></button>
+  <p-footer style="align-content: center">
+    <button class="ui-button-rounded ui-button-info" ><a routerLink="/profil">Modifier</a></button>
   </p-footer>
 </p-sidebar>

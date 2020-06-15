@@ -75,8 +75,8 @@ export class NotificationService {
       this.notifications.splice(index, 1);
     }
   }
-  public update() {
-    this.http.post<number>(this._url + 'update', this.notificationFounded).subscribe(
+  public async update() {
+    await this.http.post<number>(this._url + 'update', this.notificationFounded).toPromise().then(
       (data) => {
         if (data > 0) {
           this.deleteFromList(this.notificationFounded);
