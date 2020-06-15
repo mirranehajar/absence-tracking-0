@@ -1,0 +1,37 @@
+<br>
+<div class='app-calendar' *ngIf="calendarVisible">
+  <full-calendar
+    #calendar
+    defaultView="dayGridMonth"
+    [header]="{
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      }"
+    lang="fr"
+    timeZone="local"
+    [plugins]="calendarPlugins"
+    editable="true"
+    eventLimit="true"
+    [businessHours]="hours"
+    [weekends]="calendarWeekends"
+    [events]="calendarEvents"
+    (eventClick)="showBasicDialog($event)">
+  </full-calendar>
+</div>
+<p-dialog header="Demander une excuse d'absence" [style]="{'text-align':'center'}" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <form style="text-align: center" method="POST" >
+    <div style="display:inline-block" class="form-group">
+      <div class="row">
+        <div class="ui-inputgroup">
+          <textarea [rows]="5" [(ngModel)]="absenceFounded.justification" [cols]="30" name="justification" pInputTextarea autoResize="autoResize"></textarea>
+        </div>
+      </div>
+      <br>
+    </div>
+  </form>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" style="float: left" (click)="update()" label="Envoyer"></button>
+    <button type="button" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Annuler" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>
