@@ -1,6 +1,6 @@
 <br>
-<button style="float: left" *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog()" class="btn btn-primary">Ajouter un module</button>
-  <button style="float: right" routerLink="/groupe"  class="btn btn-primary">Groupes</button>
+<button style="background-color: #0882A1" *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog()" class="btn btn-primary">Ajouter un module</button>
+  <button style="background-color: #0882A1" routerLink="/groupe"  class="btn btn-primary" >Groupes</button>
 <br>
 <div class="row" *ngIf="sectorManagerConnected.enseignant.numeroSOM != enseignantConnected.numeroSOM" >
   <div  class="col-sm-4" *ngFor="let m of modulesConnected">
@@ -55,7 +55,7 @@
       <div class="card-body  back">
         <h5 class="card-title">{{m.abreveation}}</h5>
         <p class="card-text">{{m.libelle}}</p>
-        <a (click)="goToSession(m)" class="btn btn-primary">Voir les séances</a>
+        <a (click)="goToSession(m)" class="btn btn-primary" style="background-color: #FCC74F">Voir les séances</a>
       </div>
       <div class="card-footer">
         <button (click)="deleteByLibelle(m)" pButton type="button" icon="pi pi-trash" class="ui-button-danger"></button>
@@ -64,7 +64,7 @@
       <p-fieldset legend="Types séance" (onBeforeToggle)="showBasicDialog2(m)" [toggleable]="true" collapsed="false">
         <div >
           <div class=" row justify-content-center">
-            <button *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog3(m)" class="btn btn-primary">Ajouter un type séance</button>
+            <button *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog3(m)" class="btn btn-primary" style="background-color: #FCC74F">Ajouter un type séance</button>
           </div>
           <br>
           <div >

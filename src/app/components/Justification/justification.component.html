@@ -7,13 +7,13 @@
         <div>{{a.session.typeSession.enseignant.lastName}} {{a.session.typeSession.enseignant.firstName}}</div>
         <div *ngFor="let g of a.session.groupes">{{g.libelle}}</div>
         <p-footer >
-        <button pButton (click)="ShowBasicDialog(a)" type="button" icon="pi pi-comment" label="Justifier" style="margin-top:0"></button>
+        <button pButton (click)="ShowBasicDialog(a)" type="button" icon="pi pi-comment" label="Justifier" style="margin-left: 90px; background-color: #FCC74F"></button>
         </p-footer>
       </p-panel>
     </div>
   </ng-template>
 </p-dataView>
-<p-dialog header="Justifier une absence" [style]="{'text-align':'center'}" [(visible)]="basicDialog" [style]="{width: '50vw'}" [baseZIndex]="10000">
+<p-dialog header="Justifier votre absence" [modal]="true" [style]="{'text-align':'center'}" [(visible)]="basicDialog" [style]="{width: '30vw'}" [baseZIndex]="10000">
   <form style="text-align: center" method="POST" >
     <div style="display:inline-block" class="form-group">
       <div class="row">
