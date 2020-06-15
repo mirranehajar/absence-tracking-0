@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AbsenceComponent} from './components/absence/absence.component';
+import {EmploiEtuComponent} from './components/emploi-etu/emploi-etu.component';
+import {EmploiComponent} from './components/emploi/emploi.component';
 import {EnseignantComponent} from './components/enseignant/enseignant.component';
 import {EtudiantsComponent} from './components/etudiants/etudiants.component';
 import {GroupesComponent} from './components/groupes/groupes.component';
@@ -25,6 +27,7 @@ const routes: Routes = [
       {path: 'moduleEtu', component: ModuleEtuComponent},
       {path: 'groupeEtu', component: GroupesEtuComponent},
       {path: 'sessionEtu', component: SessionComponent},
+      {path: 'emploiEtu', component: EmploiEtuComponent},
     ]},
   {path: '', component: AppEnsComponent, children: [
       {path: 'enseignant', component: EnseignantComponent},
@@ -35,6 +38,7 @@ const routes: Routes = [
       {path: 'groupe', component: GroupesComponent},
       {path: 'session', component: SessionComponent},
       {path: 'statistique', component: StatistiqueComponent},
+      {path: 'emploi', component: EmploiComponent},
     ]},
 ];
 

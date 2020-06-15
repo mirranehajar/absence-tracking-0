@@ -50,8 +50,8 @@ export class ModuleService {
       },
     );
   }
-  public findByLibelle(module: Module) {
-    this.http.get<Module>(this._url + 'libelle/' + module.libelle).subscribe(
+  public async findByLibelle(module: Module) {
+    await this.http.get<Module>(this._url + 'libelle/' + module.libelle).toPromise().then(
       (data) => {
         this.moduleFounded = data;
       },
@@ -70,8 +70,8 @@ export class ModuleService {
       this.modules.splice(index, 1);
     }
   }
-  save() {
-    this.http.post<number>(this._url, this.module).subscribe(
+  async save() {
+    await this.http.post<number>(this._url, this.module).toPromise().then(
       (data) => {
         if (data > 0) {
           this.modules.push(this.clone(this.module));
@@ -115,6 +115,12 @@ export class ModuleService {
   }
 
   get moduleFounded(): Module {
+    if (this._moduleFounded == null) {
+      this._moduleFounded = new Module();
+    }
+    if (this._moduleFounded.subjects == null) {
+      this._moduleFounded.subjects = new Array<Subject>();
+    }
     return this._moduleFounded;
   }
 

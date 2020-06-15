@@ -9,6 +9,7 @@ import {Enseignant} from '../../controller/model/enseignant.model';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {Groupe} from '../../controller/model/groupe';
 import {Module} from '../../controller/model/module';
+import {SectorManager} from '../../controller/model/sector-manager';
 import {Session} from '../../controller/model/session';
 import {TypeSession} from '../../controller/model/type-session';
 import {AbsenceService} from '../../controller/service/absence.service';
@@ -16,6 +17,7 @@ import {EnseignantService} from '../../controller/service/enseignant.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 import {GroupeService} from '../../controller/service/groupe.service';
 import {ModuleService} from '../../controller/service/module.service';
+import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SessionService} from '../../controller/service/session.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
 
@@ -31,7 +33,7 @@ export class SessionComponent implements OnInit {
   constructor(private groupeService: GroupeService, private typeSessionService: TypeSessionService,
               private sessionService: SessionService, private absenceService: AbsenceService,
               private etudiantService: EtudiantService, private enseignantService: EnseignantService,
-              private moduleService: ModuleService) { }
+              private moduleService: ModuleService, private sectorManagerService: SectorManagerService) { }
 
   @ViewChild('calendar') calendarComponent: FullCalendarComponent; // the #calendar in the template
 
@@ -42,6 +44,7 @@ export class SessionComponent implements OnInit {
   students:  Etudiant[];
   groups: Groupe[];
   seance: Session;
+  typeSeance = new Array<TypeSession>();
   hours =  {
   daysOfWeek: [ 1, 2, 3, 4 , 5 , 6],
   startTime: '08:00',
@@ -63,21 +66,49 @@ export class SessionComponent implements OnInit {
         this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
       }
     }
-
+    await this.sectorManagerService.findBySector(this.moduleConnected.semestre.sector);
+    if (this.enseignantConnected.numeroSOM !== this.sectorManagerFounded.enseignant.numeroSOM) {
     this.typeSessionService.findByEnseignant(this.enseignantConnected);
+}
     console.log(this.sessions);
     this.groupeService.findAll();
   }
-  showBasicDialog(arg) {
-    console.log(arg.dateStr);
-    if (arg.date >= this.today) {
-      this.displayBasic = true;
-      this.session.dateStart = arg.dateStr;
+  async showBasicDialog(arg) {
+    await this.sessionService.findByDateAndEnseignant(arg.event.start, this.enseignantConnected);
+    if (this.sessionService.sessionTrouve == null) {
+      await this.sectorManagerService.findBySector(this.moduleConnected.semestre.sector);
+      if (this.enseignantConnected.numeroSOM !== this.sectorManagerFounded.enseignant.numeroSOM) {
+        await this.typeSessionService.findByEnseignant(this.enseignantConnected);
+        console.log('wlh ta  hna ' + this.typeSessionsFounded);
+        for (const r of this.typeSessionsFounded) {
+          this.typeSeance = new Array<TypeSession>();
+          if (r.module.libelle === this.moduleConnected.libelle) {
+            console.log(r);
+            await this.typeSeance.push(r);
+            console.log(this.typeSeance);
+          }
+          console.log('hani khrjt');
+        }
+      } else {
+        await this.typeSessionService.findByModule(this.moduleConnected);
+        console.log('wlh ta jit hna ' + this.typeSessionsFounded);
+        this.typeSeance = this.typeSessionsFounded;
+        for (const t of this.typeSessionsFounded) {
+          console.log(t);
+          await this.sessionService.findByTypeSession(t);
+        }
+      }
+      console.log(arg.dateStr);
+      if (arg.date >= this.today) {
+        this.displayBasic = true;
+        this.session.dateStart = arg.dateStr;
+      }
     }
   }
     public async showBasicDialog2(event) {
     this.displayBasic2 = true;
     await this.findByReference(event.event.id);
+    await this.sectorManagerService.findBySector(this.sessionFounded.typeSession.module.semestre.sector);
     console.log(this.findByReference(event.event.id));
     console.log(this.sessionFounded);
     console.log(this.sessionFounded.reference);
@@ -109,9 +140,15 @@ export class SessionComponent implements OnInit {
   }
   async onDrop(arg) {
     this.sessionService.sessionFounded.dateStart = arg.event.start;
-    console.log(arg.event.start);
-    if (this.enseignantConnected === this.sessionFounded.typeSession.enseignant) {
-    await this.sessionService.update();
+    this.sessionService.sessionFounded.dateStop = null;
+    console.log(arg.event);
+    console.log(this.enseignantConnected);
+    console.log(this.sessionFounded.typeSession.enseignant);
+    this.sectorManagerService.findBySector(this.sessionFounded.typeSession.module.semestre.sector);
+    if (this.enseignantConnected.numeroSOM === this.sessionFounded.typeSession.enseignant.numeroSOM ||
+    this.sectorManagerService.sectorManagerFounded.enseignant.numeroSOM === this.enseignantConnected.numeroSOM) {
+      console.log('haha hana jit lhna');
+      await this.sessionService.update();
     }
     this.calendarEvents = [];
     for (const s of this.sessions) {
@@ -119,10 +156,15 @@ export class SessionComponent implements OnInit {
     }
   }
   async onResize(arg) {
+    console.log(arg.event.id);
+    console.log(arg.event);
+    console.log(arg.event.end.hours - arg.event.start.hours);
     await this.sessionService.findByReference(arg.event.id);
-    if (this.enseignantConnected === this.sessionFounded.typeSession.enseignant) {
+    this.sectorManagerService.findBySector(this.sessionFounded.typeSession.module.semestre.sector);
+    if (this.enseignantConnected.numeroSOM === this.sessionFounded.typeSession.enseignant.numeroSOM ||
+      this.sectorManagerService.sectorManagerFounded.enseignant.numeroSOM === this.enseignantConnected.numeroSOM) {
       this.sessionService.sessionFounded.dateStop = arg.event.end;
-      this.sessionService.update();
+      await this.sessionService.update();
     }
     this.calendarEvents = [];
     for (const s of this.sessions) {
@@ -150,7 +192,7 @@ export class SessionComponent implements OnInit {
       this.absenceService.absence.etudiant = e;
       this.absenceService.absence.session = this.sessionFounded;
       console.log(this.absence);
-      this.absenceService.save();
+      await this.absenceService.save();
     }
     this.displayBasic = false;
   }
@@ -192,5 +234,8 @@ export class SessionComponent implements OnInit {
   }
   get moduleConnected(): Module {
     return this.moduleService.moduleConnected;
+  }
+  get sectorManagerFounded(): SectorManager {
+    return this.sectorManagerService.sectorManagerFounded;
   }
 }

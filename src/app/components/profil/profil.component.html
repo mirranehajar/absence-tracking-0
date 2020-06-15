@@ -51,7 +51,7 @@
               <div class="row">
                 <div class="ui-inputgroup">
                   <span class="ui-float-label" style="margin-top: 10px">
-         <input [(ngModel)]="currentPassword" type="password" id="float-input" size="30" pInputText>
+         <input [(ngModel)]="currentPassword" type="password" name="currentPassword" id="float-input" size="30" pInputText>
          <label for="float-input">Mot de passe courrant</label>
                   </span>
                 </div>
@@ -60,7 +60,7 @@
               <div class="row">
                 <div class="ui-inputgroup">
                       <span class="ui-float-label" style="margin-top: 10px">
-         <input [(ngModel)]="password" type="password" id="float-input1" size="30" pInputText>
+         <input [(ngModel)]="password" type="password" id="float-input1" name="password" size="30" pInputText>
          <label for="float-input1">nouveau mdp</label>
                   </span>
                 </div>
@@ -69,7 +69,7 @@
               <div class="row">
                 <div class="ui-inputgroup">
                            <span class="ui-float-label" style="margin-top: 10px">
-               <input [(ngModel)]="passwordConfirm" type="password" id="float-input2" size="30" pInputText>
+               <input [(ngModel)]="passwordConfirm" type="password" name="confirmPassword" id="float-input2" size="30" pInputText>
                <label for="float-input2">confirmer le mdp</label>
                   </span>
                 </div>
@@ -87,7 +87,7 @@
               <div class="row">
                 <div class="ui-inputgroup">
                     <span class="ui-float-label" style="margin-top: 10px">
-               <input [(ngModel)]="passwordUpdate" type="password" id="float-input3" size="30" pInputText required>
+               <input [(ngModel)]="passwordUpdate" type="password" name="passwordUpdate" id="float-input3" size="30" pInputText required>
                <label for="float-input3">Etrez votre mdp</label>
                   </span>
                 </div>

@@ -149,6 +149,9 @@ export class TypeSessionService {
   }
 
   get typeSessionsFounded(): TypeSession[] {
+    if (this._typeSessionsFounded == null) {
+      this._typeSessionsFounded = new Array<TypeSession>();
+    }
     return this._typeSessionsFounded;
   }
 

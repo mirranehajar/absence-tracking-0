@@ -2,6 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Session} from '../model/session';
 import {TypeSession} from '../model/type-session';
+import {Enseignant} from '../model/enseignant.model';
+import {Semestre} from '../model/semestre';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +18,7 @@ export class SessionService {
   private _sessionFounded: Session;
   private _sessionsFounded: Session[];
   // tslint:disable-next-line:variable-name
+  private _sessionTrouve: Session;
   private _url = 'http://localhost:8090/absence-tracking/session/';
   constructor(private http: HttpClient) { }
 
@@ -25,6 +28,38 @@ export class SessionService {
         this.sessionFounded = data;
       },
     );
+  }
+  public async findByEnseignant(enseignant: Enseignant) {
+    await this.http.post<Session[]>(this._url + 'Enseignant ' , enseignant).toPromise().then(
+      (data) => {
+        this.sessionsFounded = data;
+      },
+    );
+    console.log(this.sessionsFounded);
+  }
+  public async findByDateAndEnseignant(date: Date, enseignant: Enseignant) {
+    await this.http.post<Session>(this._url + 'dateAndEnseignant/dateStart/ ' + date, enseignant).toPromise().then(
+      (data) => {
+        this.sessionTrouve = data;
+      },
+    );
+    console.log(this.sessionsFounded);
+  }
+  public async findByDateAndSemestre(date: Date, semestre: Semestre) {
+    await this.http.post<Session>(this._url + 'dateAndSemestre/dateStart/' + date , semestre).toPromise().then(
+      (data) => {
+        this.sessionTrouve = data;
+      },
+    );
+    console.log(this.sessionsFounded);
+  }
+  public async findBySemestre(semestre: Semestre) {
+    await this.http.post<Session[]>(this._url + 'semestre' , semestre).toPromise().then(
+      (data) => {
+        this.sessionsFounded = data;
+      },
+    );
+    console.log(this.sessionsFounded);
   }
   public async findByTypeSession(typeSession: TypeSession) {
     await this.http.post<Session[]>(this._url + 'typeSession' , typeSession).toPromise().then(
@@ -62,12 +97,13 @@ export class SessionService {
       this.sessions.splice(index, 1);
     }
   }
-  public update() {
-    this.http.post<Session>(this._url + 'update', this.sessionFounded).subscribe(
+  public async update() {
+    await this.http.post<Session>(this._url + 'update', this.sessionFounded).toPromise().then(
       (data) => {
         if (data) {
           this.deleteFromList(this.sessionFounded);
           this.sessions.push(this.clone(data));
+          this.sessionFounded = data;
         }
       }, (error) => {
         console.log('error');
@@ -84,7 +120,7 @@ export class SessionService {
           this.sessionFounded = data;
         }
       }, (error) => {
-        console.log('error');
+        console.log('error' + error);
       },
     );
   }
@@ -125,10 +161,14 @@ export class SessionService {
   get sessionFounded(): Session {
     if (this._sessionFounded == null) {
       this._sessionFounded = new Session();
-      if (this._sessionFounded.typeSession == null) {
-        this._sessionFounded.typeSession = new TypeSession();
-      }
     }
+    if (this._sessionFounded.typeSession == null) {
+      this._sessionFounded.typeSession = new TypeSession();
+    }
+    if (this._sessionFounded.typeSession.enseignant == null) {
+      this._sessionFounded.typeSession.enseignant = new Enseignant();
+    }
+
     return this._sessionFounded;
   }
 
@@ -145,5 +185,13 @@ export class SessionService {
 
   set sessionsFounded(value: Session[]) {
     this._sessionsFounded = value;
+  }
+
+  get sessionTrouve(): Session {
+    return this._sessionTrouve;
+  }
+
+  set sessionTrouve(value: Session) {
+    this._sessionTrouve = value;
   }
 }

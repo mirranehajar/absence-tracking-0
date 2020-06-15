@@ -2,6 +2,7 @@
 <button style="background-color: #0882A1" *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog()" class="btn btn-primary">Ajouter un module</button>
   <button style="background-color: #0882A1" routerLink="/groupe"  class="btn btn-primary" >Groupes</button>
 <br>
+<br><br>
 <div class="row" *ngIf="sectorManagerConnected.enseignant.numeroSOM != enseignantConnected.numeroSOM" >
   <div  class="col-sm-4" *ngFor="let m of modulesConnected">
     <div class="card text-center">
@@ -119,6 +120,11 @@
                       <ng-template pTemplate="input">
                         <p-multiSelect name="groupes" tooltipPosition="bottom" [options]="groupesFounded" [(ngModel)]="rowData.groupes" optionLabel="libelle"></p-multiSelect>
                       </ng-template>
+                      <ng-template pTemplate="output">
+                        <p *ngFor="let g of rowData.groupes">
+                          {{g.libelle}}&nbsp;
+                        </p>
+                      </ng-template>
                     </p-cellEditor>
                   </td>
                   <td *ngIf="rowData.groupes == null" pEditableColumn>
@@ -181,7 +187,7 @@
     </p-footer>
   </form>
 </p-dialog>
-<p-dialog  header="Ajout d'un type de séance" [(visible)]="displayBasic3" [style]="{width: '50vw'}" [baseZIndex]="10000">
+<p-dialog  header="Ajout d'un type de séance" (close)="onClose()" [(visible)]="displayBasic3" [style]="{width: '50vw'}" [baseZIndex]="10000">
   <form style="text-align: center" method="POST">
     <div style="display:inline-block" class="form-group">
       <div class="row">
