@@ -1,0 +1,52 @@
+<br>
+<div class='app-calendar' *ngIf="calendarVisible">
+<full-calendar
+  #calendar
+  defaultView="dayGridMonth"
+  [header]="{
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      }"
+  lang="fr"
+  timeZone="local"
+  [plugins]="calendarPlugins"
+  editable="true"
+  eventLimit="true"
+  [businessHours]="hours"
+  [weekends]="calendarWeekends"
+  [events]="calendarEvents"
+  (eventClick)="showBasicDialog($event)">
+</full-calendar>
+</div>
+<p-dialog  header="Affichage d'une séance" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <form style="text-align: center" method="POST" >
+    <div style="display:inline-block" class="form-group">
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input type="texte" name="reference" disabled [(ngModel)]="sessionFounded.reference">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input type="texte" name="libelle" disabled [(ngModel)]="sessionFounded.libelle">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input type="texte" name="typeSession" disabled [(ngModel)]="sessionFounded.typeSession.reference">
+        </div>
+      </div>
+    </div>
+    <br>
+    <p-footer>
+      <button style="float: right" (click)="deleteByReference(sessionFounded)"  type="button" class="ui-button-danger" pButton icon="pi pi-check"   label="Supprimer"></button>
+      <button style="float: left"   routerLink="/absence" type="button"  pButton icon="pi pi-check"   label="Noter l'absence"></button>
+    </p-footer>
+  </form>
+</p-dialog>
