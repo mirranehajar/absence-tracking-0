@@ -4,6 +4,7 @@ import {Absence} from '../model/absence';
 import {Etudiant} from '../model/etudiant.model';
 import {Module} from '../model/module';
 import {Session} from '../model/session';
+import {SessionEtudiant} from '../model/sessionEtudiant';
 import {TypeSession} from '../model/type-session';
 
 @Injectable({
@@ -19,13 +20,22 @@ export class AbsenceService {
   private _absencesFounded: Absence[];
   private _absencesEtudiant: Absence[];
   // tslint:disable-next-line:variable-name
+  private _sessionEtudiant: SessionEtudiant;
+  private _boolean: boolean;
   private _url = 'http://localhost:8090/absence-tracking/absence/';
   constructor(private http: HttpClient) { }
 
   public async findBySessionAndEtudiant(session: Session, etudiant: Etudiant) {
-    await this.http.post<Absence[]>(this._url + 'sessionAndEtudiant' , { session , etudiant}).toPromise().then(
+    this.sessionEtudiant.session = session;
+    this.sessionEtudiant.etudiant = etudiant;
+    console.log(this.sessionEtudiant);
+    await this.http.post<Absence>(this._url + 'sessionEtudiant' , this.sessionEtudiant).toPromise().then(
       (data) => {
-        this.absencesFounded = data;
+        this.absenceFounded = data;
+        if (data == null) {
+          this.boolean = false;
+        }
+        console.log(this.absenceFounded);
       },
     );
   }
@@ -171,5 +181,24 @@ export class AbsenceService {
 
   set absencesEtudiant(value: Absence[]) {
     this._absencesEtudiant = value;
+  }
+
+  get sessionEtudiant(): SessionEtudiant {
+    if (this._sessionEtudiant == null) {
+      this._sessionEtudiant = new SessionEtudiant();
+    }
+    return this._sessionEtudiant;
+  }
+
+  set sessionEtudiant(value: SessionEtudiant) {
+    this._sessionEtudiant = value;
+  }
+
+  get boolean(): boolean {
+    return this._boolean;
+  }
+
+  set boolean(value: boolean) {
+    this._boolean = value;
   }
 }
