@@ -9,6 +9,7 @@ import {Enseignant} from '../../controller/model/enseignant.model';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {Groupe} from '../../controller/model/groupe';
 import {Module} from '../../controller/model/module';
+import {SectorManager} from '../../controller/model/sector-manager';
 import {Session} from '../../controller/model/session';
 import {TypeSession} from '../../controller/model/type-session';
 import {AbsenceService} from '../../controller/service/absence.service';
@@ -16,10 +17,9 @@ import {EnseignantService} from '../../controller/service/enseignant.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 import {GroupeService} from '../../controller/service/groupe.service';
 import {ModuleService} from '../../controller/service/module.service';
+import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SessionService} from '../../controller/service/session.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
-import {SectorManagerService} from '../../controller/service/sector-manager.service';
-import {SectorManager} from '../../controller/model/sector-manager';
 
 @Component({
   selector: 'app-session',
@@ -44,6 +44,7 @@ export class SessionComponent implements OnInit {
   students:  Etudiant[];
   groups: Groupe[];
   seance: Session;
+  typeSeance = new Array<TypeSession>();
   hours =  {
   daysOfWeek: [ 1, 2, 3, 4 , 5 , 6],
   startTime: '08:00',
@@ -65,12 +66,34 @@ export class SessionComponent implements OnInit {
         this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
       }
     }
-
+    await this.sectorManagerService.findBySector(this.moduleConnected.semestre.sector);
+    if (this.enseignantConnected.numeroSOM !== this.sectorManagerFounded.enseignant.numeroSOM) {
     this.typeSessionService.findByEnseignant(this.enseignantConnected);
+}
     console.log(this.sessions);
     this.groupeService.findAll();
   }
-  showBasicDialog(arg) {
+  async showBasicDialog(arg) {
+    await this.sectorManagerService.findBySector(this.moduleConnected.semestre.sector);
+    if (this.enseignantConnected.numeroSOM !== this.sectorManagerFounded.enseignant.numeroSOM) {
+      await this.typeSessionService.findByEnseignant(this.enseignantConnected);
+      console.log('wlh ta  hna ' + this.typeSessionsFounded);
+      for (const r of this.typeSessionsFounded) {
+        this.typeSeance = new Array<TypeSession>();
+        if (r.module.libelle === this.moduleConnected.libelle) {
+          console.log(r);
+          await this.typeSeance.push(r);
+          console.log(this.typeSeance);
+        }
+        console.log('hani khrjt');
+      }
+    } else { await this.typeSessionService.findByModule(this.moduleConnected);
+             console.log('wlh ta jit hna ' + this.typeSessionsFounded);
+             this.typeSeance = this.typeSessionsFounded;
+             for (const t of this.typeSessionsFounded) {
+      console.log(t);
+      await this.sessionService.findByTypeSession(t);
+    }}
     console.log(arg.dateStr);
     if (arg.date >= this.today) {
       this.displayBasic = true;

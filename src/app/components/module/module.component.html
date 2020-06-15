@@ -2,6 +2,7 @@
 <button style="float: left" *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog()" class="btn btn-primary">Ajouter un module</button>
   <button style="float: right" routerLink="/groupe"  class="btn btn-primary">Groupes</button>
 <br>
+<br><br>
 <div class="row" *ngIf="sectorManagerConnected.enseignant.numeroSOM != enseignantConnected.numeroSOM" >
   <div  class="col-sm-4" *ngFor="let m of modulesConnected">
     <div class="card text-center">
@@ -118,6 +119,11 @@
                     <p-cellEditor>
                       <ng-template pTemplate="input">
                         <p-multiSelect name="groupes" tooltipPosition="bottom" [options]="groupesFounded" [(ngModel)]="rowData.groupes" optionLabel="libelle"></p-multiSelect>
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                        <p *ngFor="let g of rowData.groupes">
+                          {{g.libelle}}&nbsp;
+                        </p>
                       </ng-template>
                     </p-cellEditor>
                   </td>
