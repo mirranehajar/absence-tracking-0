@@ -45,7 +45,7 @@
             <a routerLink="/statistique" (click)="goToStatistique()" class="nav-link"><i class="pi pi-chart-bar iconColor"></i>Statistique</a>
           </li>
         </ul>
-        <mat-icon matBadge="15" matBadgeColor="warn" (click)="op1.toggle($event)">notifications</mat-icon>
+        <mat-icon matBadge="15" matBadgeColor="warn" (click)="op1.toggle($event)" style="margin-right: 8px">notifications</mat-icon>
         <p-overlayPanel #op1 (onShow)="showNotif()">
           <ng-template pTemplate>
             <div  ui-overlaypanel-content *ngFor="let n of notifications">
@@ -59,6 +59,7 @@
             </div>
           </ng-template>
         </p-overlayPanel>
+        &emsp;
         <i routerLink="/login" class="pi pi-sign-out iconColor"></i>
         <!-- Links -->
         <a class="navbar-brand" >
