@@ -63,7 +63,7 @@ export class SessionComponent implements OnInit {
       for (const s of this.sessionService.sessionsFounded) {
         this.sessionService.sessions.push(s);
         console.log(s);
-        this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
+        this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop, constraint: 'businessHours'});
       }
     }
     await this.sectorManagerService.findBySector(this.moduleConnected.semestre.sector);
@@ -74,7 +74,8 @@ export class SessionComponent implements OnInit {
     this.groupeService.findAll();
   }
   async showBasicDialog(arg) {
-    await this.sessionService.findByDateAndEnseignant(arg.event.start, this.enseignantConnected);
+    await this.sessionService.findByDateAndEnseignant(arg.dateStr, this.enseignantConnected);
+    console.log(this.sessionService.sessionTrouve);
     if (this.sessionService.sessionTrouve == null) {
       await this.sectorManagerService.findBySector(this.moduleConnected.semestre.sector);
       if (this.enseignantConnected.numeroSOM !== this.sectorManagerFounded.enseignant.numeroSOM) {
