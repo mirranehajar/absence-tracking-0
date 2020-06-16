@@ -27,7 +27,7 @@
             <a routerLink="/justificatif" class="nav-link"><i class="pi pi-star iconColor">Absences</i></a>
           </li>
         </ul>
-        <i (click)="op1.toggle($event)" class=" iconColor pi pi-bell"></i>
+        <mat-icon matBadge="15" matBadgeColor="warn" (click)="op1.toggle($event)">notifications</mat-icon>
         <p-overlayPanel #op1>
           <ng-template pTemplate>
                 <div ui-overlaypanel-content *ngFor="let n of notifications">

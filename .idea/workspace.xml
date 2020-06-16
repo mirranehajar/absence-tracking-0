@@ -20,8 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/footer/footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/footer/footer.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +188,7 @@
       <workItem from="1591901255872" duration="4555000" />
       <workItem from="1591906802634" duration="17115000" />
       <workItem from="1592147030315" duration="18126000" />
-      <workItem from="1592238732506" duration="1742000" />
+      <workItem from="1592238732506" duration="4865000" />
     </task>
     <task id="LOCAL-00001" summary="Page Enseignant sans footer">
       <created>1587994007627</created>
@@ -521,7 +526,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592239423743</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="footer">
+      <created>1592264026917</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1592264026917</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -571,7 +583,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="photo enseignant" />
     <MESSAGE value="post update" />
     <MESSAGE value="sector done" />
     <MESSAGE value="semestre start" />
@@ -596,7 +607,8 @@
     <MESSAGE value="gfhdgq" />
     <MESSAGE value="gfhdgqjSHKSj" />
     <MESSAGE value="ma3rt" />
-    <option name="LAST_COMMIT_MESSAGE" value="ma3rt" />
+    <MESSAGE value="footer" />
+    <option name="LAST_COMMIT_MESSAGE" value="footer" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -619,11 +631,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1591457289443" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1592239422352">
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1592264025727">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587997149012" />
-    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1592239422352" />
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1592264025727" />
     <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1591722448211">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -709,11 +721,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="87" y="66" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1591696288860" />
-    <state x="512" y="234" width="722" height="265" key="MultipleFileMergeDialog" timestamp="1592238435250">
+    <state x="512" y="234" width="722" height="265" key="MultipleFileMergeDialog" timestamp="1592264045488">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="512" y="231" width="722" height="265" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1591816774630" />
-    <state x="512" y="234" key="MultipleFileMergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1592238435250" />
+    <state x="512" y="234" key="MultipleFileMergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1592264045488" />
     <state x="184" y="13" key="SettingsEditor" timestamp="1587939886192">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -722,11 +734,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1591815061158" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1592239443205">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1592264062100">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1591922144284" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1592239443205" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1592264062100" />
     <state x="92" y="93" width="1182" height="552" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1592150157728">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -740,11 +752,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="0" width="587" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1591570812262" />
-    <state x="371" y="154" key="git4idea.merge.GitPullDialog" timestamp="1592239118964">
+    <state x="371" y="154" key="git4idea.merge.GitPullDialog" timestamp="1592264036096">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="371" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1591837934077" />
-    <state x="371" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.738@0.0.1366.738" timestamp="1592239118964" />
+    <state x="371" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.738@0.0.1366.738" timestamp="1592264036096" />
     <state x="406" y="135" key="refactoring.ChangeSignatureDialog" timestamp="1591481265324">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
