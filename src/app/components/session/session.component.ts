@@ -63,7 +63,7 @@ export class SessionComponent implements OnInit {
       for (const s of this.sessionService.sessionsFounded) {
         this.sessionService.sessions.push(s);
         console.log(s);
-        this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
+        this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop, constraint: this.hours});
       }
     }
     await this.sectorManagerService.findBySector(this.moduleConnected.semestre.sector);
@@ -74,34 +74,37 @@ export class SessionComponent implements OnInit {
     this.groupeService.findAll();
   }
   async showBasicDialog(arg) {
-    await this.sessionService.findByDateAndEnseignant(arg.event.start, this.enseignantConnected);
-    if (this.sessionService.sessionTrouve == null) {
-      await this.sectorManagerService.findBySector(this.moduleConnected.semestre.sector);
-      if (this.enseignantConnected.numeroSOM !== this.sectorManagerFounded.enseignant.numeroSOM) {
-        await this.typeSessionService.findByEnseignant(this.enseignantConnected);
-        console.log('wlh ta  hna ' + this.typeSessionsFounded);
-        for (const r of this.typeSessionsFounded) {
-          this.typeSeance = new Array<TypeSession>();
-          if (r.module.libelle === this.moduleConnected.libelle) {
-            console.log(r);
-            await this.typeSeance.push(r);
-            console.log(this.typeSeance);
+    if (arg.date.getDay() !== 0 && arg.date.getHours() >= 8 && arg.date.getHours() < 19) {
+      await this.sessionService.findByDateAndEnseignant(arg.date, this.enseignantConnected);
+      console.log(this.sessionService.sessionTrouve);
+      if (this.sessionService.sessionTrouve == null) {
+        await this.sectorManagerService.findBySector(this.moduleConnected.semestre.sector);
+        if (this.enseignantConnected.numeroSOM !== this.sectorManagerFounded.enseignant.numeroSOM) {
+          await this.typeSessionService.findByEnseignant(this.enseignantConnected);
+          console.log('wlh ta  hna ' + this.typeSessionsFounded);
+          for (const r of this.typeSessionsFounded) {
+            this.typeSeance = new Array<TypeSession>();
+            if (r.module.libelle === this.moduleConnected.libelle) {
+              console.log(r);
+              await this.typeSeance.push(r);
+              console.log(this.typeSeance);
+            }
+            console.log('hani khrjt');
           }
-          console.log('hani khrjt');
+        } else {
+          await this.typeSessionService.findByModule(this.moduleConnected);
+          console.log('wlh ta jit hna ' + this.typeSessionsFounded);
+          this.typeSeance = this.typeSessionsFounded;
+          for (const t of this.typeSessionsFounded) {
+            console.log(t);
+            await this.sessionService.findByTypeSession(t);
+          }
         }
-      } else {
-        await this.typeSessionService.findByModule(this.moduleConnected);
-        console.log('wlh ta jit hna ' + this.typeSessionsFounded);
-        this.typeSeance = this.typeSessionsFounded;
-        for (const t of this.typeSessionsFounded) {
-          console.log(t);
-          await this.sessionService.findByTypeSession(t);
+        console.log(arg.dateStr);
+        if (arg.date >= this.today) {
+          this.displayBasic = true;
+          this.session.dateStart = arg.dateStr;
         }
-      }
-      console.log(arg.dateStr);
-      if (arg.date >= this.today) {
-        this.displayBasic = true;
-        this.session.dateStart = arg.dateStr;
       }
     }
   }
@@ -152,7 +155,7 @@ export class SessionComponent implements OnInit {
     }
     this.calendarEvents = [];
     for (const s of this.sessions) {
-      this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
+      this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop, constraint: this.hours});
     }
   }
   async onResize(arg) {
@@ -168,7 +171,7 @@ export class SessionComponent implements OnInit {
     }
     this.calendarEvents = [];
     for (const s of this.sessions) {
-      this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop});
+      this.calendarEvents = this.calendarEvents.concat({id: s.reference, title: s.libelle, start: s.dateStart, end: s.dateStop, constraint: this.hours});
     }
   }
   public async save() {
