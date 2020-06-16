@@ -29,11 +29,15 @@ export class AuthenticationService {
 
   isUserLoggedIn() {
     const user = sessionStorage.getItem('username');
+    console.log(sessionStorage.getItem('username'));
+    console.log(sessionStorage.getItem('password'));
     console.log(!(user === null));
     return !(user === null);
   }
 
   logOut() {
     sessionStorage.removeItem('username');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('password');
   }
 }

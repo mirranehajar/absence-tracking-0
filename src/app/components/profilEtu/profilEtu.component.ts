@@ -24,6 +24,7 @@ export class ProfilEtuComponent implements OnInit {
   constructor(private etudiantService: EtudiantService, private http: HttpClient) { }
 
   async ngOnInit(): Promise<void> {
+    await this.etudiantService.findByMail(sessionStorage.getItem('username'));
     await this.getImage(this.etudiantConnected.cin);
   }
 

@@ -22,7 +22,8 @@ export class ProfilComponent implements OnInit {
 
   constructor(private http: HttpClient, private enseignantService: EnseignantService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    await this.enseignantService.findByMail(sessionStorage.getItem('username'));
     this.getImage(this.enseignantConnected.cin);
 
   }

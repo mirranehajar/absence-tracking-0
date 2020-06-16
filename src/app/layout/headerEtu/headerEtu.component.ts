@@ -49,6 +49,7 @@ export class HeaderEtuComponent implements OnInit {
                private authentocationService: AuthenticationService, private router: Router) { }
 
   async ngOnInit(): Promise<void> {
+    await this.etudiantService.findByMail(sessionStorage.getItem('username'));
     this.getImage(this.etudiantService.etudiantConnected.cin);
     this.cycleService.findAll();
     this.sectorService.findAll();

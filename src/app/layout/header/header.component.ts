@@ -56,6 +56,7 @@ export class HeaderComponent implements OnInit {
                private authentocationService: AuthenticationService) { }
 
    async ngOnInit(): Promise<void> {
+    await this.enseignantService.findByMail(sessionStorage.getItem('username'));
     this.getImage(this.enseignantConnected.cin);
     this.cycleService.findAll();
     this.sectorService.findAll();
@@ -358,8 +359,8 @@ export class HeaderComponent implements OnInit {
         },
       );
   }
-  logout() {
-    this.authentocationService.logOut();
+  async logout() {
+    await this.authentocationService.logOut();
     this.router.navigate(['login']);
   }
 }
