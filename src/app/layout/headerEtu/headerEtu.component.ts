@@ -1,21 +1,23 @@
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 import {MenuItem} from 'primeng/api';
+import {Absence} from '../../controller/model/absence';
 import {Cycle} from '../../controller/model/cycle';
 import {Enseignant} from '../../controller/model/enseignant.model';
+import {Etudiant} from '../../controller/model/etudiant.model';
+import {Notification} from '../../controller/model/notification';
 import {Sector} from '../../controller/model/sector';
 import {SectorManager} from '../../controller/model/sector-manager';
 import {Semestre} from '../../controller/model/semestre';
+import {AuthenticationService} from '../../controller/service/authentication.service';
 import {CycleService} from '../../controller/service/cycle.service';
 import {EnseignantService} from '../../controller/service/enseignant.service';
+import {EtudiantService} from '../../controller/service/etudiant.service';
+import {NotificationService} from '../../controller/service/notification.service';
 import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
-import {Absence} from '../../controller/model/absence';
-import {NotificationService} from '../../controller/service/notification.service';
-import {Notification} from '../../controller/model/notification';
-import {EtudiantService} from '../../controller/service/etudiant.service';
-import {HttpClient} from '@angular/common/http';
-import {Etudiant} from '../../controller/model/etudiant.model';
 
 // @ts-ignore
 @Component({
@@ -37,12 +39,14 @@ export class HeaderEtuComponent implements OnInit {
     displayBasic4: boolean;
     filiere: string;
     display: boolean;
+    notif: number;
   private _url = 'http://localhost:8090/absence-tracking/etudiant/';
   retrievedImage: any;
    constructor(private sectorManagerService: SectorManagerService, private sectorService: SectorService,
                private cycleService: CycleService, private enseignantService: EnseignantService,
                private semestreService: SemestreService, private notificationService: NotificationService,
-               private etudiantService: EtudiantService, private http: HttpClient) { }
+               private etudiantService: EtudiantService, private http: HttpClient,
+               private authentocationService: AuthenticationService, private router: Router) { }
 
   async ngOnInit(): Promise<void> {
     this.getImage(this.etudiantService.etudiantConnected.cin);
@@ -60,7 +64,7 @@ export class HeaderEtuComponent implements OnInit {
         console.log(this.notifications);
       }
     }
-
+    this.notif = this.notifications.length;
     this.items = [
       {
         label: 'Acceuil',
@@ -214,6 +218,7 @@ export class HeaderEtuComponent implements OnInit {
         console.log(this.notifications);
       }
     }
+    this.notif = this.notifications.length;
   }
   get notificationsFounded(): Notification[] {
     return this.notificationService.notificationsFounded;
@@ -223,7 +228,9 @@ export class HeaderEtuComponent implements OnInit {
   }
   async getImage(cin: string): Promise<any> {
     // Make a call to Spring Boot to get the Image Bytes.
-    await this.http.get<Etudiant>(this._url + 'get/' + cin)
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Etudiant>(this._url + 'get/' + cin, {headers})
       .toPromise().then(
         (res) => {
           this.retrievedImage = 'data:image/jpeg;base64,' + res.image;
@@ -234,5 +241,9 @@ export class HeaderEtuComponent implements OnInit {
   }
 get etudiantConnected(): Etudiant {
      return this.etudiantService.etudiantConnected;
+}
+logout() {
+  this.authentocationService.logOut();
+  this.router.navigate(['login']);
 }
 }

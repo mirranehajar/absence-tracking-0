@@ -5,6 +5,7 @@ import {Enseignant} from '../../controller/model/enseignant.model';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {Module} from '../../controller/model/module';
 import {Semestre} from '../../controller/model/semestre';
+import {AuthenticationService} from '../../controller/service/authentication.service';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 import {ModuleService} from '../../controller/service/module.service';
@@ -15,9 +16,13 @@ import {NotificationService} from '../../controller/service/notification.service
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  username: string;
+  password: string;
+  invalidLogin = false;
 
   constructor(private etudiantService: EtudiantService, private enseignantService: EnseignantService,
-              private router: Router, private moduleService: ModuleService, private notificationService: NotificationService) { }
+              private router: Router, private moduleService: ModuleService,
+              private notificationService: NotificationService, private loginservice: AuthenticationService) { }
   get etudiantConnected(): Etudiant {
     return this.etudiantService.etudiantConnected;
   }
@@ -86,5 +91,29 @@ export class LoginComponent implements OnInit {
   }
   public async findBySemestre(semestre: Semestre) {
     await this.moduleService.findBySemestre(semestre);
+  }
+  checkLogin() {
+    (this.loginservice.authenticate(this.username, this.password).subscribe(
+        async (data) => {
+          this.enseignantService.enseignantConnected = null;
+          this.etudiantService.etudiantConnected = null;
+          await this.etudiantService.findByMail(this.username);
+          await this.enseignantService.findByMail(this.username);
+          console.log(this.enseignantConnected);
+          console.log(this.etudiantConnected);
+          if ( this.enseignantConnected.role != null) {
+          this.router.navigate(['/emploi']);
+          } else if (this.etudiantConnected.role != null) {
+            this.router.navigate(['/emploiEtu']);
+          }
+          this.invalidLogin = false;
+        },
+        (error) => {
+          this.invalidLogin = true;
+
+        },
+      )
+    );
+    this.password = null;
   }
 }

@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Groupe} from '../model/groupe';
 import {Module} from '../model/module';
@@ -22,7 +22,9 @@ export class SemestreService {
   constructor(private http: HttpClient) { }
 
   public async findBySector(sector: Sector) {
-    await this.http.post<Semestre[]>(this._url + 'sector/', sector).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Semestre[]>(this._url + 'sector/', sector, {headers}).toPromise().then(
       (data) => {
         this.semestresFounded = data;
       },
@@ -30,28 +32,36 @@ export class SemestreService {
   }
   public async findBySectorAndAnneeUniversitaire(sector: Sector, anneeUniversitaire: string) {
     // tslint:disable-next-line:max-line-length
-    await this.http.post<Semestre[]>(this._url + 'sectorAndAnneeUniversitaire/anneeUniversitaire/' + anneeUniversitaire, sector).toPromise().then(
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    // tslint:disable-next-line:max-line-length
+    await this.http.post<Semestre[]>(this._url + 'sectorAndAnneeUniversitaire/anneeUniversitaire/' + anneeUniversitaire, sector, {headers}).toPromise().then(
       (data) => {
         this.semestresFounded = data;
       },
     );
   }
   public async findByAnneeUniversitaire(anneeUniversitaire: string) {
-    await this.http.get<Semestre[]>(this._url + 'anneeUniversitaire/' + anneeUniversitaire).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Semestre[]>(this._url + 'anneeUniversitaire/' + anneeUniversitaire, {headers}).toPromise().then(
       (data) => {
         this.semestresFounded = data;
       },
     );
   }
   public  async findAll() {
-     await this.http.get<Semestre[]>(this._url).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Semestre[]>(this._url, {headers}).toPromise().then(
       async (data) => {
         this.semestres = data;
       },
     );
   }
   public async deleteByReference(semestre: Semestre) {
-    await this.http.delete<number>(this._url + 'reference/' + semestre.reference).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.delete<number>(this._url + 'reference/' + semestre.reference, {headers}).toPromise().then(
       (data) => {
         console.log(data);
         this.deleteFromList(semestre);
@@ -67,7 +77,9 @@ export class SemestreService {
   public update() {
     this.semestresFounded = this.semestreFounded.sector.semestres;
     this.semestreFounded.sector.semestres = null;
-    this.http.post<number>(this._url + 'update' , this.semestreFounded).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.post<number>(this._url + 'update' , this.semestreFounded, {headers}).subscribe(
       (data) => {
         if (data > 0) {
           this.deleteFromList(this.semestreFounded);
@@ -80,7 +92,9 @@ export class SemestreService {
     this.semestreFounded.sector.semestres = this.semestresFounded;
   }
   public async save(filiere: string) {
-    await this.http.post<number>(this._url + filiere, this.semestre).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<number>(this._url + filiere, this.semestre, {headers}).toPromise().then(
       (data) => {
         if (data > 0) {
           this.semestres.push(this.clone(this.semestre));

@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Cycle} from '../model/cycle';
 import {Sector} from '../model/sector';
@@ -20,21 +20,27 @@ export class SectorService {
   constructor(private http: HttpClient, private semestreService: SemestreService) { }
 
   public findByCycle(sector: Sector) {
-    this.http.get<Sector>(this._url + 'cycle').subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.get<Sector>(this._url + 'cycle', {headers}).subscribe(
       (data) => {
         this.sectorFounded = data;
       },
     );
   }
   public async findByLibelle(libelle: string) {
-    await this.http.get<Sector>(this._url + 'libelle/' + libelle).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Sector>(this._url + 'libelle/' + libelle, {headers}).toPromise().then(
       (data) => {
         this.sectorFounded = data;
       },
     );
   }
   public async deleteByLibelle(sector: Sector) {
-    await this.http.delete<number>(this._url + 'libelle/' + sector.libelle).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.delete<number>(this._url + 'libelle/' + sector.libelle, {headers}).toPromise().then(
       (data) => {
         console.log(data);
         this.deleteFromList(sector);
@@ -48,7 +54,9 @@ export class SectorService {
     }
   }
   public async findAll() {
-    await this.http.get<Sector[]>(this._url).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Sector[]>(this._url, {headers}).toPromise().then(
       async (data) => {
         this.sectors = data;
         for (const s of this.sectors) {
@@ -60,7 +68,9 @@ export class SectorService {
   }
   public update() {
     console.log(this.sectorFounded);
-    this.http.post<number>(this._url + 'update', this.sectorFounded).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.post<number>(this._url + 'update', this.sectorFounded, {headers}).subscribe(
       (data) => {
         if (data > 0) {
           this.deleteFromList(this.sectorFounded);
@@ -72,7 +82,9 @@ export class SectorService {
     );
   }
   public async save() {
-    await this.http.post<number>(this._url, this.sector).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<number>(this._url, this.sector, {headers}).toPromise().then(
       (data) => {
         if (data > 0) {
           this.sectors.push(this.clone(this.sector));

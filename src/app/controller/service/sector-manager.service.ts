@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Enseignant} from '../model/enseignant.model';
 import {Sector} from '../model/sector';
@@ -21,21 +21,27 @@ export class SectorManagerService {
   constructor(private http: HttpClient, private sectorService: SectorService) { }
 
   public async findByEnseignant(enseignant: Enseignant) {
-    await this.http.post<SectorManager>(this._url + 'enseignant' , enseignant).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<SectorManager>(this._url + 'enseignant' , enseignant, {headers}).toPromise().then(
       (data) => {
         this.sectorManagerFounded = data;
       },
     );
   }
   public async findBySector(sector: Sector) {
-    await this.http.post<SectorManager>(this._url + 'sector', sector ).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<SectorManager>(this._url + 'sector', sector, {headers}).toPromise().then(
       (data) => {
         this.sectorManagerFounded = data;
       },
     );
   }
   public deleteByFilière(sectorManager: SectorManager) {
-    this.http.delete<number>(this._url + 'sector/').subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.delete<number>(this._url + 'sector/', {headers}).subscribe(
       (data) => {
         console.log(data);
         this.deleteFromList(sectorManager);
@@ -49,14 +55,19 @@ export class SectorManagerService {
     }
   }
   public findAll() {
-    this.http.get<SectorManager[]>(this._url).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.get<SectorManager[]>(this._url, {headers}).subscribe(
       (data) => {
         this.sectorManagers = data;
       },
     );
   }
   public update() {
-    this.http.post<number>(this._url + 'update/' + this.sectorService.sectorFounded.libelle , this.sectorManagerFounded).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    // tslint:disable-next-line:max-line-length
+    this.http.post<number>(this._url + 'update/' + this.sectorService.sectorFounded.libelle , this.sectorManagerFounded, {headers}).subscribe(
       (data) => {
         if (data > 0) {
           this.deleteFromList(this.sectorManagerFounded);
@@ -68,7 +79,9 @@ export class SectorManagerService {
     );
   }
   public async save() {
-    await this.http.post<number>(this._url + this.sectorManager.sector.libelle, this.sectorManager).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<number>(this._url + this.sectorManager.sector.libelle, this.sectorManager, {headers}).toPromise().then(
       (data) => {
         if (data > 0) {
           this.sectorManagers.push(this.clone(this.sectorManager));

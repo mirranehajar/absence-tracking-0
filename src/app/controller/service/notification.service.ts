@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Absence} from '../model/absence';
 import {Enseignant} from '../model/enseignant.model';
@@ -22,21 +22,27 @@ export class NotificationService {
   constructor(private http: HttpClient) { }
 
   public async findByEtudiant(etudiant: Etudiant) {
-    await this.http.post<Notification[]>(this._url + 'etudiant' , etudiant).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Notification[]>(this._url + 'etudiant' , etudiant, {headers}).toPromise().then(
       (data) => {
         this.notificationsFounded = data;
       },
     );
   }
   public async findByAbsence(absence: Absence) {
-    await this.http.post<Notification>(this._url + 'absence' , absence).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Notification>(this._url + 'absence' , absence, {headers}).toPromise().then(
       (data) => {
         this.notificationFounded = data;
       },
     );
   }
   public async findByEnseignant(enseignant: Enseignant) {
-    await this.http.post<Notification[]>(this._url + 'enseignant' , enseignant).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Notification[]>(this._url + 'enseignant' , enseignant, {headers}).toPromise().then(
       (data) => {
         this.notificationsFounded = data;
       },
@@ -44,7 +50,9 @@ export class NotificationService {
   }
   public async findByState(state: string) {
     console.log('hani ldakhl tla fct');
-    await this.http.get<Notification[]>(this._url + 'state/' + state).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Notification[]>(this._url + 'state/' + state, {headers}).toPromise().then(
       (data) => {
         this.notificationsFounded = data;
         console.log(data);
@@ -52,14 +60,18 @@ export class NotificationService {
     );
   }
   public findAll() {
-    this.http.get<Notification[]>(this._url).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.get<Notification[]>(this._url, {headers}).subscribe(
       (data) => {
         this.notifications = data;
       },
     );
   }
   public async deleteByAbsence(absence: Absence) {
-    await this.http.delete<number>(this._url + '/absence/' + absence.ref).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.delete<number>(this._url + '/absence/' + absence.ref, {headers}).toPromise().then(
       (data) => {
         console.log(data);
         this.findByAbsence(absence);
@@ -76,7 +88,9 @@ export class NotificationService {
     }
   }
   public async update() {
-    await this.http.post<number>(this._url + 'update', this.notificationFounded).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<number>(this._url + 'update', this.notificationFounded, {headers}).toPromise().then(
       (data) => {
         if (data > 0) {
           this.deleteFromList(this.notificationFounded);
@@ -89,7 +103,9 @@ export class NotificationService {
   }
   public async save() {
     console.log('wlh ta hani jit lsave');
-    await this.http.post<Notification>(this._url, this.notification).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Notification>(this._url, this.notification, {headers}).toPromise().then(
       (data) => {
         if (data) {
           this.notifications.push(this.clone(data));

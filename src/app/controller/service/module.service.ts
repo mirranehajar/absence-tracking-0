@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Module} from '../model/module';
 import {Semestre} from '../model/semestre';
@@ -71,7 +71,9 @@ export class ModuleService {
     }
   }
   async save() {
-    await this.http.post<number>(this._url, this.module).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<number>(this._url, this.module, {headers}).toPromise().then(
       (data) => {
         if (data > 0) {
           this.modules.push(this.clone(this.module));

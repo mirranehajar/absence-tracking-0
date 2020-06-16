@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {EnseignantService} from '../../controller/service/enseignant.service';
@@ -49,7 +49,9 @@ export class ProfilComponent implements OnInit {
     // FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
-    await this.http.post<number>(this._url + 'upload/' + this.enseignantConnected.numeroSOM , uploadImageData)
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<number>(this._url + 'upload/' + this.enseignantConnected.numeroSOM , uploadImageData, {headers})
       .toPromise().then((response) => {
           if (response === 1) {
             this.message = 'Image uploaded successfully';
@@ -62,7 +64,9 @@ export class ProfilComponent implements OnInit {
   // Gets called when the user clicks on retrieved image button to get the image from back end
   async getImage(cin: string): Promise<any> {
     // Make a call to Spring Boot to get the Image Bytes.
-    await this.http.get<Enseignant>(this._url + 'get/' + cin)
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Enseignant>(this._url + 'get/' + cin, {headers})
       .toPromise().then(
         (res) => {
           this.retrievedImage = 'data:image/jpeg;base64,' + res.image;

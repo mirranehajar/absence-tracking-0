@@ -1,19 +1,30 @@
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   authenticate(username, password) {
-    if (username === 'javainuse' && password === 'password') {
-      sessionStorage.setItem('username', username);
-      return true;
-    } else {
-      return false;
-    }
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+    return this.httpClient.post<any>('http://localhost:8090/authenticate', {username, password}, {headers}).pipe(
+      map(
+        (userData) => {
+          sessionStorage.setItem('username', username);
+          sessionStorage.setItem('password', password);
+          console.log(sessionStorage.getItem('username'));
+          console.log(sessionStorage.getItem('password'));
+          const tokenStr = 'Bearer ' + userData.token;
+          sessionStorage.setItem('token', tokenStr);
+          return userData;
+        },
+      ),
+
+    );
   }
 
   isUserLoggedIn() {

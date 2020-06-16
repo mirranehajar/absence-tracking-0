@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Etudiant} from '../model/etudiant.model';
 import {Groupe} from '../model/groupe';
@@ -23,21 +23,27 @@ export class GroupeService {
   constructor(private http: HttpClient, private etudiantService: EtudiantService) { }
 
   public async findByReference(reference: string) {
-   await this.http.get<Groupe>(this._url + 'reference/' + reference).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Groupe>(this._url + 'reference/' + reference, {headers}).toPromise().then(
       (data) => {
         this.groupeFounded = data;
       },
     );
   }
   public async findByLibelle(libelle: string) {
-   await this.http.get<Groupe>(this._url + 'libelle/' + libelle).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Groupe>(this._url + 'libelle/' + libelle, {headers}).toPromise().then(
       (data) => {
         this.groupeFounded = data;
       },
     );
   }
   public async findBySector(sector: Sector) {
-   await this.http.post<Groupe[]>(this._url + 'sector' , sector).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Groupe[]>(this._url + 'sector' , sector, {headers}).toPromise().then(
      async (data) => {
         this.groupesFounded = data;
         for ( const g of this.groupesFounded) {
@@ -49,7 +55,9 @@ export class GroupeService {
     );
   }
   public async findBySemestre(semestre: Semestre) {
-   await this.http.post<Groupe[]>(this._url + 'semestre' , semestre).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Groupe[]>(this._url + 'semestre' , semestre, {headers}).toPromise().then(
      async (data) => {
         this.groupesFounded = data;
         for ( const g of this.groupesFounded) {
@@ -61,7 +69,9 @@ export class GroupeService {
     );
   }
   public findAll() {
-    this.http.get<Groupe[]>(this._url).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.get<Groupe[]>(this._url, {headers}).subscribe(
       async (data) => {
         this.groupes = data;
         for ( const g of this.groupes) {
@@ -72,7 +82,9 @@ export class GroupeService {
     );
   }
   public deleteByReference(groupe: Groupe) {
-    this.http.delete<number>(this._url + 'reference/' + groupe.reference).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.delete<number>(this._url + 'reference/' + groupe.reference, {headers}).subscribe(
       (data) => {
         console.log(data);
         this.deleteFromList(groupe);
@@ -86,7 +98,9 @@ export class GroupeService {
     }
   }
   public update() {
-    this.http.post<number>(this._url + 'update', this.groupeFounded).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.post<number>(this._url + 'update', this.groupeFounded, {headers}).subscribe(
       (data) => {
         if (data > 0) {
           this.deleteFromList(this.groupeFounded);
@@ -98,7 +112,9 @@ export class GroupeService {
     );
   }
   public async save() {
-    await this.http.post<Groupe>(this._url, this.groupe).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Groupe>(this._url, this.groupe, {headers}).toPromise().then(
       (data) => {
         if (data) {
           this.groupes.push(this.clone(data));

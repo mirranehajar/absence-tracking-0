@@ -1,5 +1,5 @@
 import {DragDropModule} from '@angular/cdk/drag-drop';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatBadgeModule} from '@angular/material/badge';
@@ -37,6 +37,7 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AbsenceComponent } from './components/absence/absence.component';
+import { AuthenComponent } from './components/authen/authen.component';
 import { EmploiEtuComponent } from './components/emploi-etu/emploi-etu.component';
 import { EmploiComponent } from './components/emploi/emploi.component';
 import { EnseignantComponent } from './components/enseignant/enseignant.component';
@@ -45,12 +46,14 @@ import { GroupesComponent } from './components/groupes/groupes.component';
 import {GroupesEtuComponent} from './components/groupesEtu/groupesEtu.component';
 import {JustificationComponent} from './components/Justification/justification.component';
 import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
 import {ModuleComponent} from './components/module/module.component';
 import {ModuleEtuComponent} from './components/moduleEtu/moduleEtu.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import {ProfilEtuComponent} from './components/profilEtu/profilEtu.component';
 import { SessionComponent } from './components/session/session.component';
 import {StatistiqueComponent} from './components/statistique/statistique.component';
+import {BasicAuthHtppInterceptorService} from './controller/service/basic-auth-htpp-interceptor.service';
 import {AppEnsComponent} from './layout/appEns/appEns.component';
 import {AppEtuComponent} from './layout/appEtu/appEtu.component';
 import { AsideComponent } from './layout/aside/aside.component';
@@ -88,6 +91,8 @@ import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
     StatistiqueComponent,
     EmploiComponent,
     EmploiEtuComponent,
+    AuthenComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -144,7 +149,11 @@ import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
     MatInputModule,
     MatBadgeModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: BasicAuthHtppInterceptorService, multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

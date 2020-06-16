@@ -1,8 +1,9 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, Message} from 'primeng/api';
 import {MessageService} from 'primeng/api';
 import * as XLSX from 'xlsx';
+import {City} from '../../controller/model/city';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {Groupe} from '../../controller/model/groupe';
@@ -13,7 +14,6 @@ import {EtudiantService} from '../../controller/service/etudiant.service';
 import {GroupeService} from '../../controller/service/groupe.service';
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
-import {City} from '../../controller/model/city';
 
 type AOA = any[][];
 
@@ -2210,8 +2210,10 @@ export class EtudiantsComponent implements OnInit {
   }
   // Gets called when the user clicks on retieve image button to get the image from back end
   async getImage(cin: string): Promise<any> {
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     // Make a call to Spring Boot to get the Image Bytes.
-    await this.http.get<Etudiant>(this._url + 'get/' + cin)
+    await this.http.get<Etudiant>(this._url + 'get/' + cin, {headers})
       .toPromise().then(
         (res) => {
           this.retrievedImage = 'data:image/jpeg;base64,' + res.image;
