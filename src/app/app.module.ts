@@ -2,6 +2,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatBadgeModule} from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatOptionModule} from '@angular/material/core';
@@ -36,6 +37,8 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AbsenceComponent } from './components/absence/absence.component';
+import { EmploiEtuComponent } from './components/emploi-etu/emploi-etu.component';
+import { EmploiComponent } from './components/emploi/emploi.component';
 import { EnseignantComponent } from './components/enseignant/enseignant.component';
 import { EtudiantsComponent } from './components/etudiants/etudiants.component';
 import { GroupesComponent } from './components/groupes/groupes.component';
@@ -57,8 +60,6 @@ import { HeaderComponent } from './layout/header/header.component';
 import {HeaderEtuComponent} from './layout/headerEtu/headerEtu.component';
 import { MainComponent } from './layout/main/main.component';
 import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
-import { EmploiComponent } from './components/emploi/emploi.component';
-import { EmploiEtuComponent } from './components/emploi-etu/emploi-etu.component';
 
 @NgModule({
   declarations: [
@@ -141,6 +142,7 @@ import { EmploiEtuComponent } from './components/emploi-etu/emploi-etu.component
     MatIconModule,
     ChartModule,
     MatInputModule,
+    MatBadgeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

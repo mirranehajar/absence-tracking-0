@@ -1,4 +1,5 @@
 <!--Navbar-->
+
 <mdb-navbar #nav SideClass="navbar navbar-expand-lg navbar-light white">
         <a class="navbar-brand" routerLink="/emploi">
           <img src="assets/images/fstg.jpg" height="30" alt="">
@@ -44,7 +45,7 @@
             <a routerLink="/statistique" (click)="goToStatistique()" class="nav-link"><i class="pi pi-chart-bar iconColor"></i>Statistique</a>
           </li>
         </ul>
-        <i (click)="op1.toggle($event)" class=" iconColor pi pi-bell"></i>
+        <mat-icon matBadge="15" matBadgeColor="warn" (click)="op1.toggle($event)" style="margin-right: 8px">notifications</mat-icon>
         <p-overlayPanel #op1 (onShow)="showNotif()">
           <ng-template pTemplate>
             <div  ui-overlaypanel-content *ngFor="let n of notifications">
@@ -58,6 +59,7 @@
             </div>
           </ng-template>
         </p-overlayPanel>
+        &emsp;
         <i routerLink="/login" class="pi pi-sign-out iconColor"></i>
         <!-- Links -->
         <a class="navbar-brand" >
