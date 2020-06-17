@@ -1,27 +1,7 @@
-
-p {
-  font-family: Lato;
-}
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.example-full-width {
-  width: 100%;
-}
-.example-form-field {
-  width: 100%;
-}
-
-.HD{
-  background-color: #EDEDED;
-  height: 633px;
-}
-
-.text-lowercase{
-  text-align: center;
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .hero-image {
@@ -41,7 +21,19 @@ p {
   transform: translate(-50%, -50%);
   color: white;
 }
-.St{
-  margin-top: 50px;
+
+.hero-text button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 10px 25px;
+  color: black;
+  background-color: #ddd;
+  text-align: center;
+  cursor: pointer;
 }
 
+.hero-text button:hover {
+  background-color: #555;
+  color: white;
+}

@@ -43,6 +43,7 @@ import { EnseignantComponent } from './components/enseignant/enseignant.componen
 import { EtudiantsComponent } from './components/etudiants/etudiants.component';
 import { GroupesComponent } from './components/groupes/groupes.component';
 import {GroupesEtuComponent} from './components/groupesEtu/groupesEtu.component';
+import { HomeComponent } from './components/home/home.component';
 import {JustificationComponent} from './components/Justification/justification.component';
 import { LoginComponent } from './components/login/login.component';
 import {ModuleComponent} from './components/module/module.component';
@@ -88,6 +89,7 @@ import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
     StatistiqueComponent,
     EmploiComponent,
     EmploiEtuComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

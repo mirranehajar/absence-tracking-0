@@ -7,6 +7,7 @@ import {EnseignantComponent} from './components/enseignant/enseignant.component'
 import {EtudiantsComponent} from './components/etudiants/etudiants.component';
 import {GroupesComponent} from './components/groupes/groupes.component';
 import {GroupesEtuComponent} from './components/groupesEtu/groupesEtu.component';
+import {HomeComponent} from './components/home/home.component';
 import {JustificationComponent} from './components/Justification/justification.component';
 import {LoginComponent} from './components/login/login.component';
 import {ModuleComponent} from './components/module/module.component';
@@ -20,6 +21,7 @@ import {AppEtuComponent} from './layout/appEtu/appEtu.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: '', component: AppEtuComponent, children: [
       {path: 'profilEtu', component: ProfilEtuComponent},
