@@ -32,15 +32,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="217f8d5a-9c79-4659-be29-9d929010671a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/moduleEtu/moduleEtu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/moduleEtu/moduleEtu.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/moduleEtu/moduleEtu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/moduleEtu/moduleEtu.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/statistique/statistique.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/statistique/statistique.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/module.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/module.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.ts" afterDir="false" />
-    </list>
+    <list default="true" id="217f8d5a-9c79-4659-be29-9d929010671a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -204,14 +196,7 @@
       <workItem from="1592238732506" duration="5874000" />
       <workItem from="1592342091702" duration="8369000" />
       <workItem from="1592385262965" duration="4504000" />
-      <workItem from="1592393782424" duration="5704000" />
-    </task>
-    <task id="LOCAL-00004" summary="kayna erreur f service dial etudiant li ma3rfthach na9sa chi virgule wla chi haja bhal haka">
-      <created>1588027254460</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1588027254461</updated>
+      <workItem from="1592393782424" duration="6114000" />
     </task>
     <task id="LOCAL-00005" summary="Import working">
       <created>1588036605886</created>
@@ -549,7 +534,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592400196999</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="modifications">
+      <created>1592403345271</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1592403345272</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -599,7 +591,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="semestre done" />
     <MESSAGE value="working on module rn" />
     <MESSAGE value="module done" />
     <MESSAGE value="justification and login" />
@@ -624,7 +615,8 @@
     <MESSAGE value="bell badge" />
     <MESSAGE value="security done" />
     <MESSAGE value="auth limit" />
-    <option name="LAST_COMMIT_MESSAGE" value="auth limit" />
+    <MESSAGE value="modifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="modifications" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -769,10 +761,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="0" width="587" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1591570812262" />
-    <state x="371" y="154" key="git4idea.merge.GitPullDialog" timestamp="1592319975938">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="371" y="152" key="git4idea.merge.GitPullDialog" timestamp="1592403360501">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="371" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1591837934077" />
+    <state x="371" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1592403360501" />
     <state x="371" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.738@0.0.1366.738" timestamp="1592319975938" />
     <state x="406" y="135" key="refactoring.ChangeSignatureDialog" timestamp="1591481265324">
       <screen x="0" y="0" width="1366" height="728" />
