@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Cycle} from '../model/cycle';
 
@@ -16,22 +16,28 @@ export class CycleService {
   private _url = 'http://localhost:8090/absence-tracking/cycle/';
   constructor(private http: HttpClient) { }
 
-  public findByLibelle(cycle: Cycle) {
-    this.http.get<Cycle>(this._url + 'libelle/' + cycle.libelle).subscribe(
+  public async findByLibelle(cycle: Cycle) {
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Cycle>(this._url + 'libelle/' + cycle.libelle, {headers}).toPromise().then(
       (data) => {
         this.cycleFounded = data;
       },
     );
   }
   public findAll() {
-    this.http.get<Cycle[]>(this._url).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.get<Cycle[]>(this._url, {headers}).subscribe(
       (data) => {
         this.cycles = data;
       },
     );
   }
   public deleteByLibelle(cycle: Cycle) {
-    this.http.delete<number>(this._url + 'cycle/' + cycle.libelle).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.delete<number>(this._url + 'cycle/' + cycle.libelle, {headers}).subscribe(
       (data) => {
         console.log(data);
         this.deleteFromList(cycle);
@@ -45,7 +51,9 @@ export class CycleService {
     }
   }
   public save() {
-    this.http.post<number>(this._url, this._cycle).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.post<number>(this._url, this._cycle, {headers}).subscribe(
       (data) => {
         if (data > 0) {
           this._cycles.push(this.clone(this.cycle));

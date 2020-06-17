@@ -1,3 +1,4 @@
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {MenuItem} from 'primeng/api';
@@ -12,6 +13,7 @@ import {Subject} from '../../controller/model/subject';
 import {TypeSession} from '../../controller/model/type-session';
 import {Years} from '../../controller/model/years';
 import {AbsenceService} from '../../controller/service/absence.service';
+import {AuthenticationService} from '../../controller/service/authentication.service';
 import {CycleService} from '../../controller/service/cycle.service';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {ModuleService} from '../../controller/service/module.service';
@@ -21,7 +23,6 @@ import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
 import {YearsService} from '../../controller/service/years.service';
-import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
@@ -51,9 +52,11 @@ export class HeaderComponent implements OnInit {
                public semestreService: SemestreService, private router: Router,
                private moduleService: ModuleService, private typeSessionService: TypeSessionService,
                private notificationService: NotificationService, private absenceService: AbsenceService,
-               private yearsService: YearsService, private http: HttpClient) { }
+               private yearsService: YearsService, private http: HttpClient,
+               private authentocationService: AuthenticationService) { }
 
    async ngOnInit(): Promise<void> {
+    await this.enseignantService.findByMail(sessionStorage.getItem('username'));
     this.getImage(this.enseignantConnected.cin);
     this.cycleService.findAll();
     this.sectorService.findAll();
@@ -123,6 +126,7 @@ export class HeaderComponent implements OnInit {
         this.notifications.push(n);
       }
     }
+     this.notif = this.notifications.length;
   }
   async accepter(notification: Notification) {
     notification.state = 'acceptée';
@@ -138,6 +142,7 @@ export class HeaderComponent implements OnInit {
         this.notifications.push(n);
       }
     }
+    this.notif = this.notifications.length;
   }
   setClasses() {
     return this.classes;
@@ -343,7 +348,9 @@ export class HeaderComponent implements OnInit {
   }
   async getImage(cin: string): Promise<any> {
     // Make a call to Spring Boot to get the Image Bytes.
-    await this.http.get<Enseignant>(this._url + 'get/' + cin)
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Enseignant>(this._url + 'get/' + cin, {headers})
       .toPromise().then(
         (res) => {
           this.retrievedImage = 'data:image/jpeg;base64,' + res.image;
@@ -351,5 +358,9 @@ export class HeaderComponent implements OnInit {
           console.log(this.retrievedImage);
         },
       );
+  }
+  async logout() {
+    await this.authentocationService.logOut();
+    this.router.navigate(['login']);
   }
 }

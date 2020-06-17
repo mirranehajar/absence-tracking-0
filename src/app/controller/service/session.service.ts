@@ -1,9 +1,9 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Session} from '../model/session';
-import {TypeSession} from '../model/type-session';
 import {Enseignant} from '../model/enseignant.model';
 import {Semestre} from '../model/semestre';
+import {Session} from '../model/session';
+import {TypeSession} from '../model/type-session';
 
 @Injectable({
   providedIn: 'root',
@@ -23,14 +23,18 @@ export class SessionService {
   constructor(private http: HttpClient) { }
 
   public findByLibelle(session: Session) {
-    this.http.get<Session>(this._url + 'libelle/' + session.libelle).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.get<Session>(this._url + 'libelle/' + session.libelle, {headers}).subscribe(
       (data) => {
         this.sessionFounded = data;
       },
     );
   }
   public async findByEnseignant(enseignant: Enseignant) {
-    await this.http.post<Session[]>(this._url + 'enseignant ' , enseignant).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Session[]>(this._url + 'enseignant ' , enseignant, {headers}).toPromise().then(
       (data) => {
         this.sessionsFounded = data;
       },
@@ -38,7 +42,9 @@ export class SessionService {
     console.log(this.sessionsFounded);
   }
   public async findByDateAndEnseignant(date: Date, enseignant: Enseignant) {
-    await this.http.post<Session>(this._url + 'dateAndEnseignant/dateStart/ ' + date, enseignant).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Session>(this._url + 'dateAndEnseignant/dateStart/ ' + date, enseignant, {headers}).toPromise().then(
       (data) => {
         this.sessionTrouve = data;
       },
@@ -46,7 +52,9 @@ export class SessionService {
     console.log(this.sessionsFounded);
   }
   public async findByDateAndSemestre(date: Date, semestre: Semestre) {
-    await this.http.post<Session>(this._url + 'dateAndSemestre/dateStart/' + date , semestre).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Session>(this._url + 'dateAndSemestre/dateStart/' + date , semestre, {headers}).toPromise().then(
       (data) => {
         this.sessionTrouve = data;
       },
@@ -54,7 +62,9 @@ export class SessionService {
     console.log(this.sessionsFounded);
   }
   public async findBySemestre(semestre: Semestre) {
-    await this.http.post<Session[]>(this._url + 'semestre' , semestre).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Session[]>(this._url + 'semestre' , semestre, {headers}).toPromise().then(
       (data) => {
         this.sessionsFounded = data;
       },
@@ -62,7 +72,9 @@ export class SessionService {
     console.log(this.sessionsFounded);
   }
   public async findByTypeSession(typeSession: TypeSession) {
-    await this.http.post<Session[]>(this._url + 'typeSession' , typeSession).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Session[]>(this._url + 'typeSession' , typeSession, {headers}).toPromise().then(
       (data) => {
         this.sessionsFounded = data;
       },
@@ -70,7 +82,9 @@ export class SessionService {
     console.log(this.sessionsFounded);
   }
   public async findByReference(reference: string) {
-    await this.http.get<Session>(this._url + 'reference/' + reference).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Session>(this._url + 'reference/' + reference, {headers}).toPromise().then(
       (data) => {
         this.sessionFounded = data;
       },
@@ -78,14 +92,18 @@ export class SessionService {
     console.log(this.sessionFounded);
   }
   public async findAll() {
-    await this.http.get<Session[]>(this._url).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Session[]>(this._url, {headers}).toPromise().then(
       (data) => {
         this.sessions = data;
       },
     );
   }
   public deleteByReference(session: Session) {
-    this.http.delete<number>(this._url + 'reference/' + session.reference).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.delete<number>(this._url + 'reference/' + session.reference, {headers}).subscribe(
       (data) => {
         this.deleteFromList(session);
       },
@@ -98,7 +116,9 @@ export class SessionService {
     }
   }
   public async update() {
-    await this.http.post<Session>(this._url + 'update', this.sessionFounded).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Session>(this._url + 'update', this.sessionFounded, {headers}).toPromise().then(
       (data) => {
         if (data) {
           this.deleteFromList(this.sessionFounded);
@@ -111,7 +131,9 @@ export class SessionService {
     );
   }
   public async save() {
-    await this.http.post<Session>(this._url, this.session).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Session>(this._url, this.session, {headers}).toPromise().then(
       (data) => {
         if (data) {
           console.log(this.session);

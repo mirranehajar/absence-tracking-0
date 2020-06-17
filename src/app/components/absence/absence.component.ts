@@ -22,7 +22,7 @@ export class AbsenceComponent implements OnInit {
     ];
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.etudiantService.findAll();
     this.absenceService.findBySession(this.sessionFounded);
     this.cols = [

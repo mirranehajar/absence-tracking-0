@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {EtudiantService} from '../../controller/service/etudiant.service';
@@ -24,6 +24,7 @@ export class ProfilEtuComponent implements OnInit {
   constructor(private etudiantService: EtudiantService, private http: HttpClient) { }
 
   async ngOnInit(): Promise<void> {
+    await this.etudiantService.findByMail(sessionStorage.getItem('username'));
     await this.getImage(this.etudiantConnected.cin);
   }
 
@@ -66,7 +67,9 @@ export class ProfilEtuComponent implements OnInit {
     // FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
-    await this.http.post<number>(this._url + 'upload/' + this.etudiantConnected.cne , uploadImageData)
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<number>(this._url + 'upload/' + this.etudiantConnected.cne , uploadImageData, {headers})
       .toPromise().then((response) => {
           if (response === 1) {
             this.message = 'Image uploaded successfully';
@@ -78,7 +81,9 @@ export class ProfilEtuComponent implements OnInit {
   }
   async getImage(cin: string): Promise<any> {
     // Make a call to Spring Boot to get the Image Bytes.
-    await this.http.get<Etudiant>(this._url + 'get/' + cin)
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Etudiant>(this._url + 'get/' + cin, {headers})
       .toPromise().then(
         (res) => {
           this.retrievedImage = 'data:image/jpeg;base64,' + res.image;

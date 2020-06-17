@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Absence} from '../model/absence';
 import {Etudiant} from '../model/etudiant.model';
@@ -29,7 +29,9 @@ export class AbsenceService {
     this.sessionEtudiant.session = session;
     this.sessionEtudiant.etudiant = etudiant;
     console.log(this.sessionEtudiant);
-    await this.http.post<Absence>(this._url + 'sessionEtudiant' , this.sessionEtudiant).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Absence>(this._url + 'sessionEtudiant' , this.sessionEtudiant, {headers}).toPromise().then(
       (data) => {
         this.absenceFounded = data;
         if (data == null) {
@@ -40,49 +42,63 @@ export class AbsenceService {
     );
   }
   public async findByTypeSession(typeSession: TypeSession) {
-    await this.http.post<Absence[]>(this._url + 'typeSession' , typeSession).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Absence[]>(this._url + 'typeSession' , typeSession, {headers}).toPromise().then(
       (data) => {
         this.absencesFounded = data;
       },
     );
   }
   public async findByModule(module: Module) {
-    await this.http.post<Absence[]>(this._url + 'module' , module).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Absence[]>(this._url + 'module' , module, {headers}).toPromise().then(
       (data) => {
         this.absencesFounded = data;
       },
     );
   }
   public async findBySession(session: Session) {
-    await this.http.post<Absence[]>(this._url + 'session' , session).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Absence[]>(this._url + 'session' , session, {headers}).toPromise().then(
       (data) => {
         this.absencesFounded = data;
       },
     );
   }
   public async findByEtudiant(etudiant: Etudiant) {
-    await this.http.post<Absence[]>(this._url + 'etudiant' , etudiant).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Absence[]>(this._url + 'etudiant' , etudiant, {headers}).toPromise().then(
       (data) => {
         this.absencesFounded = data;
       },
     );
   }
   public async findByReference(absence: Absence) {
-    await this.http.get<Absence>(this._url + 'ref/' + absence.ref).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Absence>(this._url + 'ref/' + absence.ref, {headers}).toPromise().then(
       (data) => {
         this.absenceFounded = data;
       },
     );
   }
   public findAll() {
-    this.http.get<Absence[]>(this._url).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.get<Absence[]>(this._url, {headers}).subscribe(
       (data) => {
         this.absences = data;
       },
     );
   }
   public deleteByReference(absence: Absence) {
-    this.http.delete<number>(this._url + 'ref/' + absence.ref).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.delete<number>(this._url + 'ref/' + absence.ref, {headers}).subscribe(
       (data) => {
         console.log(data);
         this.deleteFromList(absence);
@@ -96,7 +112,9 @@ export class AbsenceService {
     }
   }
   public async update() {
-    await this.http.post<number>(this._url + 'update', this.absenceFounded).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<number>(this._url + 'update', this.absenceFounded, {headers}).toPromise().then(
       (data) => {
         if (data > 0) {
           this.deleteFromList(this.absenceFounded);
@@ -108,7 +126,9 @@ export class AbsenceService {
     );
   }
   public async save() {
-    await this.http.post<Absence>(this._url, this.absence).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Absence>(this._url, this.absence, {headers}).toPromise().then(
       (data) => {
         if (data) {
           this.absences.push(this.clone(data));

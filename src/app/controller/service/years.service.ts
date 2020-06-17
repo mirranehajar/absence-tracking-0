@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Years} from '../model/years';
 
@@ -20,21 +20,27 @@ export class YearsService {
   constructor(private http: HttpClient) { }
 
   public async findAll() {
-    await this.http.get<Years[]>(this._url).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Years[]>(this._url, {headers}).toPromise().then(
       (data) => {
         this._yearss = data;
       },
     );
   }
   public findByLibelle(years: Years) {
-    this.http.get<Years>(this._url + 'libelle/' + years.libelle).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.get<Years>(this._url + 'libelle/' + years.libelle, {headers}).subscribe(
       (data) => {
         this._yearsFounded = data;
       },
     );
   }
   deleteByLibelle(years: Years) {
-    this.http.delete<number>(this._url + 'libelle/' + years.libelle).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.delete<number>(this._url + 'libelle/' + years.libelle, {headers}).subscribe(
       (data) => {
         this.deleteFromList(years);
       },
@@ -47,7 +53,9 @@ export class YearsService {
     }
   }
   async save() {
-    await this.http.post<number>(this._url, this._years).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<number>(this._url, this._years, {headers}).toPromise().then(
       (data) => {
         if (data > 0) {
           this._yearss.push(this.clone(this._years));

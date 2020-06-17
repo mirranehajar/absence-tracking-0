@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import {ConfirmationService} from 'primeng/api';
 import {Message} from 'primeng/api';
@@ -2153,7 +2153,9 @@ export class EnseignantComponent implements OnInit {
   // Gets called when the user clicks on retrieved image button to get the image from back end
   async getImage(cin: string): Promise<any> {
     // Make a call to Spring Boot to get the Image Bytes.
-    await this.http.get<Enseignant>(this._url + 'get/' + cin)
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Enseignant>(this._url + 'get/' + cin, {headers})
       .toPromise().then(
         (res) => {
           this.retrievedImage = 'data:image/jpeg;base64,' + res.image;

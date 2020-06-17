@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Module} from '../model/module';
 import {Session} from '../model/session';
@@ -22,21 +22,27 @@ export class SubjectService {
   constructor(private http: HttpClient) { }
 
   public async findAll() {
-    await this.http.get<Subject[]>(this._url).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Subject[]>(this._url, {headers}).toPromise().then(
       (data) => {
         this.subjects = data;
       },
     );
   }
   public findByLibelle(subject: Subject) {
-    this.http.get<Module>(this._url + 'libelle/' + subject.libelle).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.get<Module>(this._url + 'libelle/' + subject.libelle, {headers}).subscribe(
       (data) => {
         this.subjectFounded = data;
       },
     );
   }
   deleteByLibelle(subject: Subject) {
-    this.http.delete<number>(this._url + 'libelle/' + subject.libelle).subscribe(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    this.http.delete<number>(this._url + 'libelle/' + subject.libelle, {headers}).subscribe(
       (data) => {
         this.deleteFromList(subject);
       },
@@ -49,7 +55,9 @@ export class SubjectService {
     }
   }
   async save() {
-    await this.http.post<number>(this._url, this.subject).toPromise().then(
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<number>(this._url, this.subject, {headers}).toPromise().then(
       (data) => {
         if (data > 0) {
           this.subjects.push(this.clone(this.subject));
