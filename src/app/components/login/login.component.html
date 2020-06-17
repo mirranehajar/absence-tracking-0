@@ -1,54 +1,14 @@
-<div class="HD">
-  <div class="text-lowercase" >
+<div class="hero-image" >
+  <div class="hero-text">
     <h5>bien venu, </h5>
     <h5> vous pouvez s'identifier ici pour accéder a l'application</h5>
-  </div>
- <div class="row" >
-  <p-card header="éspace étudiant" class="col-sm-6" >
-    <div  style="display:flex; align-items:center; justify-content:center; flex-direction:column" class="St">
-      <div class="ui-inputgroup" >
-        <mat-form-field class="example-form-field">
-          <mat-label>Cne</mat-label>
-          <input matInput type="text" [(ngModel)]="etudiantConnected.cne" type="text" placeholder="entrer votre cne">
-          <button mat-button *ngIf="etudiantConnected.cne" matSuffix mat-icon-button aria-label="Clear" (click)="etudiantConnected.cne=''">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-      </div>
-      <div class="ui-inputgroup">
-        <form class="example-form">
-          <mat-form-field class="example-full-width">
-            <mat-label>Email</mat-label>
-            <input matInput [formControl]="emailFormControl" [(ngModel)]="etudiantConnected.mail" type="text" placeholder="Ex. pat@example.com">
-            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-              S'il vous plaît, entrez une adresse email valide
-            </mat-error>
-            <mat-error *ngIf="emailFormControl.hasError('required')">
-              Email est <strong>Important</strong>
-            </mat-error>
-          </mat-form-field>
-        </form>
-      </div>
-      <div class="ui-inputgroup">
-        <mat-form-field class="example-full-width">
-          <mat-label>Mot De Passe</mat-label>
-          <input matInput placeholder="Entrer votre mot de passe"  [(ngModel)]="etudiantConnected.password" type="password">
-        </mat-form-field>
-      </div>
-      <br>
-      <div class="ui-inputgroup">
-        <button (click)="loginEtu()" pButton type="button" label="Login" class="ui-button-raised" style="background-color: #FCC74F"></button>
-      </div>
-    </div>
-  </p-card>
 
-
-  <p-card header="éspace enseignant" class="col-sm-6">
+  <p-card header="Connectez vous" class="col-sm-6">
     <div  style="display:flex; align-items:center; justify-content:center; flex-direction:column" class="St">
       <div class="ui-inputgroup">
         <mat-form-field class="example-form-field">
           <mat-label>N°SOM</mat-label>
-          <input matInput type="text" [(ngModel)]="enseignantConnected.numeroSOM" type="text" placeholder="entrer votre N°SOM">
+          <input matInput type="text"  type="text" placeholder="entrer votre N°SOM">
           <button mat-button *ngIf="enseignantConnected.numeroSOM" matSuffix mat-icon-button aria-label="Clear" (click)="enseignantConnected.numeroSOM=''">
             <mat-icon>close</mat-icon>
           </button>
@@ -58,7 +18,7 @@
         <form class="example-form">
           <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
-            <input matInput [formControl]="emailFormControl" [(ngModel)]="enseignantConnected.mail" type="text" placeholder="Ex. pat@example.com">
+            <input matInput [formControl]="emailFormControl"  type="text" placeholder="Ex. pat@example.com">
             <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
               S'il vous plaît, entrez une adresse email valide
             </mat-error>
@@ -71,7 +31,7 @@
       <div class="ui-inputgroup">
         <mat-form-field class="example-full-width">
           <mat-label>Mot De Passe</mat-label>
-          <input matInput placeholder="Entrer votre mot de passe" [(ngModel)]="enseignantConnected.password" type="password">
+          <input matInput placeholder="Entrer votre mot de passe"  type="password">
         </mat-form-field>
       </div>
       <br>
@@ -81,7 +41,7 @@
     </div>
   </p-card>
 
-</div>
+  </div>
 </div>
 
 <div class="container">
