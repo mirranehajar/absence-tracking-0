@@ -10,7 +10,6 @@ import {GroupesComponent} from './components/groupes/groupes.component';
 import {GroupesEtuComponent} from './components/groupesEtu/groupesEtu.component';
 import {JustificationComponent} from './components/Justification/justification.component';
 import {LoginComponent} from './components/login/login.component';
-import {LogoutComponent} from './components/logout/logout.component';
 import {ModuleComponent} from './components/module/module.component';
 import {ModuleEtuComponent} from './components/moduleEtu/moduleEtu.component';
 import {ProfilComponent} from './components/profil/profil.component';
@@ -20,11 +19,11 @@ import {StatistiqueComponent} from './components/statistique/statistique.compone
 import {AuthGardService} from './controller/service/auth-gard.service';
 import {AppEnsComponent} from './layout/appEns/appEns.component';
 import {AppEtuComponent} from './layout/appEtu/appEtu.component';
+import {AuthEnsService} from './controller/service/auth-ens.service';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'logout', component: LogoutComponent, canActivate: [AuthGardService]},
   {path: '', component: AppEtuComponent, canActivate: [AuthGardService] , children: [
       {path: 'profilEtu', component: ProfilEtuComponent, canActivate: [AuthGardService]},
       {path: 'justificatif', component: JustificationComponent, canActivate: [AuthGardService]},
@@ -33,7 +32,7 @@ const routes: Routes = [
       {path: 'sessionEtu', component: SessionComponent, canActivate: [AuthGardService]},
       {path: 'emploiEtu', component: EmploiEtuComponent, canActivate: [AuthGardService]},
     ]},
-  {path: '', component: AppEnsComponent, canActivate: [AuthGardService], children: [
+  {path: '', component: AppEnsComponent, children: [
       {path: 'enseignant', component: EnseignantComponent, canActivate: [AuthGardService]},
       {path: 'etudiant', component: EtudiantsComponent, canActivate: [AuthGardService]},
       {path: 'profil', component: ProfilComponent, canActivate: [AuthGardService]},

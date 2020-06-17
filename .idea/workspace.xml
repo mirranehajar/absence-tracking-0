@@ -33,16 +33,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="217f8d5a-9c79-4659-be29-9d929010671a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/controller/service/auth-ens.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/service/auth-ens.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/service/auth-etu.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/controller/service/auth-etu.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/absence/absence.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/absence/absence.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/profil/profil.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profil/profil.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/profilEtu/profilEtu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profilEtu/profilEtu.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/controller/service/auth-gard.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/auth-gard.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/authentication.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/authentication.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/headerEtu/headerEtu.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +78,7 @@
     <property name="nodejs.protractor.protractor_package" value="$PROJECT_DIR$/node_modules/protractor" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
     <property name="ts.external.directory.path" value="C:\Users\Haraj\WebstormProjects\absence-tracking-work\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
@@ -206,6 +203,8 @@
       <workItem from="1592147030315" duration="18126000" />
       <workItem from="1592238732506" duration="5874000" />
       <workItem from="1592342091702" duration="8369000" />
+      <workItem from="1592385262965" duration="4504000" />
+      <workItem from="1592393782424" duration="3022000" />
     </task>
     <task id="LOCAL-00003" summary="inputs in the center of dialog">
       <created>1587997150237</created>
@@ -640,10 +639,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="447" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1587949360269" />
-    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1591922416668">
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser" timestamp="1592385994759">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1591922416668" />
+    <state x="488" y="0" width="390" height="728" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1592385994759" />
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591457289443">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -662,29 +661,29 @@
     </state>
     <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1591641361645" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
-    <state width="1345" height="121" key="GridCell.Tab.0.bottom" timestamp="1592348383869">
+    <state width="1345" height="121" key="GridCell.Tab.0.bottom" timestamp="1592399157369">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1591361539321" />
-    <state width="1345" height="121" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1592348383869" />
+    <state width="1345" height="121" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1592399157369" />
     <state width="808" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1592239424025" />
-    <state width="1345" height="121" key="GridCell.Tab.0.center" timestamp="1592348383869">
+    <state width="1345" height="121" key="GridCell.Tab.0.center" timestamp="1592399157369">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1591361539320" />
-    <state width="1345" height="121" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1592348383869" />
+    <state width="1345" height="121" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1592399157369" />
     <state width="808" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1592239424024" />
-    <state width="1345" height="121" key="GridCell.Tab.0.left" timestamp="1592348383868">
+    <state width="1345" height="121" key="GridCell.Tab.0.left" timestamp="1592399157368">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1591361539319" />
-    <state width="1345" height="121" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1592348383868" />
+    <state width="1345" height="121" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1592399157368" />
     <state width="808" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1592239424024" />
-    <state width="1345" height="121" key="GridCell.Tab.0.right" timestamp="1592348383869">
+    <state width="1345" height="121" key="GridCell.Tab.0.right" timestamp="1592399157369">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1591361539320" />
-    <state width="1345" height="121" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1592348383869" />
+    <state width="1345" height="121" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1592399157369" />
     <state width="808" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1592239424025" />
     <state width="1345" height="177" key="GridCell.Tab.1.bottom" timestamp="1591822636944">
       <screen x="0" y="0" width="1366" height="728" />
@@ -743,9 +742,10 @@
     </state>
     <state x="512" y="231" width="722" height="265" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1591816774630" />
     <state x="512" y="234" key="MultipleFileMergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1592319983895" />
-    <state x="184" y="13" key="SettingsEditor" timestamp="1587939886192">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="184" y="13" key="SettingsEditor" timestamp="1592385852412">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="184" y="13" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1592385852412" />
     <state x="184" y="13" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1587939886192" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1591815061158">
       <screen x="0" y="0" width="1366" height="728" />
