@@ -130,7 +130,7 @@ export class StatistiqueComponent implements OnInit {
       labels: this.labels2,
       datasets: [
         {
-          label: 'Par semestre azin',
+          label: 'Par semestre',
           data: this.somme2,
           fill: true,
           borderColor: '#4bc0c0',

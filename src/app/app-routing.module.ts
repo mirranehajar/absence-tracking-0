@@ -19,7 +19,6 @@ import {StatistiqueComponent} from './components/statistique/statistique.compone
 import {AuthGardService} from './controller/service/auth-gard.service';
 import {AppEnsComponent} from './layout/appEns/appEns.component';
 import {AppEtuComponent} from './layout/appEtu/appEtu.component';
-import {AuthEnsService} from './controller/service/auth-ens.service';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
