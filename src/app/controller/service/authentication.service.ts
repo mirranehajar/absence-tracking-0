@@ -20,6 +20,7 @@ export class AuthenticationService {
           console.log(sessionStorage.getItem('password'));
           const tokenStr = 'Bearer ' + userData.token;
           sessionStorage.setItem('token', tokenStr);
+          console.log(sessionStorage.getItem('token'));
           return userData;
         },
       ),
@@ -39,5 +40,6 @@ export class AuthenticationService {
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('password');
+    console.log(sessionStorage);
   }
 }

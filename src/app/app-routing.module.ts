@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AbsenceComponent} from './components/absence/absence.component';
-import {AuthenComponent} from './components/authen/authen.component';
 import {EmploiEtuComponent} from './components/emploi-etu/emploi-etu.component';
 import {EmploiComponent} from './components/emploi/emploi.component';
 import {EnseignantComponent} from './components/enseignant/enseignant.component';
@@ -22,7 +21,7 @@ import {AppEnsComponent} from './layout/appEns/appEns.component';
 import {AppEtuComponent} from './layout/appEtu/appEtu.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: '', component: AppEtuComponent, canActivate: [AuthGardService] , children: [

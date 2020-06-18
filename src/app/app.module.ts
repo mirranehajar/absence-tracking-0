@@ -1,5 +1,5 @@
 import {DragDropModule} from '@angular/cdk/drag-drop';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatBadgeModule} from '@angular/material/badge';
@@ -52,6 +52,7 @@ import { ProfilComponent } from './components/profil/profil.component';
 import {ProfilEtuComponent} from './components/profilEtu/profilEtu.component';
 import { SessionComponent } from './components/session/session.component';
 import {StatistiqueComponent} from './components/statistique/statistique.component';
+import {BasicAuthHtppInterceptorService} from './controller/service/basic-auth-htpp-interceptor.service';
 import {AppEnsComponent} from './layout/appEns/appEns.component';
 import {AppEtuComponent} from './layout/appEtu/appEtu.component';
 import { AsideComponent } from './layout/aside/aside.component';
@@ -146,7 +147,11 @@ import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
     MatInputModule,
     MatBadgeModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: BasicAuthHtppInterceptorService, multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

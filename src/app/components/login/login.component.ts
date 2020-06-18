@@ -97,6 +97,7 @@ export class LoginComponent implements OnInit {
         async (data) => {
           this.enseignantService.enseignantConnected = null;
           this.etudiantService.etudiantConnected = null;
+          console.log('haha');
           await this.etudiantService.findByMail(this.username);
           await this.enseignantService.findByMail(this.username);
           console.log(this.enseignantConnected);
