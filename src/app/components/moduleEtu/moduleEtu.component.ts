@@ -5,6 +5,7 @@ import {TypeSession} from '../../controller/model/type-session';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {ModuleService} from '../../controller/service/module.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
+import {EtudiantService} from '../../controller/service/etudiant.service';
 
 @Component({
   selector: 'app-module',
@@ -16,11 +17,12 @@ export class ModuleEtuComponent implements OnInit {
   displayBasic2: boolean;
   cols: any[];
 
-  constructor(private moduleService: ModuleService,
+  constructor(private moduleService: ModuleService, private etudiantService: EtudiantService,
               private enseignantService: EnseignantService, private typeSessionService: TypeSessionService) {
   }
 
    async ngOnInit(): Promise<void> {
+    await this.moduleService.findBySemestre(this.etudiantService.etudiantConnected.groupe.semestre);
     for (const m of this.modulesFounded) {
       await this.findByModule(m);
       m.typeSessions = this.typeSessionsFounded;

@@ -131,6 +131,9 @@ export class ModuleService {
   }
 
   get modulesFounded(): Module[] {
+    if (this._modulesFounded == null) {
+      this._modulesFounded = new Array<Module>();
+    }
     return this._modulesFounded;
   }
 

@@ -51,8 +51,8 @@ export class HeaderEtuComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     await this.etudiantService.findByMail(sessionStorage.getItem('username'));
     this.getImage(this.etudiantService.etudiantConnected.cin);
-    this.cycleService.findAll();
-    this.sectorService.findAll();
+    await this.cycleService.findAll();
+    await this.sectorService.findAll();
     await this.semestreService.findAll();
     this.enseignantService.findAll();
     await this.notificationService.findByEtudiant(this.etudiantService.etudiantConnected);
