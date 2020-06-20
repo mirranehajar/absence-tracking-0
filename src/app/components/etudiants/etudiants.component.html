@@ -72,7 +72,7 @@
               <div class="row">
                 <div class="ui-inputgroup">
                   <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                  <p-dropdown name="sector" (onChange)="onChangeSector()" [options]="sectors" [(ngModel)]="etudiant.sector" placeholder="Choisir une filière" optionLabel="libelle"></p-dropdown>
+                  <p-dropdown name="sector" (onChange)="onChangeSector()" [options]="sectors" [(ngModel)]="etudiant.sector" placeholder="Choisir une filière" optionLabel="abreveation"></p-dropdown>
                 </div>
               </div>
               <br>
@@ -96,7 +96,7 @@
         <div class="col-md-4">
           <div class="row">
             <div class="ui-inputgroup">
-              <p-dropdown name="sector" placeholder="Choisir une filière" (onChange)="onChangeImport()" [options]="sectors" [(ngModel)]="sectorImport" optionLabel="libelle"></p-dropdown>
+              <p-dropdown name="sector" placeholder="Choisir une filière" (onChange)="onChangeImport()" [options]="sectors" [(ngModel)]="sectorImport" optionLabel="abreveation"></p-dropdown>
             </div>
           </div>
           <br>
@@ -121,6 +121,7 @@
           <p-table [autoLayout]="true" [columns]="cols" [value]="etudiants" [paginator]="true" [rows]="7">
             <ng-template pTemplate="header" let-columns>
               <tr>
+                <th></th>
                 <th>Image</th>
                 <th *ngFor="let col of columns" [pSortableColumn]="col.field">
                   {{col.header}}
@@ -132,12 +133,13 @@
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-columns="columns">
               <tr>
+                <p-button *ngIf="enseignantConnected.role == 1"  icon="pi pi-refresh"  (onClick)="password(rowData)"></p-button>
                 <td><img width="40" height="40" [src]="rowData.src" ></td>
                 <td *ngFor="let col of columns">
                   {{rowData[col.field]}}
                 </td>
                 <td *ngIf="rowData.sector == null"></td>
-                <td *ngIf="rowData.sector">{{rowData.sector.libelle}}</td>
+                <td *ngIf="rowData.sector">{{rowData.sector.abreveation}}</td>
                 <td *ngIf="rowData.groupe == null"></td>
                 <td *ngIf="rowData.groupe">{{rowData.groupe.libelle}}</td>
               <p-button *ngIf="enseignantConnected.role == 1"  icon="pi pi-user-edit" (click)="showBasicDialog2(rowData)" styleClass="ui-button-info"></p-button>
@@ -204,14 +206,14 @@
                     <div class="row">
                       <div class="ui-inputgroup">
                         <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                        <p-dropdown name="ville" [options]="cities" [(ngModel)]="city"  optionLabel="ville" ></p-dropdown>
+                        <p-dropdown name="ville" [options]="cities" [(ngModel)]="city" [placeholder]="city.ville" optionLabel="ville" ></p-dropdown>
                       </div>
                     </div>
                     <br>
                   <div class="row">
                     <div class="ui-inputgroup">
                       <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                      <p-dropdown name="sector" [options]="sectors" [(ngModel)]="etudiantFounded.sector" optionLabel="libelle"></p-dropdown>
+                      <p-dropdown name="sector" [options]="sectors" [(ngModel)]="etudiantFounded.sector" optionLabel="abreveation"></p-dropdown>
                     </div>
                   </div>
                   <br>

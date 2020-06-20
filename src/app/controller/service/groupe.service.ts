@@ -81,10 +81,10 @@ export class GroupeService {
       },
     );
   }
-  public deleteByReference(groupe: Groupe) {
+  public async deleteByReference(groupe: Groupe) {
     // tslint:disable-next-line:max-line-length
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    this.http.delete<number>(this._url + 'reference/' + groupe.reference, {headers}).subscribe(
+    await this.http.delete<number>(this._url + 'reference/' + groupe.reference, {headers}).toPromise().then(
       (data) => {
         console.log(data);
         this.deleteFromList(groupe);

@@ -15,4 +15,5 @@ export class Enseignant {
   public image: any;
   public departement: Departement;
   public src: any;
+  public label: string;
 }

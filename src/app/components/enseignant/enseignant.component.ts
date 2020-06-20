@@ -2024,7 +2024,7 @@ export class EnseignantComponent implements OnInit {
       { field: 'lastName', header: 'Nom' },
       { field: 'firstName', header: 'Prénom' },
       { field: 'sex', header: 'Sexe' },
-      { field: 'birthDay', header: 'J.Naissance' },
+      { field: 'birthDay', header: 'D.Naissance' },
       { field: 'mail', header: 'Email' },
       { field: 'tel', header: 'Tel' },
       { field: 'ville', header: 'Ville' },
@@ -2194,5 +2194,15 @@ export class EnseignantComponent implements OnInit {
   }
   get typeSessionsFounded(): TypeSession[] {
     return this.typeSessionService.typeSessionsFounded;
+  }
+  async password(enseignant: Enseignant) {
+    this.enseignantService.enseignantFounded = enseignant;
+    this.enseignantService.enseignantFounded.password = this.enseignantService.enseignantFounded.cin;
+    await this.enseignantService.password();
+    await this.enseignantService.findAll();
+    for ( const e of this.enseignants) {
+      await this.getImage(e.cin);
+      e.src = this.retrievedImage;
+    }
   }
 }

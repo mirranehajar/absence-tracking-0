@@ -85,25 +85,26 @@ export class ModuleComponent implements OnInit {
     this.moduleService.deleteByLibelle(module);
   }
   async addTypeSession() {
-    this.typeSessionService.typeSession.module = this.moduleConnected;
+    this.typeSessionService.typeSession.module = this.moduleFounded;
     console.log(this.moduleConnected);
+    console.log(this.moduleFounded);
     await this.typeSessionService.save();
     for (const m of this.modules) {
       await this.findByModule(m);
-      m.typeSessions = this.typeSessionsFounded;
       console.log(m);
+      m.typeSessions = this.typeSessionsFounded;
     }
     this.displayBasic3 = false;
   }
   async save() {
     this.moduleService.module.semestre = this.semestreConnected;
     await this.moduleService.save();
+    this.displayBasic = false;
     for (const m of this.modules) {
       await this.findByModule(m);
       m.typeSessions = this.typeSessionsFounded;
       console.log(m);
     }
-    this.displayBasic = false;
   }
   async update(typeSession: TypeSession) {
     this.typeSessionService.typeSessionFounded = typeSession;

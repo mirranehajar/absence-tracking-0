@@ -71,7 +71,7 @@ export class NotificationService {
   public async deleteByAbsence(absence: Absence) {
     // tslint:disable-next-line:max-line-length
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    await this.http.delete<number>(this._url + '/absence/' + absence.ref, {headers}).toPromise().then(
+    await this.http.delete<number>(this._url + 'absence/' + absence.ref, {headers}).toPromise().then(
       (data) => {
         console.log(data);
         this.findByAbsence(absence);

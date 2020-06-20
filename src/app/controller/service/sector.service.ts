@@ -100,6 +100,7 @@ export class SectorService {
     myclone.libelle = sector.libelle ;
     myclone.cycle = sector.cycle;
     myclone.semestres = sector.semestres;
+    myclone.abreveation = sector.abreveation;
     return myclone;
   }
   get sector(): Sector {
