@@ -21,6 +21,7 @@ export class TypeSessionService {
   constructor(private http: HttpClient) { }
 
   public async findByModule(module: Module) {
+    module.typeSessions = null;
     // tslint:disable-next-line:max-line-length
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
     await this.http.post<TypeSession[]>(this._url + 'module' , module, {headers}).toPromise().then(

@@ -2036,8 +2036,9 @@ export class EtudiantsComponent implements OnInit {
       { field: 'sex', header: 'Sexe' },
       { field: 'mail', header: 'Email' },
       { field: 'tel', header: 'Tel' },
-      { field: 'birthDay', header: 'J.Naissance' },
+      { field: 'birthDay', header: 'D.Naissance' },
       { field: 'ville', header: 'Ville' },
+      { field: 'nbrAbsence', header: 'N.Absence' },
     ];
   }
 
@@ -2055,6 +2056,7 @@ export class EtudiantsComponent implements OnInit {
     await this.findByCne(etudiant);
     await this.groupeService.findBySector(this.etudiantFounded.sector);
     this.city.ville = this.etudiantFounded.ville;
+    console.log(this.city);
   }
 
   public async findByCne(etudiantFounded: Etudiant) {
@@ -2226,5 +2228,10 @@ export class EtudiantsComponent implements OnInit {
   }
   get semestreFounded(): Semestre {
     return this.semestreService.semestreFounded;
+  }
+  password(etudiant: Etudiant) {
+    this.etudiantService.etudiantFounded = etudiant;
+    this.etudiantService.etudiantFounded.password = this.etudiantService.etudiantFounded.cne;
+    this.etudiantService.password();
   }
 }

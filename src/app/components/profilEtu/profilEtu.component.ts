@@ -31,11 +31,12 @@ export class ProfilEtuComponent implements OnInit {
   showBasicDialog() {
     this.displayBasic = true;
   }
-  updatePassword() {
-    if (this.currentPassword === this.etudiantConnected.password && this.password === this.passwordConfirm) {
+  async updatePassword() {
+    const bcrypt = require('bcryptjs');
+    if (bcrypt.compare(this.currentPassword, this.etudiantConnected.password) && this.password === this.passwordConfirm) {
       this.etudiantService.etudiantFounded = this.etudiantConnected;
       this.etudiantService.etudiantFounded.password = this.password;
-      this.etudiantService.update();
+      await this.etudiantService.password();
       this.displayBasic = false;
     }
   }

@@ -43,6 +43,9 @@ export class EnseignantService {
     await this.http.get<Enseignant[]>(this._url + 'role/' + role, {headers}).toPromise().then(
       (data) => {
         this.enseignantsFounded = data;
+        for (const e of this.enseignantsFounded) {
+          e.label = e.lastName + ' ' + e.firstName;
+        }
       },
     );
   }
@@ -52,6 +55,9 @@ export class EnseignantService {
     await this.http.get<Enseignant>(this._url + 'mail/' + mail, {headers}).toPromise().then(
       (data) => {
         this.enseignantConnected = data;
+        if (data != null) {
+        this.enseignantConnected.label = data.lastName + ' ' + data.firstName;
+        }
       },
     );
   }
@@ -61,6 +67,7 @@ export class EnseignantService {
     await this.http.get<Enseignant>(this._url + 'numeroSOM/' + enseignant.numeroSOM, {headers}).toPromise().then(
       (data) => {
         this.enseignantFounded = data;
+        this.enseignantFounded.label = data.lastName + ' ' + data.firstName;
       },
     );
   }
@@ -70,6 +77,23 @@ export class EnseignantService {
     await this.http.get<Enseignant[]>(this._url, {headers}).toPromise().then(
       (data) => {
         this.enseignants = data;
+        for (const e of this.enseignants) {
+          e.label = e.lastName + ' ' + e.firstName;
+        }
+      },
+    );
+  }
+  public async password() {
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Enseignant>(this._url + 'password', this.enseignantFounded, {headers}).toPromise().then(
+      (data) => {
+        if (data) {
+          this.deleteFromList(this.enseignantFounded);
+          this.enseignants.push(this.clone(data));
+        }
+      }, (error) => {
+        console.log('error' + error);
       },
     );
   }
@@ -122,6 +146,7 @@ export class EnseignantService {
     myclone.departement = enseignant.departement;
     myclone.ville = enseignant.ville;
     myclone.sex = enseignant.sex;
+    myclone.label = enseignant.lastName + ' ' + enseignant.firstName;
     return myclone;
   }
   get enseignantFounded(): Enseignant {

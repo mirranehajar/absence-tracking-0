@@ -104,6 +104,30 @@ export class EtudiantService {
         if (data) {
           this.deleteFromList(this.etudiantFounded);
           this.etudiants.push(this.clone(data));
+          console.log('etudiant groupe null: ' + data);
+        }
+      }, (error) => {
+        console.log(error);
+      },
+    );
+    if (this.etudiantsFounded != null && this.etudiantFounded.groupe != null) {
+      this.etudiantFounded.groupe.etudiants = new Array<Etudiant>();
+      this.etudiantFounded.groupe.etudiants = this.etudiantsFounded;
+    }
+  }
+  public async password() {
+    if (this.etudiantFounded.groupe != null) {
+    this.etudiantsFounded = this.etudiantFounded.groupe.etudiants;
+    this.etudiantFounded.groupe.etudiants = null;
+    } else {this.etudiantsFounded = null; }
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Etudiant>(this._url + 'password', this.etudiantFounded, {headers}).toPromise().then(
+      (data) => {
+        if (data) {
+          this.deleteFromList(this.etudiantFounded);
+          this.etudiants.push(this.clone(data));
+          console.log('etudiant groupe null: ' + data);
         }
       }, (error) => {
         console.log(error);

@@ -1,7 +1,7 @@
 <div *ngIf="enseignantConnected.role == 1" class="row">
     <div class="col-md-4">
       <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Add a professor"></button>
-      <p-dialog  header="Ajouter un enseignant" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+      <p-dialog modal="true" header="Ajouter un enseignant" [(visible)]="displayBasic" [style]="{width: '50vw'}" autoZIndex="true">
         <form style="text-align: center" method="POST" #form="ngForm" >
             <div style="display:inline-block" class="form-group">
               <div class="row">
@@ -90,6 +90,7 @@
       <p-table (onRowSelect)="select($event)" selectionMode="single" [autoLayout]="true" [columns]="cols" [value]="enseignants" [paginator]="true" [(selection)]="enseignantSelected" dataKey="numeroSOM" [rows]="7">
         <ng-template pTemplate="header" let-columns>
           <tr>
+            <th></th>
             <th>Image</th>
             <th *ngFor="let col of columns" [pSortableColumn]="col.field">
               {{col.header}}
@@ -100,6 +101,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
           <tr [pSelectableRow]="rowData" >
+            <p-button *ngIf="enseignantConnected.role == 1"  icon="pi pi-refresh"  (onClick)="password(rowData)"></p-button>
             <td><img width="40" height="40" [src]="rowData.src" ></td>
             <td  *ngFor="let col of columns">
               {{rowData[col.field]}}
@@ -107,7 +109,7 @@
             <td *ngIf="rowData.departement != null">{{rowData.departement.libelle}}</td>
             <td *ngIf="rowData.departement == null"></td>
           <p-button *ngIf="enseignantConnected.role == 1"  (click)="showBasicDialog2(rowData)" icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>
-            <p-dialog  header="modification d'un professeur" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+            <p-dialog modal="true" header="modification d'un professeur" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
             <form style="text-align: center" method="POST" >
               <div style="display:inline-block" class="form-group">
                 <div class="row">
@@ -194,7 +196,7 @@
     </div>
   </div>
   </div>
-<p-dialog  header="Types Séance" [(visible)]="displayBasic3" [style]="{width: '50vw'}" [baseZIndex]="10000">
+<p-dialog modal="true" header="Types Séance" [(visible)]="displayBasic3" [style]="{width: '50vw'}" [baseZIndex]="10000">
   <br>
   <p-table [autoLayout]="true"  [columns]="cols2" [value]="typeSessionsFounded" [paginator]="true" [rows]="7">
     <ng-template pTemplate="header" let-columns>

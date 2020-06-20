@@ -16,22 +16,22 @@
             <a mdbDropdownToggle class="nav-link dropdown-toggle"><i class="pi pi-list iconColor">Filière</i></a>
             <div class="dropdown-menu mega-menu row z-depth-1 ">
               <div (mouseover)="onHover(s)" *ngFor="let s of sectors" class="item has_submenu">
-              <a   ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + s.libelle}}</a>
+              <a   ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + s.abreveation}}</a>
                 <button *ngIf="enseignantConnected.role === 1" pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 "  (click)="showBasicDialog2(s)"  icon="pi pi-pencil" ></button>
                 <div *ngIf="s.semestres != null" class="submenu">
                   <div *ngFor="let ss of s.semestres" class="item has_submenu">
-                    <i><a  (click)="goToModule(ss)"><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + ss.libelle}}</a></i>
+                    <i><a  (click)="goToModule(ss)"><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + ss.libelle}} {{ss.anneeUniversitaire}}</a></i>
                     <button *ngIf="sectorManagerFounded.enseignant.numeroSOM == enseignantConnected.numeroSOM" pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 " class="ui-button-danger" (click)="deleteByReference(ss)" icon="pi pi-trash" ></button>
                   <div class="dropdown-divider"></div>
                   </div>
                   <div style="text-align: center">
-                    <button pButton type="button" *ngIf="sectorManagerFounded.enseignant.numeroSOM == enseignantConnected.numeroSOM" icon="pi pi-plus"  (click)="showBasicDialog3(s.libelle)" style="opacity: 0.8; background-color: #FCC74F" label="Nouveau Semestre"  ></button>
+                    <button pButton type="button" *ngIf="sectorManagerFounded.enseignant.numeroSOM == enseignantConnected.numeroSOM" icon="pi pi-plus"  (click)="showBasicDialog3(s.libelle)" style="opacity: 0.8; background-color: #FCC74F" label="Ajouter"  ></button>
                   </div>
                 </div>
                 <div class="dropdown-divider"></div>
               </div>
               <div style="text-align: center">
-              <button *ngIf="enseignantConnected.role === 1" pButton type="button"  icon="pi pi-plus" (click)="showBasicDialog()" style="opacity: 0.8; background-color: #FCC74F" label="Nouvelle Filière" ></button>
+              <button *ngIf="enseignantConnected.role === 1" pButton type="button"  icon="pi pi-plus" (click)="showBasicDialog()" style="opacity: 0.8; background-color: #FCC74F" label="Ajouter" ></button>
             </div>
             </div>
           </li>
@@ -71,7 +71,7 @@
     <!--/.Navbar-->
 
 
-<p-dialog  header="Ajout d'une filière" [modal]="true" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+<p-dialog autoZIndex="true" header="Ajout d'une filière" [modal]="true" [(visible)]="displayBasic" [style]="{width: '50vw'}" >
   <form style="text-align: center" method="POST" >
     <div style="display:inline-block" class="form-group">
       <div class="row">
@@ -85,13 +85,22 @@
       <br>
       <div class="row">
         <div class="ui-inputgroup">
+               <span class="ui-float-label" style="margin-top: 10px; border-color: #63C7F2">
+         <input [(ngModel)]="sector.abreveation" type="text" id="abr" size="30" name="abreveation" pInputText required>
+         <label for="abr">Abréviation</label>
+               </span>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
           <p-dropdown name="cycle" [options]="cycles" [(ngModel)]="sector.cycle" placeholder="Choisir un cycle" optionLabel="libelle"></p-dropdown>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <p-dropdown name="sectorManager" [options]="enseignantsFounded" [(ngModel)]="sectorManager.enseignant" placeholder="Choisir un responsable" optionLabel="lastName"></p-dropdown>
+          <p-dropdown name="sectorManager" [options]="enseignantsFounded" [(ngModel)]="sectorManager.enseignant" placeholder="Choisir un responsable" optionLabel="label"></p-dropdown>
          </div>
       </div>
     </div>
@@ -104,13 +113,20 @@
     </p-footer>
   </form>
 </p-dialog>
-<p-dialog  header="Modification d'une filière" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+<p-dialog autoZIndex="true" header="Modification d'une filière" [(visible)]="displayBasic2" [style]="{width: '50vw'}" >
   <form style="text-align: center" method="POST" >
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
           <input disabled [(ngModel)]="sectorFounded.libelle" name="libelle" type="text" pInputText  required>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+          <input disabled [(ngModel)]="sectorFounded.abreveation" name="abreviation" type="text" pInputText  required>
         </div>
       </div>
       <br>
@@ -137,7 +153,7 @@
     </p-footer>
   </form>
 </p-dialog>
-<p-dialog  header="Ajout d'un semestre" [(visible)]="displayBasic3" [style]="{width: '50vw'}" [baseZIndex]="10000">
+<p-dialog autoZIndex="true" header="Ajout d'un semestre" [(visible)]="displayBasic3" [style]="{width: '50vw'}" >
   <form style="text-align: center" method="POST" >
     <div style="display:inline-block" class="form-group">
       <div class="row">

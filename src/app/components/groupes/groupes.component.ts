@@ -12,6 +12,7 @@ import {GroupeService} from '../../controller/service/groupe.service';
 import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-groupes',
@@ -24,20 +25,30 @@ export class GroupesComponent implements OnInit {
   displayBasic2: boolean;
   cols: any[];
   data: Groupe;
-
+  private _url = 'http://localhost:8090/absence-tracking/etudiant/';
+  retrievedImage: any;
   constructor(private semestreService: SemestreService, private etudiantService: EtudiantService,
               private groupeService: GroupeService, private sectorService: SectorService,
-              private sectorManagerService: SectorManagerService, private enseignantService: EnseignantService) {}
+              private sectorManagerService: SectorManagerService, private enseignantService: EnseignantService,
+              private http: HttpClient) {}
 
   async ngOnInit(): Promise<void> {
     await this.etudiantService.findAll();
     this.etudiantService.etudiantsGroupe = null;
     for (const e of this.etudiants) {
       if (e.groupe == null) {
+        await this.getImage(e.cin);
+        e.src = this.retrievedImage;
         this.etudiantsGroupe.push(e);
       }
     }
     await this.groupeService.findBySemestre(this.semestreConnected);
+    for (const g of this.groupesFounded) {
+      for (const e of g.etudiants) {
+        await this.getImage(e.cin);
+        e.src = this.retrievedImage;
+      }
+    }
     console.log(this.sectorManagerConnected);
     console.log(this.enseignantConnected);
     this.cols = [
@@ -48,7 +59,7 @@ export class GroupesComponent implements OnInit {
       { field: 'firstName', header: 'Prénom' },
       { field: 'mail', header: 'Email' },
       { field: 'tel', header: 'Tel' },
-      { field: 'birthDay', header: 'J.Naissance' },
+      { field: 'birthDay', header: 'D.Naissance' },
       { field: 'nbrAbsence', header: 'N.Absence' },
     ];
   }
@@ -60,10 +71,18 @@ export class GroupesComponent implements OnInit {
     this.etudiantService.etudiantsGroupe = null;
     for (const e of this.etudiants) {
       if (e.groupe == null) {
+        await this.getImage(e.cin);
+        e.src = this.retrievedImage;
         this.etudiantsGroupe.push(e);
       }
     }
     await this.groupeService.findBySemestre(this.semestreConnected);
+    for (const g of this.groupesFounded) {
+      for (const e of g.etudiants) {
+        await this.getImage(e.cin);
+        e.src = this.retrievedImage;
+      }
+    }
   }
   onDrag(etudiant: Etudiant) {
     this.etudiantService.etudiantFounded = etudiant;
@@ -72,13 +91,21 @@ export class GroupesComponent implements OnInit {
     return this.groupeService.findByLibelle(groupe.libelle);
   }
   public async deleteByReference(groupe: Groupe) {
-    this.etudiantService.etudiantFounded.groupe = null;
-    console.log(this.etudiantsFounded);
-    await this.etudiantService.update();
-    this.groupeService.deleteByReference(groupe);
+    await this.findByGroupe(groupe);
+    for ( const e of this.etudiantsFounded) {
+      e.groupe = null;
+      this.etudiantService.etudiantFounded = e;
+      await this.etudiantService.update();
+    }
+    await this.groupeService.deleteByReference(groupe);
     await this.groupeService.findBySemestre(this.semestreConnected);
+    for (const g of this.groupesFounded) {
+      for (const e of g.etudiants) {
+        await this.getImage(e.cin);
+        e.src = this.retrievedImage;
+      }
+    }
     this.displayBasic2 = false;
-    await this.groupeService.findBySemestre(this.semestreConnected);
   }
   public async update() {
     this.groupeService.update();
@@ -95,15 +122,25 @@ export class GroupesComponent implements OnInit {
       this.etudiantService.etudiantFounded.sector = this.groupeSaved.semestre.sector;
       this.etudiantService.etudiantFounded.groupe = this.groupeSaved;
       await this.etudiantService.update();
+      await this.getImage(e.cin);
+      e.src = this.retrievedImage;
     }
     await this.etudiantService.findAll();
     this.etudiantService.etudiantsGroupe = null;
     for (const e of this.etudiants) {
       if (e.groupe == null) {
+        await this.getImage(e.cin);
+        e.src = this.retrievedImage;
         this.etudiantsGroupe.push(e);
       }
     }
     await this.groupeService.findBySemestre(this.semestreConnected);
+    for (const g of this.groupesFounded) {
+      for (const e of g.etudiants) {
+        await this.getImage(e.cin);
+        e.src = this.retrievedImage;
+      }
+    }
     this.displayBasic = false;
   }
   get etudiants(): Etudiant[] {
@@ -187,5 +224,17 @@ export class GroupesComponent implements OnInit {
   }
   get etudiantsGroupe(): Etudiant[] {
     return this.etudiantService.etudiantsGroupe;
+  }
+  async getImage(cin: string): Promise<any> {
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    // Make a call to Spring Boot to get the Image Bytes.
+    await this.http.get<Etudiant>(this._url + 'get/' + cin, {headers})
+      .toPromise().then(
+        (res) => {
+          this.retrievedImage = 'data:image/jpeg;base64,' + res.image;
+          console.log(this.retrievedImage);
+        },
+      );
   }
 }

@@ -82,11 +82,18 @@ export class ProfilComponent implements OnInit {
   get enseignantFounded(): Enseignant {
     return this.enseignantService.enseignantFounded;
   }
-  updatePassword() {
-    if (this.currentPassword === this.enseignantConnected.password && this.password === this.passwordConfirm) {
+  async updatePassword() {
+    const bcrypt = require('bcryptjs');
+    console.log(this.currentPassword);
+    console.log(this.password);
+    console.log(this.passwordConfirm);
+    console.log(this.enseignantConnected.password);
+    console.log(bcrypt.compare(this.currentPassword, this.enseignantConnected.password));
+    if ( bcrypt.compare(this.currentPassword, this.enseignantConnected.password) && this.password === this.passwordConfirm) {
       this.enseignantService.enseignantFounded = this.enseignantConnected;
       this.enseignantService.enseignantFounded.password = this.password;
-      this.enseignantService.update();
+      console.log(this.enseignantFounded);
+      await this.enseignantService.password();
       this.displayBasic = false;
     }
   }
