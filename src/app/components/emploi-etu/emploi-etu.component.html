@@ -64,9 +64,15 @@
           <input type="texte" name="typeSession" disabled [(ngModel)]="sessionFounded.typeSession.reference">
         </div>
       </div>
-      <div class="row" *ngIf="boolean != false && absenceFounded.absent == true">
+      <div class="row" *ngIf="boolean != false && absenceFounded.absent == true && absenceFounded.justification == null">
         <div class="ui-inputgroup">
           <textarea [rows]="5" [(ngModel)]="absenceFounded.justification" [cols]="30" name="justification" pInputTextarea autoResize="autoResize"></textarea>
+        </div>
+      </div>
+      <br>
+      <div class="row" *ngIf="boolean != false && absenceFounded.absent == true && absenceFounded.justification == null">
+        <div class="ui-inputgroup">
+          <input type="file" (change)="onFileChanged($event)" multiple="false" />
         </div>
       </div>
       <br>

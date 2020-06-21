@@ -16,6 +16,8 @@ import {ProfilComponent} from './components/profil/profil.component';
 import {ProfilEtuComponent} from './components/profilEtu/profilEtu.component';
 import {SessionComponent} from './components/session/session.component';
 import {StatistiqueComponent} from './components/statistique/statistique.component';
+import {AuthEnsService} from './controller/service/auth-ens.service';
+import {AuthEtuService} from './controller/service/auth-etu.service';
 import {AuthGardService} from './controller/service/auth-gard.service';
 import {AppEnsComponent} from './layout/appEns/appEns.component';
 import {AppEtuComponent} from './layout/appEtu/appEtu.component';
@@ -25,23 +27,23 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: '', component: AppEtuComponent, canActivate: [AuthGardService] , children: [
-      {path: 'profilEtu', component: ProfilEtuComponent, canActivate: [AuthGardService]},
-      {path: 'justificatif', component: JustificationComponent, canActivate: [AuthGardService]},
-      {path: 'moduleEtu', component: ModuleEtuComponent, canActivate: [AuthGardService]},
-      {path: 'groupeEtu', component: GroupesEtuComponent, canActivate: [AuthGardService]},
-      {path: 'sessionEtu', component: SessionComponent, canActivate: [AuthGardService]},
-      {path: 'emploiEtu', component: EmploiEtuComponent, canActivate: [AuthGardService]},
+      {path: 'profilEtu', component: ProfilEtuComponent},
+      {path: 'justificatif', component: JustificationComponent},
+      {path: 'moduleEtu', component: ModuleEtuComponent},
+      {path: 'groupeEtu', component: GroupesEtuComponent},
+      {path: 'sessionEtu', component: SessionComponent},
+      {path: 'emploiEtu', component: EmploiEtuComponent},
     ]},
-  {path: '', component: AppEnsComponent, children: [
-      {path: 'enseignant', component: EnseignantComponent, canActivate: [AuthGardService]},
-      {path: 'etudiant', component: EtudiantsComponent, canActivate: [AuthGardService]},
-      {path: 'profil', component: ProfilComponent, canActivate: [AuthGardService]},
-      {path: 'module', component: ModuleComponent, canActivate: [AuthGardService]},
-      {path: 'absence', component: AbsenceComponent, canActivate: [AuthGardService]},
-      {path: 'groupe', component: GroupesComponent, canActivate: [AuthGardService]},
-      {path: 'session', component: SessionComponent, canActivate: [AuthGardService]},
-      {path: 'statistique', component: StatistiqueComponent, canActivate: [AuthGardService]},
-      {path: 'emploi', component: EmploiComponent, canActivate: [AuthGardService]},
+  {path: '', component: AppEnsComponent, canActivate: [AuthGardService],  children: [
+      {path: 'enseignant', component: EnseignantComponent},
+      {path: 'etudiant', component: EtudiantsComponent},
+      {path: 'profil', component: ProfilComponent},
+      {path: 'module', component: ModuleComponent},
+      {path: 'absence', component: AbsenceComponent},
+      {path: 'groupe', component: GroupesComponent},
+      {path: 'session', component: SessionComponent},
+      {path: 'statistique', component: StatistiqueComponent},
+      {path: 'emploi', component: EmploiComponent},
     ]},
 ];
 

@@ -7,6 +7,7 @@ import {Session} from '../../controller/model/session';
 import {AbsenceService} from '../../controller/service/absence.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 import {SessionService} from '../../controller/service/session.service';
+import {Notification} from '../../controller/model/notification';
 
 @Component({
   selector: 'app-absence',
@@ -17,7 +18,9 @@ export class AbsenceComponent implements OnInit {
   types: SelectItem[];
   cols: any[];
   private _url = 'http://localhost:8090/absence-tracking/etudiant/';
+  private _url2 = 'http://localhost:8090/absence-tracking/absence/';
   retrievedImage: any;
+  display: boolean;
   constructor(private etudiantService: EtudiantService, private absenceService: AbsenceService,
               private sessionService: SessionService, private http: HttpClient) {
     this.types = [
@@ -42,6 +45,11 @@ export class AbsenceComponent implements OnInit {
       { field: 'firstName', header: 'Prénom' },
       { field: 'nbrAbsence', header: 'N.Absence' },
     ];
+  }
+  async showBasicDialog(absence: Absence) {
+    this.absenceService.absenceFounded = absence;
+    await this.getPhoto(this.absenceFounded.ref);
+    this.display = true;
   }
   get etudiants(): Etudiant[] {
     return this.etudiantService.etudiants;
@@ -76,6 +84,19 @@ export class AbsenceComponent implements OnInit {
       .toPromise().then(
         (res) => {
           this.retrievedImage = 'data:image/jpeg;base64,' + res.image;
+          console.log(this.retrievedImage);
+        },
+      );
+  }
+  async getPhoto(reference: string): Promise<any> {
+    // Make a call to Spring Boot to get the Image Bytes.
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.get<Absence>(this._url2 + 'get/' + reference, {headers})
+      .toPromise().then(
+        (res) => {
+          this.retrievedImage = 'data:image/jpeg;base64,' + res.justificatif;
+          this.absenceFounded.src = 'data:image/jpeg;base64,' + res.justificatif;
           console.log(this.retrievedImage);
         },
       );

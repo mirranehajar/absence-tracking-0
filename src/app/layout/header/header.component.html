@@ -51,10 +51,8 @@
             <div  ui-overlaypanel-content *ngFor="let n of notifications">
               {{n.absence.etudiant.lastName}} {{n.absence.etudiant.firstName}}
               <br>{{n.absence.session.dateStart}}-{{n.absence.session.libelle}}
-              <br>{{n.contenu}}
+              <br><button type="button" (click)="showBasicDialog5(n)" pButton icon="pi pi-info-eye" label="Afficher"></button>
               <br>
-              <button pButton (click)="accepter(n)" type="button" style="float: left">Accepter</button>
-              <button pButton (click)="refuser(n)" type="button" style="float: right" class="ui-button-danger">Refuser</button>
               <div class="dropdown-divider"></div>
             </div>
           </ng-template>
@@ -231,3 +229,10 @@
     <button class="ui-button-rounded ui-button-info" ><a routerLink="/profil">Modifier</a></button>
   </p-footer>
 </p-sidebar>
+<p-dialog header="Confirmation/refus demande" position="top" [(visible)]="displayBasic5" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <p>{{notificationFounded.contenu}}</p>
+  <br> <img [src]="notificationFounded.src">
+  <br>
+  <button pButton (click)="accepter(notificationFounded)" type="button" style="float: left">Accepter</button>
+  <button pButton (click)="refuser(notificationFounded)" type="button" style="float: right" class="ui-button-danger">Refuser</button>
+</p-dialog>
