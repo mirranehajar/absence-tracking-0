@@ -13,6 +13,9 @@ export class AuthEtuService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.authService.isUserLoggedIn()) {
+      if (this.etudiantConnected.role != null) {
+        return true;
+      }
       this.router.navigate(['emploiEtu']);
       return false;
     } else {

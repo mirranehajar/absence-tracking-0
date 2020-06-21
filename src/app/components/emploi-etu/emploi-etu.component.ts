@@ -9,6 +9,7 @@ import {AbsenceService} from '../../controller/service/absence.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 import {NotificationService} from '../../controller/service/notification.service';
 import {SessionService} from '../../controller/service/session.service';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-emploi-etu',
@@ -27,11 +28,15 @@ export class EmploiEtuComponent implements OnInit {
     endTime: '19:00',
   };
   today: Date;
+  private _url = 'http://localhost:8090/absence-tracking/notification/';
+  selectedFile: File;
+  message: string;
   contenu: string;
   displayBasic: boolean;
   displayBasic2: boolean;
   constructor(private sessionService: SessionService, private etudiantService: EtudiantService,
-              private absenceService: AbsenceService, private notificationService: NotificationService) { }
+              private absenceService: AbsenceService, private notificationService: NotificationService,
+              private http: HttpClient) { }
 
   async ngOnInit(): Promise<void> {
     this.today = new Date();
@@ -69,6 +74,7 @@ export class EmploiEtuComponent implements OnInit {
       console.log(this.notificationService.notificationFounded);
       await this.notificationService.update();
     }
+    await this.upload();
     this.displayBasic = false;
   }
   get boolean(): boolean {
@@ -76,5 +82,27 @@ export class EmploiEtuComponent implements OnInit {
   }
   get sessionFounded(): Session {
     return this.sessionService.sessionFounded;
+  }
+  public async onFileChanged(event) {
+    // Select File
+    this.selectedFile = event.target.files[0];
+  }
+  // Gets called when the user clicks on submit to upload the image
+  public async upload() {
+    console.log(this.selectedFile);
+    // FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
+    const uploadImageData = new FormData();
+    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<number>(this._url + 'upload/' + this.absenceFounded.ref , uploadImageData, {headers})
+      .toPromise().then((response) => {
+          if (response === 1) {
+            this.message = 'Image uploaded successfully';
+          } else {
+            this.message = 'Image not uploaded successfully';
+          }
+        },
+      );
   }
 }

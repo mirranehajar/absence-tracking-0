@@ -2229,9 +2229,14 @@ export class EtudiantsComponent implements OnInit {
   get semestreFounded(): Semestre {
     return this.semestreService.semestreFounded;
   }
-  password(etudiant: Etudiant) {
+  async password(etudiant: Etudiant) {
     this.etudiantService.etudiantFounded = etudiant;
     this.etudiantService.etudiantFounded.password = this.etudiantService.etudiantFounded.cne;
-    this.etudiantService.password();
+    await this.etudiantService.password();
+    await this.etudiantService.findAll();
+    for ( const e of this.etudiants) {
+      await this.getImage(e.cin);
+      e.src = this.retrievedImage;
+    }
   }
 }

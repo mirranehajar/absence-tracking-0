@@ -123,6 +123,7 @@ export class NotificationService {
     myclone.state = notification.state ;
     myclone.contenu = notification.contenu ;
     myclone.enseignant = notification.enseignant ;
+    myclone.photo = notification.photo ;
     return myclone;
   }
 
@@ -149,6 +150,9 @@ export class NotificationService {
   }
 
   get notificationFounded(): Notification {
+    if (this._notificationFounded == null) {
+      this._notificationFounded = new Notification();
+    }
     return this._notificationFounded;
   }
 

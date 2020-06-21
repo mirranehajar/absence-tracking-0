@@ -7,4 +7,6 @@ export class Notification {
   public enseignant: Enseignant;
   public state: string;
   public contenu: string;
+  public photo: any;
+  public src: any;
 }

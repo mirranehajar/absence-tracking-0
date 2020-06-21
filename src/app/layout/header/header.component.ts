@@ -23,6 +23,7 @@ import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
 import {YearsService} from '../../controller/service/years.service';
+import {Absence} from '../../controller/model/absence';
 
 @Component({
   selector: 'app-header',
@@ -41,11 +42,13 @@ export class HeaderComponent implements OnInit {
     displayBasic2: boolean;
     displayBasic3: boolean;
     displayBasic4: boolean;
+    displayBasic5: boolean;
     filiere: string;
     display: boolean;
     notif: number;
     year = new Years();
   private _url = 'http://localhost:8090/absence-tracking/enseignant/';
+  private _url2 = 'http://localhost:8090/absence-tracking/notification/';
   retrievedImage: any;
    constructor(public sectorManagerService: SectorManagerService, public sectorService: SectorService,
                public cycleService: CycleService, public enseignantService: EnseignantService,
@@ -127,12 +130,14 @@ export class HeaderComponent implements OnInit {
       }
     }
      this.notif = this.notifications.length;
+     this.displayBasic5 = false;
   }
   async accepter(notification: Notification) {
     notification.state = 'acceptée';
     this.notificationService.notificationFounded = notification;
     await this.absenceService.findByReference(notification.absence);
     this.absenceService.absenceFounded.justification = notification.contenu;
+    this.absenceService.absenceFounded.justificatif = notification.photo;
     await this.absenceService.update();
     await this.notificationService.update();
     await this.notificationService.findByEnseignant(this.enseignantConnected);
@@ -143,6 +148,7 @@ export class HeaderComponent implements OnInit {
       }
     }
     this.notif = this.notifications.length;
+    this.displayBasic5 = false;
   }
   setClasses() {
     return this.classes;
@@ -162,6 +168,11 @@ export class HeaderComponent implements OnInit {
   showBasicDialog3(libelle: string) {
      this.filiere = libelle;
      this.displayBasic3 = true;
+  }
+  async showBasicDialog5(notification: Notification) {
+    this.notificationService.notificationFounded = notification;
+    await this.getPhoto(this.notificationFounded.absence);
+    this.displayBasic5 = true;
   }
   get sectors(): Sector[] {
     return this.sectorService.sectors;
@@ -321,6 +332,9 @@ export class HeaderComponent implements OnInit {
   get modulesConnected(): Module[] {
     return this.moduleService.modulesConnected;
   }
+  get notificationFounded(): Notification {
+    return this.notificationService.notificationFounded;
+  }
   get notificationsFounded(): Notification[] {
     return this.notificationService.notificationsFounded;
   }
@@ -345,6 +359,19 @@ export class HeaderComponent implements OnInit {
         this.notifications.push(n);
       }
     }
+  }
+  async getPhoto(absence: Absence): Promise<any> {
+    // Make a call to Spring Boot to get the Image Bytes.
+    // tslint:disable-next-line:max-line-length
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
+    await this.http.post<Notification>(this._url2 + 'get/absence' , absence, {headers})
+      .toPromise().then(
+        (res) => {
+          this.retrievedImage = 'data:image/jpeg;base64,' + res.photo;
+          this.notificationFounded.src = 'data:image/jpeg;base64,' + res.photo;
+          console.log(this.retrievedImage);
+        },
+      );
   }
   async getImage(cin: string): Promise<any> {
     // Make a call to Spring Boot to get the Image Bytes.

@@ -8,4 +8,6 @@ export class Absence {
   public justification: string;
   public etudiant: Etudiant;
   public session: Session;
+  public justificatif: any;
+  public src: any;
 }

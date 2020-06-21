@@ -146,6 +146,7 @@ export class AbsenceService {
     myclone.etudiant = absence.etudiant ;
     myclone.absent = absence.absent ;
     myclone.session = absence.session ;
+    myclone.justificatif = absence.justificatif ;
     return myclone;
   }
   get absence(): Absence {
