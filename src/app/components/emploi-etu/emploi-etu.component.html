@@ -24,19 +24,24 @@
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input type="texte" name="libelle" disabled [(ngModel)]="sessionFounded.libelle">
+           <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input" type="texte" name="libelle" disabled [(ngModel)]="sessionFounded.libelle" size="30" pInputText required="required">
+    <label for="float-input">libelle</label>
+            </span>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+            <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input1" type="texte" name="typeSession" disabled [(ngModel)]="sessionFounded.typeSession.reference" size="30" pInputText required="required">
+    <label for="float-input1">Type Seance</label>
+            </span>
           <input type="texte" name="typeSession" disabled [(ngModel)]="sessionFounded.typeSession.reference">
         </div>
       </div>
       <div class="row" *ngIf="boolean != false">
-        <div class="ui-inputgroup">
+        <div class="ui-inputgroup" style="margin-top: 10px; width: 225px">
           <textarea [rows]="5" [(ngModel)]="absenceFounded.justification" [cols]="30" name="justification" pInputTextarea autoResize="autoResize"></textarea>
         </div>
       </div>

@@ -20,18 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/profil/profil.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profil/profil.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/session/session.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/session/session.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/emploi-etu/emploi-etu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/emploi-etu/emploi-etu.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -197,14 +187,7 @@
       <workItem from="1592238732506" duration="7996000" />
       <workItem from="1592324147374" duration="13349000" />
       <workItem from="1592506808054" duration="2119000" />
-      <workItem from="1592685977693" duration="20366000" />
-    </task>
-    <task id="LOCAL-00005" summary="Import working">
-      <created>1588036605886</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1588036605886</updated>
+      <workItem from="1592685977693" duration="23300000" />
     </task>
     <task id="LOCAL-00006" summary="export workinh">
       <created>1588039058022</created>
@@ -542,7 +525,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592492121668</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="inputs">
+      <created>1592761603435</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1592761603435</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -592,7 +582,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="semestre done" />
     <MESSAGE value="working on module rn" />
     <MESSAGE value="module done" />
     <MESSAGE value="justification and login" />
@@ -617,7 +606,8 @@
     <MESSAGE value="bell badge" />
     <MESSAGE value="bell badge.1" />
     <MESSAGE value="login" />
-    <option name="LAST_COMMIT_MESSAGE" value="login" />
+    <MESSAGE value="inputs" />
+    <option name="LAST_COMMIT_MESSAGE" value="inputs" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -640,11 +630,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1591457289443" />
-    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1592492120679">
+    <state x="308" y="0" key="CommitChangelistDialog2" timestamp="1592761600353">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1587997149012" />
-    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1592492120679" />
+    <state x="308" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1592761600353" />
     <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1591722448211">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -743,11 +733,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1591815061158" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1592400537975">
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1592761634696">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1591922144284" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1592400537975" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1592761634696" />
     <state x="92" y="93" width="1182" height="552" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1592150157728">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -761,11 +751,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="0" width="587" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1591570812262" />
-    <state x="371" y="154" key="git4idea.merge.GitPullDialog" timestamp="1592686094970">
+    <state x="371" y="154" key="git4idea.merge.GitPullDialog" timestamp="1592761613368">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="371" y="152" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1591837934077" />
-    <state x="371" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.738@0.0.1366.738" timestamp="1592686094970" />
+    <state x="371" y="154" key="git4idea.merge.GitPullDialog/0.0.1366.738@0.0.1366.738" timestamp="1592761613368" />
     <state x="406" y="135" key="refactoring.ChangeSignatureDialog" timestamp="1591481265324">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
