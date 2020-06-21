@@ -76,7 +76,7 @@
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
-               <span class="ui-float-label" style="margin-top: 10px; border-color: #63C7F2">
+               <span class="ui-float-label" style="margin-top: 10px;">
          <input [(ngModel)]="sector.libelle" type="text" id="float-input" size="30" name="libelle" pInputText required>
          <label for="float-input">Libelle</label>
                </span>
@@ -85,10 +85,10 @@
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-               <span class="ui-float-label" style="margin-top: 10px; border-color: #63C7F2">
-         <input [(ngModel)]="sector.abreveation" type="text" id="abr" size="30" name="abreveation" pInputText required>
-         <label for="abr">Abréviation</label>
-               </span>
+          <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input2" [(ngModel)]="sector.abreveation" type="text" name="abreveation" size="30" pInputText required="required">
+    <label for="float-input2">Abréviation</label>
+          </span>
         </div>
       </div>
       <br>
@@ -118,28 +118,30 @@
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input disabled [(ngModel)]="sectorFounded.libelle" name="libelle" type="text" pInputText  required>
+          <span class="ui-float-label" style="margin-top: 10px;">
+         <input [(ngModel)]="sectorFounded.libelle" name="libelle" type="text" id="float-input0" size="30" pInputText required>
+         <label for="float-input0">Libelle</label>
+               </span>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input disabled [(ngModel)]="sectorFounded.abreveation" name="abreviation" type="text" pInputText  required>
+           <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input4" [(ngModel)]="sectorFounded.abreveation" name="abreviation" type="text" size="30" pInputText required="required">
+    <label for="float-input4">Nom</label>
+                       </span>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
           <p-dropdown name="cycles" [options]="cycles" [(ngModel)]="sectorFounded.cycle"  optionLabel="libelle"></p-dropdown>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
           <p-dropdown name="enseignant" [options]="enseignantsFounded" [(ngModel)]="sectorManagerFounded.enseignant" optionLabel="lastName"></p-dropdown>
         </div>
       </div>
@@ -158,24 +160,27 @@
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input  placeholder="N°Semestre" [(ngModel)]="semestre.number" name="number" type="number" pInputText  required>
+           <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input5" [(ngModel)]="semestre.number" name="number" type="number" size="30" pInputText required="required">
+    <label for="float-input5">N°Semestre</label>
+                       </span>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input [(ngModel)]="years.libelle" name="subject" type="text" pInputText placeholder="Ajouter une année universitaire" required>
+          <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input6" [(ngModel)]="years.libelle" name="subject" type="text" size="30" pInputText required="required">
+    <label for="float-input6">Ajouter une année universitaire</label>
+          </span>
         </div>&nbsp;
         <div>
-          <button pButton class="ui-button-success" (click)="addYears()" icon="pi pi-plus"></button>
+          <button style="background-color: #FCC74F" pButton class="ui-button-success" (click)="addYears()" icon="pi pi-plus"></button>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
           <p-dropdown name="years" placeholder="Choisir une année universitaire" [options]="yearss" [(ngModel)]="year" optionLabel="libelle"></p-dropdown>
         </div>
       </div>

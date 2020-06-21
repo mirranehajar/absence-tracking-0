@@ -1,90 +1,98 @@
 <div *ngIf="enseignantConnected.role == 1" class="row">
-    <div class="col-md-4">
-      <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Add a professor"></button>
-      <p-dialog modal="true" header="Ajouter un enseignant" [(visible)]="displayBasic" [style]="{width: '50vw'}" autoZIndex="true">
-        <form style="text-align: center" method="POST" #form="ngForm" >
-            <div style="display:inline-block" class="form-group">
-              <div class="row">
-                  <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignant.numeroSOM" name="numeroSOM" type="text" pKeyFilter="pnum"  [pValidateOnly]="true" pInputText placeholder="Numéro de SOM" >
-                </div>
-              </div>
-              <br>
-                <div class="row">
-                  <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignant.cin" name="cin" type="text" pInputText placeholder="Cin">
-                  </div>
-                </div>
-              <br>
-              <div class="row">
-                  <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignant.firstName" name="prénom" type="text" pInputText placeholder="Prénom">
-                  </div>
-                </div>
-              <br>
-                <div class="row">
-                  <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignant.lastName" name="nom" type="text" pInputText placeholder="Nom">
-                  </div>
-                </div>
-              <br>
-              <div class="row">
-                  <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input max="1995-01-01" [(ngModel)]="enseignant.birthDay" name="jour de naissance" type="date" pInputText placeholder="Jour de naissance">
-                  </div>
-                </div>
-              <br>
-                <div class="row">
-                  <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignant.tel" name="tel" type="tel" pInputText placeholder="Numéro de téléphone">
-                  </div>
-                </div>
-              <br>
-              <div class="row">
-                <div class="ui-inputgroup">
-                  <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                  <p-radioButton name="sex" label="Feminin" value="F" [(ngModel)]="enseignant.sex"></p-radioButton>
-                  <p-radioButton name="sex" label="Masculin" value="M" [(ngModel)]="enseignant.sex"></p-radioButton>
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="ui-inputgroup">
-                  <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                  <p-dropdown name="sector" [options]="cities" [(ngModel)]="city"  optionLabel="ville" placeholder="Choisir une ville"></p-dropdown>
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="ui-inputgroup">
-                  <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                  <p-dropdown name="sector" [options]="departements" [(ngModel)]="enseignant.departement"  optionLabel="libelle" placeholder="Choisir un département"></p-dropdown>
-                </div>
-              </div>
+  <div class="col-md-4">
+    <button style="background-color: #FCC74F" type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Add a professor"></button>
+    <p-dialog modal="true" header="Ajouter un enseignant" [(visible)]="displayBasic" [style]="{width: '50vw'}" autoZIndex="true">
+      <form style="text-align: center" method="POST" #form="ngForm" >
+        <div style="display:inline-block" class="form-group">
+          <div class="row">
+            <div class="ui-inputgroup">
+              <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input" [(ngModel)]="enseignant.numeroSOM" name="numeroSOM" type="text" pKeyFilter="pnum"  [pValidateOnly]="true" size="30" pInputText required="required">
+    <label for="float-input">Numéro de SOM</label>
+            </span>
             </div>
-              <br>
-          <p-footer>
-            <button type="button" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Sauvegarder"></button>
-            <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Annuler" class="ui-button-secondary"></button>
-          </p-footer>
-        </form>
-      </p-dialog>
-    </div>
-    <div class="col-md-4">
-      <input type="file" (change)="onFileChange($event)" multiple="false" />
-    </div>
-    <div class="col-md-4">
-      <p-button label="Donwload example"  (click)="export()" icon="pi pi-download" ></p-button>
-    </div>
-    </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup">
+              <span class="ui-float-label">
+    <input id="float-input1" [(ngModel)]="enseignant.cin" name="cin" type="text" size="30" pInputText required="required">
+    <label for="float-input1">Cin</label>
+            </span>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup">
+                <span class="ui-float-label">
+    <input id="float-input2" [(ngModel)]="enseignant.firstName" name="prénom" type="text" size="30" pInputText required="required">
+    <label for="float-input2">Prénom</label>
+            </span>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup">
+                 <span class="ui-float-label">
+    <input id="float-input3" [(ngModel)]="enseignant.lastName" name="nom" type="text" size="30" pInputText required="required">
+    <label for="float-input3">Nom</label>
+            </span>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup">
+               <span class="ui-float-label">
+    <input id="float-input4" max="1995-01-01" [(ngModel)]="enseignant.birthDay" name="jour de naissance" type="date" size="30" pInputText required="required">
+            </span>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup">
+               <span class="ui-float-label">
+    <input id="float-input5" [(ngModel)]="enseignant.tel" name="tel" type="tel" size="30" pInputText required="required">
+    <label for="float-input5">Numéro de téléphone</label>
+            </span>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup">
+              <p-radioButton name="sex" label="Feminin" value="F" [(ngModel)]="enseignant.sex"></p-radioButton>
+              <p-radioButton name="sex" label="Masculin" value="M" [(ngModel)]="enseignant.sex"></p-radioButton>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup" style="width: 225px;">
+              <p-dropdown name="sector" [options]="cities" [(ngModel)]="city"  optionLabel="ville" placeholder="Choisir une ville"></p-dropdown>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="ui-inputgroup">
+              <p-dropdown name="sector" [options]="departements" [(ngModel)]="enseignant.departement"  optionLabel="libelle" placeholder="Choisir un département"></p-dropdown>
+            </div>
+          </div>
+        </div>
+        <br>
+        <p-footer>
+          <button type="button" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Sauvegarder"></button>
+          <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Annuler" class="ui-button-secondary"></button>
+        </p-footer>
+      </form>
+    </p-dialog>
+  </div>
+  <div class="col-md-4">
+    <input type="file" (change)="onFileChange($event)" multiple="false" />
+  </div>
+  <div class="col-md-4">
+    <p-button label="Donwload example"  (click)="export()" icon="pi pi-download" ></p-button>
+  </div>
+</div>
 <br>
-    <div>
+<div>
   <div>
     <div class="table-responsive-sm">
       <p-table (onRowSelect)="select($event)" selectionMode="single" [autoLayout]="true" [columns]="cols" [value]="enseignants" [paginator]="true" [(selection)]="enseignantSelected" dataKey="numeroSOM" [rows]="7">
@@ -108,94 +116,104 @@
             </td>
             <td *ngIf="rowData.departement != null">{{rowData.departement.libelle}}</td>
             <td *ngIf="rowData.departement == null"></td>
-          <p-button *ngIf="enseignantConnected.role == 1"  (click)="showBasicDialog2(rowData)" icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>
+            <p-button *ngIf="enseignantConnected.role == 1"  (click)="showBasicDialog2(rowData)" icon="pi pi-user-edit" styleClass="ui-button-info"></p-button>
             <p-dialog modal="true" header="modification d'un professeur" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
-            <form style="text-align: center" method="POST" >
-              <div style="display:inline-block" class="form-group">
-                <div class="row">
+              <form style="text-align: center" method="POST" >
+                <div style="display:inline-block" class="form-group">
+                  <div class="row">
+                    <div class="ui-inputgroup">
+                       <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input8" [(ngModel)]="enseignantFounded.numeroSOM" disabled  name="numeroSOM" type="text" size="30" pInputText required="required">
+    <label for="float-input8">numero de SOM</label>
+                       </span>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="ui-inputgroup">
+                         <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input9" [(ngModel)]="enseignantFounded.cin" disabled name="cin" type="text" size="30" pInputText required="required">
+    <label for="float-input9">Cin</label>
+                       </span>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="ui-inputgroup">
+                        <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input10" [(ngModel)]="enseignantFounded.lastName" name="nom" type="text" size="30" pInputText required="required">
+    <label for="float-input10">Nom</label>
+                       </span>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="ui-inputgroup">
+                       <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input11" [(ngModel)]="enseignantFounded.firstName" name="prénom" type="text" size="30" pInputText required="required">
+    <label for="float-input11">Prénom</label>
+                       </span>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="ui-inputgroup">
+                      <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input12" [(ngModel)]="enseignantFounded.mail" name="email" type="email" size="30" pInputText required="required">
+    <label for="float-input12">Email</label>
+                       </span>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="ui-inputgroup">
+                        <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input13" max="1995-01-01" [(ngModel)]="enseignantFounded.birthDay" name="jour de naissance" type="date" size="30" pInputText required="required">
+                       </span>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="ui-inputgroup">
+                        <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input14" [(ngModel)]="enseignantFounded.tel" name="tel" type="tel" size="30" pInputText required="required">
+    <label for="float-input14">tel</label>
+                       </span>
+                    </div>
+                  </div>
+                  <br><div class="row">
                   <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignantFounded.numeroSOM" disabled  name="numeroSOM" type="text" pInputText  required>
+                    <p-radioButton name="sex" label="Feminin" value="F" [(ngModel)]="enseignantFounded.sex"></p-radioButton>
+                    <p-radioButton name="sex" label="Masculin" value="M" [(ngModel)]="enseignantFounded.sex"></p-radioButton>
+                  </div>
+                </div>
+                  <br>
+                  <div class="row">
+                    <div class="ui-inputgroup">
+                      <p-dropdown name="ville" [options]="cities" [(ngModel)]="city"  optionLabel="ville" ></p-dropdown>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="ui-inputgroup">
+                      <p-dropdown name="sector" [options]="departements" [(ngModel)]="enseignantFounded.departement"  optionLabel="libelle"></p-dropdown>
+                    </div>
                   </div>
                 </div>
                 <br>
-                <div class="row">
-                  <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignantFounded.cin" disabled name="cin" type="text" pInputText >
-                  </div>
-                </div>
-                <br>
-                <div class="row">
-                  <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignantFounded.lastName" name="nom" type="text" pInputText >
-                  </div>
-                </div>
-                <br>
-                <div class="row">
-                  <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignantFounded.firstName" name="prénom" type="text" pInputText >
-                  </div>
-                </div>
-                <br>
-                <div class="row">
-                  <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignantFounded.mail" name="email" type="email" pInputText>
-                  </div>
-                </div>
-                <br>
-                <div class="row">
-                  <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input max="1995-01-01" [(ngModel)]="enseignantFounded.birthDay" name="jour de naissance" type="date" pInputText>
-                  </div>
-                </div>
-                <br>
-                <div class="row">
-                  <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <input [(ngModel)]="enseignantFounded.tel" name="tel" type="tel" pInputText >
-                  </div>
-                </div>
-                <br><div class="row">
-                <div class="ui-inputgroup">
-                  <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                  <p-radioButton name="sex" label="Feminin" value="F" [(ngModel)]="enseignantFounded.sex"></p-radioButton>
-                  <p-radioButton name="sex" label="Masculin" value="M" [(ngModel)]="enseignantFounded.sex"></p-radioButton>
-                </div>
-              </div>
-                <br>
-                <div class="row">
-                  <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <p-dropdown name="ville" [options]="cities" [(ngModel)]="city"  optionLabel="ville" ></p-dropdown>
-                  </div>
-                </div>
-                <br>
-                <div class="row">
-                  <div class="ui-inputgroup">
-                    <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-                    <p-dropdown name="sector" [options]="departements" [(ngModel)]="enseignantFounded.departement"  optionLabel="libelle"></p-dropdown>
-                  </div>
-                </div>
-              </div>
-              <br>
-              <p-footer>
-                <button type="button" pButton icon="pi pi-check" style="float: left" (click)="update()" label="Confirm"></button>
-                <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic2=false" label="Cancel" class="ui-button-secondary"></button>
-              </p-footer>
-            </form>
-          </p-dialog>
-          <p-button *ngIf="enseignantConnected.role == 1"  icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByNumeroSOM(rowData)"></p-button>
-        </tr>
+                <p-footer>
+                  <button type="button" pButton icon="pi pi-check" style="float: left" (click)="update()" label="Confirm"></button>
+                  <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic2=false" label="Cancel" class="ui-button-secondary"></button>
+                </p-footer>
+              </form>
+            </p-dialog>
+            <p-button *ngIf="enseignantConnected.role == 1"  icon="pi pi-trash" styleClass="ui-button-danger" (onClick)="deleteByNumeroSOM(rowData)"></p-button>
+          </tr>
         </ng-template>
-        </p-table>
+      </p-table>
     </div>
   </div>
-  </div>
+</div>
 <p-dialog modal="true" header="Types Séance" [(visible)]="displayBasic3" [style]="{width: '50vw'}" [baseZIndex]="10000">
   <br>
   <p-table [autoLayout]="true"  [columns]="cols2" [value]="typeSessionsFounded" [paginator]="true" [rows]="7">
@@ -225,7 +243,7 @@
         <td *ngIf="rowData.subject == null "></td>
         <td *ngIf="rowData.groupes">
           <p *ngFor="let g of rowData.groupes">
-          {{g.libelle}}&nbsp;
+            {{g.libelle}}&nbsp;
           </p>
         </td>
         <td *ngIf="rowData.groupes == null "></td>

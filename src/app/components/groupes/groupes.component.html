@@ -3,19 +3,20 @@
 </div>
 <div >
   <button type="button" style="float:right" href="/module" routerLink="/module" pButton icon="pi pi-plus" label="Modules"></button>
-  <p-dialog  header="Ajout un groupe" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <p-dialog  header="Ajout un groupe" modal="true" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
     <form style="text-align: center" method="POST">
       <div style="display:inline-block" class="form-group">
         <div class="row">
           <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-            <input [(ngModel)]="groupe.libelle" name="libelle" type="text" pInputText placeholder="Libelle" required>
+             <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input1" [(ngModel)]="groupe.libelle" name="libelle" type="text" size="30" pInputText required="required">
+    <label for="float-input1">libelle</label>
+            </span>
           </div>
         </div>
         <br>
         <div class="row">
           <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
             <p-multiSelect name="etudiants" defaultLabel="Choisir des étudiants" [options]="etudiants" [(ngModel)]="groupe.etudiants" optionLabel="firstName"></p-multiSelect>
           </div>
         </div>

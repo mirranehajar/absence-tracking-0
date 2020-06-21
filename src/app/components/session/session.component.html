@@ -23,26 +23,29 @@
       (eventDrop)="onDrop($event)"
     (eventResize)="onResize($event)">
     </full-calendar>
-    <p-dialog  header="Ajout d'une séance" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <p-dialog  header="Ajout d'une séance" modal="true" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
       <form style="text-align: center" method="POST" >
         <div style="display:inline-block" class="form-group">
           <div class="row">
             <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="texte" name="libelle" placeholder="Titre" [(ngModel)]="session.libelle">
+              <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input" [(ngModel)]="session.libelle" type="texte" name="libelle" size="30" pInputText required="required">
+    <label for="float-input">libelle</label>
+            </span>
             </div>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="number" name="durée" placeholder="La durée de la séance (H)" [(ngModel)]="session.periode">
+               <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input1" [(ngModel)]="session.periode" type="number" name="durée" size="30" pInputText required="required">
+    <label for="float-input1">La durée de la séance (H)</label>
+            </span>
             </div>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
               <p-dropdown name="typeSession" [options]="typeSeance" [(ngModel)]="session.typeSession" placeholder="Choisir type de la séance" optionLabel="reference"></p-dropdown>
             </div>
           </div>
@@ -53,20 +56,23 @@
         </p-footer>
       </form>
     </p-dialog>
-    <p-dialog  header="Affichage d'une séance" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <p-dialog  header="Affichage d'une séance" modal="true" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
       <form style="text-align: center" method="POST" >
         <div style="display:inline-block" class="form-group">
           <div class="row">
             <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="texte" name="libelle" disabled [(ngModel)]="sessionFounded.libelle">
-            </div>
+               <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input2" type="texte" name="libelle" disabled [(ngModel)]="sessionFounded.libelle" size="30" pInputText>
+    <label for="float-input2">libelle</label>
+            </span>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
-              <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-              <input type="texte" name="typeSession" disabled [(ngModel)]="sessionFounded.typeSession.reference">
+               <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input3" type="texte" name="typeSession" disabled [(ngModel)]="sessionFounded.typeSession.reference" size="30" pInputText>
+    <label for="float-input3">libelle</label>
+            </span>
             </div>
           </div>
         </div>
@@ -75,6 +81,7 @@
           <button style="float: right" (click)="deleteByReference(sessionFounded)" *ngIf="enseignantConnected.numeroSOM == sessionFounded.typeSession.enseignant.numeroSOM || enseignantConnected.numeroSOM == sectorManagerFounded.enseignant.numeroSOM" type="button" class="ui-button-danger" pButton icon="pi pi-check"   label="Supprimer"></button>
           <button style="float: left"  *ngIf="enseignantConnected.numeroSOM == sessionFounded.typeSession.enseignant.numeroSOM" routerLink="/absence" type="button"  pButton icon="pi pi-check"   label="Noter l'absence"></button>
         </p-footer>
+        </div>
       </form>
     </p-dialog>
   </div>

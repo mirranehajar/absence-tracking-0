@@ -1,3 +1,4 @@
+
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import {ConfirmationService} from 'primeng/api';
@@ -2167,7 +2168,7 @@ export class EnseignantComponent implements OnInit {
     return this.enseignantService.enseignantConnected;
   }
   findAll() {
-   this.http.get<Departement[]>('http://localhost:8090/absence-tracking/departement/').subscribe(
+    this.http.get<Departement[]>('http://localhost:8090/absence-tracking/departement/').subscribe(
       (data) => {
         this.enseignantService.departements = data;
       },
