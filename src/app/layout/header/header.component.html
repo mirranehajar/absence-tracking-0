@@ -48,7 +48,7 @@
             <a routerLink="/statistique" (click)="goToStatistique()" class="nav-link"><i class="pi pi-chart-bar iconColor">Statistique</i></a>
           </li>
         </ul>
-        <mat-icon [matBadge]="notif" matBadgeColor="primary" (click)="op1.toggle($event)" style="margin-right: 8px; color: #987376">notifications</mat-icon>
+        <mat-icon [matBadge]="notif" matBadgeColor="primary" (click)="op1.toggle($event)" style="margin-right: 8px; color: #a35119">notifications</mat-icon>
         <p-overlayPanel #op1 (onShow)="showNotif()">
           <ng-template pTemplate>
             <div  ui-overlaypanel-content *ngFor="let n of notifications">
