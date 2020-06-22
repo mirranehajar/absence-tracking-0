@@ -1,15 +1,18 @@
 <!--Navbar-->
 
-<mdb-navbar #nav SideClass="navbar navbar-expand-lg navbar-light white">
-        <a class="navbar-brand" routerLink="/emploi">
-          <img src="assets/images/fstg.jpg" height="30" alt="">
-        </a>
+<mdb-navbar #nav SideClass="navbar navbar-expand-lg navbar-light white" >
+
+    <img src="assets/images/logoFst.png" height="50" alt="">
+
       <links>
         <!-- Links -->
         &nbsp;
-        <ul class="navbar-nav mr-auto" style="width: 1072px; margin-left: 60px">
+        <ul class="navbar-nav mr-auto" style="width: 1140px; margin-left: 5px;">
           <li class="nav-item">
             <a class="nav-link"><i (click)="show()" class="pi pi-user iconColor">Profile</i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/emploi"><i class="pi pi-home iconColor">Acceuil</i></a>
           </li>
           <!-- Dropdown -->
           <li class="nav-item dropdown mega-dropdown" mdbDropdown>
@@ -42,10 +45,10 @@
             <a routerLink="/enseignant" class="nav-link"><i class="pi pi-star iconColor">Enseignants</i></a>
           </li>
           <li class="nav-item">
-            <a routerLink="/statistique" (click)="goToStatistique()" class="nav-link"><i class="pi pi-chart-bar iconColor"></i>Statistique</a>
+            <a routerLink="/statistique" (click)="goToStatistique()" class="nav-link"><i class="pi pi-chart-bar iconColor">Statistique</i></a>
           </li>
         </ul>
-        <mat-icon [matBadge]="notif" matBadgeColor="primary" (click)="op1.toggle($event)" style="margin-right: 8px">notifications</mat-icon>
+        <mat-icon [matBadge]="notif" matBadgeColor="primary" (click)="op1.toggle($event)" style="margin-right: 8px; color: #987376">notifications</mat-icon>
         <p-overlayPanel #op1 (onShow)="showNotif()">
           <ng-template pTemplate>
             <div  ui-overlaypanel-content *ngFor="let n of notifications">
@@ -60,9 +63,6 @@
         &emsp;
         <i (click)="logout()" class="pi pi-sign-out iconColor"></i>
         <!-- Links -->
-        <a class="navbar-brand" >
-          <img src="assets/images/logoFst.png" height="42" alt="">
-        </a>
       </links>
       <!-- Collapsible content -->
     </mdb-navbar>
@@ -192,7 +192,7 @@
     </p-footer>
   </form>
 </p-dialog>
-<p-sidebar [(visible)]="display" [style]="{width:'16em'}">
+<p-sidebar [(visible)]="display" [style]="{width:'17em'}">
   <p-header>
     <img [src]="enseignantConnected.src" alt="Avatar" style="width: 150px; height: 160px; border-radius: 50%;">
     <mat-form-field class="example-full-width">

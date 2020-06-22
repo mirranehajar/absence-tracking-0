@@ -7,14 +7,13 @@
     min-height: 100%;
     display: grid;
     grid-template-areas:
-      'header header '
-      'aside main'
-      'footer footer ';
-    grid-auto-columns: auto 85% ;
-    grid-template-rows: auto 1fr auto ;
-    grid-gap: 1px;
+      ' header '
+      ' main'
+      ' footer ';
+    grid-auto-columns: 100% ;
+    grid-template-rows: auto 1fr ;
+    grid-gap: 0px;
 
-    background-color: aqua;
     padding: 0px;
 
 }
@@ -33,9 +32,8 @@
        'footer';
     grid-template-columns: 100%;
     grid-template-rows: auto 1fr;
-    grid-gap: 1px;
+    grid-gap: 0px;
 
-    background-color: aqua;
     padding: 0px;
   }
   app-aside{
