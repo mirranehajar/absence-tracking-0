@@ -50,7 +50,7 @@
         <br>
         <tr>
           <th style="text-align: left">password:</th>
-          <th><button pButton (click)="showBasicDialog()" class="ui-button-raised" style="float: left"  label="Modifier le mot de passe" style="margin-left: 100px; background-color: #FCC74F"></button></th>
+          <th><button pButton (click)="showBasicDialog()" class="ui-button-raised" style="float: left"  label="Modifier le mot de passe" style="margin-left: 100px; background-color: #cccccc"></button></th>
         </tr>
       </table>
     </div>
@@ -90,7 +90,7 @@
           </form>
         </p-dialog>
         <br>
-        <button  pButton (click)="showBasicDialog2()"  label="Valider les modifications" style="margin-right: 500px; background-color: #0882A1"></button>
+        <button  pButton (click)="showBasicDialog2()" class="btn btn-info"  label="Valider les modifications" style="margin-right: 500px;"></button>
         <p-dialog  header="Validation des modifications" [modal]="true" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
           <form style="text-align: center" method="POST" >
             <div style="display:inline-block" class="form-group">

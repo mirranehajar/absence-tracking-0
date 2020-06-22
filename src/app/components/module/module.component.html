@@ -1,7 +1,9 @@
 <br>
-<button icon="pi pi-plus"  style="background-color: #0882A1; float: left" *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog()" class="btn">Ajouter un module</button>
-  <button icon="pi pi-arrow-circle-right" style="background-color: #0882A1; float: right" routerLink="/groupe" class="btn">Groupes</button>
-<br>
+<div>
+  <button *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un module"></button>
+  <button type="button" style="float:right;" href="/groupe" routerLink="/groupe" pButton icon="fa fa-external-link" label="Groupes"></button>
+
+</div>
 <br><br>
 <div class="row" *ngIf="sectorManagerConnected.enseignant.numeroSOM != enseignantConnected.numeroSOM" >
   <div  class="col-sm-4" *ngFor="let m of modulesConnected">
@@ -9,7 +11,7 @@
       <div class="card-body  back">
         <h5 class="card-title">{{m.abreveation}}</h5>
         <p class="card-text">{{m.libelle}}</p>
-        <a (click)="goToSession(m)"  class="btn btn-primary" style="background-color: #FCC74F">Voir les séances</a>
+        <button type="button" style="float:left;"  pButton (click)="goToSession(m)" icon="fa fa-external-link" label="Voir les séances"></button>
       </div>
       <p-fieldset legend="Types séance" (onBeforeToggle)="showBasicDialog2(m)" [toggleable]="true" collapsed="false">
         <div>
@@ -56,14 +58,14 @@
       <div class="card-body  back">
         <h5 class="card-title">{{m.abreveation}}</h5>
         <p class="card-text">{{m.libelle}}</p>
-        <button (click)="goToSession(m)" pButton type="button" label="Voir les séances" icon="pi pi-external-link" iconPos="left" style="background-color: #FCC74F; float: left"></button>
+        <button type="button" style="float:left;"  pButton (click)="goToSession(m)" icon="fa fa-external-link" label="Voir les séances"></button>
         <button (click)="deleteByLibelle(m)" pButton type="button" icon="pi pi-trash" iconPos="left" style="float: right" label="Supprimer" class="ui-button-danger"></button>
       </div>
       <br>
       <p-fieldset legend="Types séance" (onBeforeToggle)="showBasicDialog2(m)" [toggleable]="true" collapsed="false">
         <div >
           <div class=" row justify-content-center">
-            <button *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog3(m)" class="btn btn-primary" style="background-color: #FCC74F">Ajouter un type séance</button>
+            <button *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog3(m)" class="btn btn-info" >Ajouter un type séance</button>
           </div>
           <br>
           <div >
@@ -173,7 +175,7 @@
             </span>
         </div>&nbsp;
         <div>
-        <button style="background-color: #FCC74F" pButton class="ui-button-success" (click)="addSubject()" icon="pi pi-plus"></button>
+        <button pButton class="ui-button-success" (click)="addSubject()" icon="pi pi-plus"></button>
         </div>
       </div>
       <br>

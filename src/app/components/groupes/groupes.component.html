@@ -1,8 +1,9 @@
+<br>
 <div>
 <button *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" type="button" style="float: left" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un groupe"></button>
 </div>
 <div >
-  <button type="button" style="float:right" href="/module" routerLink="/module" pButton icon="pi pi-plus" label="Modules"></button>
+  <button type="button" style="float:right" href="/module" routerLink="/module" pButton icon="fa fa-external-link" label="Modules"></button>
   <p-dialog  header="Ajout un groupe" modal="true" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
     <form style="text-align: center" method="POST">
       <div style="display:inline-block" class="form-group">
@@ -17,7 +18,7 @@
         <br>
         <div class="row">
           <div class="ui-inputgroup">
-            <p-multiSelect name="etudiants" defaultLabel="Choisir des étudiants" [options]="etudiants" [(ngModel)]="groupe.etudiants" optionLabel="firstName"></p-multiSelect>
+            <p-multiSelect style="text-align: left" name="etudiants" defaultLabel="Choisir des étudiants" [options]="etudiants" [(ngModel)]="groupe.etudiants" optionLabel="firstName"></p-multiSelect>
           </div>
         </div>
       </div>

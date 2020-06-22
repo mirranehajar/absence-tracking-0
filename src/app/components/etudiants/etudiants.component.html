@@ -1,7 +1,7 @@
 
       <div *ngIf="enseignantConnected.role == 1"  class="row">
         <div class="col-md-4">
-          <button style="background-color: #FCC74F" type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un étudiant"></button>
+          <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un étudiant"></button>
           <p-dialog  header="Ajout d'un nouveau étudiant" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
             <form style="text-align: center" method="POST" >
               <div style="display:inline-block" class="form-group">
@@ -122,7 +122,7 @@
           </div>
         </div>
         <div class="col-md-4">
-          <p-button style="background-color: #FCC74F" label="Donwload example" (click)="export()" icon="pi pi-download" ></p-button>
+          <p-button label="Donwload example" (click)="export()" icon="pi pi-download" ></p-button>
         </div>
       </div>
     <div class="card-body">

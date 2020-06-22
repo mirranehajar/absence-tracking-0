@@ -1,6 +1,6 @@
 <div *ngIf="enseignantConnected.role == 1" class="row">
   <div class="col-md-4">
-    <button style="background-color: #FCC74F" type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Add a professor"></button>
+    <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un enseignant"></button>
     <p-dialog modal="true" header="Ajouter un enseignant" [(visible)]="displayBasic" [style]="{width: '50vw'}" autoZIndex="true">
       <form style="text-align: center" method="POST" #form="ngForm" >
         <div style="display:inline-block" class="form-group">

@@ -28,13 +28,13 @@
                   <div class="dropdown-divider"></div>
                   </div>
                   <div style="text-align: center">
-                    <button pButton type="button" *ngIf="sectorManagerFounded.enseignant.numeroSOM == enseignantConnected.numeroSOM" icon="pi pi-plus"  (click)="showBasicDialog3(s.libelle)" style="opacity: 0.8; background-color: #FCC74F" label="Ajouter"  ></button>
+                    <button pButton type="button" *ngIf="sectorManagerFounded.enseignant.numeroSOM == enseignantConnected.numeroSOM" icon="pi pi-plus"  (click)="showBasicDialog3(s.libelle)" style="opacity: 0.8;" label="Ajouter"  ></button>
                   </div>
                 </div>
                 <div class="dropdown-divider"></div>
               </div>
               <div style="text-align: center">
-              <button *ngIf="enseignantConnected.role === 1" pButton type="button"  icon="pi pi-plus" (click)="showBasicDialog()" style="opacity: 0.8; background-color: #FCC74F" label="Ajouter" ></button>
+              <button *ngIf="enseignantConnected.role === 1" pButton type="button"  icon="pi pi-plus" (click)="showBasicDialog()" style="opacity: 0.8;" label="Ajouter" ></button>
             </div>
             </div>
           </li>
@@ -173,7 +173,7 @@
           </span>
         </div>&nbsp;
         <div>
-          <button style="background-color: #FCC74F" pButton class="ui-button-success" (click)="addYears()" icon="pi pi-plus"></button>
+          <button pButton class="ui-button-success" (click)="addYears()" icon="pi pi-plus"></button>
         </div>
       </div>
       <br>
