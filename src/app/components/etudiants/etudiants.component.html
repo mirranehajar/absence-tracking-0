@@ -1,7 +1,8 @@
 
       <div *ngIf="enseignantConnected.role == 1"  class="row">
         <div class="col-md-4">
-          <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un étudiant"></button>
+          <br>
+          <button style="margin-left: 100px" type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un étudiant"></button>
           <p-dialog  header="Ajout d'un nouveau étudiant" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
             <form style="text-align: center" method="POST" >
               <div style="display:inline-block" class="form-group">
@@ -81,8 +82,8 @@
                 </div>
                 <br>
               <div class="row">
-                <div class="ui-inputgroup">
-                  <p-dropdown name="sector" (onChange)="onChangeSector()" [options]="sectors" [(ngModel)]="etudiant.sector" placeholder="Choisir une filière" optionLabel="abreveation"></p-dropdown>
+                <div class="ui-inputgroup" >
+                  <p-dropdown  name="sector" (onChange)="onChangeSector()" [options]="sectors" [(ngModel)]="etudiant.sector" placeholder="Choisir une filière" optionLabel="abreveation"></p-dropdown>
                 </div>
               </div>
               <br>
@@ -103,6 +104,7 @@
           <p-messages [value]="msgs">msg</p-messages>
         </div>
         <div class="col-md-4">
+          <br>
           <div class="row">
             <div class="ui-inputgroup">
               <p-dropdown name="sector" placeholder="Choisir une filière" (onChange)="onChangeImport()" [options]="sectors" [(ngModel)]="sectorImport" optionLabel="abreveation"></p-dropdown>
@@ -117,17 +119,19 @@
           <br>
           <div class="row" *ngIf="groupeImport != null">
             <div class="ui-inputgroup">
-              <input type="file" (change)="onFileChange($event)" multiple="false" />
+              <input style="margin-left: 100px" type="file" (change)="onFileChange($event)" multiple="false" />
             </div>
           </div>
         </div>
+
         <div class="col-md-4">
-          <p-button label="Donwload example" (click)="export()" icon="pi pi-download" ></p-button>
+          <br>
+          <p-button style="margin-left: 100px" label="Donwload example" (click)="export()" icon="pi pi-download" ></p-button>
         </div>
       </div>
     <div class="card-body">
         <div class="table-responsive-sm">
-          <p-table [autoLayout]="true" [columns]="cols" [value]="etudiants" [paginator]="true" [rows]="7">
+          <p-table [autoLayout]="true" style="width: 1000px" [columns]="cols" [value]="etudiants" [paginator]="true" [rows]="7">
             <ng-template pTemplate="header" let-columns>
               <tr>
                 <th></th>

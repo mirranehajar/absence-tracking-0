@@ -19,7 +19,7 @@
     (eventClick)="showBasicDialog($event)">
   </full-calendar>
 </div>
-<p-dialog header="Demander une excuse d'absence" [style]="{'text-align':'center'}" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+<p-dialog header="Demander une excuse d'absence" [modal]="true" [style]="{'text-align':'center'}" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
   <form style="text-align: center" method="POST" >
     <div style="display:inline-block" class="form-group">
       <div class="row">
@@ -37,7 +37,6 @@
     <input id="float-input1" type="texte" name="typeSession" disabled [(ngModel)]="sessionFounded.typeSession.reference" size="30" pInputText required="required">
     <label for="float-input1">Type Seance</label>
             </span>
-          <input type="texte" name="typeSession" disabled [(ngModel)]="sessionFounded.typeSession.reference">
         </div>
       </div>
       <div class="row" *ngIf="boolean != false">

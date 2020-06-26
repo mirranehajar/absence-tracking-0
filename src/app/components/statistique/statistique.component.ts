@@ -98,6 +98,7 @@ export class StatistiqueComponent implements OnInit {
       datasets: [
         {
           label: 'First Dataset',
+          backgroundColor: '#a64d79',
           data: this.somme,
           fill: true,
           borderColor: '#4bc0c0',
@@ -131,6 +132,7 @@ export class StatistiqueComponent implements OnInit {
       datasets: [
         {
           label: 'Par semestre',
+          backgroundColor: '#a64d79',
           data: this.somme2,
           fill: true,
           borderColor: '#4bc0c0',
@@ -203,6 +205,7 @@ export class StatistiqueComponent implements OnInit {
       this.dataSemestres.push(
         {
           label: y.libelle,
+          backgroundColor: '#a64d79',
           data: this.sommeSemestres,
           fill: true,
           borderColor: '#4bc0c0',
@@ -240,6 +243,7 @@ export class StatistiqueComponent implements OnInit {
       datasets: [
         {
           label: this.module.abreveation,
+          backgroundColor: '#a64d79',
           data: this.somme3,
           fill: true,
           borderColor: '#4bc0c0',

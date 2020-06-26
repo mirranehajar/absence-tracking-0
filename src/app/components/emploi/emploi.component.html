@@ -24,22 +24,28 @@
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input type="texte" name="reference" disabled [(ngModel)]="sessionFounded.reference">
+             <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input"  type="texte" name="reference" disabled [(ngModel)]="sessionFounded.reference" size="30" pInputText required="required">
+    <label for="float-input">reference</label>
+            </span>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input type="texte" name="libelle" disabled [(ngModel)]="sessionFounded.libelle">
+           <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input1"  type="texte" name="libelle" disabled [(ngModel)]="sessionFounded.libelle" size="30" pInputText required="required">
+    <label for="float-input1">libelle</label>
+            </span>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
-          <input type="texte" name="typeSession" disabled [(ngModel)]="sessionFounded.typeSession.reference">
+           <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input2"  type="texte" name="typeSession" disabled [(ngModel)]="sessionFounded.typeSession.reference" size="30" pInputText required="required">
+    <label for="float-input2">type séance</label>
+            </span>
         </div>
       </div>
     </div>

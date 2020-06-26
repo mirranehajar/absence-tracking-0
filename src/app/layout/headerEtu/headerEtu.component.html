@@ -12,7 +12,7 @@
       <links>
         <!-- Links -->
         &nbsp;
-        <ul class="navbar-nav mr-auto" style="width: 1140px; margin-left: 5px;">
+        <ul class="navbar-nav mr-auto" style="width: 1080px; margin-left: 5px;">
           <li class="nav-item">
           <a class="nav-link"><i (click)="show()" class="pi pi-user iconColor">Profile</i></a>
         </li>
@@ -31,7 +31,7 @@
             <a routerLink="/justificatif" class="nav-link"><i class="pi pi-star iconColor">Absences</i></a>
           </li>
         </ul>
-        <mat-icon [matBadge]="notif" matBadgeColor="primary" (click)="op1.toggle($event)" style="margin-right: 8px; color: #a35119">notifications</mat-icon>
+        <mat-icon [matBadge]="notif" matBadgeColor="primary" (click)="op1.toggle($event)" style="margin-right: 8px; color: black">notifications</mat-icon>
         <p-overlayPanel #op1>
           <ng-template pTemplate>
                 <div ui-overlaypanel-content *ngFor="let n of notifications">
@@ -42,7 +42,7 @@
                 </div>
           </ng-template>
         </p-overlayPanel>
-        <i  (click)="logout()" class="iconColor pi pi-sign-out"></i>
+        <i  (click)="logout()" class="iconColor pi pi-sign-out"  style="font-size: 26px"></i>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <!-- Links -->
       </links>

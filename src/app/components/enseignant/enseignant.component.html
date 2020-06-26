@@ -1,6 +1,7 @@
 <div *ngIf="enseignantConnected.role == 1" class="row">
   <div class="col-md-4">
-    <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un enseignant"></button>
+    <br>
+    <button style="margin-left: 100px" type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un enseignant"></button>
     <p-dialog modal="true" header="Ajouter un enseignant" [(visible)]="displayBasic" [style]="{width: '50vw'}" autoZIndex="true">
       <form style="text-align: center" method="POST" #form="ngForm" >
         <div style="display:inline-block" class="form-group">
@@ -85,10 +86,12 @@
     </p-dialog>
   </div>
   <div class="col-md-4">
-    <input type="file" (change)="onFileChange($event)" multiple="false" />
+    <br>
+    <input style="margin-left: 100px" type="file" (change)="onFileChange($event)" multiple="false" />
   </div>
   <div class="col-md-4">
-    <p-button label="Donwload example"  (click)="export()" icon="pi pi-download" ></p-button>
+    <br>
+    <p-button style="margin-left: 100px" label="Donwload example"  (click)="export()" icon="pi pi-download" ></p-button>
   </div>
 </div>
 <br>
