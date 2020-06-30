@@ -1,7 +1,9 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {MenuItem} from 'primeng/api';
+import {MenuItem, MessageService} from 'primeng/api';
+import {Absence} from '../../controller/model/absence';
 import {Cycle} from '../../controller/model/cycle';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {Module} from '../../controller/model/module';
@@ -23,12 +25,12 @@ import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
 import {YearsService} from '../../controller/service/years.service';
-import {Absence} from '../../controller/model/absence';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  providers: [MessageService],
 })
 export class HeaderComponent implements OnInit {
     categoriesList: Sector[];
@@ -47,6 +49,8 @@ export class HeaderComponent implements OnInit {
     display: boolean;
     notif: number;
     year = new Years();
+    userform: FormGroup;
+    submitted: boolean;
   private _url = 'http://localhost:8090/absence-tracking/enseignant/';
   private _url2 = 'http://localhost:8090/absence-tracking/notification/';
   retrievedImage: any;
@@ -55,10 +59,16 @@ export class HeaderComponent implements OnInit {
                public semestreService: SemestreService, private router: Router,
                private moduleService: ModuleService, private typeSessionService: TypeSessionService,
                private notificationService: NotificationService, private absenceService: AbsenceService,
-               private yearsService: YearsService, private http: HttpClient,
-               private authentocationService: AuthenticationService) { }
+               private yearsService: YearsService, private http: HttpClient, private fb: FormBuilder,
+               private authentocationService: AuthenticationService, private messageService: MessageService) { }
 
    async ngOnInit(): Promise<void> {
+    this.userform = this.fb.group({
+       libelle: new FormControl('', Validators.required),
+       abreviation: new FormControl('', Validators.required),
+       cycle: new FormControl('', Validators.required),
+       enseignant: new FormControl('', Validators.required),
+     });
     await this.enseignantService.findByMail(sessionStorage.getItem('username'));
     this.getImage(this.enseignantConnected.cin);
     this.cycleService.findAll();
@@ -219,6 +229,7 @@ export class HeaderComponent implements OnInit {
     await this.sectorManagerService.save();
     await this.findByRole(3);
     this.displayBasic = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Filière enregistrée'});
   }
   public update() {
     this.sectorService.update();
@@ -226,6 +237,7 @@ export class HeaderComponent implements OnInit {
     console.log(this.sectorManagerFounded);
     this.sectorManagerService.update();
     this.displayBasic2 = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Filière modifiée'});
   }
   public async save2() {
     this.semestre.anneeUniversitaire = this.year.libelle;

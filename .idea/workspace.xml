@@ -20,17 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_04_2020_21_46__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Justification/justification.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Justification/justification.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/absence/absence.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/absence/absence.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/absence/absence.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/absence/absence.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/profil/profil.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profil/profil.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/session/session.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/session/session.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/session/session.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/session/session.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/controller/service/absence.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/controller/service/absence.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/emploi/emploi.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/emploi/emploi.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -198,14 +190,7 @@
       <workItem from="1592506808054" duration="2119000" />
       <workItem from="1592685977693" duration="57164000" />
       <workItem from="1593434821355" duration="3330000" />
-      <workItem from="1593539588414" duration="7794000" />
-    </task>
-    <task id="LOCAL-00013" summary="session and type session service">
-      <created>1589219040486</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1589219040486</updated>
+      <workItem from="1593539588414" duration="14620000" />
     </task>
     <task id="LOCAL-00014" summary="filière">
       <created>1589256071334</created>
@@ -543,7 +528,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592932811708</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="justificatif">
+      <created>1593550521350</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1593550521351</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +585,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="page login to others" />
     <MESSAGE value="bricolage" />
     <MESSAGE value="suppression justification test" />
     <MESSAGE value="aside bye bye" />
@@ -618,7 +609,8 @@
     <MESSAGE value="..." />
     <MESSAGE value="buttons" />
     <MESSAGE value="footer" />
-    <option name="LAST_COMMIT_MESSAGE" value="footer" />
+    <MESSAGE value="justificatif" />
+    <option name="LAST_COMMIT_MESSAGE" value="justificatif" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -655,29 +647,29 @@
     </state>
     <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1593540082237" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
-    <state width="1345" height="185" key="GridCell.Tab.0.bottom" timestamp="1593545368250">
+    <state width="1345" height="185" key="GridCell.Tab.0.bottom" timestamp="1593555420296">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1591361539321" />
-    <state width="1345" height="185" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1593545368250" />
+    <state width="1345" height="185" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1593555420296" />
     <state width="808" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1593049075541" />
-    <state width="1345" height="185" key="GridCell.Tab.0.center" timestamp="1593545368249">
+    <state width="1345" height="185" key="GridCell.Tab.0.center" timestamp="1593555420295">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1591361539320" />
-    <state width="1345" height="185" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1593545368249" />
+    <state width="1345" height="185" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1593555420295" />
     <state width="808" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1593049075541" />
-    <state width="1345" height="185" key="GridCell.Tab.0.left" timestamp="1593545368249">
+    <state width="1345" height="185" key="GridCell.Tab.0.left" timestamp="1593555420295">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1591361539319" />
-    <state width="1345" height="185" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1593545368249" />
+    <state width="1345" height="185" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1593555420295" />
     <state width="808" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1593049075541" />
-    <state width="1345" height="185" key="GridCell.Tab.0.right" timestamp="1593545368249">
+    <state width="1345" height="185" key="GridCell.Tab.0.right" timestamp="1593555420295">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1591361539320" />
-    <state width="1345" height="185" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1593545368249" />
+    <state width="1345" height="185" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1593555420295" />
     <state width="808" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1593049075541" />
     <state width="1345" height="177" key="GridCell.Tab.1.bottom" timestamp="1591822636944">
       <screen x="0" y="0" width="1366" height="728" />
@@ -744,10 +736,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1591815061158" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1592932819842">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1593550523582">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1591922144284" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1593550523582" />
     <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1592932819842" />
     <state x="92" y="93" width="1182" height="552" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1592150157728">
       <screen x="0" y="0" width="1366" height="738" />

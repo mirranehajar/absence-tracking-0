@@ -1,3 +1,4 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
 <!--Navbar-->
 
 <mdb-navbar #nav SideClass="navbar navbar-expand-lg navbar-light white" >
@@ -70,12 +71,12 @@
 
 
 <p-dialog autoZIndex="true" header="Ajout d'une filière" [modal]="true" [(visible)]="displayBasic" [style]="{width: '50vw'}" >
-  <form style="text-align: center" method="POST" >
+  <form style="text-align: center" method="POST" [formGroup]="userform" (ngSubmit)="save()" >
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
                <span class="ui-float-label" style="margin-top: 10px;">
-         <input [(ngModel)]="sector.libelle" type="text" id="float-input" size="30" name="libelle" pInputText required>
+         <input [(ngModel)]="sector.libelle" type="text" id="float-input" pKeyFilter="alpha" size="50" formControlName="libelle" name="libelle" pInputText>
          <label for="float-input">Libelle</label>
                </span>
         </div>
@@ -84,29 +85,29 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-float-label" style="margin-top: 10px">
-    <input id="float-input2" [(ngModel)]="sector.abreveation" type="text" name="abreveation" size="30" pInputText required="required">
-    <label for="float-input2">Abréviation</label>
+    <input id="float-input2" [(ngModel)]="sector.abreveation" pKeyFilter="alpha" type="text" name="abreveation" formControlName="abreviation" size="50" pInputText required="required">
+            <label for="float-input2">Abréviation</label>
           </span>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <p-dropdown name="cycle" [options]="cycles" [(ngModel)]="sector.cycle" placeholder="Choisir un cycle" optionLabel="libelle"></p-dropdown>
+          <p-dropdown name="cycle" [options]="cycles" [(ngModel)]="sector.cycle" formControlName="cycle" placeholder="Choisir un cycle" optionLabel="libelle"></p-dropdown>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <p-dropdown name="sectorManager" [options]="enseignantsFounded" [(ngModel)]="sectorManager.enseignant" placeholder="Choisir un responsable" optionLabel="label"></p-dropdown>
-         </div>
+          <p-dropdown name="sectorManager" [options]="enseignantsFounded" [(ngModel)]="sectorManager.enseignant" formControlName="enseignant" placeholder="Choisir un responsable" optionLabel="label"></p-dropdown>
+        </div>
       </div>
     </div>
     <br>
     <p-footer>
       <p-footer>
-        <button type="submit" pButton icon="pi pi-check"  (click)="save()" label="Confirm" style="margin-right: 100px"></button>
-        <button type="reset" pButton icon="pi pi-times"  (click)="displayBasic=false" label="Cancel" class="ui-button-secondary"></button>
+        <button type="submit" pButton icon="pi pi-check" [disabled]="!userform.valid" label="Sauvegarder" style="margin-right: 100px; float: left"></button>
+        <button type="reset" pButton icon="pi pi-times"  (click)="displayBasic=false" label="Annuler" style="float: right" class="ui-button-secondary"></button>
       </p-footer>
     </p-footer>
   </form>
@@ -117,7 +118,7 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-float-label" style="margin-top: 10px;">
-         <input [(ngModel)]="sectorFounded.libelle" name="libelle" type="text" id="float-input0" size="30" pInputText required>
+         <input [(ngModel)]="sectorFounded.libelle" name="libelle" disabled type="text" id="float-input0" size="30" pInputText required>
          <label for="float-input0">Libelle</label>
                </span>
         </div>
@@ -126,7 +127,7 @@
       <div class="row">
         <div class="ui-inputgroup">
            <span class="ui-float-label" style="margin-top: 10px">
-    <input id="float-input4" [(ngModel)]="sectorFounded.abreveation" name="abreviation" type="text" size="30" pInputText required="required">
+    <input id="float-input4" [(ngModel)]="sectorFounded.abreveation" name="abreviation" type="text" disabled size="30" pInputText required="required">
     <label for="float-input4">Nom</label>
                        </span>
         </div>
