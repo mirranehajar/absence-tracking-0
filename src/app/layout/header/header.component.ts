@@ -137,7 +137,9 @@ export class HeaderComponent implements OnInit {
     this.notificationService.notificationFounded = notification;
     await this.absenceService.findByReference(notification.absence);
     this.absenceService.absenceFounded.justification = notification.contenu;
+    console.log(notification.photo);
     this.absenceService.absenceFounded.justificatif = notification.photo;
+    console.log(this.absenceService.absenceFounded.justificatif);
     await this.absenceService.update();
     await this.notificationService.update();
     await this.notificationService.findByEnseignant(this.enseignantConnected);

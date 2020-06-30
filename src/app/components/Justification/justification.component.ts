@@ -52,7 +52,7 @@ export class JustificationComponent implements OnInit {
   async update() {
     this.notificationService.notificationFounded = null;
     await this.notificationService.findByAbsence(this.absenceFounded);
-    if (this.notificationFounded == null) {
+    if (this.notificationFounded.absence == null) {
       this.notificationService.notification.absence = this.absenceFounded;
       this.notificationService.notification.contenu = this.absenceFounded.justification;
       console.log(this.notification);
@@ -79,6 +79,7 @@ export class JustificationComponent implements OnInit {
   public async onFileChanged(event) {
     // Select File
     this.selectedFile = event.target.files[0];
+    console.log(event.target.files[0]);
   }
   // Gets called when the user clicks on submit to upload the image
   public async upload() {

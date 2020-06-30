@@ -40,7 +40,7 @@
                   </td>
                   <td *ngIf="rowData.subject">{{rowData.subject.libelle}}</td>
                   <td *ngIf="rowData.subject == null "></td>
-                  <td *ngIf="rowData.enseignant">{{rowData.enseignant.label}}</td>
+                  <td *ngIf="rowData.enseignant">{{rowData.enseignant.lastName}} {{rowData.enseignant.firstName}}</td>
                   <td *ngIf="rowData.enseignant == null "></td>
                 </tr>
               </ng-template>

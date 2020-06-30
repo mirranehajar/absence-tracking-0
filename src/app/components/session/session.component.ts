@@ -70,7 +70,7 @@ export class SessionComponent implements OnInit {
           title: s.libelle,
           start: s.dateStart,
           end: s.dateStop,
-          constraint: this.hours
+          constraint: this.hours,
         });
       }
     }
@@ -177,7 +177,7 @@ export class SessionComponent implements OnInit {
         title: s.libelle,
         start: s.dateStart,
         end: s.dateStop,
-        constraint: this.hours
+        constraint: this.hours,
       });
     }
   }
@@ -200,7 +200,7 @@ export class SessionComponent implements OnInit {
         title: s.libelle,
         start: s.dateStart,
         end: s.dateStop,
-        constraint: this.hours
+        constraint: this.hours,
       });
     }
   }

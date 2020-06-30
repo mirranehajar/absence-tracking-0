@@ -63,15 +63,16 @@
             <div class="ui-inputgroup">
                <span class="ui-float-label" style="margin-top: 10px">
     <input id="float-input2" type="texte" name="libelle" disabled [(ngModel)]="sessionFounded.libelle" size="30" pInputText>
-    <label for="float-input2">libelle</label>
+    <label for="float-input2">Titre</label>
             </span>
+          </div>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
                <span class="ui-float-label" style="margin-top: 10px">
     <input id="float-input3" type="texte" name="typeSession" disabled [(ngModel)]="sessionFounded.typeSession.reference" size="30" pInputText>
-    <label for="float-input3">libelle</label>
+    <label for="float-input3">Type séance</label>
             </span>
             </div>
           </div>
@@ -81,7 +82,6 @@
           <button style="float: right" (click)="deleteByReference(sessionFounded)" *ngIf="enseignantConnected.numeroSOM == sessionFounded.typeSession.enseignant.numeroSOM || enseignantConnected.numeroSOM == sectorManagerFounded.enseignant.numeroSOM" type="button" class="ui-button-danger" pButton icon="pi pi-check"   label="Supprimer"></button>
           <button style="float: left"  *ngIf="enseignantConnected.numeroSOM == sessionFounded.typeSession.enseignant.numeroSOM" routerLink="/absence" type="button"  pButton icon="pi pi-check"   label="Noter l'absence"></button>
         </p-footer>
-        </div>
       </form>
     </p-dialog>
   </div>
