@@ -20,33 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Justification/justification.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Justification/justification.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Justification/justification.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Justification/justification.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/emploi-etu/emploi-etu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/emploi-etu/emploi-etu.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/emploi-etu/emploi-etu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/emploi-etu/emploi-etu.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/emploi/emploi.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/emploi/emploi.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/emploi/emploi.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/emploi/emploi.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/emploi/emploi.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/emploi/emploi.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/groupes/groupes.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/module/module.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/module/module.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/profil/profil.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profil/profil.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/profil/profil.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profil/profil.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/profilEtu/profilEtu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profilEtu/profilEtu.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/profilEtu/profilEtu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/profilEtu/profilEtu.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/session/session.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/session/session.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/session/session.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/session/session.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,14 +189,7 @@
       <workItem from="1592685977693" duration="57164000" />
       <workItem from="1593434821355" duration="3330000" />
       <workItem from="1593539588414" duration="14923000" />
-      <workItem from="1593600627044" duration="21746000" />
-    </task>
-    <task id="LOCAL-00015" summary="id even know">
-      <created>1589295269234</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1589295269236</updated>
+      <workItem from="1593600627044" duration="23119000" />
     </task>
     <task id="LOCAL-00016" summary="trying to fix the menu">
       <created>1589468736012</created>
@@ -559,7 +527,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593557659850</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="message validation mask and keyfilter">
+      <created>1593638609428</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1593638609429</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -609,7 +584,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="suppression justification test" />
     <MESSAGE value="aside bye bye" />
     <MESSAGE value="Etudiants, enseignants, profil, profilEtu, sector, semestre, groupe." />
     <MESSAGE value="routage semestre modules groupes" />
@@ -634,7 +608,8 @@
     <MESSAGE value="footer" />
     <MESSAGE value="justificatif" />
     <MESSAGE value="keyFilter and validator" />
-    <option name="LAST_COMMIT_MESSAGE" value="keyFilter and validator" />
+    <MESSAGE value="message validation mask and keyfilter" />
+    <option name="LAST_COMMIT_MESSAGE" value="message validation mask and keyfilter" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -760,10 +735,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1591815061158" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1593557662408">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1593638612020">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1593557662408" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1593638612020" />
     <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1592932819842" />
     <state x="92" y="93" width="1182" height="552" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1592150157728">
       <screen x="0" y="0" width="1366" height="738" />
