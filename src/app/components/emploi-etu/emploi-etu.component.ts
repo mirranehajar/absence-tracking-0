@@ -10,11 +10,13 @@ import {EtudiantService} from '../../controller/service/etudiant.service';
 import {NotificationService} from '../../controller/service/notification.service';
 import {SessionService} from '../../controller/service/session.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {MessageService} from 'primeng';
 
 @Component({
   selector: 'app-emploi-etu',
   templateUrl: './emploi-etu.component.html',
   styleUrls: ['./emploi-etu.component.scss'],
+  providers: [MessageService],
 })
 export class EmploiEtuComponent implements OnInit {
 
@@ -36,7 +38,7 @@ export class EmploiEtuComponent implements OnInit {
   displayBasic2: boolean;
   constructor(private sessionService: SessionService, private etudiantService: EtudiantService,
               private absenceService: AbsenceService, private notificationService: NotificationService,
-              private http: HttpClient) { }
+              private http: HttpClient, private messageService: MessageService) { }
 
   async ngOnInit(): Promise<void> {
     this.today = new Date();
@@ -76,6 +78,7 @@ export class EmploiEtuComponent implements OnInit {
     }
     await this.upload();
     this.displayBasic = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Justification envoyée'});
   }
   get boolean(): boolean {
     return this.absenceService.boolean;

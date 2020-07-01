@@ -1,5 +1,7 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {MessageService} from 'primeng';
 import {Absence} from '../../controller/model/absence';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {Notification} from '../../controller/model/notification';
@@ -11,6 +13,7 @@ import {NotificationService} from '../../controller/service/notification.service
   selector: 'app-justification',
   templateUrl: './justification.component.html',
   styleUrls: ['./justification.component.scss'],
+  providers: [MessageService],
 })
 
 export class JustificationComponent implements OnInit {
@@ -18,12 +21,16 @@ export class JustificationComponent implements OnInit {
   private _url = 'http://localhost:8090/absence-tracking/notification/';
   selectedFile: File;
   message: string;
-  // tslint:disable-next-line:max-line-length
+  userform: FormGroup;
   constructor(private etudiantService: EtudiantService, private absenceService: AbsenceService,
-              private notificationService: NotificationService, private http: HttpClient) {
+              private notificationService: NotificationService, private http: HttpClient,
+              private fb: FormBuilder, private messageService: MessageService) {
   }
 
   async ngOnInit() {
+    this.userform = this.fb.group({
+      contenu: new FormControl('', Validators.required),
+    });
     this.absenceService.absencesEtudiant = null;
     await this.absenceService.findByEtudiant(this.etudiantService.etudiantConnected);
     for (const a of this.absencesFounded) {
@@ -66,6 +73,7 @@ export class JustificationComponent implements OnInit {
     }
     await this.upload();
     this.basicDialog = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Justification envoyée'});
   }
   get etudiantConnected(): Etudiant {
     return this.etudiantService.etudiantConnected;

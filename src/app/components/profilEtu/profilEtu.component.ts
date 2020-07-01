@@ -2,11 +2,14 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {EtudiantService} from '../../controller/service/etudiant.service';
+import {EnseignantService} from '../../controller/service/enseignant.service';
+import {MessageService} from 'primeng';
 
 @Component({
   selector: 'app-profil-etu',
   templateUrl: './profilEtu.component.html',
   styleUrls: ['./profilEtu.component.scss'],
+  providers: [MessageService],
 })
 export class ProfilEtuComponent implements OnInit {
   displayBasic: boolean;
@@ -21,7 +24,7 @@ export class ProfilEtuComponent implements OnInit {
   passwordUpdate: string;
   img: any;
 
-  constructor(private etudiantService: EtudiantService, private http: HttpClient) { }
+  constructor(private etudiantService: EtudiantService, private http: HttpClient, private messageService: MessageService) { }
 
   async ngOnInit(): Promise<void> {
     await this.etudiantService.findByMail(sessionStorage.getItem('username'));
@@ -38,6 +41,7 @@ export class ProfilEtuComponent implements OnInit {
       this.etudiantService.etudiantFounded.password = this.password;
       await this.etudiantService.password();
       this.displayBasic = false;
+      this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Mot de passe enregistré'});
     }
   }
   update() {
@@ -45,6 +49,7 @@ export class ProfilEtuComponent implements OnInit {
       this.etudiantService.etudiantFounded = this.etudiantConnected;
       this.etudiantService.update();
       this.displayBasic2 = false;
+      this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Coordonnées enregistrées'});
     }
 }
   showBasicDialog2() {
@@ -61,6 +66,7 @@ export class ProfilEtuComponent implements OnInit {
     this.selectedFile = event.target.files[0];
     await this.upload();
     await this.getImage(this.etudiantConnected.cin);
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Photo enregistrée'});
     this.etudiantConnected.src = this.retrievedImage;
   }
   public async upload() {

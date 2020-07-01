@@ -1,16 +1,10 @@
-// @ts-ignore
-import {NgModule} from '@angular/core';
-// @ts-ignore
 import {CommonModule} from '@angular/common';
-import {EnseignantRoutingModule} from './enseignant-routing.module';
-// @ts-ignore
-import {ButtonModule} from 'primeng/button';
-// @ts-ignore
-import {TabViewModule} from 'primeng/tabview';
-// @ts-ignore
-import {CodeHighlighterModule} from 'primeng/codehighlighter';
-// @ts-ignore
+import {NgModule} from '@angular/core';
 import {ConfirmDialogModule, MessagesModule} from 'primeng';
+import {ButtonModule} from 'primeng/button';
+import {CodeHighlighterModule} from 'primeng/codehighlighter';
+import {TabViewModule} from 'primeng/tabview';
+import {EnseignantRoutingModule} from './enseignant-routing.module';
 
 // @ts-ignore
 @NgModule({
@@ -21,9 +15,9 @@ import {ConfirmDialogModule, MessagesModule} from 'primeng';
     ButtonModule,
     MessagesModule,
     TabViewModule,
-    CodeHighlighterModule
+    CodeHighlighterModule,
   ],
   declarations: [
-  ]
+  ],
 })
 export class EnseignantModule {}

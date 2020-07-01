@@ -50,6 +50,7 @@ export class HeaderComponent implements OnInit {
     notif: number;
     year = new Years();
     userform: FormGroup;
+    userform2: FormGroup;
     submitted: boolean;
   private _url = 'http://localhost:8090/absence-tracking/enseignant/';
   private _url2 = 'http://localhost:8090/absence-tracking/notification/';
@@ -69,6 +70,10 @@ export class HeaderComponent implements OnInit {
        cycle: new FormControl('', Validators.required),
        enseignant: new FormControl('', Validators.required),
      });
+    this.userform2 = this.fb.group({
+      year: new FormControl('', Validators.required),
+      number: new FormControl('', Validators.compose([Validators.required, Validators.max(6), Validators.min(1)])),
+    });
     await this.enseignantService.findByMail(sessionStorage.getItem('username'));
     this.getImage(this.enseignantConnected.cin);
     this.cycleService.findAll();
@@ -244,6 +249,7 @@ export class HeaderComponent implements OnInit {
     await this.semestreService.save(this.filiere);
     this.displayBasic3 = false;
     this.sectorService.findAll();
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Semestre enregistré'});
   }
   public update2() {
     this.semestreService.update();
@@ -255,6 +261,7 @@ export class HeaderComponent implements OnInit {
   public async deleteByLibelle(sector: Sector) {
     await this.sectorService.deleteByLibelle(sector);
     this.displayBasic2 = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Filière supprimée'});
     this.sectorService.findAll();
   }
   get semestres(): Semestre[] {
@@ -276,6 +283,7 @@ export class HeaderComponent implements OnInit {
   public async deleteByReference(semestre: Semestre) {
      console.log(semestre.reference);
      await this.semestreService.deleteByReference(semestre);
+     this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Semestre supprimé'});
      this.sectorService.findAll();
   }
   public async findBySemestre(semestre: Semestre) {

@@ -1,6 +1,7 @@
 
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ConfirmationService} from 'primeng/api';
 import {Message} from 'primeng/api';
 import {MessageService} from 'primeng/api';
@@ -2009,10 +2010,22 @@ export class EnseignantComponent implements OnInit {
       region: '5',
     },
   ];
-  constructor(private http: HttpClient, private enseignantService: EnseignantService,
+  userform: FormGroup;
+  constructor(private http: HttpClient, private enseignantService: EnseignantService, private fb: FormBuilder,
               private messageService: MessageService, private typeSessionService: TypeSessionService) { }
 
   async ngOnInit(): Promise<void> {
+    this.userform = this.fb.group({
+      numeroSOM: new FormControl('', Validators.required),
+      cin: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      firstName: new FormControl('', Validators.required),
+      sex: new FormControl('', Validators.required),
+      birthday: new FormControl('', Validators.required),
+      tel: new FormControl('', Validators.required),
+      ville: new FormControl('', Validators.required),
+      departement: new FormControl('', Validators.required),
+    });
     this.findAll();
     await this.enseignantService.findAll();
     for ( const e of this.enseignants) {
@@ -2036,6 +2049,7 @@ export class EnseignantComponent implements OnInit {
   }
   public deleteByNumeroSOM(enseignant: Enseignant) {
     this.enseignantService.deleteByNumeroSOM(enseignant);
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Enseignant supprimé'});
   }
   showBasicDialog() {
     this.displayBasic = true;
@@ -2054,6 +2068,7 @@ export class EnseignantComponent implements OnInit {
     this.enseignantService.enseignant.ville = this.city.ville;
     await this.enseignantService.save();
     this.displayBasic = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Enseignant enregistré'});
     await this.enseignantService.findAll();
     for ( const e of this.enseignants) {
       await this.getImage(e.cin);
@@ -2064,6 +2079,7 @@ export class EnseignantComponent implements OnInit {
     this.enseignantService.enseignantFounded.ville = this.city.ville;
     await this.enseignantService.update();
     this.displayBasic2 = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Enseignant enregistré'});
     await this.enseignantService.findAll();
     for ( const e of this.enseignants) {
       await this.getImage(e.cin);
@@ -2109,6 +2125,7 @@ export class EnseignantComponent implements OnInit {
         console.log(this.enseignant);
         await this.enseignantService.save();
       }
+      this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Enseignants Enregistrés'});
       await this.enseignantService.findAll();
       // tslint:disable-next-line:no-shadowed-variable
       for ( const e of this.enseignants) {
@@ -2200,6 +2217,7 @@ export class EnseignantComponent implements OnInit {
     this.enseignantService.enseignantFounded = enseignant;
     this.enseignantService.enseignantFounded.password = this.enseignantService.enseignantFounded.cin;
     await this.enseignantService.password();
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Mot de passe reinitialisé'});
     await this.enseignantService.findAll();
     for ( const e of this.enseignants) {
       await this.getImage(e.cin);
