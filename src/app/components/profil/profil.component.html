@@ -2,7 +2,7 @@
 <p-toast [style]="{marginTop: '80px'}"></p-toast>
 <div class="card" style="width: 160px; margin-left: 1000px;  background-color: #EDEDED;">
   <img [src]="enseignantConnected.src" alt="Avatar" style="width: 160px; height: 160px; border-radius: 50%;" >
-  <input type="file" (change)="onFileChanged($event)" style="background-color: #EDEDED">
+  <input type="file" accept="image/*" (change)="onFileChanged($event)" style="background-color: #EDEDED">
 </div>
 
   <form style="text-align: center" method="POST" >
