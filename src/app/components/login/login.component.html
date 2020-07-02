@@ -1,7 +1,7 @@
 <div class="hero-image" >
   <div class="hero-text">
-
-  <p-card class="col-sm-6">
+  <p-card class="col-sm-6"  [style]="{height: '500px'}">
+      <p-messages [(value)]="msgs"></p-messages>
     <div  style="display:flex; align-items:center; justify-content:center; flex-direction:column" class="St">
       <img src="/assets/images/CAU1.png" style="width: 120px;">
       <br>
@@ -26,12 +26,11 @@
         </mat-form-field>
       </div>
       <br>
-      <div class="ui-inputgroup">
+      <div>
         <button (click)="checkLogin()" pButton type="button" label="Connexion" class="ui-button-raised" style="background-color: #b790b9"></button>
       </div>
     </div>
   </p-card>
-
   </div>
 </div>
 
