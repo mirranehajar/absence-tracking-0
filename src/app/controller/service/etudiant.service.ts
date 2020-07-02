@@ -89,6 +89,9 @@ export class EtudiantService {
     await this.http.get<Etudiant[]>(this._url, {headers}).toPromise().then(
       (data) => {
         this.etudiants = data;
+        for (const e of this.etudiants) {
+          e.label = e.lastName + ' ' + e.firstName;
+        }
       },
     );
   }
@@ -174,6 +177,7 @@ export class EtudiantService {
     myclone.groupe = etudiant.groupe;
     myclone.sex = etudiant.sex;
     myclone.ville = etudiant.ville;
+    myclone.label = etudiant.lastName + ' ' + etudiant.firstName;
     return myclone;
   }
 

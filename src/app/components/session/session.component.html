@@ -39,7 +39,7 @@
           <div class="row">
             <div class="ui-inputgroup">
                <span class="ui-float-label" style="margin-top: 10px">
-    <input id="float-input1" [(ngModel)]="session.periode" type="number" formControlName="periode" pKeyFilter="pnum" name="durée" size="30" pInputText required="required">
+    <input id="float-input1" [(ngModel)]="session.periode" type="number" formControlName="periode" [max]="max" min="1" pKeyFilter="pnum" name="durée" size="30" pInputText required="required">
     <label for="float-input1">La durée de la séance (H)</label>
             </span>
             </div>

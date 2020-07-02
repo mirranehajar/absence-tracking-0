@@ -19,4 +19,5 @@ export class Etudiant {
   public sector: Sector;
   public groupe: Groupe;
   public src: any;
+  public label: string;
 }

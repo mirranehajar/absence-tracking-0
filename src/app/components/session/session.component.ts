@@ -93,7 +93,12 @@ export class SessionComponent implements OnInit {
   }
 
   async showBasicDialog(arg) {
-    this.max = 19 - arg.date.getHours();
+    this.max = 19 * 60 - arg.date.getMinutes();
+    this.userform = this.fb.group({
+      libelle: new FormControl('', Validators.required),
+      periode: new FormControl('', Validators.compose([Validators.required, Validators.min(1), Validators.max(this.max)])),
+      typeSession: new FormControl('', Validators.required),
+    });
     if (arg.date.getDay() !== 0 && arg.date.getHours() >= 8 && arg.date.getHours() < 19) {
       await this.sessionService.findByDateAndEnseignant(arg.date, this.enseignantConnected);
       console.log(this.sessionService.sessionTrouve);
@@ -197,12 +202,13 @@ export class SessionComponent implements OnInit {
   async onResize(arg) {
     console.log(arg.event.id);
     console.log(arg.event);
-    console.log(arg.event.end.hours - arg.event.start.hours);
+    console.log((arg.event.end.getHours() - arg.event.start.getHours()) * 60 + arg.event.end.getMinutes() - arg.event.start.getMinutes());
     await this.sessionService.findByReference(arg.event.id);
     this.sectorManagerService.findBySector(this.sessionFounded.typeSession.module.semestre.sector);
     if (this.enseignantConnected.numeroSOM === this.sessionFounded.typeSession.enseignant.numeroSOM ||
       this.sectorManagerService.sectorManagerFounded.enseignant.numeroSOM === this.enseignantConnected.numeroSOM) {
-      this.sessionService.sessionFounded.dateStop = arg.event.end;
+      // tslint:disable-next-line:max-line-length
+      this.sessionService.sessionFounded.periode = (arg.event.end.getHours() - arg.event.start.getHours()) * 60 + arg.event.end.getMinutes() - arg.event.start.getMinutes();
       await this.sessionService.update();
     }
     this.calendarEvents = [];
