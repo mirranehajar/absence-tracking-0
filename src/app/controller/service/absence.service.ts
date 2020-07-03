@@ -131,6 +131,7 @@ export class AbsenceService {
     await this.http.post<Absence>(this._url, this.absence, {headers}).toPromise().then(
       (data) => {
         if (data) {
+          console.log('data : ' + data);
           this.absences.push(this.clone(data));
           this.absence = null;
         }

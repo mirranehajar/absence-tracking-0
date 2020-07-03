@@ -1,3 +1,4 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
 <p-dataView [value]="absencesEtudiant" layout="grid" >
   <ng-template let-a pTemplate="gridItem">
     <div style="padding:.5em" class="col-sm-3">
@@ -14,11 +15,11 @@
   </ng-template>
 </p-dataView>
 <p-dialog header="Justifier votre absence" [modal]="true" [style]="{'text-align':'center'}" [(visible)]="basicDialog" [style]="{width: '30vw'}" [baseZIndex]="10000">
-  <form style="text-align: center" method="POST" >
+  <form style="text-align: center" method="POST" (ngSubmit)="update()" [formGroup]="userform">
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
-          <textarea [rows]="5" [(ngModel)]="absenceFounded.justification" [cols]="30" name="justification" pInputTextarea autoResize="autoResize"></textarea>
+          <textarea [rows]="5" [(ngModel)]="absenceFounded.justification" formControlName="contenu" [cols]="30" name="justification" pInputTextarea autoResize="autoResize"></textarea>
         </div>
       </div>
       <br>
@@ -29,10 +30,10 @@
       </div>
       <br>
     </div>
-  </form>
   <p-footer>
-    <button type="button" pButton icon="pi pi-check" style="float: left" (click)="update()" label="Envoyer"></button>
+    <button type="submit" pButton icon="pi pi-check" style="float: left" label="Envoyer"></button>
     <button type="button" pButton icon="pi pi-times" style="float: right" (click)="basicDialog=false" label="Annuler" class="ui-button-secondary"></button>
   </p-footer>
+  </form>
 </p-dialog>
 

@@ -1,3 +1,4 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
 <div class='app'>
   <div class='app-calendar' *ngIf="calendarVisible">
     <full-calendar
@@ -8,7 +9,7 @@
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
       }"
-      lang="fr"
+      locale="fr"
       timeZone="local"
       [plugins]="calendarPlugins"
       editable="true"
@@ -24,12 +25,12 @@
     (eventResize)="onResize($event)">
     </full-calendar>
     <p-dialog  header="Ajout d'une séance" modal="true" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
-      <form style="text-align: center" method="POST" >
+      <form style="text-align: center" method="POST" (ngSubmit)="save()" [formGroup]="userform" >
         <div style="display:inline-block" class="form-group">
           <div class="row">
             <div class="ui-inputgroup">
               <span class="ui-float-label" style="margin-top: 10px">
-    <input id="float-input" [(ngModel)]="session.libelle" type="texte" name="libelle" size="30" pInputText required="required">
+    <input id="float-input" [(ngModel)]="session.libelle" type="texte" formControlName="libelle" name="libelle" size="30" pInputText required="required">
     <label for="float-input">libelle</label>
             </span>
             </div>
@@ -38,7 +39,7 @@
           <div class="row">
             <div class="ui-inputgroup">
                <span class="ui-float-label" style="margin-top: 10px">
-    <input id="float-input1" [(ngModel)]="session.periode" type="number" name="durée" size="30" pInputText required="required">
+    <input id="float-input1" [(ngModel)]="session.periode" type="number" formControlName="periode" [max]="max" min="1" pKeyFilter="pnum" name="durée" size="30" pInputText required="required">
     <label for="float-input1">La durée de la séance (H)</label>
             </span>
             </div>
@@ -46,13 +47,14 @@
           <br>
           <div class="row">
             <div class="ui-inputgroup">
-              <p-dropdown name="typeSession" [options]="typeSeance" [(ngModel)]="session.typeSession" placeholder="Choisir type de la séance" optionLabel="reference"></p-dropdown>
+              <p-dropdown name="typeSession" [options]="typeSeance" formControlName="typeSession" [(ngModel)]="session.typeSession" placeholder="Choisir type de la séance" optionLabel="reference"></p-dropdown>
             </div>
           </div>
         </div>
         <br>
         <p-footer>
-          <button (click)="save()" type="submit" pButton icon="pi pi-check" style="float: left"  label="Enregistrer"></button>
+          <button type="submit" pButton icon="pi pi-check" style="float: left" [disabled]="!userform.valid" label="Enregistrer"></button>
+          <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Annuler" class="ui-button-secondary"></button>
         </p-footer>
       </form>
     </p-dialog>
@@ -63,15 +65,16 @@
             <div class="ui-inputgroup">
                <span class="ui-float-label" style="margin-top: 10px">
     <input id="float-input2" type="texte" name="libelle" disabled [(ngModel)]="sessionFounded.libelle" size="30" pInputText>
-    <label for="float-input2">libelle</label>
+    <label for="float-input2">Titre</label>
             </span>
+          </div>
           </div>
           <br>
           <div class="row">
             <div class="ui-inputgroup">
                <span class="ui-float-label" style="margin-top: 10px">
     <input id="float-input3" type="texte" name="typeSession" disabled [(ngModel)]="sessionFounded.typeSession.reference" size="30" pInputText>
-    <label for="float-input3">libelle</label>
+    <label for="float-input3">Type séance</label>
             </span>
             </div>
           </div>
@@ -81,7 +84,6 @@
           <button style="float: right" (click)="deleteByReference(sessionFounded)" *ngIf="enseignantConnected.numeroSOM == sessionFounded.typeSession.enseignant.numeroSOM || enseignantConnected.numeroSOM == sectorManagerFounded.enseignant.numeroSOM" type="button" class="ui-button-danger" pButton icon="pi pi-check"   label="Supprimer"></button>
           <button style="float: left"  *ngIf="enseignantConnected.numeroSOM == sessionFounded.typeSession.enseignant.numeroSOM" routerLink="/absence" type="button"  pButton icon="pi pi-check"   label="Noter l'absence"></button>
         </p-footer>
-        </div>
       </form>
     </p-dialog>
   </div>

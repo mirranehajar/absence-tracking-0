@@ -1,5 +1,7 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder} from '@angular/forms';
+import {MessageService} from 'primeng';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 
@@ -7,6 +9,7 @@ import {EnseignantService} from '../../controller/service/enseignant.service';
   selector: 'app-profil',
   templateUrl: './profil.component.html',
   styleUrls: ['./profil.component.scss'],
+  providers: [MessageService],
 })
 export class ProfilComponent implements OnInit {
   displayBasic: boolean;
@@ -20,7 +23,7 @@ export class ProfilComponent implements OnInit {
   currentPassword: string;
   passwordUpdate: string;
 
-  constructor(private http: HttpClient, private enseignantService: EnseignantService) { }
+  constructor(private http: HttpClient, private enseignantService: EnseignantService, private messageService: MessageService) { }
 
   async ngOnInit(): Promise<void> {
     await this.enseignantService.findByMail(sessionStorage.getItem('username'));
@@ -42,6 +45,7 @@ export class ProfilComponent implements OnInit {
     this.selectedFile = event.target.files[0];
     await this.upload();
     await this.getImage(this.enseignantConnected.cin);
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Photo enregistrée'});
     this.enseignantConnected.src = this.retrievedImage;
   }
   // Gets called when the user clicks on submit to upload the image
@@ -95,6 +99,7 @@ export class ProfilComponent implements OnInit {
       console.log(this.enseignantFounded);
       await this.enseignantService.password();
       this.displayBasic = false;
+      this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Mot de passe enregistré'});
     }
   }
   update() {
@@ -102,6 +107,7 @@ export class ProfilComponent implements OnInit {
       this.enseignantService.enseignantFounded = this.enseignantConnected;
       this.enseignantService.update();
       this.displayBasic2 = false;
+      this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Coordonnées enregistrées'});
     }
   }
 }

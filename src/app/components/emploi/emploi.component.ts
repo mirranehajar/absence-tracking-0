@@ -3,6 +3,7 @@ import {EventInput} from '@fullcalendar/core/structs/event';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGrigPlugin from '@fullcalendar/timegrid';
+import {MessageService} from 'primeng/api';
 import {Session} from '../../controller/model/session';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {SessionService} from '../../controller/service/session.service';
@@ -11,6 +12,7 @@ import {SessionService} from '../../controller/service/session.service';
   selector: 'app-emploi',
   templateUrl: './emploi.component.html',
   styleUrls: ['./emploi.component.scss'],
+  providers: [MessageService],
 })
 export class EmploiComponent implements OnInit {
 
@@ -24,7 +26,8 @@ export class EmploiComponent implements OnInit {
     endTime: '19:00',
   };
   displayBasic: boolean;
-  constructor(private sessionService: SessionService, private enseignantService: EnseignantService) { }
+  constructor(private sessionService: SessionService, private enseignantService: EnseignantService,
+              private messageService: MessageService) { }
 
   async ngOnInit(): Promise<void> {
     await this.sessionService.findByEnseignant(this.enseignantService.enseignantConnected);
@@ -44,5 +47,6 @@ export class EmploiComponent implements OnInit {
   public deleteByReference(session: Session) {
     this.sessionService.deleteByReference(session);
     this.displayBasic = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Séance supprimée'});
   }
 }

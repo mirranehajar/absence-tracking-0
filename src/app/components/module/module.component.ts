@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {SelectItem} from 'primeng';
+import {MessageService, SelectItem} from 'primeng';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {Groupe} from '../../controller/model/groupe';
 import {Module} from '../../controller/model/module';
@@ -16,11 +16,13 @@ import {SemestreService} from '../../controller/service/semestre.service';
 import {SessionService} from '../../controller/service/session.service';
 import {SubjectService} from '../../controller/service/subject.service';
 import {TypeSessionService} from '../../controller/service/type-session.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-module',
   templateUrl: './module.component.html',
   styleUrls: ['./module.component.scss'],
+  providers: [MessageService],
 })
 export class ModuleComponent implements OnInit {
   displayBasic: boolean;
@@ -30,11 +32,13 @@ export class ModuleComponent implements OnInit {
   libelles: SelectItem[];
   cols: any[];
   show = false;
-
+  userform: FormGroup;
+  userform2: FormGroup;
   constructor(private moduleService: ModuleService, private subjectService: SubjectService,
               private enseignantService: EnseignantService, private typeSessionService: TypeSessionService,
               private semestreService: SemestreService, private sectorManagerService: SectorManagerService,
-              private groupeService: GroupeService, private sessionService: SessionService, private router: Router) {
+              private groupeService: GroupeService, private sessionService: SessionService, private router: Router,
+              private messageService: MessageService, private fb: FormBuilder) {
     this.libelles = [
       {label: 'Cours', value: 'Cours'},
       {label: 'TD', value: 'TD'},
@@ -43,6 +47,17 @@ export class ModuleComponent implements OnInit {
   }
 
    async ngOnInit(): Promise<void> {
+    this.userform = this.fb.group({
+       libelle: new FormControl('', Validators.required),
+       abreviation: new FormControl('', Validators.required),
+       subject: new FormControl('', Validators.required),
+     });
+    this.userform2 = this.fb.group({
+       libelle: new FormControl('', Validators.required),
+       subject: new FormControl('', Validators.required),
+       enseignant: new FormControl('', Validators.required),
+       groupe: new FormControl('', Validators.required),
+     });
     await this.groupeService.findBySemestre(this.semestreConnected);
     console.log(this.semestreConnected);
     console.log(this.modules);
@@ -83,6 +98,7 @@ export class ModuleComponent implements OnInit {
   }
   public deleteByLibelle(module: Module) {
     this.moduleService.deleteByLibelle(module);
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Module supprimé'});
   }
   async addTypeSession() {
     this.typeSessionService.typeSession.module = this.moduleFounded;
@@ -95,11 +111,13 @@ export class ModuleComponent implements OnInit {
       m.typeSessions = this.typeSessionsFounded;
     }
     this.displayBasic3 = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Type séance enregistrée'});
   }
   async save() {
     this.moduleService.module.semestre = this.semestreConnected;
     await this.moduleService.save();
     this.displayBasic = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Module enregistré'});
     for (const m of this.modules) {
       await this.findByModule(m);
       m.typeSessions = this.typeSessionsFounded;
@@ -111,6 +129,7 @@ export class ModuleComponent implements OnInit {
     this.typeSessionService.typeSessionFounded.enseignant = this.typeSession.enseignant;
     console.log('hihi');
     await this.typeSessionService.update();
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Type séance enregistrée'});
     for (const m of this.modules) {
       await this.findByModule(m);
       m.typeSessions = this.typeSessionsFounded;
@@ -171,6 +190,7 @@ export class ModuleComponent implements OnInit {
   }
   public async deleteByReference(typeSession: TypeSession) {
     await this.typeSessionService.deleteByReference(typeSession);
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Type séance supprimée'});
     for (const m of this.modules) {
       await this.findByModule(m);
       m.typeSessions = this.typeSessionsFounded;

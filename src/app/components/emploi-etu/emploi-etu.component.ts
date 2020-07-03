@@ -10,11 +10,14 @@ import {EtudiantService} from '../../controller/service/etudiant.service';
 import {NotificationService} from '../../controller/service/notification.service';
 import {SessionService} from '../../controller/service/session.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {MessageService} from 'primeng';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-emploi-etu',
   templateUrl: './emploi-etu.component.html',
   styleUrls: ['./emploi-etu.component.scss'],
+  providers: [MessageService],
 })
 export class EmploiEtuComponent implements OnInit {
 
@@ -34,11 +37,15 @@ export class EmploiEtuComponent implements OnInit {
   contenu: string;
   displayBasic: boolean;
   displayBasic2: boolean;
+  userform: FormGroup;
   constructor(private sessionService: SessionService, private etudiantService: EtudiantService,
               private absenceService: AbsenceService, private notificationService: NotificationService,
-              private http: HttpClient) { }
+              private http: HttpClient, private messageService: MessageService, private fb: FormBuilder) { }
 
   async ngOnInit(): Promise<void> {
+    this.userform = this.fb.group({
+      contenu: new FormControl('', Validators.required),
+    });
     this.today = new Date();
     await this.sessionService.findBySemestre(this.etudiantService.etudiantConnected.groupe.semestre);
     for (const s of this.sessionService.sessionsFounded) {
@@ -52,8 +59,8 @@ export class EmploiEtuComponent implements OnInit {
     await this.sessionService.findByReference(event.event.id);
     await this.absenceService.findBySessionAndEtudiant(this.sessionService.sessionFounded, this.etudiantService.etudiantConnected);
     if (event.date >= this.today) {
-      this.displayBasic2 = true;
-    } else {this.displayBasic = true; }
+      this.displayBasic = true;
+    }
   }
   get absenceFounded(): Absence {
     return this.absenceService.absenceFounded;
@@ -76,6 +83,7 @@ export class EmploiEtuComponent implements OnInit {
     }
     await this.upload();
     this.displayBasic = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Justification envoyée'});
   }
   get boolean(): boolean {
     return this.absenceService.boolean;

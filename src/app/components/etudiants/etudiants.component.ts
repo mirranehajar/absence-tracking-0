@@ -14,6 +14,7 @@ import {EtudiantService} from '../../controller/service/etudiant.service';
 import {GroupeService} from '../../controller/service/groupe.service';
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 type AOA = any[][];
 
@@ -2013,13 +2014,27 @@ export class EtudiantsComponent implements OnInit {
       region: '5',
     },
   ];
-
+  userform: FormGroup;
   constructor(private etudiantService: EtudiantService, private messageService: MessageService,
               private sectorService: SectorService, private groupeService: GroupeService,
-              private http: HttpClient, private enseignantService: EnseignantService, private semestreService: SemestreService) {
+              private http: HttpClient, private enseignantService: EnseignantService,
+              private semestreService: SemestreService, private fb: FormBuilder) {
   }
 
   async ngOnInit(): Promise<void> {
+    this.userform = this.fb.group({
+      cne: new FormControl('', Validators.required),
+      code: new FormControl('', Validators.required),
+      cin: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      firstName: new FormControl('', Validators.required),
+      sex: new FormControl('', Validators.required),
+      birthday: new FormControl('', Validators.required),
+      tel: new FormControl('', Validators.required),
+      ville: new FormControl('', Validators.required),
+      sector: new FormControl('', Validators.required),
+      groupe: new FormControl('', Validators.required),
+    });
     await this.etudiantService.findAll();
     for ( const e of this.etudiants) {
       await this.getImage(e.cin);
@@ -2044,6 +2059,7 @@ export class EtudiantsComponent implements OnInit {
 
   public deleteByCne(etudiant: Etudiant) {
     this.etudiantService.deleteByCne(etudiant);
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Étudiant supprimé'});
   }
 
   showBasicDialog() {
@@ -2067,6 +2083,7 @@ export class EtudiantsComponent implements OnInit {
     this.etudiantService.etudiant.ville = this.city.ville;
     this.etudiantService.save();
     this.displayBasic = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Étudiant enregistré'});
     await this.etudiantService.findAll();
     for ( const e of this.etudiants) {
       await this.getImage(e.cin);
@@ -2078,6 +2095,7 @@ export class EtudiantsComponent implements OnInit {
     this.etudiantService.etudiantFounded.ville = this.city.ville;
     await this.etudiantService.update();
     this.displayBasic2 = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Étudiant Supprimé'});
     await this.etudiantService.findAll();
     for ( const e of this.etudiants) {
       await this.getImage(e.cin);
@@ -2162,6 +2180,7 @@ export class EtudiantsComponent implements OnInit {
         console.log(this.etudiant);
         await this.etudiantService.save();
       }
+      this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Étudiants enregistrés'});
       await this.etudiantService.findAll();
       // tslint:disable-next-line:no-shadowed-variable
       for ( const e of this.etudiants) {
@@ -2233,6 +2252,7 @@ export class EtudiantsComponent implements OnInit {
     this.etudiantService.etudiantFounded = etudiant;
     this.etudiantService.etudiantFounded.password = this.etudiantService.etudiantFounded.cne;
     await this.etudiantService.password();
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Mot de passe reinitialisé'});
     await this.etudiantService.findAll();
     for ( const e of this.etudiants) {
       await this.getImage(e.cin);

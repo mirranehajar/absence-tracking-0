@@ -27,7 +27,7 @@ import {
     AccordionModule, CardModule, ChartModule,
     ConfirmDialogModule, DataViewModule, DialogModule,
     DropdownModule, FieldsetModule,
-    FileUploadModule, InputTextModule, KeyFilterModule, MegaMenuModule,
+    FileUploadModule, InputMaskModule, InputTextModule, KeyFilterModule, MegaMenuModule,
     MenubarModule, MessageModule,
     MessagesModule, MultiSelectModule, OverlayPanelModule, PanelModule, RadioButtonModule, SelectButtonModule, SidebarModule,
     SplitButtonModule, TableModule,
@@ -147,6 +147,7 @@ import {MainEtuComponent} from './layout/mainEtu/mainEtu.component';
         MatInputModule,
         MatBadgeModule,
         InputTextModule,
+        InputMaskModule,
     ],
   providers: [
     {

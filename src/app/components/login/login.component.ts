@@ -10,6 +10,7 @@ import {EnseignantService} from '../../controller/service/enseignant.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 import {ModuleService} from '../../controller/service/module.service';
 import {NotificationService} from '../../controller/service/notification.service';
+import {Message} from 'primeng';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   invalidLogin = false;
-
+  msgs: Message[] = [];
   constructor(private etudiantService: EtudiantService, private enseignantService: EnseignantService,
               private router: Router, private moduleService: ModuleService,
               private notificationService: NotificationService, private loginservice: AuthenticationService) { }
@@ -111,7 +112,8 @@ export class LoginComponent implements OnInit {
         },
         (error) => {
           this.invalidLogin = true;
-
+          this.msgs = [];
+          this.msgs.push({severity: 'error', summary: 'Erreur', detail: 'Email ou mot de passe incorrect'});
         },
       )
     );

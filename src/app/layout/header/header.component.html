@@ -1,3 +1,4 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
 <!--Navbar-->
 
 <mdb-navbar #nav SideClass="navbar navbar-expand-lg navbar-light white" >
@@ -12,7 +13,7 @@
             <a class="nav-link"><i (click)="show()" class="pi pi-user iconColor">Profile</i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/emploi"><i class="pi pi-home iconColor">Acceuil</i></a>
+            <a class="nav-link" routerLink="/emploi"><i class="pi pi-calendar iconColor">Emploi du temps</i></a>
           </li>
           <!-- Dropdown -->
           <li class="nav-item dropdown mega-dropdown" mdbDropdown>
@@ -54,7 +55,7 @@
             <div  ui-overlaypanel-content *ngFor="let n of notifications">
               {{n.absence.etudiant.lastName}} {{n.absence.etudiant.firstName}}
               <br>{{n.absence.session.dateStart}}-{{n.absence.session.libelle}}
-              <br><button type="button" (click)="showBasicDialog5(n)" pButton icon="pi pi-info-eye" label="Afficher"></button>
+              <br><button type="button" (click)="showBasicDialog5(n)" pButton icon="pi pi-eye" label="Afficher"></button>
               <br>
               <div class="dropdown-divider"></div>
             </div>
@@ -70,12 +71,12 @@
 
 
 <p-dialog autoZIndex="true" header="Ajout d'une filière" [modal]="true" [(visible)]="displayBasic" [style]="{width: '50vw'}" >
-  <form style="text-align: center" method="POST" >
+  <form style="text-align: center" method="POST" [formGroup]="userform" (ngSubmit)="save()" >
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
                <span class="ui-float-label" style="margin-top: 10px;">
-         <input [(ngModel)]="sector.libelle" type="text" id="float-input" size="30" name="libelle" pInputText required>
+         <input [(ngModel)]="sector.libelle" type="text" id="float-input" pKeyFilter="alpha" size="50" formControlName="libelle" name="libelle" pInputText>
          <label for="float-input">Libelle</label>
                </span>
         </div>
@@ -84,40 +85,40 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-float-label" style="margin-top: 10px">
-    <input id="float-input2" [(ngModel)]="sector.abreveation" type="text" name="abreveation" size="30" pInputText required="required">
-    <label for="float-input2">Abréviation</label>
+    <input id="float-input2" [(ngModel)]="sector.abreveation" pKeyFilter="alpha" type="text" name="abreveation" formControlName="abreviation" size="50" pInputText required="required">
+            <label for="float-input2">Abréviation</label>
           </span>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <p-dropdown name="cycle" [options]="cycles" [(ngModel)]="sector.cycle" placeholder="Choisir un cycle" optionLabel="libelle"></p-dropdown>
+          <p-dropdown name="cycle" [options]="cycles" [(ngModel)]="sector.cycle" formControlName="cycle" placeholder="Choisir un cycle" optionLabel="libelle"></p-dropdown>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <p-dropdown name="sectorManager" [options]="enseignantsFounded" [(ngModel)]="sectorManager.enseignant" placeholder="Choisir un responsable" optionLabel="label"></p-dropdown>
-         </div>
+          <p-dropdown name="sectorManager" [options]="enseignantsFounded" [(ngModel)]="sectorManager.enseignant" formControlName="enseignant" placeholder="Choisir un responsable" optionLabel="label"></p-dropdown>
+        </div>
       </div>
     </div>
     <br>
     <p-footer>
       <p-footer>
-        <button type="submit" pButton icon="pi pi-check"  (click)="save()" label="Confirm" style="margin-right: 100px"></button>
-        <button type="reset" pButton icon="pi pi-times"  (click)="displayBasic=false" label="Cancel" class="ui-button-secondary"></button>
+        <button type="submit" pButton icon="pi pi-check" [disabled]="!userform.valid" label="Enregistrer" style="margin-right: 100px; float: left"></button>
+        <button type="reset" pButton icon="pi pi-times"  (click)="displayBasic=false" label="Annuler" style="float: right" class="ui-button-secondary"></button>
       </p-footer>
     </p-footer>
   </form>
 </p-dialog>
 <p-dialog autoZIndex="true" header="Modification d'une filière" [(visible)]="displayBasic2" [style]="{width: '50vw'}" >
-  <form style="text-align: center" method="POST" >
+  <form style="text-align: center" method="POST">
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-float-label" style="margin-top: 10px;">
-         <input [(ngModel)]="sectorFounded.libelle" name="libelle" type="text" id="float-input0" size="30" pInputText required>
+         <input [(ngModel)]="sectorFounded.libelle" name="libelle" pKeyFilter="alpha" disabled type="text" id="float-input0" size="30" pInputText required>
          <label for="float-input0">Libelle</label>
                </span>
         </div>
@@ -126,7 +127,7 @@
       <div class="row">
         <div class="ui-inputgroup">
            <span class="ui-float-label" style="margin-top: 10px">
-    <input id="float-input4" [(ngModel)]="sectorFounded.abreveation" name="abreviation" type="text" size="30" pInputText required="required">
+    <input id="float-input4" [(ngModel)]="sectorFounded.abreveation" pKeyFilter="alpha" name="abreviation" type="text" disabled size="30" pInputText required="required">
     <label for="float-input4">Nom</label>
                        </span>
         </div>
@@ -147,19 +148,19 @@
     <br>
     <p-footer>
       <p-footer>
-        <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="update()" label="enregister"></button>
+        <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="update()" label="Enregister"></button>
         <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="deleteByLibelle(sectorFounded)" label="Supprimer" class="ui-button-danger"></button>
       </p-footer>
     </p-footer>
   </form>
 </p-dialog>
 <p-dialog autoZIndex="true" header="Ajout d'un semestre" [(visible)]="displayBasic3" [style]="{width: '50vw'}" >
-  <form style="text-align: center" method="POST" >
+  <form style="text-align: center" method="POST" [formGroup]="userform2" (ngSubmit)="save2()">
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
            <span class="ui-float-label" style="margin-top: 10px">
-    <input id="float-input5" [(ngModel)]="semestre.number" name="number" type="number" size="30" pInputText required="required">
+    <input id="float-input5" [(ngModel)]="semestre.number"  name="number" formControlName="number" type="number" max="6" min="1" size="30" pInputText required="required">
     <label for="float-input5">N°Semestre</label>
                        </span>
         </div>
@@ -168,7 +169,7 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-float-label" style="margin-top: 10px">
-    <input id="float-input6" [(ngModel)]="years.libelle" name="subject" type="text" size="30" pInputText required="required">
+            <p-inputMask id="float-input6" [(ngModel)]="years.libelle" name="subject" type="text" mask="9999-9999" size="30" pInputText required="required"></p-inputMask>
     <label for="float-input6">Ajouter une année universitaire</label>
           </span>
         </div>&nbsp;
@@ -179,15 +180,15 @@
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <p-dropdown name="years" placeholder="Choisir une année universitaire" [options]="yearss" [(ngModel)]="year" optionLabel="libelle"></p-dropdown>
+          <p-dropdown name="years" placeholder="Choisir une année universitaire" formControlName="year" [options]="yearss" [(ngModel)]="year" optionLabel="libelle"></p-dropdown>
         </div>
       </div>
     </div>
     <br>
     <p-footer>
       <p-footer>
-        <button type="submit" pButton icon="pi pi-check" style="float: left" (click)="save2()" label="Confirm"></button>
-        <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic3=false" label="Cancel" class="ui-button-secondary"></button>
+        <button type="submit" pButton icon="pi pi-check" style="float: left" [disabled]="!userform2.valid" label="Enregistrer"></button>
+        <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic3=false" label="Annuler" class="ui-button-secondary"></button>
       </p-footer>
     </p-footer>
   </form>
@@ -226,13 +227,16 @@
     </mat-form-field>
   </p-header>
   <p-footer style="align-content: center">
-    <button class="ui-button-rounded ui-button-info" ><a routerLink="/profil">Modifier</a></button>
+    <button class="ui-button-rounded ui-button-info" routerLink="/profil"><a>Afficher tout</a></button>
   </p-footer>
 </p-sidebar>
 <p-dialog header="Confirmation/refus demande" position="top" [(visible)]="displayBasic5" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000">
   <p>{{notificationFounded.contenu}}</p>
   <br> <img [src]="notificationFounded.src">
   <br>
+  <p-footer>
   <button pButton (click)="accepter(notificationFounded)" type="button" style="float: left">Accepter</button>
   <button pButton (click)="refuser(notificationFounded)" type="button" style="float: right" class="ui-button-danger">Refuser</button>
+  </p-footer>
 </p-dialog>
+

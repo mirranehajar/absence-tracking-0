@@ -1,3 +1,4 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
 <br>
 <div>
   <button *ngIf="sectorManagerConnected.enseignant.numeroSOM == enseignantConnected.numeroSOM" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un module"></button>
@@ -40,7 +41,7 @@
                   </td>
                   <td *ngIf="rowData.subject">{{rowData.subject.libelle}}</td>
                   <td *ngIf="rowData.subject == null "></td>
-                  <td *ngIf="rowData.enseignant">{{rowData.enseignant.label}}</td>
+                  <td *ngIf="rowData.enseignant">{{rowData.enseignant.lastName}} {{rowData.enseignant.firstName}}</td>
                   <td *ngIf="rowData.enseignant == null "></td>
                 </tr>
               </ng-template>
@@ -147,12 +148,12 @@
   </div>
 </div>
 <p-dialog  header="Ajout d'un module" modal="true" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
-  <form style="text-align: center" method="POST">
+  <form style="text-align: center" method="POST" [formGroup]="userform" (ngSubmit)="save()">
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-float-label" style="margin-top: 10px">
-    <input id="float-input1"  [(ngModel)]="module.libelle" name="libelle" type="text" size="30" pInputText required="required">
+    <input id="float-input1"  [(ngModel)]="module.libelle" name="libelle" type="text" size="30" formControlName="libelle" pKeyFilter="alpha" pInputText required="required">
     <label for="float-input1">libelle</label>
             </span>
         </div>
@@ -161,7 +162,7 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-float-label">
-    <input id="float-input2"  [(ngModel)]="module.abreveation" name="abreveation" type="text" size="30" pInputText required="required">
+    <input id="float-input2"  [(ngModel)]="module.abreveation" name="abreveation" formControlName="abreviation" pKeyFilter="alpha" type="text" size="30" pInputText required="required">
     <label for="float-input2">abréviation</label>
             </span>
         </div>
@@ -170,7 +171,7 @@
       <div class="row">
         <div class="ui-inputgroup">
            <span class="ui-float-label">
-    <input id="float-input3"  [(ngModel)]="subject.libelle" name="subject" type="text" size="30" pInputText required="required">
+    <input id="float-input3"  [(ngModel)]="subject.libelle" pKeyFilter="alpha" name="subject" type="text" size="30" pInputText required="required">
     <label for="float-input3">Ajouter une matière</label>
             </span>
         </div>&nbsp;
@@ -181,47 +182,47 @@
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <p-multiSelect name="etudiants" editable="true" defaultLabel="Choisir des matières" [options]="subjects" [(ngModel)]="module.subjects" optionLabel="libelle"></p-multiSelect>
+          <p-multiSelect name="etudiants" editable="true" formControlName="subject" defaultLabel="Choisir des matières" [options]="subjects" [(ngModel)]="module.subjects" optionLabel="libelle"></p-multiSelect>
         </div>
       </div>
     </div>
     <br>
     <p-footer>
-      <button type="button" pButton icon="pi pi-check" style="float: left" (click)="save()" label="Sauvegarder"></button>
+      <button type="submit" pButton icon="pi pi-check" style="float: left" label="Enregistrer"></button>
       <button type="button" pButton icon="pi pi-times" style="float: right"   class="ui-button-secondary"(click)="displayBasic=false" label="Annuler" class="ui-button-secondary"></button>
     </p-footer>
   </form>
 </p-dialog>
 <p-dialog  header="Ajout d'un type de séance" modal="true" (close)="onClose()" [(visible)]="displayBasic3" [style]="{width: '50vw'}" [baseZIndex]="10000">
-  <form style="text-align: center" method="POST">
+  <form style="text-align: center" method="POST" (ngSubmit)="addTypeSession()" [formGroup]="userform2">
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
-          <p-selectButton name="libelle" [options]="libelles" [(ngModel)]="typeSession.libelle"></p-selectButton>
+          <p-selectButton name="libelle" [options]="libelles" [(ngModel)]="typeSession.libelle" formControlName="libelle" pKeyFilter="alpha"></p-selectButton>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <p-dropdown name="subject" [options]="subjectsFounded" [(ngModel)]="typeSession.subject" placeholder="Choisir une matière" optionLabel="libelle"></p-dropdown>
+          <p-dropdown name="subject" [options]="subjectsFounded" [(ngModel)]="typeSession.subject" formControlName="subject" placeholder="Choisir une matière" optionLabel="libelle"></p-dropdown>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <p-dropdown name="enseignant" [options]="enseignants" [(ngModel)]="typeSession.enseignant" placeholder="Choisir une enseignant" optionLabel="label"></p-dropdown>
+          <p-dropdown name="enseignant" [options]="enseignants" [(ngModel)]="typeSession.enseignant" formControlName="enseignant" placeholder="Choisir une enseignant" optionLabel="label"></p-dropdown>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <p-multiSelect name="groupes" defaultLabel="Choisir des groupes" [options]="groupesFounded" [(ngModel)]="typeSession.groupes" optionLabel="libelle"></p-multiSelect>
+          <p-multiSelect name="groupes" defaultLabel="Choisir des groupes" [options]="groupesFounded" [(ngModel)]="typeSession.groupes" formControlName="groupe" optionLabel="libelle"></p-multiSelect>
         </div>
       </div>
     </div>
     <br>
     <p-footer>
-      <button type="button" pButton icon="pi pi-check" style="float: left" (click)="addTypeSession()" label="Sauvegarder"></button>
+      <button type="submit" pButton icon="pi pi-check" style="float: left"  label="Enregistrer"></button>
       <button type="button" pButton icon="pi pi-times" style="float: right"   class="ui-button-secondary"(click)="displayBasic3=false" label="Annuler" class="ui-button-secondary"></button>
     </p-footer>
   </form>

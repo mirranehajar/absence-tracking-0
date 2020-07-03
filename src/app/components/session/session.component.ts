@@ -1,9 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FullCalendarComponent} from '@fullcalendar/angular';
 import {EventInput} from '@fullcalendar/core/structs/event';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGrigPlugin from '@fullcalendar/timegrid';
+import {MessageService} from 'primeng';
 import {Absence} from '../../controller/model/absence';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {Etudiant} from '../../controller/model/etudiant.model';
@@ -25,16 +27,18 @@ import {TypeSessionService} from '../../controller/service/type-session.service'
   selector: 'app-session',
   templateUrl: './session.component.html',
   styleUrls: ['./session.component.scss'],
+  providers: [MessageService],
 })
 export class SessionComponent implements OnInit {
   displayBasic: boolean;
   displayBasic2: boolean;
   today: Date;
-
+  userform: FormGroup;
   constructor(private groupeService: GroupeService, private typeSessionService: TypeSessionService,
               private sessionService: SessionService, private absenceService: AbsenceService,
               private etudiantService: EtudiantService, private enseignantService: EnseignantService,
-              private moduleService: ModuleService, private sectorManagerService: SectorManagerService) {
+              private moduleService: ModuleService, private sectorManagerService: SectorManagerService,
+              private fb: FormBuilder, private messageService: MessageService) {
   }
 
   @ViewChild('calendar') calendarComponent: FullCalendarComponent; // the #calendar in the template
@@ -52,8 +56,14 @@ export class SessionComponent implements OnInit {
     startTime: '08:00',
     endTime: '19:00',
   };
+  max: number;
 
   async ngOnInit(): Promise<void> {
+    this.userform = this.fb.group({
+      libelle: new FormControl('', Validators.required),
+      periode: new FormControl('', Validators.compose([Validators.required, Validators.min(1), Validators.max(this.max)])),
+      typeSession: new FormControl('', Validators.required),
+    });
     this.today = new Date();
     console.log(this.today);
     this.students = new Array<Etudiant>();
@@ -70,7 +80,7 @@ export class SessionComponent implements OnInit {
           title: s.libelle,
           start: s.dateStart,
           end: s.dateStop,
-          constraint: this.hours
+          constraint: this.hours,
         });
       }
     }
@@ -83,6 +93,12 @@ export class SessionComponent implements OnInit {
   }
 
   async showBasicDialog(arg) {
+    this.max = 19 * 60 - arg.date.getMinutes();
+    this.userform = this.fb.group({
+      libelle: new FormControl('', Validators.required),
+      periode: new FormControl('', Validators.compose([Validators.required, Validators.min(1), Validators.max(this.max)])),
+      typeSession: new FormControl('', Validators.required),
+    });
     if (arg.date.getDay() !== 0 && arg.date.getHours() >= 8 && arg.date.getHours() < 19) {
       await this.sessionService.findByDateAndEnseignant(arg.date, this.enseignantConnected);
       console.log(this.sessionService.sessionTrouve);
@@ -149,6 +165,7 @@ export class SessionComponent implements OnInit {
   public deleteByReference(session: Session) {
     this.sessionService.deleteByReference(session);
     this.displayBasic2 = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Séance supprimée'});
   }
 
   async onDrag(arg) {
@@ -177,7 +194,7 @@ export class SessionComponent implements OnInit {
         title: s.libelle,
         start: s.dateStart,
         end: s.dateStop,
-        constraint: this.hours
+        constraint: this.hours,
       });
     }
   }
@@ -185,12 +202,13 @@ export class SessionComponent implements OnInit {
   async onResize(arg) {
     console.log(arg.event.id);
     console.log(arg.event);
-    console.log(arg.event.end.hours - arg.event.start.hours);
+    console.log((arg.event.end.getHours() - arg.event.start.getHours()) * 60 + arg.event.end.getMinutes() - arg.event.start.getMinutes());
     await this.sessionService.findByReference(arg.event.id);
     this.sectorManagerService.findBySector(this.sessionFounded.typeSession.module.semestre.sector);
     if (this.enseignantConnected.numeroSOM === this.sessionFounded.typeSession.enseignant.numeroSOM ||
       this.sectorManagerService.sectorManagerFounded.enseignant.numeroSOM === this.enseignantConnected.numeroSOM) {
-      this.sessionService.sessionFounded.dateStop = arg.event.end;
+      // tslint:disable-next-line:max-line-length
+      this.sessionService.sessionFounded.periode = (arg.event.end.getHours() - arg.event.start.getHours()) * 60 + arg.event.end.getMinutes() - arg.event.start.getMinutes();
       await this.sessionService.update();
     }
     this.calendarEvents = [];
@@ -200,7 +218,7 @@ export class SessionComponent implements OnInit {
         title: s.libelle,
         start: s.dateStart,
         end: s.dateStop,
-        constraint: this.hours
+        constraint: this.hours,
       });
     }
   }
@@ -229,6 +247,7 @@ export class SessionComponent implements OnInit {
       await this.absenceService.save();
     }
     this.displayBasic = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Séance enregistrée'});
   }
 
   get groupes(): Groupe[] {

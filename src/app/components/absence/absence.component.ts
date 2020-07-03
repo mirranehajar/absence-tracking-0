@@ -66,9 +66,10 @@ export class AbsenceComponent implements OnInit {
   public save() {
     return this.absenceService.save();
   }
-  public update(absence: Absence) {
+  public async update(absence: Absence) {
     this.absenceService.absenceFounded = absence;
-    this.absenceService.update();
+    console.log(this.absenceFounded);
+    await this.absenceService.update();
   }
   get absencesFounded(): Absence[] {
     return this.absenceService.absencesFounded;

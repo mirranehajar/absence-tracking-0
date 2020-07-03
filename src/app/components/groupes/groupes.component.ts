@@ -1,5 +1,8 @@
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {MessageService} from 'primeng';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {Groupe} from '../../controller/model/groupe';
@@ -12,12 +15,12 @@ import {GroupeService} from '../../controller/service/groupe.service';
 import {SectorManagerService} from '../../controller/service/sector-manager.service';
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-groupes',
   templateUrl: './groupes.component.html',
   styleUrls: ['./groupes.component.scss'],
+  providers: [MessageService],
 })
 export class GroupesComponent implements OnInit {
   index = -1;
@@ -27,12 +30,16 @@ export class GroupesComponent implements OnInit {
   data: Groupe;
   private _url = 'http://localhost:8090/absence-tracking/etudiant/';
   retrievedImage: any;
+  userform: FormGroup;
   constructor(private semestreService: SemestreService, private etudiantService: EtudiantService,
-              private groupeService: GroupeService, private sectorService: SectorService,
+              private groupeService: GroupeService, private sectorService: SectorService, private fb: FormBuilder,
               private sectorManagerService: SectorManagerService, private enseignantService: EnseignantService,
-              private http: HttpClient) {}
+              private http: HttpClient, private messageService: MessageService) {}
 
   async ngOnInit(): Promise<void> {
+    this.userform = this.fb.group({
+      libelle: new FormControl('', Validators.required),
+    });
     await this.etudiantService.findAll();
     this.etudiantService.etudiantsGroupe = null;
     for (const e of this.etudiants) {
@@ -98,6 +105,7 @@ export class GroupesComponent implements OnInit {
       await this.etudiantService.update();
     }
     await this.groupeService.deleteByReference(groupe);
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Groupe supprimé'});
     await this.groupeService.findBySemestre(this.semestreConnected);
     for (const g of this.groupesFounded) {
       for (const e of g.etudiants) {
@@ -111,6 +119,7 @@ export class GroupesComponent implements OnInit {
     this.groupeService.update();
     await this.groupeService.findBySemestre(this.semestreConnected);
     this.displayBasic2 = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Groupe enregistré'});
   }
   public async save() {
     this.groupeService.groupe.semestre = this.semestreConnected;
@@ -142,6 +151,7 @@ export class GroupesComponent implements OnInit {
       }
     }
     this.displayBasic = false;
+    this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Groupe enregistré'});
   }
   get etudiants(): Etudiant[] {
     return this.etudiantService.etudiants;
