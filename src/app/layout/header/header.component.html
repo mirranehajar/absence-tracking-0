@@ -20,11 +20,11 @@
             <a mdbDropdownToggle class="nav-link dropdown-toggle"><i class="pi pi-list iconColor">Filière</i></a>
             <div class="dropdown-menu mega-menu row z-depth-1 ">
               <div (mouseover)="onHover(s)" *ngFor="let s of sectors" class="item has_submenu">
-              <a   ><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + s.abreveation}}</a>
+              <a><i class="pi pi-desktop" style="font-size: 1em">{{" " + s.abreveation}}</i></a>
                 <button *ngIf="enseignantConnected.role === 1" pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 "  (click)="showBasicDialog2(s)"  icon="pi pi-pencil" ></button>
                 <div *ngIf="s.semestres != null" class="submenu">
                   <div *ngFor="let ss of s.semestres" class="item has_submenu">
-                    <i><a  (click)="goToModule(ss)"><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + ss.libelle}} {{ss.anneeUniversitaire}}</a></i>
+                    <a  (click)="goToModule(ss)"><i class="pi pi-desktop" style="font-size: 1em">{{" " + ss.libelle}} {{ss.anneeUniversitaire}}</i></a>
                     <button *ngIf="sectorManagerFounded.enseignant.numeroSOM == enseignantConnected.numeroSOM" pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 " class="ui-button-danger" (click)="deleteByReference(ss)" icon="pi pi-trash" ></button>
                   <div class="dropdown-divider"></div>
                   </div>
@@ -76,7 +76,7 @@
       <div class="row">
         <div class="ui-inputgroup">
                <span class="ui-float-label" style="margin-top: 10px;">
-         <input [(ngModel)]="sector.libelle" type="text" id="float-input" pKeyFilter="alpha" size="50" formControlName="libelle" name="libelle" pInputText>
+         <input [(ngModel)]="sector.libelle" type="text" id="float-input" size="50" formControlName="libelle" pInputText>
          <label for="float-input">Libelle</label>
                </span>
         </div>
@@ -85,7 +85,7 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-float-label" style="margin-top: 10px">
-    <input id="float-input2" [(ngModel)]="sector.abreveation" pKeyFilter="alpha" type="text" name="abreveation" formControlName="abreviation" size="50" pInputText required="required">
+    <input id="float-input2" [(ngModel)]="sector.abreveation" pKeyFilter="alpha" type="text"  formControlName="abreviation" size="50" pInputText required="required">
             <label for="float-input2">Abréviation</label>
           </span>
         </div>
@@ -93,13 +93,13 @@
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <p-dropdown name="cycle" [options]="cycles" [(ngModel)]="sector.cycle" formControlName="cycle" placeholder="Choisir un cycle" optionLabel="libelle"></p-dropdown>
+          <p-dropdown [options]="cycles" [(ngModel)]="sector.cycle" formControlName="cycle" placeholder="Choisir un cycle" optionLabel="libelle"></p-dropdown>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <p-dropdown name="sectorManager" [options]="enseignantsFounded" [(ngModel)]="sectorManager.enseignant" formControlName="enseignant" placeholder="Choisir un responsable" optionLabel="label"></p-dropdown>
+          <p-dropdown [options]="enseignantsFounded" [(ngModel)]="sectorManager.enseignant" formControlName="enseignant" placeholder="Choisir un responsable" optionLabel="label"></p-dropdown>
         </div>
       </div>
     </div>
@@ -118,7 +118,7 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-float-label" style="margin-top: 10px;">
-         <input [(ngModel)]="sectorFounded.libelle" name="libelle" pKeyFilter="alpha" disabled type="text" id="float-input0" size="30" pInputText required>
+         <input [(ngModel)]="sectorFounded.libelle" name="libelle" [ngModelOptions]="{standalone: true}" disabled type="text" id="float-input0" size="30" pInputText required>
          <label for="float-input0">Libelle</label>
                </span>
         </div>
@@ -127,7 +127,7 @@
       <div class="row">
         <div class="ui-inputgroup">
            <span class="ui-float-label" style="margin-top: 10px">
-    <input id="float-input4" [(ngModel)]="sectorFounded.abreveation" pKeyFilter="alpha" name="abreviation" type="text" disabled size="30" pInputText required="required">
+    <input id="float-input4" [(ngModel)]="sectorFounded.abreveation" [ngModelOptions]="{standalone: true}" name="abreviation" type="text" disabled size="30" pInputText required="required">
     <label for="float-input4">Nom</label>
                        </span>
         </div>
@@ -135,13 +135,13 @@
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <p-dropdown name="cycles" [options]="cycles" [(ngModel)]="sectorFounded.cycle"  optionLabel="libelle"></p-dropdown>
+          <p-dropdown name="cycles" [options]="cycles" [(ngModel)]="sectorFounded.cycle"  [ngModelOptions]="{standalone: true}" optionLabel="libelle"></p-dropdown>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <p-dropdown name="enseignant" [options]="enseignantsFounded" [(ngModel)]="sectorManagerFounded.enseignant" optionLabel="lastName"></p-dropdown>
+          <p-dropdown name="enseignant" [options]="enseignantsFounded" [ngModelOptions]="{standalone: true}" [(ngModel)]="sectorManagerFounded.enseignant" optionLabel="label"></p-dropdown>
         </div>
       </div>
     </div>
@@ -160,7 +160,7 @@
       <div class="row">
         <div class="ui-inputgroup">
            <span class="ui-float-label" style="margin-top: 10px">
-    <input id="float-input5" [(ngModel)]="semestre.number"  name="number" formControlName="number" type="number" max="6" min="1" size="30" pInputText required="required">
+    <input id="float-input5" [(ngModel)]="semestre.number" formControlName="number" type="number" max="6" min="1" size="30" pInputText required="required">
     <label for="float-input5">N°Semestre</label>
                        </span>
         </div>
@@ -168,19 +168,17 @@
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <span class="ui-float-label" style="margin-top: 10px">
-            <p-inputMask id="float-input6" [(ngModel)]="years.libelle" name="subject" type="text" mask="9999-9999" size="30" pInputText required="required"></p-inputMask>
+          <span class="ui-float-label">
+            <p-inputMask id="float-input6" [(ngModel)]="years.libelle" [ngModelOptions]="{standalone: true}" name="year" type="text" mask="9999-9999" size="30"></p-inputMask> &nbsp;&nbsp;
     <label for="float-input6">Ajouter une année universitaire</label>
           </span>
-        </div>&nbsp;
-        <div>
           <button pButton class="ui-button-success" (click)="addYears()" icon="pi pi-plus"></button>
         </div>
       </div>
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <p-dropdown name="years" placeholder="Choisir une année universitaire" formControlName="year" [options]="yearss" [(ngModel)]="year" optionLabel="libelle"></p-dropdown>
+          <p-dropdown placeholder="Choisir une année universitaire" formControlName="year" [options]="yearss" [(ngModel)]="year" optionLabel="libelle"></p-dropdown>
         </div>
       </div>
     </div>
@@ -198,22 +196,22 @@
     <img [src]="enseignantConnected.src" alt="Avatar" style="width: 150px; height: 160px; border-radius: 50%;">
     <mat-form-field class="example-full-width">
       <mat-label>Nom</mat-label>
-      <input matInput   [(ngModel)]="enseignantConnected.lastName" disabled style="color: black">
+      <input matInput [ngModelOptions]="{standalone: true}"  [(ngModel)]="enseignantConnected.lastName" disabled style="color: black">
     </mat-form-field>
       <br>
     <mat-form-field class="example-full-width">
       <mat-label>Prénom</mat-label>
-      <input matInput   [(ngModel)]="enseignantConnected.firstName" disabled style="color: black">
+      <input matInput   [(ngModel)]="enseignantConnected.firstName" [ngModelOptions]="{standalone: true}" disabled style="color: black">
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
     <mat-label>CIN</mat-label>
-    <input matInput   [(ngModel)]="enseignantConnected.cin" disabled style="color: black">
+    <input matInput   [(ngModel)]="enseignantConnected.cin" [ngModelOptions]="{standalone: true}" disabled style="color: black">
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
       <mat-label>N°SOM</mat-label>
-      <input matInput   [(ngModel)]="enseignantConnected.numeroSOM" disabled style="color: black">
+      <input matInput   [(ngModel)]="enseignantConnected.numeroSOM" [ngModelOptions]="{standalone: true}" disabled style="color: black">
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">

@@ -178,9 +178,12 @@ export class HeaderComponent implements OnInit {
     await this.findByRole(3);
     this.displayBasic = true;
   }
-  showBasicDialog2(sector: Sector) {
+  async showBasicDialog2(sector: Sector) {
     this.displayBasic2 = true;
     this.findByLibelle(sector);
+    await this.findByRole(3);
+    this.sectorManagerFounded.enseignant.label = this.sectorManagerFounded.enseignant.lastName + ' ' + this.sectorManagerFounded.enseignant.firstName
+    this.enseignantsFounded.push(this.sectorManagerFounded.enseignant);
   }
   showBasicDialog3(libelle: string) {
      this.filiere = libelle;

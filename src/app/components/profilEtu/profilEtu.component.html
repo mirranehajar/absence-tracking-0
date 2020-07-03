@@ -61,12 +61,12 @@
   </div>
   <br>
   <p-dialog  header="Modification du mot de passe" [modal]="true"  [style]="{width: '50vw'}" [baseZIndex]="10000"[(visible)]="displayBasic"  [draggable]="false" [resizable]="false">
-    <form style="text-align: center" method="POST" >
+    <form style="text-align: center" method="POST" (ngSubmit)="updatePassword()" [formGroup]="userform" >
       <div style="display:inline-block" class="form-group">
         <div class="row">
           <div class="ui-inputgroup">
                   <span class="ui-float-label" style="margin-top: 10px">
-         <input [(ngModel)]="currentPassword" type="password" id="float-input" size="30" pInputText>
+         <input [(ngModel)]="currentPassword" formControlName="currentPassword" type="password" id="float-input" size="30" pInputText>
          <label for="float-input">Mot de passe courrant</label>
                   </span>
           </div>
@@ -75,8 +75,8 @@
         <div class="row">
           <div class="ui-inputgroup">
                       <span class="ui-float-label" style="margin-top: 10px">
-         <input [(ngModel)]="password" type="password" id="float-input1" size="30" pInputText>
-         <label for="float-input1">nouveau mot de passe</label>
+         <input [(ngModel)]="password" formControlName="newPassword" type="password" id="float-input1" size="30" pInputText>
+         <label for="float-input1">Nouveau mot de passe</label>
                   </span>
           </div>
         </div>
@@ -84,31 +84,31 @@
         <div class="row">
           <div class="ui-inputgroup">
                            <span class="ui-float-label" style="margin-top: 10px">
-               <input [(ngModel)]="passwordConfirm" type="password" id="float-input2" size="30" pInputText>
-               <label for="float-input2">confirmer le mot de passe</label>
+               <input [(ngModel)]="passwordConfirm" formControlName="confirmPassword" type="password" id="float-input2" size="30" pInputText>
+               <label for="float-input2">Confirmer le mot de passe</label>
                   </span>
           </div>
         </div>
         <br>
-        <button (click)="updatePassword()" type="submit" pButton  label="valider le changemant" ></button>
+        <button type="submit" pButton [disabled]="!userform.valid" label="valider le changemant" ></button>
       </div>
     </form>
   </p-dialog>
   <br>
   <button  pButton (click)="showBasicDialog2()"  label="Valider les modifications" style="margin-right: 500px; background-color: #0882A1"></button>
   <p-dialog  header="Validation des modifications" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
-    <form style="text-align: center" method="POST" >
+    <form style="text-align: center" method="POST" [formGroup]="userform2" (ngSubmit)="update()" >
       <div style="display:inline-block" class="form-group">
         <div class="row">
           <div class="ui-inputgroup">
                     <span class="ui-float-label" style="margin-top: 10px">
-               <input [(ngModel)]="passwordUpdate" type="password" id="float-input3" size="30" pInputText required>
-               <label for="float-input3">Etrez votre mot de passe</label>
+               <input [(ngModel)]="passwordUpdate" formControlName="password" type="password" id="float-input3" size="30" pInputText required>
+               <label for="float-input3">Entrez votre mot de passe</label>
                   </span>
           </div>
         </div>
         <br>
-        <button type="submit" (click)="update()" pButton  label="valider"></button>
+        <button type="submit" pButton [disabled]="!userform2.valid" label="valider"></button>
       </div>
     </form>
   </p-dialog>

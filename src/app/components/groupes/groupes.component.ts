@@ -41,6 +41,10 @@ export class GroupesComponent implements OnInit {
       libelle: new FormControl('', Validators.required),
     });
     await this.etudiantService.findAll();
+    for (const e of this.etudiants) {
+      await this.getImage(e.cin);
+      e.src = this.retrievedImage;
+    }
     this.etudiantService.etudiantsGroupe = null;
     for (const e of this.etudiants) {
       if (e.groupe == null) {
@@ -157,6 +161,8 @@ export class GroupesComponent implements OnInit {
     return this.etudiantService.etudiants;
   }
   showBasicDialog() {
+    this.groupeService.groupe.etudiants = [];
+    console.log(this.groupeService.groupe.etudiants);
     this.displayBasic = true;
   }
   showBasicDialog2(groupe: Groupe) {
