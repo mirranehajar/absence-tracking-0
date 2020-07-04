@@ -58,7 +58,9 @@ export class EmploiEtuComponent implements OnInit {
     this.absenceService.boolean = true;
     await this.sessionService.findByReference(event.event.id);
     await this.absenceService.findBySessionAndEtudiant(this.sessionService.sessionFounded, this.etudiantService.etudiantConnected);
-    if (event.date >= this.today) {
+    console.log(event);
+    if (event.event.start >= this.today) {
+      console.log('ana hna wikwik');
       this.displayBasic = true;
     }
   }
@@ -66,14 +68,17 @@ export class EmploiEtuComponent implements OnInit {
     return this.absenceService.absenceFounded;
   }
   async update() {
+    console.log('ana hani dkhlt l update');
     this.notificationService.notificationFounded = null;
     await this.notificationService.findByAbsence(this.absenceFounded);
-    if (this.notificationService.notificationFounded == null) {
+    if (this.notificationService.notificationFounded.contenu == null) {
+      console.log('ana null');
       this.notificationService.notification.absence = this.absenceFounded;
       this.notificationService.notification.contenu = this.absenceFounded.justification;
       console.log(this.notificationService.notification);
       await this.notificationService.save();
     } else {
+      console.log('ana manullch');
       console.log(this.notificationService.notificationFounded);
       this.notificationService.notificationFounded.state = null;
       this.notificationService.notificationFounded.absence = this.absenceFounded;

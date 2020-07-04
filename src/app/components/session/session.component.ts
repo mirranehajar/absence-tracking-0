@@ -51,6 +51,7 @@ export class SessionComponent implements OnInit {
   groups: Groupe[];
   seance: Session;
   typeSeance = new Array<TypeSession>();
+  push = new Array<TypeSession>();
   hours = {
     daysOfWeek: [1, 2, 3, 4, 5, 6],
     startTime: '08:00',
@@ -68,7 +69,7 @@ export class SessionComponent implements OnInit {
     console.log(this.today);
     this.students = new Array<Etudiant>();
     console.log(this.moduleConnected);
-    this.typeSessionService.findByModule(this.moduleConnected);
+    await this.typeSessionService.findByModule(this.moduleConnected);
     for (const t of this.typeSessionsFounded) {
       console.log(t);
       await this.sessionService.findByTypeSession(t);
@@ -86,7 +87,7 @@ export class SessionComponent implements OnInit {
     }
     await this.sectorManagerService.findBySector(this.moduleConnected.semestre.sector);
     if (this.enseignantConnected.numeroSOM !== this.sectorManagerFounded.enseignant.numeroSOM) {
-      this.typeSessionService.findByEnseignant(this.enseignantConnected);
+      await this.typeSessionService.findByEnseignant(this.enseignantConnected);
     }
     console.log(this.sessions);
     this.groupeService.findAll();
@@ -103,14 +104,16 @@ export class SessionComponent implements OnInit {
           await this.typeSessionService.findByEnseignant(this.enseignantConnected);
           console.log('wlh ta  hna ' + this.typeSessionsFounded);
           for (const r of this.typeSessionsFounded) {
-            this.typeSeance = [];
             if (r.module.libelle === this.moduleConnected.libelle) {
               console.log(r);
-              await this.typeSeance.concat(r);
-              console.log(this.typeSeance);
+              await this.push.push(r);
+              console.log(this.push);
             }
             console.log('hani khrjt');
+            console.log(this.push);
           }
+          this.typeSeance = this.push;
+          console.log(this.typeSeance);
         } else {
           await this.typeSessionService.findByModule(this.moduleConnected);
           console.log('wlh ta jit hna ' + this.typeSessionsFounded);
@@ -135,13 +138,13 @@ export class SessionComponent implements OnInit {
   }
 
   public async showBasicDialog2(event) {
-    this.displayBasic2 = true;
     await this.findByReference(event.event.id);
     await this.sectorManagerService.findBySector(this.sessionFounded.typeSession.module.semestre.sector);
     console.log(this.findByReference(event.event.id));
     console.log(this.sessionFounded);
     console.log(this.sessionFounded.reference);
     console.log(this.sessionFounded.dateStart);
+    this.displayBasic2 = true;
   }
 
   handleDateClick() {

@@ -1,6 +1,6 @@
 <p-toast [style]="{marginTop: '80px'}"></p-toast>
       <div *ngIf="enseignantConnected.role == 1"  class="row">
-        <div class="col-md-4">
+        <div class="col" style="text-align: center">
           <br>
           <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un étudiant"></button>
           <p-dialog  header="Ajout d'un nouveau étudiant" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
@@ -102,28 +102,23 @@
             </form>
           </p-dialog>
         </div>
-        <div class="col-md-4">
+        <div class="col" style="text-align: center">
           <br>
-          <div class="row">
-            <div class="ui-inputgroup">
+            <div>
               <p-dropdown name="sector" placeholder="Choisir une filière" (onChange)="onChangeImport()" [options]="sectors" [(ngModel)]="sectorImport" optionLabel="abreveation"></p-dropdown>
             </div>
-          </div>
           <br>
-          <div class="row" *ngIf="sectorImport != null">
-            <div class="ui-inputgroup">
+          <div *ngIf="sectorImport != null">
               <p-dropdown name="groupe" placeholder="Choisir un groupe"  [options]="groupesFounded" [(ngModel)]="groupeImport"  optionLabel="reference"></p-dropdown>
-            </div>
           </div>
           <br>
-          <div class="row" *ngIf="groupeImport != null">
-            <div class="ui-inputgroup">
+          <div *ngIf="groupeImport != null">
               <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" (change)="onFileChange($event)" multiple="false" />
-            </div>
           </div>
         </div>
+        <br>
 
-        <div class="col-md-4">
+        <div class="col" style="text-align: center">
           <br>
           <p-button label="Donwload example" (click)="export()" icon="pi pi-download" ></p-button>
         </div>

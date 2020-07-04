@@ -97,7 +97,7 @@ export class StatistiqueComponent implements OnInit {
       labels: this.labels,
       datasets: [
         {
-          label: 'First Dataset',
+          label: 'Diagramme des sommes des absences par filière',
           backgroundColor: '#a64d79',
           data: this.somme,
           fill: true,
@@ -131,7 +131,7 @@ export class StatistiqueComponent implements OnInit {
       labels: this.labels2,
       datasets: [
         {
-          label: 'Par semestre',
+          label: 'Diagramme des sommes des absences par module',
           backgroundColor: '#a64d79',
           data: this.somme2,
           fill: true,
@@ -198,6 +198,7 @@ export class StatistiqueComponent implements OnInit {
           }
           console.log(this.n);
           this.sommeSemestres.push(this.n);
+          this.n = 0;
         }
       }
     }
@@ -211,6 +212,7 @@ export class StatistiqueComponent implements OnInit {
           borderColor: '#4bc0c0',
         },
       );
+      this.sommeSemestres = [];
     }
     console.log(this.dataSemestres);
     this.data3 = {
@@ -242,7 +244,7 @@ export class StatistiqueComponent implements OnInit {
       labels: this.labels3,
       datasets: [
         {
-          label: this.module.abreveation,
+          label: 'Diagramme des sommes des absences par types séance du module ' + this.module.abreveation,
           backgroundColor: '#a64d79',
           data: this.somme3,
           fill: true,

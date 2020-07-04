@@ -31,7 +31,7 @@ export class EtudiantsComponent implements OnInit {
   displayBasic2: boolean;
   wopts: XLSX.WritingOptions = {bookType: 'xlsx', type: 'array'};
   // tslint:disable-next-line:max-line-length
-  data: AOA = [['Cne', 'Cin', 'C.Apogee', 'Prénom', 'Nom', 'Sexe', 'J.Naissance', 'N°tél', 'Ville', 'Filière', 'Semestre', 'Groupe'], ['Cne123', 'Cin123', '123', 'Prénom', 'Nom', 'F', 'DD/MM/YYYY', '0123456789', 'Ville', 'Filière', 'S 1 SIR 2019-2020', 'groupe 1']];
+  data: AOA = [['COD_ETP', 'COD_ETU', 'COD_NNE_IND', 'CIN_IND', 'LIB_NOM_PAT_IND', 'LIB_PR1_IND', 'LIB_NOM_IND_ARB', 'LIB_PRN_IND_ARB', 'COD_SEX_ETU', 'LIB_VIL_NAI_ETU', 'DATE_NAI_IND']];
   fileName = 'Example-étudiant.xlsx';
   private _url = 'http://localhost:8090/absence-tracking/etudiant/';
   selectedFile: File;

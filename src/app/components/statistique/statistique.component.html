@@ -1,19 +1,34 @@
 <br>
-<div *ngIf="enseignantConnected.role == 2" class="row">
-<div style="align-content: center">
-<p-dropdown name="semestre" optionLabel="reference" (onChange)="statistiqueSemestre()"  placeholder="Choisir un semestre" [options]="semestres" [(ngModel)]="semestre"></p-dropdown>
+<div class="row">
+<div class="col justify-content-center" style="text-align: center">
+<p-dropdown *ngIf="enseignantConnected.role == 2" [showClear]="true" name="semestre" optionLabel="reference" (onChange)="statistiqueSemestre()"  placeholder="Choisir un semestre" [options]="semestres" [(ngModel)]="semestre"></p-dropdown>
+  <p-dropdown [showClear]="true"  name="semestre" *ngIf="enseignantConnected.role == 1" optionLabel="libelle" (onChange)="statistiqueSector()"  placeholder="Choisir une filière" [options]="sectors" [(ngModel)]="filiere"></p-dropdown>
+</div>
+  <div class="col " style="text-align: center">
+  <p-dropdown *ngIf="enseignantConnected.role != 3" [showClear]="true" name="semestre" optionLabel="libelle" (onChange)="statistiqueModule()"  placeholder="Choisir un module" [options]="modules" [(ngModel)]="module"></p-dropdown>
 </div>
 </div>
 
-<p-dropdown name="semestre" *ngIf="enseignantConnected.role == 1" optionLabel="libelle" (onChange)="statistiqueSector()"  placeholder="Choisir une filière" [options]="sectors" [(ngModel)]="filiere"></p-dropdown>
-  <br>
-<p-dropdown name="semestre" optionLabel="libelle" (onChange)="statistiqueModule()"  placeholder="Choisir un module" [options]="modules" [(ngModel)]="module"></p-dropdown>
-  <br>
 
-
-
-<p-chart *ngIf="enseignantConnected.role == 1" type="bar" [data]="data"></p-chart>
+<div class="col " style="text-align: center">
+  <p-dropdown *ngIf="enseignantConnected.role == 3" [showClear]="true" name="semestre" optionLabel="libelle" (onChange)="statistiqueModule()"  placeholder="Choisir un module" [options]="modules" [(ngModel)]="module"></p-dropdown>
+</div>
 <br>
-<p-chart *ngIf="data2 != null" type="bar" [data]="data2"></p-chart>
+
+<div class="row">
+  <div class="col" style="text-align: center">
+    <p-chart *ngIf="enseignantConnected.role == 1" type="bar" width="600px" height="400px" [data]="data"></p-chart>
+    <p-chart *ngIf="data2 != null" type="bar" width="600px" height="400px" [data]="data2"></p-chart>
+  </div>
+  <div *ngIf="enseignantConnected.role != 3" class="col" style="text-align: center">
+    <p-chart *ngIf="data3 != null" type="bar" width="600px" height="400px" [data]="data3"></p-chart>
+  </div>
+</div>
+<div *ngIf="enseignantConnected.role == 3" class="col "  style="text-align: center">
+  <p-chart *ngIf="data3 != null" type="bar" width="1000px" height="600px" [data]="data3"></p-chart>
+</div>
+
+
+
 <br>
-<p-chart *ngIf="data3 != null" type="bar" [data]="data3"></p-chart>
+

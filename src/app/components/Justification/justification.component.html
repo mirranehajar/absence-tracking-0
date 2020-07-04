@@ -25,13 +25,14 @@
       <br>
       <div class="row">
         <div class="ui-inputgroup">
-          <input type="file" (change)="onFileChanged($event)" multiple="false" />
+          <input type="file" accept="image/*" (change)="onFileChanged($event)" multiple="false" />
         </div>
       </div>
       <br>
     </div>
+    <br>
   <p-footer>
-    <button type="submit" pButton icon="pi pi-check" style="float: left" label="Envoyer"></button>
+    <button type="submit" [disabled]="!userform.valid" pButton icon="pi pi-check" style="float: left" label="Envoyer"></button>
     <button type="button" pButton icon="pi pi-times" style="float: right" (click)="basicDialog=false" label="Annuler" class="ui-button-secondary"></button>
   </p-footer>
   </form>
