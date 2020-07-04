@@ -54,7 +54,7 @@
           <ng-template pTemplate>
             <div  ui-overlaypanel-content *ngFor="let n of notifications">
               {{n.absence.etudiant.lastName}} {{n.absence.etudiant.firstName}}
-              <br>{{n.absence.session.dateStart}}-{{n.absence.session.libelle}}
+              <br>{{n.absence.session.dateStart | date:'medium'}}-{{n.absence.session.libelle}}
               <br><button type="button" (click)="showBasicDialog5(n)" pButton icon="pi pi-eye" label="Afficher"></button>
               <br>
               <div class="dropdown-divider"></div>

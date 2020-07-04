@@ -3,7 +3,7 @@
   <ng-template let-a pTemplate="gridItem">
     <div style="padding:.5em" class="col-sm-3">
       <p-panel [header]="a.session.libelle"  [style]="{'text-align':'center'}">
-        <div class="car-detail">{{a.session.dateStart}}</div>
+        <div class="car-detail">{{a.session.dateStart | date:'medium'}}</div>
         <div>{{a.session.typeSession.reference}}</div>
         <div>{{a.session.typeSession.enseignant.lastName}} {{a.session.typeSession.enseignant.firstName}}</div>
         <div *ngFor="let g of a.session.groupes">{{g.libelle}}</div>
