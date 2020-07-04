@@ -153,7 +153,7 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-float-label" style="margin-top: 10px">
-    <input id="float-input1"  [(ngModel)]="module.libelle" name="libelle" type="text" size="30" formControlName="libelle" pKeyFilter="alpha" pInputText required="required">
+    <input id="float-input1"  [(ngModel)]="module.libelle" name="libelle" type="text" size="30" formControlName="libelle"  pInputText required="required">
     <label for="float-input1">libelle</label>
             </span>
         </div>
@@ -162,7 +162,7 @@
       <div class="row">
         <div class="ui-inputgroup">
           <span class="ui-float-label">
-    <input id="float-input2"  [(ngModel)]="module.abreveation" name="abreveation" formControlName="abreviation" pKeyFilter="alpha" type="text" size="30" pInputText required="required">
+    <input id="float-input2"  [(ngModel)]="module.abreveation" name="abreveation" formControlName="abreviation" type="text" size="30" pInputText required="required">
     <label for="float-input2">abréviation</label>
             </span>
         </div>
@@ -171,12 +171,12 @@
       <div class="row">
         <div class="ui-inputgroup">
            <span class="ui-float-label">
-    <input id="float-input3"  [(ngModel)]="subject.libelle" pKeyFilter="alpha" name="subject" type="text" size="30" pInputText required="required">
+    <input id="float-input3"  [(ngModel)]="subject.libelle" [ngModelOptions]="{standalone: true}" name="subject" type="text" size="30" pInputText required="required">
     <label for="float-input3">Ajouter une matière</label>
             </span>
         </div>&nbsp;
         <div>
-        <button pButton class="ui-button-success" (click)="addSubject()" icon="pi pi-plus"></button>
+        <button pButton type="button" class="ui-button-success" (click)="addSubject()" icon="pi pi-plus"></button>
         </div>
       </div>
       <br>
@@ -188,7 +188,7 @@
     </div>
     <br>
     <p-footer>
-      <button type="submit" pButton icon="pi pi-check" style="float: left" label="Enregistrer"></button>
+      <button type="submit" [disabled]="!userform.valid" pButton icon="pi pi-check" style="float: left" label="Enregistrer"></button>
       <button type="button" pButton icon="pi pi-times" style="float: right"   class="ui-button-secondary"(click)="displayBasic=false" label="Annuler" class="ui-button-secondary"></button>
     </p-footer>
   </form>
@@ -198,7 +198,7 @@
     <div style="display:inline-block" class="form-group">
       <div class="row">
         <div class="ui-inputgroup">
-          <p-selectButton name="libelle" [options]="libelles" [(ngModel)]="typeSession.libelle" formControlName="libelle" pKeyFilter="alpha"></p-selectButton>
+          <p-selectButton name="libelle" [options]="libelles" [(ngModel)]="typeSession.libelle" formControlName="libelle"></p-selectButton>
         </div>
       </div>
       <br>
@@ -222,7 +222,7 @@
     </div>
     <br>
     <p-footer>
-      <button type="submit" pButton icon="pi pi-check" style="float: left"  label="Enregistrer"></button>
+      <button type="submit" [disabled]="!userform2.valid" pButton icon="pi pi-check" style="float: left"  label="Enregistrer"></button>
       <button type="button" pButton icon="pi pi-times" style="float: right"   class="ui-button-secondary"(click)="displayBasic3=false" label="Annuler" class="ui-button-secondary"></button>
     </p-footer>
   </form>

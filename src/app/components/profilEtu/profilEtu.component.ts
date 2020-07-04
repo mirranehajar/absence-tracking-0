@@ -1,9 +1,9 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {MessageService} from 'primeng';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {EtudiantService} from '../../controller/service/etudiant.service';
-import {EnseignantService} from '../../controller/service/enseignant.service';
-import {MessageService} from 'primeng';
 
 @Component({
   selector: 'app-profil-etu',
@@ -23,10 +23,20 @@ export class ProfilEtuComponent implements OnInit {
   currentPassword: string;
   passwordUpdate: string;
   img: any;
-
-  constructor(private etudiantService: EtudiantService, private http: HttpClient, private messageService: MessageService) { }
+  userform: FormGroup;
+  userform2: FormGroup;
+  constructor(private etudiantService: EtudiantService, private http: HttpClient,
+              private messageService: MessageService, private fb: FormBuilder) { }
 
   async ngOnInit(): Promise<void> {
+    this.userform = this.fb.group({
+      currentPassword: new FormControl('', Validators.required),
+      newPassword: new FormControl('', Validators.required),
+      confirmPassword: new FormControl('', Validators.required),
+    });
+    this.userform2 = this.fb.group({
+      password: new FormControl('', Validators.required),
+    });
     await this.etudiantService.findByMail(sessionStorage.getItem('username'));
     await this.getImage(this.etudiantConnected.cin);
   }
@@ -45,7 +55,8 @@ export class ProfilEtuComponent implements OnInit {
     }
   }
   update() {
-    if (this.etudiantConnected.password === this.passwordUpdate) {
+    const bcrypt = require('bcryptjs');
+    if (bcrypt.compare(this.passwordUpdate, this.etudiantConnected.password) ) {
       this.etudiantService.etudiantFounded = this.etudiantConnected;
       this.etudiantService.update();
       this.displayBasic2 = false;

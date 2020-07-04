@@ -1,6 +1,6 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MessageService} from 'primeng';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {EnseignantService} from '../../controller/service/enseignant.service';
@@ -22,10 +22,20 @@ export class ProfilComponent implements OnInit {
   passwordConfirm: string;
   currentPassword: string;
   passwordUpdate: string;
-
-  constructor(private http: HttpClient, private enseignantService: EnseignantService, private messageService: MessageService) { }
+  userform: FormGroup;
+  userform2: FormGroup;
+  constructor(private http: HttpClient, private enseignantService: EnseignantService,
+              private messageService: MessageService, private fb: FormBuilder) { }
 
   async ngOnInit(): Promise<void> {
+    this.userform = this.fb.group({
+      currentPassword: new FormControl('', Validators.required),
+      newPassword: new FormControl('', Validators.required),
+      confirmPassword: new FormControl('', Validators.required),
+    });
+    this.userform2 = this.fb.group({
+      password: new FormControl('', Validators.required),
+    });
     await this.enseignantService.findByMail(sessionStorage.getItem('username'));
     this.getImage(this.enseignantConnected.cin);
 
@@ -103,11 +113,12 @@ export class ProfilComponent implements OnInit {
     }
   }
   update() {
-    if (this.enseignantConnected.password === this.passwordUpdate) {
+    const bcrypt = require('bcryptjs');
+    if (bcrypt.compare(this.passwordUpdate, this.enseignantConnected.password) ) {
       this.enseignantService.enseignantFounded = this.enseignantConnected;
       this.enseignantService.update();
       this.displayBasic2 = false;
       this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Coordonnées enregistrées'});
-    }
+    } else { this.messageService.add({severity: 'error', summary: 'Erreur', detail: 'Mot de passe incorrect'}); }
   }
 }

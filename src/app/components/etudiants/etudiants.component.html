@@ -128,9 +128,9 @@
           <p-button style="margin-left: 100px" label="Donwload example" (click)="export()" icon="pi pi-download" ></p-button>
         </div>
       </div>
-    <div class="card-body">
+    <div>
         <div class="table-responsive-sm">
-          <p-table [autoLayout]="true" style="width: 1000px" [columns]="cols" [value]="etudiants" [paginator]="true" [rows]="7">
+          <p-table [autoLayout]="true" [columns]="cols" [value]="etudiants" [paginator]="true" [rows]="7">
             <ng-template pTemplate="header" let-columns>
               <tr>
                 <th *ngIf="enseignantConnected.role == 1"></th>
