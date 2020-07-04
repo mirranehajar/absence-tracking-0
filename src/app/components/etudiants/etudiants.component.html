@@ -2,7 +2,7 @@
       <div *ngIf="enseignantConnected.role == 1"  class="row">
         <div class="col-md-4">
           <br>
-          <button style="margin-left: 100px" type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un étudiant"></button>
+          <button type="button" (click)="showBasicDialog()" pButton icon="pi pi-plus" label="Ajouter un étudiant"></button>
           <p-dialog  header="Ajout d'un nouveau étudiant" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
             <form style="text-align: center" method="POST" (ngSubmit)="save()" [formGroup]="userform" >
               <div style="display:inline-block" class="form-group">
@@ -118,14 +118,14 @@
           <br>
           <div class="row" *ngIf="groupeImport != null">
             <div class="ui-inputgroup">
-              <input style="margin-left: 100px" type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" (change)="onFileChange($event)" multiple="false" />
+              <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" (change)="onFileChange($event)" multiple="false" />
             </div>
           </div>
         </div>
 
         <div class="col-md-4">
           <br>
-          <p-button style="margin-left: 100px" label="Donwload example" (click)="export()" icon="pi pi-download" ></p-button>
+          <p-button label="Donwload example" (click)="export()" icon="pi pi-download" ></p-button>
         </div>
       </div>
     <div>

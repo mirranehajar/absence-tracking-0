@@ -94,11 +94,6 @@ export class SessionComponent implements OnInit {
 
   async showBasicDialog(arg) {
     this.max = 19 * 60 - arg.date.getMinutes();
-    this.userform = this.fb.group({
-      libelle: new FormControl('', Validators.required),
-      periode: new FormControl('', Validators.compose([Validators.required, Validators.min(1), Validators.max(this.max)])),
-      typeSession: new FormControl('', Validators.required),
-    });
     if (arg.date.getDay() !== 0 && arg.date.getHours() >= 8 && arg.date.getHours() < 19) {
       await this.sessionService.findByDateAndEnseignant(arg.date, this.enseignantConnected);
       console.log(this.sessionService.sessionTrouve);
@@ -108,10 +103,10 @@ export class SessionComponent implements OnInit {
           await this.typeSessionService.findByEnseignant(this.enseignantConnected);
           console.log('wlh ta  hna ' + this.typeSessionsFounded);
           for (const r of this.typeSessionsFounded) {
-            this.typeSeance = new Array<TypeSession>();
+            this.typeSeance = [];
             if (r.module.libelle === this.moduleConnected.libelle) {
               console.log(r);
-              await this.typeSeance.push(r);
+              await this.typeSeance.concat(r);
               console.log(this.typeSeance);
             }
             console.log('hani khrjt');
@@ -127,6 +122,11 @@ export class SessionComponent implements OnInit {
         }
         console.log(arg.dateStr);
         if (arg.date >= this.today) {
+          this.userform = this.fb.group({
+            libelle: new FormControl('', Validators.required),
+            periode: new FormControl('', Validators.compose([Validators.required, Validators.min(1), Validators.max(this.max)])),
+            typeSession: new FormControl('', Validators.required),
+          });
           this.displayBasic = true;
           this.session.dateStart = arg.dateStr;
         }
