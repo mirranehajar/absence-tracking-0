@@ -6,20 +6,20 @@
 <div >
   <button type="button" style="float:right" href="/module" routerLink="/module" pButton icon="fa fa-external-link" label="Modules"></button>
   <p-dialog  header="Ajout un groupe" modal="true" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
-    <form style="text-align: center" method="POST" (ngSubmit)="save()">
+    <form style="text-align: center" method="POST" [formGroup]="userform" (ngSubmit)="save()">
       <div style="display:inline-block" class="form-group">
         <div class="row">
           <div class="ui-inputgroup">
              <span class="ui-float-label" style="margin-top: 10px">
-    <input id="float-input1" [(ngModel)]="groupe.libelle" name="libelle" formControlName="libelle" pKeyFilter="alpha" type="text" size="30" pInputText required="required">
-    <label for="float-input1">libelle</label>
+    <input id="float-input1" [(ngModel)]="groupe.libelle" name="libelle" formControlName="libelle" type="text" size="30" pInputText required="required">
+    <label f or="float-input1">libelle</label>
             </span>
           </div>
         </div>
         <br>
         <div class="row">
           <div class="ui-inputgroup">
-            <p-multiSelect style="text-align: left" name="etudiants" defaultLabel="Choisir des étudiants" [options]="etudiants" [(ngModel)]="groupe.etudiants" optionLabel="label"></p-multiSelect>
+            <p-multiSelect [ngModelOptions]="{standalone: true}" name="etudiants" defaultLabel="Choisir des étudiants" [options]="etudiants" [(ngModel)]="groupe.etudiants" optionLabel="label"></p-multiSelect>
           </div>
         </div>
       </div>

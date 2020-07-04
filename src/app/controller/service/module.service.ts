@@ -73,10 +73,11 @@ export class ModuleService {
   async save() {
     // tslint:disable-next-line:max-line-length
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(sessionStorage.getItem('username') + ':' + sessionStorage.getItem('password')) });
-    await this.http.post<number>(this._url, this.module, {headers}).toPromise().then(
+    await this.http.post<Module>(this._url, this.module, {headers}).toPromise().then(
       (data) => {
-        if (data > 0) {
-          this.modules.push(this.clone(this.module));
+        if (data) {
+          console.log(data);
+          this.modules.push(this.clone(data));
           this.module = null;
         }
       }, (error) => {
@@ -87,8 +88,9 @@ export class ModuleService {
   private clone(module: Module) {
     const myclone = new Module();
     myclone.libelle = module.libelle ;
+    myclone.id = module.id ;
     myclone.abreveation = module.abreveation;
-    myclone.semestre = myclone.semestre;
+    myclone.semestre = module.semestre;
     return myclone;
   }
   get module(): Module {

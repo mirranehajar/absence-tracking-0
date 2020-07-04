@@ -24,7 +24,7 @@
                 <button *ngIf="enseignantConnected.role === 1" pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 "  (click)="showBasicDialog2(s)"  icon="pi pi-pencil" ></button>
                 <div *ngIf="s.semestres != null" class="submenu">
                   <div *ngFor="let ss of s.semestres" class="item has_submenu">
-                    <a  (click)="goToModule(ss)"><i class="pi pi-desktop" style="font-size: 1em">{{" " + ss.libelle}} {{ss.anneeUniversitaire}}</i></a>
+                    <i><a (click)="goToModule(ss)"><i class="pi pi-desktop" style="font-size: 1em"></i>{{" " + ss.libelle}} {{ss.anneeUniversitaire}}</a></i>
                     <button *ngIf="sectorManagerFounded.enseignant.numeroSOM == enseignantConnected.numeroSOM" pButton type="button" style="float: right; width:25px; height: 25px; opacity: 0.8 " class="ui-button-danger" (click)="deleteByReference(ss)" icon="pi pi-trash" ></button>
                   <div class="dropdown-divider"></div>
                   </div>
@@ -172,7 +172,7 @@
             <p-inputMask id="float-input6" [(ngModel)]="years.libelle" [ngModelOptions]="{standalone: true}" name="year" type="text" mask="9999-9999" size="30"></p-inputMask> &nbsp;&nbsp;
     <label for="float-input6">Ajouter une année universitaire</label>
           </span>
-          <button pButton class="ui-button-success" (click)="addYears()" icon="pi pi-plus"></button>
+          <button pButton type=button class="ui-button-success" (click)="addYears()" icon="pi pi-plus"></button>
         </div>
       </div>
       <br>

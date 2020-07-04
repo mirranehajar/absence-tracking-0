@@ -118,7 +118,9 @@ export class ModuleComponent implements OnInit {
     await this.moduleService.save();
     this.displayBasic = false;
     this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Module enregistré'});
+    console.log(this.modules);
     for (const m of this.modules) {
+      console.log(m);
       await this.findByModule(m);
       m.typeSessions = this.typeSessionsFounded;
       console.log(m);
