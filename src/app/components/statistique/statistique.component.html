@@ -17,15 +17,15 @@
 
 <div class="row">
   <div class="col" style="text-align: center">
-    <p-chart *ngIf="enseignantConnected.role == 1" type="bar" width="600px" height="400px" [data]="data"></p-chart>
-    <p-chart *ngIf="data2 != null" type="bar" width="600px" height="400px" [data]="data2"></p-chart>
+    <p-chart [options]="chartOption" *ngIf="enseignantConnected.role == 1" type="bar" width="600px" height="400px" [data]="data"></p-chart>
+    <p-chart *ngIf="data2 != null" type="bar" [options]="chartOption"  width="600px" height="400px" [data]="data2"></p-chart>
   </div>
   <div *ngIf="enseignantConnected.role != 3" class="col" style="text-align: center">
-    <p-chart *ngIf="data3 != null" type="bar" width="600px" height="400px" [data]="data3"></p-chart>
+    <p-chart [options]="chartOption" *ngIf="data3 != null" type="bar" width="600px" height="400px" [data]="data3"></p-chart>
   </div>
 </div>
-<div *ngIf="enseignantConnected.role == 3" class="col "  style="text-align: center">
-  <p-chart *ngIf="data3 != null" type="bar" width="1000px" height="600px" [data]="data3"></p-chart>
+<div *ngIf="enseignantConnected.role == 3"  class="col "  style="text-align: center">
+  <p-chart *ngIf="data3 != null" type="bar" [options]="chartOption" width="1000px" height="600px" [data]="data3"></p-chart>
 </div>
 
 

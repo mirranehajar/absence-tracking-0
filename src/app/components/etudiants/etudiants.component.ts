@@ -1,22 +1,22 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ConfirmationService, Message} from 'primeng/api';
 import {MessageService} from 'primeng/api';
 import * as XLSX from 'xlsx';
+import {Absence} from '../../controller/model/absence';
 import {City} from '../../controller/model/city';
 import {Enseignant} from '../../controller/model/enseignant.model';
 import {Etudiant} from '../../controller/model/etudiant.model';
 import {Groupe} from '../../controller/model/groupe';
 import {Sector} from '../../controller/model/sector';
 import {Semestre} from '../../controller/model/semestre';
+import {AbsenceService} from '../../controller/service/absence.service';
 import {EnseignantService} from '../../controller/service/enseignant.service';
 import {EtudiantService} from '../../controller/service/etudiant.service';
 import {GroupeService} from '../../controller/service/groupe.service';
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {AbsenceService} from '../../controller/service/absence.service';
-import {Absence} from '../../controller/model/absence';
 
 type AOA = any[][];
 
@@ -2066,9 +2066,10 @@ export class EtudiantsComponent implements OnInit {
     ];
   }
 
-  select(event) {
+  async select(event) {
+    this.absenceService.absencesEtudiant = new Array<Absence>();
     console.log(event.data);
-    this.absenceService.findByEtudiant(event.data);
+    await this.absenceService.findByEtudiant(event.data);
     for (const a of this.absencesFounded) {
       if (a.absent === true && a.justification === null) {
         this.absencesEtudiant.push(a);

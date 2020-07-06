@@ -43,6 +43,18 @@ export class StatistiqueComponent implements OnInit {
   semestre =  new Semestre();
   semestres:  Semestre[];
   sectorManager = new SectorManager();
+  public chartOption = {
+    responsive: true,
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  };
   constructor(private sectorService: SectorService, private etudiantService: EtudiantService,
               private absenceService: AbsenceService, private moduleService: ModuleService,
               private sectorManagerService: SectorManagerService, private enseignantService: EnseignantService,
@@ -122,6 +134,7 @@ export class StatistiqueComponent implements OnInit {
       for (const a of this.absenceService.absencesFounded) {
         if (a.absent === true && a.justification == null) {
           this.n++;
+          console.log(this.n);
         }
       }
       this.labels2.push(m.abreveation);
@@ -199,7 +212,7 @@ export class StatistiqueComponent implements OnInit {
           console.log(this.n);
           this.sommeSemestres.push(this.n);
           this.n = 0;
-        }
+        } else { this.sommeSemestres.push(0); }
       }
     }
       console.log(this.sommeSemestres);
@@ -230,8 +243,10 @@ export class StatistiqueComponent implements OnInit {
       this.n = 0;
       console.log(this.absenceService.absencesFounded);
       for (const a of this.absenceService.absencesFounded) {
-          if (a.absent === true && a.justification == null) {
+        console.log(a);
+        if (a.absent === true && a.justification == null) {
             this.n++;
+            console.log(this.n);
           }
         }
       console.log(this.n);
