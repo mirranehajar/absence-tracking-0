@@ -55,6 +55,8 @@ export class StatistiqueComponent implements OnInit {
       ],
     },
   };
+  colors: string[] = ['#a64d79', '#4bc0c0', '#0f056b'];
+  j = 0;
   constructor(private sectorService: SectorService, private etudiantService: EtudiantService,
               private absenceService: AbsenceService, private moduleService: ModuleService,
               private sectorManagerService: SectorManagerService, private enseignantService: EnseignantService,
@@ -189,6 +191,7 @@ export class StatistiqueComponent implements OnInit {
     return this.sectorService.sectors;
   }
   async statistiqueSectorAndAnnee() {
+    this.j = 0;
     this.data3 = null;
     this.dataSemestres = new Array<any>();
     this.sommeSemestres = new Array<number>();
@@ -219,12 +222,13 @@ export class StatistiqueComponent implements OnInit {
       this.dataSemestres.push(
         {
           label: y.libelle,
-          backgroundColor: '#a64d79',
+          backgroundColor: this.colors[this.j],
           data: this.sommeSemestres,
           fill: true,
           borderColor: '#4bc0c0',
         },
       );
+      this.j++;
       this.sommeSemestres = [];
     }
     console.log(this.dataSemestres);
