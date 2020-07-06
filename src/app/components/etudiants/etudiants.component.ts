@@ -15,6 +15,8 @@ import {GroupeService} from '../../controller/service/groupe.service';
 import {SectorService} from '../../controller/service/sector.service';
 import {SemestreService} from '../../controller/service/semestre.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbsenceService} from '../../controller/service/absence.service';
+import {Absence} from '../../controller/model/absence';
 
 type AOA = any[][];
 
@@ -29,6 +31,7 @@ export class EtudiantsComponent implements OnInit {
   msgs: Message[] = [];
   displayBasic: boolean;
   displayBasic2: boolean;
+  displayBasic3: boolean;
   wopts: XLSX.WritingOptions = {bookType: 'xlsx', type: 'array'};
   // tslint:disable-next-line:max-line-length
   data: AOA = [['COD_ETP', 'COD_ETU', 'COD_NNE_IND', 'CIN_IND', 'LIB_NOM_PAT_IND', 'LIB_PR1_IND', 'LIB_NOM_IND_ARB', 'LIB_PRN_IND_ARB', 'COD_SEX_ETU', 'LIB_VIL_NAI_ETU', 'DATE_NAI_IND']];
@@ -43,6 +46,7 @@ export class EtudiantsComponent implements OnInit {
   city = new City();
   sectorImport: Sector;
   groupeImport: Groupe;
+  etudiantSelected: Etudiant;
   cities: any[] = [
     {
       id: '1',
@@ -2014,11 +2018,13 @@ export class EtudiantsComponent implements OnInit {
       region: '5',
     },
   ];
+  cols2: any[];
   userform: FormGroup;
   constructor(private etudiantService: EtudiantService, private messageService: MessageService,
               private sectorService: SectorService, private groupeService: GroupeService,
               private http: HttpClient, private enseignantService: EnseignantService,
-              private semestreService: SemestreService, private fb: FormBuilder) {
+              private semestreService: SemestreService, private fb: FormBuilder,
+              private absenceService: AbsenceService) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -2055,8 +2061,24 @@ export class EtudiantsComponent implements OnInit {
       { field: 'ville', header: 'Ville' },
       { field: 'nbrAbsence', header: 'N.Absence' },
     ];
+    this.cols2 = [
+      {field: 'libelle', header: 'Libelle'},
+    ];
   }
 
+  select(event) {
+    console.log(event.data);
+    this.absenceService.findByEtudiant(event.data);
+    for (const a of this.absencesFounded) {
+      if (a.absent === true && a.justification === null) {
+        this.absencesEtudiant.push(a);
+      }
+    }
+    this.displayBasic3 = true;
+  }
+  get absencesEtudiant(): Absence[] {
+    return this.absenceService.absencesEtudiant;
+  }
   public deleteByCne(etudiant: Etudiant) {
     this.etudiantService.deleteByCne(etudiant);
     this.messageService.add({severity: 'info', summary: 'Succès', detail: 'Étudiant supprimé'});
@@ -2258,5 +2280,8 @@ export class EtudiantsComponent implements OnInit {
       await this.getImage(e.cin);
       e.src = this.retrievedImage;
     }
+  }
+  get absencesFounded(): Absence[] {
+    return this.absenceService.absencesFounded;
   }
 }

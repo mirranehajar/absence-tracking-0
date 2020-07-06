@@ -21,8 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="3d30dca5-795a-4a5b-ac9e-18445de1fd95" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/Justification/justification.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/Justification/justification.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/enseignant/enseignant.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/etudiants/etudiants.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/moduleEtu/moduleEtu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/moduleEtu/moduleEtu.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/moduleEtu/moduleEtu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/moduleEtu/moduleEtu.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/header/header.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,14 +198,10 @@
       <workItem from="1593600627044" duration="23473000" />
       <workItem from="1593714459990" duration="13085000" />
       <workItem from="1593775935508" duration="17851000" />
-      <workItem from="1593856766859" duration="28580000" />
-    </task>
-    <task id="LOCAL-00024" summary="semestre start">
-      <created>1591299980175</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1591299980176</updated>
+      <workItem from="1593856766859" duration="29227000" />
+      <workItem from="1593955984388" duration="1296000" />
+      <workItem from="1593988960993" duration="4277000" />
+      <workItem from="1594045490925" duration="3259000" />
     </task>
     <task id="LOCAL-00025" summary="semestre start">
       <created>1591301031333</created>
@@ -538,7 +539,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593897309132</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="last commit i hope">
+      <created>1593898592371</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1593898592372</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -588,7 +596,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="session drag and drop and resize" />
     <MESSAGE value="jjgfuyteur" />
     <MESSAGE value="gfhdgq" />
     <MESSAGE value="gfhdgqjSHKSj" />
@@ -613,7 +620,8 @@
     <MESSAGE value="erreur module not anymore" />
     <MESSAGE value="idk" />
     <MESSAGE value="last commit i hope" />
-    <option name="LAST_COMMIT_MESSAGE" value="last commit i hope" />
+    <MESSAGE value="absence etudiants" />
+    <option name="LAST_COMMIT_MESSAGE" value="absence etudiants" />
   </component>
   <component name="WindowStateProjectService">
     <state x="551" y="279" key="#TSLint" timestamp="1588002870611">
@@ -650,29 +658,29 @@
     </state>
     <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1593540082237" />
     <state x="463" y="123" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1587939884723" />
-    <state width="1345" height="185" key="GridCell.Tab.0.bottom" timestamp="1593898467120">
+    <state width="1345" height="185" key="GridCell.Tab.0.bottom" timestamp="1594048750414">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.bottom/0.0.1024.728@0.0.1024.728" timestamp="1591361539321" />
-    <state width="1345" height="185" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1593898467120" />
+    <state width="1345" height="185" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1594048750414" />
     <state width="808" height="610" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1593049075541" />
-    <state width="1345" height="185" key="GridCell.Tab.0.center" timestamp="1593898467120">
+    <state width="1345" height="185" key="GridCell.Tab.0.center" timestamp="1594048750414">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.center/0.0.1024.728@0.0.1024.728" timestamp="1591361539320" />
-    <state width="1345" height="185" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1593898467120" />
+    <state width="1345" height="185" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1594048750414" />
     <state width="808" height="610" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1593049075541" />
-    <state width="1345" height="185" key="GridCell.Tab.0.left" timestamp="1593898467118">
+    <state width="1345" height="185" key="GridCell.Tab.0.left" timestamp="1594048750413">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.left/0.0.1024.728@0.0.1024.728" timestamp="1591361539319" />
-    <state width="1345" height="185" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1593898467118" />
+    <state width="1345" height="185" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1594048750413" />
     <state width="808" height="610" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1593049075541" />
-    <state width="1345" height="185" key="GridCell.Tab.0.right" timestamp="1593898467120">
+    <state width="1345" height="185" key="GridCell.Tab.0.right" timestamp="1594048750414">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1003" height="184" key="GridCell.Tab.0.right/0.0.1024.728@0.0.1024.728" timestamp="1591361539320" />
-    <state width="1345" height="185" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1593898467120" />
+    <state width="1345" height="185" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1594048750414" />
     <state width="808" height="610" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1593049075541" />
     <state width="1345" height="177" key="GridCell.Tab.1.bottom" timestamp="1591822636944">
       <screen x="0" y="0" width="1366" height="728" />
@@ -739,10 +747,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1591815061158" />
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1593897310941">
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1593898595136">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1593897310941" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1593898595136" />
     <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1592932819842" />
     <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1593858308270">
       <screen x="0" y="0" width="1366" height="728" />

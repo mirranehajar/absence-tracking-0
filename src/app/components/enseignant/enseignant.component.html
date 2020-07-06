@@ -238,3 +238,86 @@
     </p-footer>
   </form>
 </p-dialog>
+<p-dialog modal="true" header="Ajouter un enseignant" [(visible)]="displayBasic" [style]="{width: '50vw'}" autoZIndex="true">
+  <form style="text-align: center" method="POST" [formGroup]="userform" (ngSubmit)="save()">
+    <div style="display:inline-block" class="form-group">
+      <div class="row">
+        <div class="ui-inputgroup">
+              <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input" [(ngModel)]="enseignant.numeroSOM" name="numeroSOM"  formControlName="numeroSOM" type="text" pKeyFilter="pnum"  [pValidateOnly]="true" size="30" pInputText required="required">
+    <label for="float-input">Numéro de SOM</label>
+            </span>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+              <span class="ui-float-label">
+    <input id="float-input1" [(ngModel)]="enseignant.cin" name="cin" formControlName="cin" pKeyFilter="alphanum" type="text" size="30" pInputText required="required">
+    <label for="float-input1">Cin</label>
+            </span>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+                <span class="ui-float-label">
+    <input id="float-input2" [(ngModel)]="enseignant.firstName" formControlName="firstName" name="prénom" type="text" size="30" pInputText pKeyFilter="alpha" required="required">
+    <label for="float-input2">Prénom</label>
+            </span>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+                 <span class="ui-float-label">
+    <input id="float-input3" [(ngModel)]="enseignant.lastName" formControlName="lastName" name="nom" type="text" size="30" pKeyFilter="alpha" pInputText required="required">
+    <label for="float-input3">Nom</label>
+            </span>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+               <span class="ui-float-label">
+    <input id="float-input4" max="1995-01-01" [(ngModel)]="enseignant.birthDay" formControlName="birthday" name="jour de naissance" type="date" size="30" pInputText required="required">
+            </span>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+               <span class="ui-float-label">
+                 <p-inputMask id="float-input5" [(ngModel)]="enseignant.tel" name="tel" type="tel" size="30" formControlName="tel" mask="0699999999" pInputText required="required"></p-inputMask>
+    <label for="float-input5">Numéro de téléphone</label>
+            </span>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <p-radioButton name="sex" label="Feminin" value="F" formControlName="sex" [(ngModel)]="enseignant.sex"></p-radioButton>
+          <p-radioButton name="sex" label="Masculin" value="M" [(ngModel)]="enseignant.sex" formControlName="sex"></p-radioButton>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup" style="width: 225px;">
+          <p-dropdown name="sector" [options]="cities" [(ngModel)]="city" formControlName="ville" optionLabel="ville" placeholder="Choisir une ville"></p-dropdown>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+          <p-dropdown name="sector" [options]="departements" [(ngModel)]="enseignant.departement" formControlName="departement" optionLabel="libelle" placeholder="Choisir un département"></p-dropdown>
+        </div>
+      </div>
+    </div>
+    <br>
+    <p-footer>
+      <button type="submit" pButton icon="pi pi-check" style="float: left" [disabled]="!userform.valid" label="Enregistrer"></button>
+      <button type="reset" pButton icon="pi pi-times" style="float: right" (click)="displayBasic=false" label="Annuler" class="ui-button-secondary"></button>
+    </p-footer>
+  </form>
+</p-dialog>
+

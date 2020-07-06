@@ -231,7 +231,7 @@
 <p-dialog header="Confirmation/refus demande" position="top" [(visible)]="displayBasic5" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000">
   <p>{{notificationFounded.contenu}}</p>
   <br> <img [src]="notificationFounded.src">
-  <br>
+  <br> <br>
   <p-footer>
   <button pButton (click)="accepter(notificationFounded)" type="button" style="float: left">Accepter</button>
   <button pButton (click)="refuser(notificationFounded)" type="button" style="float: right" class="ui-button-danger">Refuser</button>

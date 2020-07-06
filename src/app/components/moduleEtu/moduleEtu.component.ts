@@ -25,6 +25,9 @@ export class ModuleEtuComponent implements OnInit {
     await this.moduleService.findBySemestre(this.etudiantService.etudiantConnected.groupe.semestre);
     for (const m of this.modulesFounded) {
       await this.findByModule(m);
+      for ( const t of this.typeSessionsFounded) {
+        t.enseignant.label = t.enseignant.lastName + ' ' + t.enseignant.firstName;
+      }
       m.typeSessions = this.typeSessionsFounded;
       console.log(m);
     }
