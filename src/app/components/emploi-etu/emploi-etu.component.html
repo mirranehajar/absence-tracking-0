@@ -41,6 +41,15 @@
         </div>
       </div>
       <br>
+      <div class="row">
+        <div class="ui-inputgroup">
+            <span class="ui-float-label" style="margin-top: 10px">
+    <input id="float-input9" type="texte" name="typeSession" [ngModelOptions]="{standalone: true}" disabled [(ngModel)]="sessionFounded.typeSession.enseignant.label" size="30" pInputText required="required">
+    <label for="float-input9">Enseignant</label>
+            </span>
+        </div>
+      </div>
+      <br>
       <div class="row" *ngIf="boolean != false">
         <div class="ui-inputgroup" style="margin-top: 10px; width: 225px">
           <textarea [rows]="5" [(ngModel)]="absenceFounded.justification" formControlName="contenu" [cols]="30" name="justification" pInputTextarea autoResize="autoResize"></textarea>

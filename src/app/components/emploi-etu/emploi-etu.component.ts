@@ -57,6 +57,7 @@ export class EmploiEtuComponent implements OnInit {
   public async showBasicDialog(event) {
     this.absenceService.boolean = true;
     await this.sessionService.findByReference(event.event.id);
+    this.sessionFounded.typeSession.enseignant.label = this.sessionFounded.typeSession.enseignant.lastName + ' ' + this.sessionFounded.typeSession.enseignant.firstName;
     await this.absenceService.findBySessionAndEtudiant(this.sessionService.sessionFounded, this.etudiantService.etudiantConnected);
     console.log(event);
     if (event.event.start >= this.today) {

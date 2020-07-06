@@ -32,7 +32,7 @@
           </li>
         </ul>
         <mat-icon [matBadge]="notif" matBadgeColor="primary" (click)="op1.toggle($event)" style="margin-right: 8px; color: black">notifications</mat-icon>
-        <p-overlayPanel #op1>
+        <p-overlayPanel  #op1>
           <ng-template pTemplate>
                 <div ui-overlaypanel-content *ngFor="let n of notifications">
                   <p *ngIf="n.state == 'acceptée'">Votre justification a été {{n.state}}</p>

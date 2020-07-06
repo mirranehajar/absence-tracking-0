@@ -55,7 +55,7 @@ export class StatistiqueComponent implements OnInit {
       ],
     },
   };
-  colors: string[] = ['#a64d79', '#4bc0c0', '#0f056b'];
+  colors: string[] = ['#a64d79', '#0f056b' , '#4bc0c0'];
   j = 0;
   constructor(private sectorService: SectorService, private etudiantService: EtudiantService,
               private absenceService: AbsenceService, private moduleService: ModuleService,
