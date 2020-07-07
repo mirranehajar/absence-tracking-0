@@ -192,6 +192,7 @@ export class SessionComponent implements OnInit {
   }
 
   async onResize(arg) {
+
     console.log(arg.event.id);
     console.log(arg.event);
     console.log((arg.event.end.getHours() - arg.event.start.getHours()) * 60 + arg.event.end.getMinutes() - arg.event.start.getMinutes());
