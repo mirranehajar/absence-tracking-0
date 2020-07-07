@@ -76,6 +76,7 @@ export class StatistiqueComponent implements OnInit {
     if (this.enseignantConnected.role === 2) {
       this.sectorService.sector = this.sectorManagerService.sectorManagerFounded.sector;
       console.log(this.sector);
+      await this.moduleService.findBySector(this.sector);
       await this.semestreService.findBySector(this.sector);
       console.log(this.semestresFounded);
       this.semestres = this.semestresFounded;

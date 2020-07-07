@@ -189,17 +189,6 @@ export class SessionComponent implements OnInit {
       console.log('haha hana jit lhna');
       await this.sessionService.update();
     }
-    this.calendarEvents = [];
-    for (const s of this.sessions) {
-      // tslint:disable-next-line:max-line-length
-      this.calendarEvents = this.calendarEvents.concat({
-        id: s.reference,
-        title: s.libelle,
-        start: s.dateStart,
-        end: s.dateStop,
-        constraint: this.hours,
-      });
-    }
   }
 
   async onResize(arg) {

@@ -5,6 +5,8 @@ import {Semestre} from '../model/semestre';
 import {Subject} from '../model/subject';
 import {TypeSession} from '../model/type-session';
 import {TypeSessionService} from './type-session.service';
+import {Enseignant} from '../model/enseignant.model';
+import {Sector} from '../model/sector';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +34,13 @@ export class ModuleService {
   public async findAll() {
     await this.http.get<Module[]>(this._url).toPromise().then(
       async (data) => {
+        this.modules = data;
+      },
+    );
+  }
+  public async findBySector(sector: Sector) {
+    await this.http.post<Module[]>(this._url + 'sector/', sector).toPromise().then(
+      (data) => {
         this.modules = data;
       },
     );
