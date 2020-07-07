@@ -214,16 +214,6 @@ export class SessionComponent implements OnInit {
       this.sessionService.sessionFounded.periode = (arg.event.end.getHours() - arg.event.start.getHours()) * 60 + arg.event.end.getMinutes() - arg.event.start.getMinutes();
       await this.sessionService.update();
     }
-    this.calendarEvents = [];
-    for (const s of this.sessions) {
-      this.calendarEvents = this.calendarEvents.concat({
-        id: s.reference,
-        title: s.libelle,
-        start: s.dateStart,
-        end: s.dateStop,
-        constraint: this.hours,
-      });
-    }
   }
 
   public async save() {
